@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { LoginService } from './../login.service';
 import { AppComponent } from './../app.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent  {
   images: string [] = ["assets/dawn.png", "assets/night.jpg", "assets/bonfire.jpg"];
   selectedImage: string = "";
   
-  constructor (private loginService : LoginService, private appComponent: AppComponent)
+  constructor (private loginService : LoginService, private appComponent: AppComponent, private router: Router)
   {
 
   }
@@ -27,7 +28,6 @@ export class LoginComponent  {
     let rand = Math.floor(Math.random() * val);
     this.selectedImage = this.images[rand];
 
-    
   }
 
   login()
@@ -42,6 +42,17 @@ export class LoginComponent  {
       data  => 
       { 
         console.log("POST Request is successful ", data);
+        let token = data.token;
+        
+        //const helper = new JwtHelperService();
+        //sub es el id publico del usuario
+        //exp es la fecha de expiracion
+        //const decodedToken = helper.decodeToken(token);
+        //const expirationDate = helper.getTokenExpirationDate(token);
+        //const isExpired = helper.isTokenExpired(token);
+        localStorage.setItem('token', token);
+        this.appComponent.loggedIn = true;
+        this.router.navigate(['instructor/instructor-dashboard']);
       },
       error  => 
       { 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SSL_OP_LEGACY_SERVER_CONNECT } from 'constants';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,5 @@ export class AppComponent
 
   ngOnInit()
   {
-    
   }
 }
