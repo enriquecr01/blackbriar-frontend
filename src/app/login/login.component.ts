@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 
 import { LoginService } from './../login.service';
 import { AppComponent } from './../app.component';
@@ -7,9 +7,13 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [AppComponent]
 })
 
+@Injectable({
+  providedIn: 'root'
+})
 export class LoginComponent  {
 
   email: string = "";
@@ -17,7 +21,7 @@ export class LoginComponent  {
   images: string [] = ["assets/dawn.png", "assets/night.jpg", "assets/bonfire.jpg"];
   selectedImage: string = "";
   
-  constructor (private loginService : LoginService, private appComponent: AppComponent, private router: Router)
+  constructor (private loginService : LoginService, private router: Router)
   {
 
   }
@@ -42,16 +46,15 @@ export class LoginComponent  {
       data  => 
       { 
         console.log("POST Request is successful ", data);
-        let token = data.token;
-        
+        let token: any = data;
+
         //const helper = new JwtHelperService();
         //sub es el id publico del usuario
         //exp es la fecha de expiracion
         //const decodedToken = helper.decodeToken(token);
         //const expirationDate = helper.getTokenExpirationDate(token);
         //const isExpired = helper.isTokenExpired(token);
-        localStorage.setItem('token', token);
-        this.appComponent.loggedIn = true;
+        localStorage.setItem('token', token.token);
         this.router.navigate(['instructor/instructor-dashboard']);
       },
       error  => 
@@ -60,6 +63,4 @@ export class LoginComponent  {
       }
     );
   }
-
-
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AppComponent } from './../../app.component';
 import { Router } from '@angular/router';
 import { Auth } from './../../auth';
 
@@ -11,16 +10,14 @@ import { Auth } from './../../auth';
 })
 export class InstructorDashboardComponent implements OnInit {
 
-  constructor(private router: Router, private appComponent: AppComponent, private auth: Auth) { }
+  constructor(private router: Router, private auth: Auth) { }
 
   ngOnInit() {
-    this.auth.getToken();
-    this.appComponent.loggedIn;
+    this.auth.getExpiration();
   }
 
   logout()
   {
-    this.appComponent.loggedIn = false;
     this.router.navigate(['home']);
   }
 

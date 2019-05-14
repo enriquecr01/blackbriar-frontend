@@ -10,7 +10,7 @@ export class Auth {
   constructor(private router: Router) 
   {}
 
-  getToken()
+  getExpiration()
   {
     const helper = new JwtHelperService();
     //sub es el id publico del usuario
@@ -21,7 +21,7 @@ export class Auth {
 
     if (isExpired)
     {
-        this.router.navigate(['login']);
+      this.router.navigate(['login']);
     }
     else
     {

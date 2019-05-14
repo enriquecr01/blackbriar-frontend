@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import { SSL_OP_LEGACY_SERVER_CONNECT } from 'constants';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [LoginService]
 })
 export class AppComponent 
 {
-  title = 'blackbriar';
-  
-  //This variable controls the no logged bar
-  loggedIn: boolean = false;
 
+  logged: boolean = false;
+  
   ngOnInit()
   {
   }

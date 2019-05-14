@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarLoggedComponent } from './navbar-logged/navbar-logged.component';
 import { InstructorDashboardComponent } from './instructor/instructor-dashboard/instructor-dashboard.component';
+import { NavbarInstructorComponent } from './instructor/navbar-instructor/navbar-instructor.component';
 
 // Services
 import { LoginService } from './login.service';
@@ -37,7 +38,8 @@ const routes: Route[] = [
     HomeComponent,
     RegisterComponent,
     NavbarLoggedComponent,
-    InstructorDashboardComponent
+    InstructorDashboardComponent,
+    NavbarInstructorComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ const routes: Route[] = [
   ],
   providers: [
     LoginService,
-    RegisterService
+    RegisterService,
+    AppComponent
   ],
   bootstrap: [AppComponent]
 })

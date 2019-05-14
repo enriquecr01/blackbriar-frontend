@@ -1,3 +1,4 @@
+<app-navbar-no-logged></app-navbar-no-logged>
 <div class="containerBackground background8BitImage" [style.backgroundImage]="'url('+ selectedImage  +')'">
   <div class="row"  style="margin-bottom: 0px">
       <div class="col s12 m5 offset-m3">
@@ -49,6 +50,11 @@
                   <label for="validatePassword">Enter your password again</label>
                 </div>
               </div>
+              <div class="row"  >
+                <div class="input-field col s12" style="margin: 0 0 0 0;">
+                  <a class="btn waves-effect waves-light col s12" (click)="register()">Register</a>
+                </div>
+              </div>
               <div class="row">
                   <div class="input-field col s12 m12 xl6" style="margin: 0 0 0 0;">
                     <a href="#" class="btn waves-effect waves-light blue darken-3 col s12"><i class="fa fa-facebook-official" aria-hidden="true"></i>    Register with Facebook</a>
@@ -56,11 +62,6 @@
                   <div class="input-field col s12 m12 xl6" style="margin: 0 0 0 0;">
                       <a href="#" class="btn waves-effect waves-light red darken-1 col s12"><i class="fa fa-google" aria-hidden="true"></i>   Register with Google</a>
                   </div>
-              </div>
-              <div class="row"  >
-                <div class="input-field col s12" style="margin: 0 0 0 0;">
-                  <a class="btn waves-effect waves-light col s12" (click)="register()">Register</a>
-                </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
