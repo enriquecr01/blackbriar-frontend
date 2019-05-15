@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import * as M from 'materialize-css/dist/js/materialize';
 
 import { Router } from '@angular/router';
 import { Auth } from './../../auth';
+
 
 @Component({
   selector: 'app-instructor-dashboard',
@@ -14,6 +16,8 @@ export class InstructorDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.auth.getExpiration();
+    const elems = document.querySelectorAll('.dropdown-trigger');
+    const instances = M.Dropdown.init(elems);
   }
 
   logout()

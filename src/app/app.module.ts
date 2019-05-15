@@ -21,6 +21,7 @@ import { NavbarInstructorComponent } from './instructor/navbar-instructor/navbar
 // Services
 import { LoginService } from './login.service';
 import { RegisterService } from './register.service';
+import { GroupCardComponent } from './instructor/group-card/group-card.component';
 
 
 const routes: Route[] = [
@@ -39,7 +40,8 @@ const routes: Route[] = [
     RegisterComponent,
     NavbarLoggedComponent,
     InstructorDashboardComponent,
-    NavbarInstructorComponent
+    NavbarInstructorComponent,
+    GroupCardComponent
   ],
   imports: [
     BrowserModule,
