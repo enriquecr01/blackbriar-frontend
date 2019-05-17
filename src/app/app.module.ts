@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule , routingStudentComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Route, RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -23,12 +23,13 @@ import { LoginService } from './login.service';
 import { RegisterService } from './register.service';
 import { GroupCardComponent } from './instructor/group-card/group-card.component';
 
-
 const routes: Route[] = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent}
+  
+  
 ];
 
 @NgModule({
@@ -41,7 +42,8 @@ const routes: Route[] = [
     NavbarLoggedComponent,
     InstructorDashboardComponent,
     NavbarInstructorComponent,
-    GroupCardComponent
+    GroupCardComponent,
+    routingStudentComponents,
   ],
   imports: [
     BrowserModule,

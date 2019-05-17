@@ -25,9 +25,7 @@ export class Auth {
     }
     else
     {
-
+      
     }
-  }
-
-  
+  }  
 }

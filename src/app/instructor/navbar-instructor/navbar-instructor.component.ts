@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as M from 'materialize-css/dist/js/materialize';
 
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-navbar-instructor',
   templateUrl: './navbar-instructor.component.html',
@@ -13,11 +15,5 @@ export class NavbarInstructorComponent implements OnInit {
   ngOnInit() {
   }
 
-  open() 
-  {
-    const elem = document.getElementById("drop");
-    const instance = M.Dropdown.init(elem);
-    instance.open();
-  }
 
 }

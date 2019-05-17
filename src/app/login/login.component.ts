@@ -18,6 +18,7 @@ export class LoginComponent  {
 
   email: string = "";
   password: string = "";
+  type: string = "";
   images: string [] = ["assets/dawn.png", "assets/night.jpg", "assets/bonfire.jpg"];
   selectedImage: string = "";
   
@@ -55,7 +56,10 @@ export class LoginComponent  {
         //const expirationDate = helper.getTokenExpirationDate(token);
         //const isExpired = helper.isTokenExpired(token);
         localStorage.setItem('token', token.token);
-        this.router.navigate(['instructor/instructor-dashboard']);
+        if (this.type == "Instructor")
+          this.router.navigate(['instructor/instructor-dashboard']);
+        else
+          this.router.navigate(['student/student-dashboard']);
       },
       error  => 
       { 

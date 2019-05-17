@@ -1,0 +1,7 @@
+<app-student-navbar></app-student-navbar>       
+                                                        
+<div class="row">
+    <div *ngFor= "let group of groups">
+      <app-student-mygroups-card [group] = group></app-student-mygroups-card>
+    </div>
+  </div>

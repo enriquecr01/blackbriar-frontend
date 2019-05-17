@@ -1,13 +1,8 @@
 <app-navbar-instructor></app-navbar-instructor>
 <div class="animated fadeInLeft" id="gridGroups" style="margin-top: 20px;">
   <div class="row">
-      <app-group-card></app-group-card>
-      <app-group-card></app-group-card>
-      <app-group-card></app-group-card>
-      <app-group-card></app-group-card>
-      <app-group-card></app-group-card>
-      <app-group-card></app-group-card>
-      <app-group-card></app-group-card>
+    <div *ngFor="let group of groups">
+        <app-group-card [group]=group></app-group-card>
+    </div>
   </div>
 </div>
-<a class="btn waves-effect waves-light col s12" (click)="logout()">Log out</a>

@@ -1,18 +1,26 @@
-<nav style="color: black">
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a>Sass</a></li>
-        <li><a>Components</a></li>
-        <!-- Dropdown Trigger -->
-        
-          <div class="valign-wrapper" style="height:100%;">
-            <a class="dropdown-trigger"data-target="dropdown1" id="drop" style="padding: 10px">
-              <img src="assets/photos/parkerheadshot.jpg" width="32px" class="circle responsive-img">
-            </a>
-          </div>
-        
-      </ul>
-    </div>
-  </nav>
-          
+<div class="navbar-fixed">
+    <nav style="color: black">
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">Logo</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a>Sass</a></li>
+            <li><a>Components</a></li>
+            <!-- Dropdown Trigger -->
+              <div data-target="dropdown1" id="drop" class="valign-wrapper dropdown-trigger" style="height:100%;">
+                <a style="padding: 10px">
+                  <img src="assets/photos/parkerheadshot.jpg" width="32px" class="circle responsive-img">
+                </a>
+              </div>
+            
+          </ul>
+        </div>
+      </nav>
+</div>
+
+  <!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider"></li>
+    <li><a href="#!">three</a></li>
+  </ul>

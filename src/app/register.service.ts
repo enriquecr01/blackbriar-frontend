@@ -17,7 +17,7 @@ export class RegisterService {
     let jsonCoded = JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password, photo: "default.jpg" });
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'});
-  let options = { headers: headers };
+    let options = { headers: headers };
     return this.http.post("http://localhost:8080/api/users", jsonCoded, options);
   }
 }
