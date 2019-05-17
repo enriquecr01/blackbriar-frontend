@@ -4,6 +4,8 @@ import * as M from 'materialize-css/dist/js/materialize';
 import { Router } from '@angular/router';
 import { Auth } from './../../auth';
 
+import { GroupsService } from './../../groups.service';
+
 
 @Component({
   selector: 'app-instructor-dashboard',
@@ -12,13 +14,33 @@ import { Auth } from './../../auth';
 })
 export class InstructorDashboardComponent implements OnInit {
 
-  constructor(private router: Router, private auth: Auth) { }
+  constructor(private router: Router, private auth: Auth, private groupsService: GroupsService) { }
+
+  groups = [];
 
   ngOnInit() {
     this.auth.getExpiration();
-    const elems = document.querySelectorAll('.dropdown-trigger');
-    const instances = M.Dropdown.init(elems);
+
+    console.log(this.groupsService.getInstructorGroups());
+    this.groupsService.getInstructorGroups().
+    subscribe(
+      data  => 
+      { 
+        console.log("GET Request is successful ", data);
+        this.groups = data;
+      },
+      error  => 
+      { 
+        console.log("Error", error); 
+      }
+    );
   }
+
+  /*ngAfterViewInit() {
+    const dropdown = document.querySelectorAll(".dropdown-trigger");
+    M.Dropdown.init(dropdown,{coverTrigger: false});
+  }*/
+
 
   logout()
   {

@@ -77,6 +77,7 @@ export class RegisterComponent {
     }
   }
 
+  
   hasNumbers(text)
   {
     let numeros="0123456789";
