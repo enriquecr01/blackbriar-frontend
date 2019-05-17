@@ -8,6 +8,7 @@ import { Route, RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterializeModule } from 'angular2-materialize';
+import 'materialize-css';
 
 // Components
 import { LoginComponent } from './login/login.component';
@@ -22,6 +23,13 @@ import { NavbarInstructorComponent } from './instructor/navbar-instructor/navbar
 import { LoginService } from './login.service';
 import { RegisterService } from './register.service';
 import { GroupCardComponent } from './instructor/group-card/group-card.component';
+
+//Angular material components
+import {MatSelectModule} from '@angular/material/select';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatMenuModule} from '@angular/material/menu';
+import { AddGroupModalComponent } from './instructor/add-group-modal/add-group-modal.component';
+
 
 const routes: Route[] = [
   {path: 'home', component: HomeComponent},
@@ -43,7 +51,8 @@ const routes: Route[] = [
     InstructorDashboardComponent,
     NavbarInstructorComponent,
     GroupCardComponent,
-    routingStudentComponents,
+    AddGroupModalComponent,
+    routingStudentComponents
   ],
   imports: [
     BrowserModule,
@@ -52,7 +61,10 @@ const routes: Route[] = [
     AngularFontAwesomeModule,
     FormsModule,
     HttpClientModule,
-    MaterializeModule
+    MaterializeModule,
+    MatMenuModule,
+    MatSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [
     LoginService,

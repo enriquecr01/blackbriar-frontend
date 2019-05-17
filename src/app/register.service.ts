@@ -18,6 +18,7 @@ export class RegisterService {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'});
     let options = { headers: headers };
-    return this.http.post("http://localhost:8080/api/users", jsonCoded, options);
+    return this.http.post("http://api.blackbriar.site/api/users", jsonCoded, options);
+
   }
 }

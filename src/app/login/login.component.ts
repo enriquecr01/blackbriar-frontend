@@ -2,7 +2,9 @@ import { Component, OnInit, Injectable } from '@angular/core';
 
 import { LoginService } from './../login.service';
 import { AppComponent } from './../app.component';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-login',
@@ -48,23 +50,28 @@ export class LoginComponent  {
       { 
         console.log("POST Request is successful ", data);
         let token: any = data;
-
-        //const helper = new JwtHelperService();
-        //sub es el id publico del usuario
-        //exp es la fecha de expiracion
-        //const decodedToken = helper.decodeToken(token);
-        //const expirationDate = helper.getTokenExpirationDate(token);
-        //const isExpired = helper.isTokenExpired(token);
+        const helper = new JwtHelperService();
         localStorage.setItem('token', token.token);
-        if (this.type == "Instructor")
-          this.router.navigate(['instructor/instructor-dashboard']);
-        else
-          this.router.navigate(['student/student-dashboard']);
+        const decodedToken = helper.decodeToken(token.token);
+        localStorage.setItem('userId', decodedToken.sub);
+
+        this.loginService.getInfoUser(decodedToken.sub).
+        subscribe(
+          data =>
+          {
+            let userInfo : User = data;
+            localStorage.setItem('firstName', userInfo.firstName);
+            localStorage.setItem('lastName', userInfo.lastName);
+            localStorage.setItem('email', userInfo.email);
+            localStorage.setItem('photo', userInfo.photo);
+            this.router.navigate(['instructor/instructor-dashboard']);
+          },
+          error => { console.log("Error", error); }
+        );
+        
+
       },
-      error  => 
-      { 
-        console.log("Error", error); 
-      }
+      error  => { console.log("Error", error); }
     );
   }
 }

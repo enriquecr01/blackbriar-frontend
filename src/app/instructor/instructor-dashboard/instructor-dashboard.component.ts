@@ -35,6 +35,12 @@ export class InstructorDashboardComponent implements OnInit {
     );
   }
 
+  /*ngAfterViewInit() {
+    const dropdown = document.querySelectorAll(".dropdown-trigger");
+    M.Dropdown.init(dropdown,{coverTrigger: false});
+  }*/
+
+
   logout()
   {
     this.router.navigate(['home']);
