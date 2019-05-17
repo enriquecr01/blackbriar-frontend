@@ -19,5 +19,6 @@ export class RegisterService {
       'Content-Type': 'application/json'});
     let options = { headers: headers };
     return this.http.post("http://api.blackbriar.site/api/users", jsonCoded, options);
+
   }
 }

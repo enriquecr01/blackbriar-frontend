@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule , routingStudentComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Route, RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -36,6 +36,8 @@ const routes: Route[] = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent}
+  
+  
 ];
 
 @NgModule({
@@ -49,7 +51,8 @@ const routes: Route[] = [
     InstructorDashboardComponent,
     NavbarInstructorComponent,
     GroupCardComponent,
-    AddGroupModalComponent
+    AddGroupModalComponent,
+    routingStudentComponents
   ],
   imports: [
     BrowserModule,
