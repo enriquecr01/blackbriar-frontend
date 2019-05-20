@@ -20,6 +20,7 @@ export class LoginComponent  {
 
   email: string = "";
   password: string = "";
+  type: string = "";
   images: string [] = ["assets/dawn.png", "assets/night.jpg", "assets/bonfire.jpg"];
   selectedImage: string = "";
   
@@ -66,7 +67,7 @@ export class LoginComponent  {
             localStorage.setItem('student', userInfo.student);
             if(userInfo.student)
             {
-              this.router.navigate(['instructor/instructor-dashboard']);
+              this.router.navigate(['student/student-mygroups']);
             }
             else
             {
@@ -76,6 +77,7 @@ export class LoginComponent  {
           error => { console.log("Error", error); }
         );
         
+
       },
       error  => { console.log("Error", error); }
     );

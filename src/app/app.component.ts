@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,21 @@ import { LoginService } from './login.service';
 export class AppComponent 
 {
 
+  constructor(private router: Router) {
+    
+  }
+
   logged: boolean = false;
   
   ngOnInit()
   {
+  }
+
+  goToMyGroups(){
+    this.router.navigate(['student/student-mygroups']);
+  }
+
+  goToExplore(){
+    this.router.navigate(['student/student-explore']);
   }
 }

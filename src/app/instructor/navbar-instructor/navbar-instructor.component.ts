@@ -3,6 +3,8 @@ import {MaterializeAction } from 'angular2-materialize';
 import {MatSelectModule} from '@angular/material/select';
 
 
+import * as $ from 'jquery';
+
 @Component({
   selector: 'app-navbar-instructor',
   templateUrl: './navbar-instructor.component.html',
@@ -29,6 +31,7 @@ export class NavbarInstructorComponent implements OnInit {
       M.Sidenav.init(elems1);
     });
   }
+
 
   openModal() {
     this.modalActions.emit({action:"dropdown",params:['open']});

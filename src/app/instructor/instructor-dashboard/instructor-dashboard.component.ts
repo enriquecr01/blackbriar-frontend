@@ -20,7 +20,6 @@ export class InstructorDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.auth.getExpiration();
-
     console.log(this.groupsService.getInstructorGroups());
     this.groupsService.getInstructorGroups().
     subscribe(
