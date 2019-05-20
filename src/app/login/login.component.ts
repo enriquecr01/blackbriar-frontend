@@ -63,7 +63,15 @@ export class LoginComponent  {
             localStorage.setItem('lastName', userInfo.lastName);
             localStorage.setItem('email', userInfo.email);
             localStorage.setItem('photo', userInfo.photo);
-            this.router.navigate(['instructor/instructor-dashboard']);
+            localStorage.setItem('student', userInfo.student);
+            if(userInfo.student)
+            {
+              this.router.navigate(['instructor/instructor-dashboard']);
+            }
+            else
+            {
+              this.router.navigate(['instructor/instructor-dashboard']);
+            }
           },
           error => { console.log("Error", error); }
         );

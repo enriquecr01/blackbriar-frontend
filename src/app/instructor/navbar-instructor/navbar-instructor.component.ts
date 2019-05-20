@@ -23,7 +23,10 @@ export class NavbarInstructorComponent implements OnInit {
   {
     document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('.dropdown-trigger');
-      var instances = M.Dropdown.init(elems);
+      var instances = M.Dropdown.init(elems, {constrainWidth: false});
+
+      var elems1 = document.querySelectorAll('.sidenav');
+      M.Sidenav.init(elems1);
     });
   }
 
