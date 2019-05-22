@@ -14,7 +14,7 @@ export class EndpointsService {
   get_StudentRegisteredGroups(){
   
     var userId = localStorage.getItem("userId");
-    var studentsRegisteredGroupsAPI = `http://api.blackbriar.site/api/users/${this.userId}/groups/subscribed`;
+    var studentsRegisteredGroupsAPI = `https://api.blackbriar.site/api/users/${this.userId}/groups/subscribed`;
 
     let token = "Bearer " + localStorage.getItem("token");
     const headers = new HttpHeaders({
@@ -27,7 +27,7 @@ export class EndpointsService {
 
   get_AllGroups(){
     //var userId = "KbgSRGca21WWzyJ901xNKGeQk2kOfW";
-    var AllGroupsAPI = 'http://api.blackbriar.site/api/groups';
+    var AllGroupsAPI = 'https://api.blackbriar.site/api/groups';
     let token = "Bearer " + localStorage.getItem("token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -35,4 +35,17 @@ export class EndpointsService {
    })
     return this.http.get<Group[]>(AllGroupsAPI, { headers: headers });
   }
+
+  joinGroup(groupId: number)
+  {
+    var membershipGroupAPI = 'https://api.blackbriar.site/api/memberships';
+    let jsonCoded = { groupId: groupId };
+    let token = "Bearer " + localStorage.getItem("token");
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+   })
+    return this.http.post(membershipGroupAPI, jsonCoded, { headers: headers });
+  }
+
 }
