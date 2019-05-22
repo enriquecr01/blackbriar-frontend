@@ -28,7 +28,6 @@ export class GroupsService {
   {
     var userId = localStorage.getItem("userId");
     let jsonCoded = JSON.stringify({ title: title, description: description, image: image, publicGroup: publicGroup });
-    console.log(jsonCoded);
     let token = "Bearer " + localStorage.getItem("token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

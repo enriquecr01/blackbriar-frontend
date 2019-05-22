@@ -1,18 +1,27 @@
-<div class="mb-5" style="border: none;">
+<div class="navbar-fixed">
+  <nav class="navbar-fixed white  shadow z-depth-3" style="border: none;">      
+    <div class="nav-wrapper">
+        <a data-target="mobile-demo" class="sidenav-trigger"><i style="color: black" class="material-icons">menu</i></a>
+        <img src="../../../assets/Images/Logo/logo.png" height="60" width="200" style="float:left; position: fixed;">
+        <ul class="left hide-on-med-and-down dark" style="margin-left: 41%;">       
+            <li><a (click)="goToMyGroups()" > My Groups </a></li>
+            <li><a (click)="goToExplore()"> Explore </a></li>
+        </ul>
+        <a class="material-icons notification-icon" style="color:#d3d2d2; float:right; margin-right: 20px; margin-top:18px;">notifications_none</a>
+    </div> 
+  </nav>
+</div>
 
-    <nav class="navbar-fixed white  shadow z-depth-3" style="border: none;">      
-        <div class="nav-wrapper">
-          
-          <!--
-            <a href="#!" class="brand-logo center dark">Logo</a>
-            -->
-            <img src="../../../assets/Images/Logo/logo.png" height="60" width="230" style="float:left; position: fixed;">
-            <ul class="left hide-on-med-and-down dark" style="margin-left: 41%;">
-             
-              <li><a (click)="goToMyGroups()" > My Groups </a></li>
-              <li><a (click)="goToExplore()"> Explore </a></li>
-            </ul>
-            <a class="material-icons notification-icon" style="color:#d3d2d2; float:right; margin-right: 20px; margin-top:18px;">notifications_none</a>
-        </div> 
-      </nav>
-  </div>
+        
+  <ul class="sidenav" id="mobile-demo">
+    <li>
+      <div class="row valign-wrapper">
+          <a>
+              <img class="circle responsive-image" src="{{photo}}" width="32px">
+              {{firstName}} {{lastName}}
+          </a>
+      </div>
+    </li>
+    <li><a (click)="goToMyGroups()" > My Groups </a></li>
+    <li><a (click)="goToExplore()"> Explore </a></li>
+  </ul>

@@ -6,6 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -37,49 +38,60 @@ export class LoginComponent  {
 
   }
 
+  verifyIfIsEnter(event)
+  {
+    if (event.key === "Enter") {
+      this.login();
+    }
+  }
+
   login()
   {
     // Lo de abajo es un ejemplo de lo que se puede hacer importando un componente
     // construyendolo y modificando sus variables 
     //this.appComponent.loggedIn = true; 
-    console.log(this.email);
-    console.log(this.password);
-    this.loginService.login(this.email, this.password).
-    subscribe(
-      data  => 
-      { 
-        console.log("POST Request is successful ", data);
-        let token: any = data;
-        const helper = new JwtHelperService();
-        localStorage.setItem('token', token.token);
-        const decodedToken = helper.decodeToken(token.token);
-        localStorage.setItem('userId', decodedToken.sub);
-
-        this.loginService.getInfoUser(decodedToken.sub).
-        subscribe(
-          data =>
-          {
-            let userInfo : User = data;
-            localStorage.setItem('firstName', userInfo.firstName);
-            localStorage.setItem('lastName', userInfo.lastName);
-            localStorage.setItem('email', userInfo.email);
-            localStorage.setItem('photo', userInfo.photo);
-            localStorage.setItem('student', userInfo.student);
-            if(userInfo.student)
+    if(this.password.length < 1 || this.email.length < 1)
+    {
+      M.toast({html: "The credentials are empty"});
+    }
+    else{
+      this.loginService.login(this.email, this.password).
+      subscribe(
+        data  => 
+        { 
+          console.log("POST Request is successful ", data);
+          let token: any = data;
+          const helper = new JwtHelperService();
+          localStorage.setItem('token', token.token);
+          const decodedToken = helper.decodeToken(token.token);
+          localStorage.setItem('userId', decodedToken.sub);
+  
+          this.loginService.getInfoUser(decodedToken.sub).
+          subscribe(
+            data =>
             {
-              this.router.navigate(['student/student-mygroups']);
-            }
-            else
-            {
-              this.router.navigate(['instructor/instructor-dashboard']);
-            }
-          },
-          error => { console.log("Error", error); }
-        );
-        
-
-      },
-      error  => { console.log("Error", error); }
-    );
+              let userInfo : User = data;
+              localStorage.setItem('firstName', userInfo.firstName);
+              localStorage.setItem('lastName', userInfo.lastName);
+              localStorage.setItem('email', userInfo.email);
+              localStorage.setItem('photo', userInfo.photo);
+              localStorage.setItem('student', userInfo.student);
+              if(userInfo.student)
+              {
+                this.router.navigate(['student/student-mygroups']);
+              }
+              else
+              {
+                this.router.navigate(['instructor/instructor-dashboard']);
+              }
+            },
+            error => { M.toast({html: error.error.message}); }
+          );
+          
+  
+        },
+        error  => { M.toast({html: error.error.message}); }
+      );
+    }
   }
 }

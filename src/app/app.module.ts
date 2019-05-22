@@ -29,7 +29,6 @@ import { GroupCardComponent } from './instructor/group-card/group-card.component
 import {MatSelectModule} from '@angular/material/select';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatMenuModule} from '@angular/material/menu';
-import { AddGroupModalComponent } from './instructor/add-group-modal/add-group-modal.component';
 
 
 const routes: Route[] = [
@@ -51,7 +50,6 @@ const routes: Route[] = [
     NavbarLoggedComponent,
     InstructorDashboardComponent,
     GroupCardComponent,
-    AddGroupModalComponent,
     StudentDashboardComponent,
     NavbarInstructorComponent,
     routingStudentComponents
