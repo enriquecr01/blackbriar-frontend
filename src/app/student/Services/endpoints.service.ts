@@ -13,28 +13,26 @@ export class EndpointsService {
 
   get_StudentRegisteredGroups(){
   
-    this.userId = "KbgSRGca21WWzyJ901xNKGeQk2kOfW";
+    var userId = localStorage.getItem("userId");
     var studentsRegisteredGroupsAPI = `http://api.blackbriar.site/api/users/${this.userId}/groups/subscribed`;
 
-    let token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJWT2pWRkxESWpSRXR0VzZZQTdKT3lzTUhYVjZuYnciLCJleHAiOjE1NTg4OTM2ODd9.dLhECLIeElRcfx7k5prse08WiCb5ett55qq3KaNd3ZaJWVwUk2TDBwtPwtz-lJeqHgrd9iV18-qoT2l9slEd2A";
+    let token = "Bearer " + localStorage.getItem("token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': token
   })
     
-    return this.http.get<Group[]>(studentsRegisteredGroupsAPI);
+    return this.http.get<Group[]>(studentsRegisteredGroupsAPI, { headers: headers });
   }
 
   get_AllGroups(){
     //var userId = "KbgSRGca21WWzyJ901xNKGeQk2kOfW";
     var AllGroupsAPI = 'http://api.blackbriar.site/api/groups';
-    
-    console.log(``);
-    let token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJWT2pWRkxESWpSRXR0VzZZQTdKT3lzTUhYVjZuYnciLCJleHAiOjE1NTg4OTM2ODd9.dLhECLIeElRcfx7k5prse08WiCb5ett55qq3KaNd3ZaJWVwUk2TDBwtPwtz-lJeqHgrd9iV18-qoT2l9slEd2A";
+    let token = "Bearer " + localStorage.getItem("token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': token
    })
-    return this.http.get<Group[]>(AllGroupsAPI);
+    return this.http.get<Group[]>(AllGroupsAPI, { headers: headers });
   }
 }

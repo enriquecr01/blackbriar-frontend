@@ -11,10 +11,10 @@ export class RegisterService {
     console.log("marrano pero de registro");
   }
 
-  register(firstName, lastName, email, password)
+  register(firstName, lastName, email, password, student)
   {
-    console.log(JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password, photo: "default.jpg" }));
-    let jsonCoded = JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password, photo: "default.jpg" });
+    console.log(JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password, photo: "default.jpg", student: student }));
+    let jsonCoded = JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password, photo: "default.jpg", student: student });
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'});
     let options = { headers: headers };

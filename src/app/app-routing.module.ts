@@ -9,7 +9,7 @@ import { StudentMygroupsCardComponent } from './student/student-mygroups-card/st
 
 
 const routes: Routes = [
-  {path: 'student/student-dashboard', component: StudentDashboardComponent},
+
   {path: 'student/student-explore', component: StudentExploreComponent},
   {path: 'student/student-mygroups', component: StudentMygroupsComponent},
   {path: 'student/student-navbar', component: StudentMygroupsComponent},
