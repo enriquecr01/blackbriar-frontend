@@ -18,7 +18,7 @@
               <div class="row">
                 <div class="input-field col s11" style="margin: 0 10px 0 10px;">
                   <i class="material-icons prefix">lock_outline</i>
-                  <input id="password" type="password" name="password" [(ngModel)]="password">
+                  <input id="password" type="password" name="password" (keydown)="verifyIfIsEnter($event)" [(ngModel)]="password">
                   <label for="password">Password</label>
                 </div>
               </div>
@@ -29,10 +29,10 @@
               </div>
               <div class="row" style="margin: 0 10px 0 10px;">
                   <div class="input-field col s12">
-                    <a href="#" class="btn waves-effect waves-light blue darken-3 col s12"><i class="fa fa-facebook-official" aria-hidden="true"></i>    Login with Facebook</a>
+                    <a class="btn waves-effect waves-light blue darken-3 col s12"><i class="fa fa-facebook-official" aria-hidden="true"></i>    Login with Facebook</a>
                   </div>
                   <div class="input-field col s12">
-                      <a href="#" class="btn waves-effect waves-light red darken-1 col s12"><i class="fa fa-google" aria-hidden="true"></i>   Login with Google</a>
+                      <a class="btn waves-effect waves-light red darken-1 col s12"><i class="fa fa-google" aria-hidden="true"></i>   Login with Google</a>
                   </div>
               </div>
               <div class="row">

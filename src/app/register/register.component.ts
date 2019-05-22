@@ -61,7 +61,7 @@ export class RegisterComponent {
     }
     else
     {
-      this.registerService.register(this.firstName, this.lastName, this.email, this.password).
+      this.registerService.register(this.firstName, this.lastName, this.email, this.password, this.studentOrInstructor).
       subscribe(
         data  => 
         { 

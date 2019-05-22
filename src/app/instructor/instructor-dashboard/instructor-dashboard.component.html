@@ -7,4 +7,51 @@
   </div>
 </div>
 
-<app-add-group-modal></app-add-group-modal>
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large green modal-trigger" data-target="modal1">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <h4>Add group</h4>
+      <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <input name="title" type="text" [(ngModel)]="title">
+                <label for="title">Title of group</label>
+              </div>
+              <div class="input-field col 12">
+                <input id="description" name="description" type="text" [(ngModel)]="description">
+                <label for="description">Description</label>
+              </div>
+            </div>
+            <div class="row">
+                <div class="switch">
+                    <label style="color: black; font-size: 20px">
+                        <p>Visibility of group</p>
+                        Private
+                        <input type="checkbox" name="public" [(ngModel)]="public">
+                        <span class="lever"></span>
+                        Public
+                    </label>
+                  </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="image" name="image" type="text" [(ngModel)]="image">
+                <label for="image">Image URL</label>
+              </div>
+            </div>
+          </form>
+        </div>
+              
+  </div>
+  <div class="modal-footer">
+    <a class="modal-close waves-effect waves-green btn-flat" (click)="addGroup()">Register group</a>
+  </div>
+</div>
+        

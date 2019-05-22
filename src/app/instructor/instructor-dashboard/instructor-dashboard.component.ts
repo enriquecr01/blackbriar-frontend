@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import * as M from 'materialize-css/dist/js/materialize';
 
 import { Router } from '@angular/router';
 import { Auth } from './../../auth';
 
 import { GroupsService } from './../../groups.service';
+import { Group } from './../../models/group';
 
 
 @Component({
@@ -16,11 +16,19 @@ export class InstructorDashboardComponent implements OnInit {
 
   constructor(private router: Router, private auth: Auth, private groupsService: GroupsService) { }
 
+  //Properties of new group
+  title: string = "";
+  description: string = "";
+  image: string = "";
+  public: boolean = false;
+  GroupsService: any;
+
   groups = [];
 
-  ngOnInit() {
+  ngOnInit() {  
     this.auth.getExpiration();
-
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
     console.log(this.groupsService.getInstructorGroups());
     this.groupsService.getInstructorGroups().
     subscribe(
@@ -34,12 +42,51 @@ export class InstructorDashboardComponent implements OnInit {
         console.log("Error", error); 
       }
     );
+    
   }
 
-  /*ngAfterViewInit() {
-    const dropdown = document.querySelectorAll(".dropdown-trigger");
-    M.Dropdown.init(dropdown,{coverTrigger: false});
-  }*/
+  addGroup()
+  {
+    if(this.title.length < 1)
+    {
+      M.toast({html: 'Your group must to have a title'});
+    }
+    else if(this.description.length < 1)
+    {
+      M.toast({html: 'Your group must to have a description'});
+    }
+    else
+    {
+      this.groupsService.addGroup(this.title, this.description, this.image, this.public).
+      subscribe(
+        data  => 
+        { 
+          M.toast({html: 'Your group was added sucessfully'});
+          this.groups = [];
+          this.title = "";
+          this.description = "";
+          this.image = "";
+          this.groupsService.getInstructorGroups().
+          subscribe(
+            data  => 
+            { 
+              console.log("GET Request is successful ", data);
+              this.groups = data;
+            },
+            error  => 
+            { 
+              console.log("Error", error); 
+            }
+          );
+        },
+        error  => 
+        { 
+          console.log(error.error.message);
+          M.toast({html: error.error.message});
+        }
+      );
+    }
+  }
 
 
   logout()
