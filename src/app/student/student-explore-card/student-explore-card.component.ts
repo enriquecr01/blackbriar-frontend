@@ -11,11 +11,26 @@ export class StudentExploreCardComponent implements OnInit {
 
    @Input() group : Group;
 
-  constructor() { }
+  constructor(private endPointService : EndpointsService) { }
 
   ngOnInit() {
+  }
 
-   
+  joinGroup(groupId)
+  {
+    this.endPointService.joinGroup(groupId).
+    subscribe(
+      data  => 
+      { 
+        let dataAny : any = data;
+        M.toast({html: dataAny.message});
+      },
+      error  => 
+      { 
+        console.log(error.error.message);
+        M.toast({html: error.error.message});
+      }
+    );
   }
 
 }

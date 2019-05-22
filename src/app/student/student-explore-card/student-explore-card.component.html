@@ -11,9 +11,10 @@
               <span class="card-title activator grey-text text-darken-4 truncate">{{group.title}}
               </span>
               
-              <a class="btn" style="background:darkorange; border-radius: 10px">Subscribe</a>
+              <a class="btn" style="background:darkorange; border-radius: 10px" *ngIf="!group.active; else buttonSubscribed" (click)="joinGroup(group.id)">Subscribe</a>
+              <ng-template #buttonSubscribed>
+                <a class="btn" style="background:gray; border-radius: 10px" >Already Subscribed</a>
+              </ng-template>
             </div>
-              
-          
           </div>
     </div>
