@@ -23,18 +23,20 @@ export class InstructorDashboardComponent implements OnInit {
   image: string = "";
   public: boolean = false;
   GroupsService: any;
+  searchText: string ="";
+  selectedValue: string
   selectedFile: ImageSnippet;
   previewImage: any;
   imageFile: File;
-
   groups = [];
-
-  
+  groupsFilter = [];
 
   ngOnInit() {  
     this.auth.getExpiration();
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
+    elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
     var el = document.querySelectorAll('.tabs');
     M.Tabs.init(el);
     console.log(this.groupsService.getInstructorGroups());
@@ -44,6 +46,8 @@ export class InstructorDashboardComponent implements OnInit {
       { 
         console.log("GET Request is successful ", data);
         this.groups = data;
+        this.groupsFilter = this.groups;
+        console.log(this.groupsFilter);
       },
       error  => 
       { 
@@ -138,6 +142,42 @@ export class InstructorDashboardComponent implements OnInit {
       }
     }
   }
+
+
+  Search(){
+    if(this.searchText != ""){
+      this.groups = this.groups.filter(res=>{
+        return res.title.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase());
+      });
+    }
+    else if(this.searchText == ""){
+      this.onChange();
+    }
+  }
+
+  onChange(){
+    console.log(this.selectedValue);
+    switch(this.selectedValue){
+      case '1':{
+        this.ngOnInit();
+        break;
+      }
+      case '2':{
+        this.groups = this.groupsFilter;
+        this.groups = this.groups.filter(element => {
+        return element.publicGroup === true;
+        });
+        break;
+      }
+      case '3':{
+        this.groups = this.groupsFilter;
+        this.groups = this.groups.filter(element => {
+        return element.publicGroup === false;
+        });
+        break;
+      }
+      
+    }
 
   
   processFile(imageInput: any, imageInputFile: any) {

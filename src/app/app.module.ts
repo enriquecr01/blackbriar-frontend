@@ -29,6 +29,8 @@ import { GroupCardComponent } from './instructor/group-card/group-card.component
 import {MatSelectModule} from '@angular/material/select';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatMenuModule} from '@angular/material/menu';
+import { FilterPipe } from './filter.pipe';
+
 
 
 const routes: Route[] = [
@@ -52,7 +54,8 @@ const routes: Route[] = [
     GroupCardComponent,
     StudentDashboardComponent,
     NavbarInstructorComponent,
-    routingStudentComponents
+    routingStudentComponents,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
