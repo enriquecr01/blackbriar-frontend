@@ -15,7 +15,7 @@ export class GroupsService {
   getInstructorGroups()
   {
     var userId = localStorage.getItem("userId");
-    console.log(`https://api.blackbriar.site/users/${userId}/groups/member`);
+
     let token = "Bearer " + localStorage.getItem("token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

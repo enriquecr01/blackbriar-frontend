@@ -35,4 +35,17 @@ export class EndpointsService {
    })
     return this.http.get<Group[]>(AllGroupsAPI, { headers: headers });
   }
+
+  joinGroup(groupId: number)
+  {
+    var membershipGroupAPI = 'https://api.blackbriar.site/api/memberships';
+    let jsonCoded = { groupId: groupId };
+    let token = "Bearer " + localStorage.getItem("token");
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+   })
+    return this.http.post(membershipGroupAPI, jsonCoded, { headers: headers });
+  }
+
 }
