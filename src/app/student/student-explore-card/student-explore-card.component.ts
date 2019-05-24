@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {EndpointsService} from '../Services/endpoints.service';
 import { Group } from 'src/app/models/group';
+import * as M from "materialize-css/dist/js/materialize";
 
 @Component({
   selector: 'app-student-explore-card',
@@ -16,19 +17,25 @@ export class StudentExploreCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  joinGroup(groupId)
+  joinGroup(groupId, button)
   {
     this.endPointService.joinGroup(groupId).
     subscribe(
       data  => 
       { 
         let dataAny : any = data;
-        M.toast({html: dataAny.message});
+        //Cambiar estilo objecto DOM
+        //object.style.background = "gray";
+        //object.innerHTML = "Yo";
+        button.setAttribute("disabled", "");
+        button.setAttribute("onclick", "");
+        M.toast(dataAny.statusMessage, 4000);
       },
       error  => 
       { 
-        console.log(error.error.message);
-        M.toast({html: error.error.message});
+        button.setAttribute("disabled", "");
+        button.setAttribute("onclick", "");
+        M.toast(error.error.message, 4000);
       }
     );
   }
