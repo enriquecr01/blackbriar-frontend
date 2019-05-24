@@ -72,34 +72,7 @@ export class InstructorDashboardComponent implements OnInit {
       if (this.image.length < 1 && this.previewImage == "undefined")
       {
         this.image = "https://summer.pes.edu/wp-content/uploads/2019/02/default-2.jpg";
-        this.groupsService.addGroup(this.title, this.description, this.image, this.public).
-        subscribe(
-          data  => 
-          { 
-            M.toast({html: 'Your group was added sucessfully'});
-            this.groups = [];
-            this.title = "";
-            this.description = "";
-            this.image = "";
-            this.groupsService.getInstructorGroups().
-            subscribe(
-              data  => 
-              { 
-                console.log("GET Request is successful ", data);
-                this.groups = data;
-              },
-              error  => 
-              { 
-                console.log("Error", error); 
-              }
-            );
-          },
-          error  => 
-          { 
-            console.log(error.error.message);
-            M.toast({html: error.error.message});
-          }
-        );
+        this.callServiceGroup();
       }
       if(this.previewImage != "undefined")
       {
@@ -107,34 +80,7 @@ export class InstructorDashboardComponent implements OnInit {
           data => {
             console.log(data);
             this.image = data;
-            this.groupsService.addGroup(this.title, this.description, this.image, this.public).
-            subscribe(
-              data  => 
-              { 
-                M.toast({html: 'Your group was added sucessfully'});
-                this.groups = [];
-                this.title = "";
-                this.description = "";
-                this.image = "";
-                this.groupsService.getInstructorGroups().
-                subscribe(
-                  data  => 
-                  { 
-                    console.log("GET Request is successful ", data);
-                    this.groups = data;
-                  },
-                  error  => 
-                  { 
-                    console.log("Error", error); 
-                  }
-                );
-              },
-              error  => 
-              { 
-                console.log(error.error.message);
-                M.toast({html: error.error.message});
-              }
-            );
+            this.callServiceGroup();
           },
           error => {
             console.log(error);
@@ -178,16 +124,48 @@ export class InstructorDashboardComponent implements OnInit {
       }
       
     }
+  }
+
+  callServiceGroup()
+  {
+    this.groupsService.addGroupService(this.title, this.description, this.image, this.public).
+    subscribe(
+      data  => 
+      { 
+        M.toast({html: 'Your group was added sucessfully'});
+        this.groups = [];
+        this.title = "";
+        this.description = "";
+        this.image = "";
+        this.groupsService.getInstructorGroups().
+        subscribe(
+          data  => 
+          { 
+            console.log("GET Request is successful ", data);
+            this.groups = data;
+          },
+          error  => 
+          { 
+            console.log("Error", error); 
+          }
+        );
+      },
+      error  => 
+      { 
+        console.log(error.error.message);
+        M.toast({html: error.error.message});
+      }
+    );
+  }
 
   
-  processFile(imageInput: any, imageInputFile: any) {
+  processFile(imageInput: any, imageInputFile: any) 
+  {
     const file: File = imageInput.files[0];
     const reader = new FileReader();
 
     reader.addEventListener('load', (event: any) => {
-
       this.selectedFile = new ImageSnippet(event.target.result, file);
-
       this.selectedFile.pending = true;
       var reader = new FileReader();
 
