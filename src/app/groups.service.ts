@@ -15,6 +15,7 @@ export class GroupsService {
   getInstructorGroups()
   {
     var userId = localStorage.getItem("userId");
+
     let token = "Bearer " + localStorage.getItem("token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
