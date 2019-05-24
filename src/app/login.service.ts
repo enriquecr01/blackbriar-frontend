@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './models/user';
 
 @Injectable({
@@ -16,11 +16,16 @@ export class LoginService {
   {
     console.log(JSON.stringify({ email: email, password: password }));
     let jsonCoded = JSON.stringify({ email: email, password: password });
-    return this.http.post("http://api.blackbriar.site/api/users/login", jsonCoded);
+    return this.http.post("https://api.blackbriar.site/api/users/login", jsonCoded);
   }
 
   getInfoUser(userId)
   {
-    return this.http.get<User>(`http://api.blackbriar.site/api/users/${userId}`);
+    let token = "Bearer " + localStorage.getItem("token");
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    })
+    return this.http.get<User>(`https://api.blackbriar.site/api/users/${userId}`, {headers: headers});
   }
 }

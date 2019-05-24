@@ -22,13 +22,18 @@ export class InstructorDashboardComponent implements OnInit {
   image: string = "";
   public: boolean = false;
   GroupsService: any;
+  searchText: string ="";
+  selectedValue: string
 
   groups = [];
+  groupsFilter = [];
 
   ngOnInit() {  
     this.auth.getExpiration();
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
+    elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
     console.log(this.groupsService.getInstructorGroups());
     this.groupsService.getInstructorGroups().
     subscribe(
@@ -36,6 +41,8 @@ export class InstructorDashboardComponent implements OnInit {
       { 
         console.log("GET Request is successful ", data);
         this.groups = data;
+        this.groupsFilter = this.groups;
+        console.log(this.groupsFilter);
       },
       error  => 
       { 
@@ -88,6 +95,42 @@ export class InstructorDashboardComponent implements OnInit {
     }
   }
 
+  Search(){
+    if(this.searchText != ""){
+      this.groups = this.groups.filter(res=>{
+        return res.title.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase());
+      });
+    }
+    else if(this.searchText == ""){
+      this.onChange();
+    }
+  }
+
+  onChange(){
+    console.log(this.selectedValue);
+    switch(this.selectedValue){
+      case '1':{
+        this.ngOnInit();
+        break;
+      }
+      case '2':{
+        this.groups = this.groupsFilter;
+        this.groups = this.groups.filter(element => {
+        return element.publicGroup === true;
+        });
+        break;
+      }
+      case '3':{
+        this.groups = this.groupsFilter;
+        this.groups = this.groups.filter(element => {
+        return element.publicGroup === false;
+        });
+        break;
+      }
+      
+    }
+
+  }
 
   logout()
   {

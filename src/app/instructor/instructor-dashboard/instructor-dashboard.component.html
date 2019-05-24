@@ -1,4 +1,21 @@
 <app-navbar-instructor></app-navbar-instructor>
+
+ <div class="row">
+    <div class="input-field col s6">
+      <input type="search" class="search-input light-blue darken-3 MiSearchBar valign-wrapper"
+      [(ngModel)]="searchText" placeholder="Search text" (input)="Search()">
+      <label class="active">Busqueda por Nombre</label>
+    </div>
+    <div class="input-field col s12">
+    <select default="1" [(ngModel)]="selectedValue" (change)="onChange()">
+      <option value="1">All Groups</option>
+      <option value="2">Public Groups</option>
+      <option value="3">Private Groups</option>
+    </select>
+    <label>Materialize Select</label>
+  </div>
+  </div>
+
 <div class="animated fadeInLeft" id="gridGroups" style="margin-top: 20px;">
   <div class="row">
     <div *ngFor="let group of groups">
@@ -6,6 +23,7 @@
     </div>
   </div>
 </div>
+
 
 <div class="fixed-action-btn">
   <a class="btn-floating btn-large green modal-trigger" data-target="modal1">

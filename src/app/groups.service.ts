@@ -15,13 +15,13 @@ export class GroupsService {
   getInstructorGroups()
   {
     var userId = localStorage.getItem("userId");
-    console.log(`http://api.blackbriar.site/users/${userId}/groups/member`);
+    console.log(`https://api.blackbriar.site/users/${userId}/groups/member`);
     let token = "Bearer " + localStorage.getItem("token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': token
     })
-    return this.http.get<Group[]>(`http://api.blackbriar.site/api/users/${userId}/groups/owned`, { headers: headers });
+    return this.http.get<Group[]>(`https://api.blackbriar.site/api/users/${userId}/groups/owned`, { headers: headers });
   }
 
   addGroup(title, description, image, publicGroup)
@@ -33,6 +33,6 @@ export class GroupsService {
       'Content-Type': 'application/json',
       'Authorization': token
     })
-    return this.http.post<Group>(`http://api.blackbriar.site/api/users/${userId}/groups/owned`, jsonCoded, { headers: headers });
+    return this.http.post<Group>(`https://api.blackbriar.site/api/users/${userId}/groups/owned`, jsonCoded, { headers: headers });
   }
 }
