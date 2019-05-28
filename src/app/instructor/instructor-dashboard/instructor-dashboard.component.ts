@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Auth } from './../../auth';
 
 import { GroupsService } from './../../groups.service';
-import { Group } from './../../models/group';
+import { FilesService } from './../../files.service';
+import { ImageSnippet } from './../../models/imagesnippet';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { Group } from './../../models/group';
 })
 export class InstructorDashboardComponent implements OnInit {
 
-  constructor(private router: Router, private auth: Auth, private groupsService: GroupsService) { }
+  constructor(private router: Router, private auth: Auth, private groupsService: GroupsService, private filesService : FilesService) { }
 
   //Properties of new group
   title: string = "";
@@ -22,13 +23,22 @@ export class InstructorDashboardComponent implements OnInit {
   image: string = "";
   public: boolean = false;
   GroupsService: any;
-
+  searchText: string ="";
+  selectedValue: string
+  selectedFile: ImageSnippet;
+  previewImage: any;
+  imageFile: File;
   groups = [];
+  groupsFilter = [];
 
   ngOnInit() {  
     this.auth.getExpiration();
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
+    elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
+    var el = document.querySelectorAll('.tabs');
+    M.Tabs.init(el);
     console.log(this.groupsService.getInstructorGroups());
     this.groupsService.getInstructorGroups().
     subscribe(
@@ -36,17 +46,19 @@ export class InstructorDashboardComponent implements OnInit {
       { 
         console.log("GET Request is successful ", data);
         this.groups = data;
+        this.groupsFilter = this.groups;
+        console.log(this.groupsFilter);
       },
       error  => 
       { 
         console.log("Error", error); 
       }
     );
-    
   }
 
   addGroup()
   {
+    console.log(this.previewImage);
     if(this.title.length < 1)
     {
       M.toast({html: 'Your group must to have a title'});
@@ -57,37 +69,143 @@ export class InstructorDashboardComponent implements OnInit {
     }
     else
     {
-      this.groupsService.addGroup(this.title, this.description, this.image, this.public).
-      subscribe(
-        data  => 
-        { 
-          M.toast({html: 'Your group was added sucessfully'});
-          this.groups = [];
-          this.title = "";
-          this.description = "";
-          this.image = "";
-          this.groupsService.getInstructorGroups().
-          subscribe(
-            data  => 
-            { 
-              console.log("GET Request is successful ", data);
-              this.groups = data;
-            },
-            error  => 
-            { 
-              console.log("Error", error); 
-            }
-          );
-        },
-        error  => 
-        { 
-          console.log(error.error.message);
-          M.toast({html: error.error.message});
-        }
-      );
+      if (this.image.length < 1 && this.previewImage == "undefined")
+      {
+        this.image = "https://summer.pes.edu/wp-content/uploads/2019/02/default-2.jpg";
+        this.groupsService.addGroup(this.title, this.description, this.image, this.public).
+        subscribe(
+          data  => 
+          { 
+            M.toast({html: 'Your group was added sucessfully'});
+            this.groups = [];
+            this.title = "";
+            this.description = "";
+            this.image = "";
+            this.groupsService.getInstructorGroups().
+            subscribe(
+              data  => 
+              { 
+                console.log("GET Request is successful ", data);
+                this.groups = data;
+              },
+              error  => 
+              { 
+                console.log("Error", error); 
+              }
+            );
+          },
+          error  => 
+          { 
+            console.log(error.error.message);
+            M.toast({html: error.error.message});
+          }
+        );
+      }
+      if(this.previewImage != "undefined")
+      {
+        this.filesService.uploadImage(this.selectedFile.file).subscribe(
+          data => {
+            console.log(data);
+            this.image = data;
+            this.groupsService.addGroup(this.title, this.description, this.image, this.public).
+            subscribe(
+              data  => 
+              { 
+                M.toast({html: 'Your group was added sucessfully'});
+                this.groups = [];
+                this.title = "";
+                this.description = "";
+                this.image = "";
+                this.groupsService.getInstructorGroups().
+                subscribe(
+                  data  => 
+                  { 
+                    console.log("GET Request is successful ", data);
+                    this.groups = data;
+                  },
+                  error  => 
+                  { 
+                    console.log("Error", error); 
+                  }
+                );
+              },
+              error  => 
+              { 
+                console.log(error.error.message);
+                M.toast({html: error.error.message});
+              }
+            );
+          },
+          error => {
+            console.log(error);
+          });
+      }
     }
   }
 
+
+  Search(){
+    if(this.searchText != ""){
+      this.groups = this.groups.filter(res=>{
+        return res.title.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase());
+      });
+    }
+    else if(this.searchText == ""){
+      this.onChange();
+    }
+  }
+
+  onChange(){
+    console.log(this.selectedValue);
+    switch(this.selectedValue){
+      case '1':{
+        this.ngOnInit();
+        break;
+      }
+      case '2':{
+        this.groups = this.groupsFilter;
+        this.groups = this.groups.filter(element => {
+        return element.publicGroup === true;
+        });
+        break;
+      }
+      case '3':{
+        this.groups = this.groupsFilter;
+        this.groups = this.groups.filter(element => {
+        return element.publicGroup === false;
+        });
+        break;
+      }
+      
+    }
+  }
+
+  
+  processFile(imageInput: any, imageInputFile: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (event: any) => {
+
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      this.selectedFile.pending = true;
+      var reader = new FileReader();
+
+      console.log(imageInputFile);
+
+      var mimeType = imageInputFile[0].type;
+      mimeType.match(/image\/*/);
+
+      this.imageFile = imageInputFile;
+      reader.readAsDataURL(imageInputFile[0]); 
+      reader.onload = (_event) => { 
+        this.previewImage = reader.result; 
+      }
+    });
+
+    reader.readAsDataURL(file);
+  }
 
   logout()
   {

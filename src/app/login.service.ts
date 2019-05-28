@@ -26,6 +26,8 @@ export class LoginService {
       'Content-Type': 'application/json',
       'Authorization': token
     })
-    return this.http.get<User>(`https://api.blackbriar.site/api/users/${userId}`, { headers: headers});
+
+    return this.http.get<User>(`https://api.blackbriar.site/api/users/${userId}`, {headers: headers});
+
   }
 }

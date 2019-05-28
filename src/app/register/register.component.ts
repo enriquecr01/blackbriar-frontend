@@ -3,6 +3,10 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { RegisterService } from './../register.service';
 //import {MaterializeDirective,MaterializeAction} from "angular2-materialize";
 import * as M from "materialize-css/dist/js/materialize";
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../models/user';
+import { LoginService } from './../login.service';
 
 @Component({
   selector: 'app-register',
@@ -65,7 +69,44 @@ export class RegisterComponent {
       subscribe(
         data  => 
         { 
-          M.toast('Registered succesfully', 4000);
+          this.loginService.login(this.email, this.password).
+          subscribe(
+            data  => 
+            { 
+              console.log("POST Request is successful ", data);
+              let token: any = data;
+              const helper = new JwtHelperService();
+              localStorage.setItem('token', token.token);
+              const decodedToken = helper.decodeToken(token.token);
+              localStorage.setItem('userId', decodedToken.sub);
+      
+              this.loginService.getInfoUser(decodedToken.sub).
+              subscribe(
+                data =>
+                {
+                  let userInfo : User = data;
+                  localStorage.setItem('firstName', userInfo.firstName);
+                  localStorage.setItem('lastName', userInfo.lastName);
+                  localStorage.setItem('email', userInfo.email);
+                  localStorage.setItem('photo', userInfo.photo);
+                  localStorage.setItem('student', userInfo.student);
+                  M.toast('Registered succesfully', 4000);
+                  if(userInfo.student)
+                  {
+                    this.router.navigate(['student/student-mygroups']);
+                  }
+                  else
+                  {
+                    this.router.navigate(['instructor/instructor-dashboard']);
+                  }
+                },
+                error => { M.toast(error.error.message); }
+              );
+              
+      
+            },
+            error  => { M.toast(error.error.message); }
+          )
         },
         error  => 
         { 
@@ -91,6 +132,6 @@ export class RegisterComponent {
     return 0;
  }
 
-  constructor(private registerService: RegisterService) { }
+  constructor(private registerService: RegisterService, private router: Router, private loginService : LoginService) { }
 
 }

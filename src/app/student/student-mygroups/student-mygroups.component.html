@@ -1,4 +1,21 @@
-<app-student-navbar></app-student-navbar>       
+<app-student-navbar></app-student-navbar>  `
+
+<div class="row"  >
+    <div class="input-field col s6 m3 l3">
+      <input type="search" class="search-input MiSearchBar valign-wrapper white z-depth-1"
+      [(ngModel)]="searchText" placeholder="Search..." (input)="Search()">
+      <label class="active">Search</label>
+    </div>
+
+    <div class="input-field col s6 m3 l3">
+    <select default="1" [(ngModel)]="selectedValue" (change)="onChange()">
+      <option value="1">My Groups</option>
+      <option value="2">My Public Groups</option>
+      <option value="3">My Private Groups</option>
+    </select>
+    <label>Filter Select</label>
+  </div>
+  </div>     
                                                         
 <div class="row">
     <div *ngFor= "let group of groups">
