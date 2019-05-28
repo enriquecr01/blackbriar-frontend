@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as M from "materialize-css/dist/js/materialize";
 import { Group } from 'src/app/models/group';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,12 +12,20 @@ import { Group } from 'src/app/models/group';
 })
 export class GroupCardComponent implements OnInit {
 
+
   @Input() group: Group;
 
-  constructor() { }
+  constructor (private router: Router)
+  {
+
+  }
+
 
   ngOnInit() {
   }
 
+  goToGroupDashboard(){
+    this.router.navigate(['instructor/instructor-group']);
+  }
 
 }
