@@ -145,6 +145,7 @@ export class InstructorDashboardComponent implements OnInit {
 
 
   Search(){
+    this.groups = this.groupsFilter;
     if(this.searchText != ""){
       this.groups = this.groups.filter(res=>{
         return res.title.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase());
@@ -178,7 +179,7 @@ export class InstructorDashboardComponent implements OnInit {
       }
       
     }
-
+  }
   
   processFile(imageInput: any, imageInputFile: any) {
     const file: File = imageInput.files[0];
