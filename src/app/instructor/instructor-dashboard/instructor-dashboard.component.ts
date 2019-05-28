@@ -6,6 +6,7 @@ import { Auth } from './../../auth';
 import { GroupsService } from './../../groups.service';
 import { FilesService } from './../../files.service';
 import { ImageSnippet } from './../../models/imagesnippet';
+import { Group } from 'src/app/models/group';
 
 
 @Component({
@@ -58,7 +59,6 @@ export class InstructorDashboardComponent implements OnInit {
 
   addGroup()
   {
-    console.log(this.previewImage);
     if(this.title.length < 1)
     {
       M.toast({html: 'Your group must to have a title'});
@@ -67,39 +67,16 @@ export class InstructorDashboardComponent implements OnInit {
     {
       M.toast({html: 'Your group must to have a description'});
     }
+    else if(this.arrayObjectIndexOf(this.groupsFilter, this.title, "title") > -1)
+    {
+      M.toast({html: 'You already have a group with the same name'});
+    }
     else
     {
-      if (this.image.length < 1 && this.previewImage == "undefined")
+      if (this.image.length < 1 || this.previewImage == "undefined")
       {
         this.image = "https://summer.pes.edu/wp-content/uploads/2019/02/default-2.jpg";
-        this.groupsService.addGroup(this.title, this.description, this.image, this.public).
-        subscribe(
-          data  => 
-          { 
-            M.toast({html: 'Your group was added sucessfully'});
-            this.groups = [];
-            this.title = "";
-            this.description = "";
-            this.image = "";
-            this.groupsService.getInstructorGroups().
-            subscribe(
-              data  => 
-              { 
-                console.log("GET Request is successful ", data);
-                this.groups = data;
-              },
-              error  => 
-              { 
-                console.log("Error", error); 
-              }
-            );
-          },
-          error  => 
-          { 
-            console.log(error.error.message);
-            M.toast({html: error.error.message});
-          }
-        );
+        this.callServiceGroup();
       }
       if(this.previewImage != "undefined")
       {
@@ -107,34 +84,7 @@ export class InstructorDashboardComponent implements OnInit {
           data => {
             console.log(data);
             this.image = data;
-            this.groupsService.addGroup(this.title, this.description, this.image, this.public).
-            subscribe(
-              data  => 
-              { 
-                M.toast({html: 'Your group was added sucessfully'});
-                this.groups = [];
-                this.title = "";
-                this.description = "";
-                this.image = "";
-                this.groupsService.getInstructorGroups().
-                subscribe(
-                  data  => 
-                  { 
-                    console.log("GET Request is successful ", data);
-                    this.groups = data;
-                  },
-                  error  => 
-                  { 
-                    console.log("Error", error); 
-                  }
-                );
-              },
-              error  => 
-              { 
-                console.log(error.error.message);
-                M.toast({html: error.error.message});
-              }
-            );
+            this.callServiceGroup();
           },
           error => {
             console.log(error);
@@ -145,6 +95,7 @@ export class InstructorDashboardComponent implements OnInit {
 
 
   Search(){
+    this.groups = this.groupsFilter;
     if(this.searchText != ""){
       this.groups = this.groups.filter(res=>{
         return res.title.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase());
@@ -178,16 +129,48 @@ export class InstructorDashboardComponent implements OnInit {
       }
       
     }
+  }
+
+  callServiceGroup()
+  {
+    this.groupsService.addGroupService(this.title, this.description, this.image, this.public).
+    subscribe(
+      data  => 
+      { 
+        M.toast({html: 'Your group was added sucessfully'});
+        this.groups = [];
+        this.title = "";
+        this.description = "";
+        this.image = "";
+        this.groupsService.getInstructorGroups().
+        subscribe(
+          data  => 
+          { 
+            console.log("GET Request is successful ", data);
+            this.groups = data;
+          },
+          error  => 
+          { 
+            console.log("Error", error); 
+          }
+        );
+      },
+      error  => 
+      { 
+        console.log(error.error.message);
+        M.toast({html: error.error.message});
+      }
+    );
+  }
 
   
-  processFile(imageInput: any, imageInputFile: any) {
+  processFile(imageInput: any, imageInputFile: any) 
+  {
     const file: File = imageInput.files[0];
     const reader = new FileReader();
 
     reader.addEventListener('load', (event: any) => {
-
       this.selectedFile = new ImageSnippet(event.target.result, file);
-
       this.selectedFile.pending = true;
       var reader = new FileReader();
 
@@ -205,6 +188,15 @@ export class InstructorDashboardComponent implements OnInit {
 
     reader.readAsDataURL(file);
   }
+
+  arrayObjectIndexOf(myArray, searchTerm, property) 
+  {
+    for(var i = 0, len = myArray.length; i < len; i++) 
+    {
+      if (myArray[i][property] === searchTerm) return i;
+    }
+    return -1;
+}
 
   logout()
   {
