@@ -24,7 +24,7 @@ export class GroupsService {
     return this.http.get<Group[]>(`https://api.blackbriar.site/api/users/${userId}/groups/owned`, { headers: headers });
   }
 
-  addGroup(title, description, image, publicGroup)
+  addGroupService(title, description, image, publicGroup)
   {
     var userId = localStorage.getItem("userId");
     let jsonCoded = JSON.stringify({ title: title, description: description, image: image, publicGroup: publicGroup });
