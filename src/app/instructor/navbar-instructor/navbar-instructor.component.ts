@@ -1,9 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import {MaterializeAction } from 'angular2-materialize';
-import {MatSelectModule} from '@angular/material/select';
-
-
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar-instructor',
@@ -19,7 +17,7 @@ export class NavbarInstructorComponent implements OnInit {
   photo = localStorage.getItem('photo');
   
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit()
   {
@@ -29,5 +27,10 @@ export class NavbarInstructorComponent implements OnInit {
     var elems1 = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems1);
   }
+
+  goToDashboard(){
+    this.router.navigate(['instructor/instructor-dashboard']);
+  }
+
 
 }

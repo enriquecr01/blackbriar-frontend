@@ -6,7 +6,6 @@ import { Auth } from './../../auth';
 import { GroupsService } from './../../groups.service';
 import { FilesService } from './../../files.service';
 import { ImageSnippet } from './../../models/imagesnippet';
-import { Group } from 'src/app/models/group';
 
 
 @Component({
@@ -59,6 +58,7 @@ export class InstructorDashboardComponent implements OnInit {
 
   addGroup()
   {
+    console.log(this.previewImage);
     if(this.title.length < 1)
     {
       M.toast({html: 'Your group must to have a title'});
