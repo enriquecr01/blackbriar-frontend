@@ -2,9 +2,8 @@
 
 <div class="row">
     <div class="input-field col s6">
-      <input type="search" class="search-input light-blue darken-3 MiSearchBar valign-wrapper"
-      [(ngModel)]="searchText" placeholder="Search text" (input)="Search()">
-      <label class="active">Busqueda por: Nombre, Nombre del Docente, Correo del Docente</label>
+      <input type="text" id="search" name="search" [(ngModel)]="searchText" (input)="Search()">
+      <label for="search">Search by name of group, name instructor, email instructor</label>
     </div>
     <div class="input-field col s6">
     <select default="1" [(ngModel)]="selectedValue" (change)="onChange()">
@@ -12,7 +11,7 @@
       <option value="2">Public Groups</option>
       <option value="3">Private Groups</option>
     </select>
-    <label>Filter Select</label>
+    <label>Filter visibility of group</label>
   </div>
   </div>
 

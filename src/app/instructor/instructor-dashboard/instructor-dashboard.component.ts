@@ -6,6 +6,7 @@ import { Auth } from './../../auth';
 import { GroupsService } from './../../groups.service';
 import { FilesService } from './../../files.service';
 import { ImageSnippet } from './../../models/imagesnippet';
+import { Group } from 'src/app/models/group';
 
 
 @Component({
@@ -58,7 +59,8 @@ export class InstructorDashboardComponent implements OnInit {
 
   addGroup()
   {
-    console.log(this.previewImage);
+    let puto = this.arrayObjectIndexOf(this.groupsFilter, this.title, "title");
+    console.log(puto); 
     if(this.title.length < 1)
     {
       M.toast({html: 'Your group must to have a title'});
@@ -66,6 +68,10 @@ export class InstructorDashboardComponent implements OnInit {
     else if(this.description.length < 1)
     {
       M.toast({html: 'Your group must to have a description'});
+    }
+    else if(this.arrayObjectIndexOf(this.groupsFilter, this.title, "title") > -1)
+    {
+      M.toast({html: 'You already have a group with the same name'});
     }
     else
     {
@@ -184,6 +190,15 @@ export class InstructorDashboardComponent implements OnInit {
 
     reader.readAsDataURL(file);
   }
+
+  arrayObjectIndexOf(myArray, searchTerm, property) 
+  {
+    for(var i = 0, len = myArray.length; i < len; i++) 
+    {
+      if (myArray[i][property] === searchTerm) return i;
+    }
+    return -1;
+}
 
   logout()
   {
