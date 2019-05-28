@@ -5,3 +5,7 @@ li a{
 li a:hover{
     color: #fff;
 }
+
+img:hover{
+    cursor: pointer;
+}

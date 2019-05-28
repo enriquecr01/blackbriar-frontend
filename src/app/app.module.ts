@@ -26,10 +26,11 @@ import { RegisterService } from './register.service';
 import { GroupCardComponent } from './instructor/group-card/group-card.component';
 
 //Angular material components
-import {MatSelectModule} from '@angular/material/select';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatMenuModule} from '@angular/material/menu';
 import { FilterPipe } from './filter.pipe';
+import { InstructorGroupComponent } from './instructor/instructor-group/instructor-group.component';
+
 
 
 
@@ -38,7 +39,8 @@ const routes: Route[] = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent},
-  {path: 'student/student-dashboard', component: StudentDashboardComponent}
+  {path: 'student/student-dashboard', component: StudentDashboardComponent},
+  {path: 'instructor/instructor-group', component: InstructorGroupComponent}
   
 ];
 
@@ -55,7 +57,10 @@ const routes: Route[] = [
     StudentDashboardComponent,
     NavbarInstructorComponent,
     routingStudentComponents,
-    FilterPipe
+    FilterPipe,
+    InstructorGroupComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -65,8 +70,7 @@ const routes: Route[] = [
     FormsModule,
     HttpClientModule,
     MaterializeModule,
-    MatMenuModule,
-    MatSelectModule,
+    
     BrowserAnimationsModule
   ],
   providers: [

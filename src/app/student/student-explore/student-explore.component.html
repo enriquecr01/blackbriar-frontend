@@ -1,5 +1,21 @@
 <app-student-navbar></app-student-navbar>
 
+<div class="row" style="margin-top: 24px;">
+    <div class="input-field col s6 m3 l3">
+      <input type="search" class="search-input MiSearchBar valign-wrapper" 
+      [(ngModel)]="searchText" placeholder="Type here..." (input)="Search()">
+      <label class="active">Search</label>
+    </div>
+    <div class="input-field col s6 m3 l3">
+    <select default="1" [(ngModel)]="selectedValue" (change)="onChange()">
+      <option value="1">All Groups</option>
+      <option value="2">Public Groups</option>
+      <option value="3">Private Groups</option>
+    </select>
+    <label>Filter Select</label>
+  </div>
+  </div>
+
 <div class="row">
     <div class="input-field col s6">
       <input type="text" id="search" name="search" [(ngModel)]="searchText" (input)="Search()">
