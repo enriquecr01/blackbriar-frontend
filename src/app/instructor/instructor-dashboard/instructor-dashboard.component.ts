@@ -59,8 +59,6 @@ export class InstructorDashboardComponent implements OnInit {
 
   addGroup()
   {
-    let puto = this.arrayObjectIndexOf(this.groupsFilter, this.title, "title");
-    console.log(puto); 
     if(this.title.length < 1)
     {
       M.toast({html: 'Your group must to have a title'});
@@ -75,7 +73,7 @@ export class InstructorDashboardComponent implements OnInit {
     }
     else
     {
-      if (this.image.length < 1 && this.previewImage == "undefined")
+      if (this.image.length < 1 || this.previewImage == "undefined")
       {
         this.image = "https://summer.pes.edu/wp-content/uploads/2019/02/default-2.jpg";
         this.callServiceGroup();
