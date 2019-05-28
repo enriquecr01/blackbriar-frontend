@@ -28,7 +28,6 @@ import { GroupCardComponent } from './instructor/group-card/group-card.component
 //Angular material components
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import { FilterPipe } from './filter.pipe';
 import { InstructorGroupComponent } from './instructor/instructor-group/instructor-group.component';
 
@@ -60,6 +59,7 @@ const routes: Route[] = [
     routingStudentComponents,
     FilterPipe,
     InstructorGroupComponent,
+
 
   ],
   imports: [

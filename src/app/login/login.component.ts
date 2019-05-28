@@ -65,7 +65,7 @@ export class LoginComponent  {
           localStorage.setItem('token', token.token);
           const decodedToken = helper.decodeToken(token.token);
           localStorage.setItem('userId', decodedToken.sub);
-  
+          console.log(decodedToken.sub);
           this.loginService.getInfoUser(decodedToken.sub).
           subscribe(
             data =>
