@@ -12,11 +12,10 @@ export class InstructorGroupComponent implements OnInit {
 
   ngOnInit() {
   
-    // Left Side Nav
     $(document).ready(function(){
-      $('.sidenav').sidenav();
+      $('.fixed-action-btn').floatingActionButton();
     });
-    console.log($('.sidenav'));
+   
   }
 
 }
