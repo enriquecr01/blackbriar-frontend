@@ -15,13 +15,12 @@
               <ng-template #buttonSubscribed>
                 <a class="btn" style="background:gray; border-radius: 10px" >Already Subscribed</a>
               </ng-template>
-
-                <i class="" *ngIf = "group.publicGroup; else unlocked" ></i>
-              <ng-template #unlocked>
-                <i class="material-icons" style="float:right;">lock_outline</i>
-              </ng-template>
-
-            </div>
+              
+              <i class="" *ngIf = "group.publicGroup; else unlocked" ></i>
+                <ng-template #unlocked>
+                  <i class="material-icons" style="float:right;">lock_outline</i>
+                </ng-template>
+              </div>
         
           </div>
     </div>

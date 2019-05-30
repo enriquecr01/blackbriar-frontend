@@ -1,0 +1,23 @@
+<div class="col s12">
+  <div class="card z-depth-5">
+    <div class="card-content">
+      <!-- the same view can be shown in more than one case -->       
+      <div *ngIf="notification.category == 'GPRQT'">
+        <span style="font-weight: 900">Somebody wants to join in Group</span>
+        <p>{{ notification.content }}</p>
+        <div class="row" style="padding: 0 0 20px 0 ">
+          <div class="card-action">
+            <a class="waves-effect waves-light btn col s12 m6">Accept</a>
+            <a class="waves-effect waves-light btn red darken-2 col s12 m6">Reject</a>
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="notification.category == 'GNRIC'">
+        <span></span>
+        <p>{{ notification.content }}</p>
+      </div>
+
+    </div>
+  </div>
+</div>
