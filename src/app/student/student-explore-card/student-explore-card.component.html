@@ -16,12 +16,12 @@
                 <a class="btn" style="background:gray; border-radius: 10px" >Already Subscribed</a>
               </ng-template>
 
-            </div>
-            <div class="card-action">
-              <i class="material-icons" *ngIf = "group.publicGroup; else unlocked">lock_open</i>
+                <i class="" *ngIf = "group.publicGroup; else unlocked" ></i>
               <ng-template #unlocked>
-                <i class="material-icons">lock_outline</i>
+                <i class="material-icons" style="float:right;">lock_outline</i>
               </ng-template>
+
             </div>
+        
           </div>
     </div>

@@ -11,10 +11,14 @@ export class InstructorGroupComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
+    // MODAL START
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
   
-    $(document).ready(function(){
-      $('.fixed-action-btn').floatingActionButton();
-    });
+    // FLOATING BUTTON
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    M.FloatingActionButton.init(elems);  
    
   }
 
