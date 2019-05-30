@@ -30,6 +30,7 @@ import { GroupCardComponent } from './instructor/group-card/group-card.component
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FilterPipe } from './filter.pipe';
 import { InstructorGroupComponent } from './instructor/instructor-group/instructor-group.component';
+import { StudentGroupComponent } from './student/student-group/student-group.component';
 
 
 
@@ -40,7 +41,8 @@ const routes: Route[] = [
   {path: 'register', component: RegisterComponent},
   {path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent},
   {path: 'student/student-dashboard', component: StudentDashboardComponent},
-  {path: 'instructor/instructor-group', component: InstructorGroupComponent}
+  {path: 'instructor/instructor-group', component: InstructorGroupComponent},
+  {path: 'student/student-group', component: StudentGroupComponent}
   
 ];
 
@@ -59,6 +61,7 @@ const routes: Route[] = [
     routingStudentComponents,
     FilterPipe,
     InstructorGroupComponent,
+    StudentGroupComponent,
 
 
   ],
