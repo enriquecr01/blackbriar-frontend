@@ -22,7 +22,8 @@ export class LoginComponent  {
   email: string = "";
   password: string = "";
   type: string = "";
-  images: string [] = ["assets/dawn.png", "assets/night.jpg", "assets/bonfire.jpg"];
+  //images: string [] = ["assets/dawn.png", "assets/night.jpg", "assets/bonfire.jpg"];
+  images: string [] = ["assets/Images/Backgrounds/mtg12.jpg","assets/Images/Backgrounds/liliana2.jpg"];
   selectedImage: string = "";
   
   constructor (private loginService : LoginService, private router: Router)
@@ -36,6 +37,10 @@ export class LoginComponent  {
     let rand = Math.floor(Math.random() * val);
     this.selectedImage = this.images[rand];
 
+  }
+
+  goToRegister(){
+    this.router.navigate(["register"]);
   }
 
   verifyIfIsEnter(event)

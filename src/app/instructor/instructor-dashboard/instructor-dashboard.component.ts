@@ -72,12 +72,13 @@ export class InstructorDashboardComponent implements OnInit {
     }
     else
     {
-      if (this.image.length < 1 || this.previewImage == "undefined")
+
+      if (this.image.length < 1 && this.previewImage == "undefined")
       {
         this.image = "https://summer.pes.edu/wp-content/uploads/2019/02/default-2.jpg";
         this.callServiceGroup();
       }
-      if(this.previewImage != "undefined")
+      else if(this.previewImage != "undefined")
       {
         this.filesService.uploadImage(this.selectedFile.file).subscribe(
           data => {
