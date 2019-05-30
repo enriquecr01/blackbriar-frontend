@@ -41,7 +41,7 @@ export class NavbarInstructorComponent implements OnInit {
       this.inboxService.getInstructorLatestNotification().subscribe(
         data  => 
         { 
-          this.notifications.push(data);
+          this.notifications.unshift(data);
           console.log("GET Request is successful ", data);
         },
         error  => 
