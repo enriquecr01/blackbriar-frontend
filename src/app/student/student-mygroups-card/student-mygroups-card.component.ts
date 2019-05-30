@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Group } from 'src/app/models/group';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-mygroups-card',
@@ -8,11 +9,17 @@ import { Group } from 'src/app/models/group';
 })
 export class StudentMygroupsCardComponent implements OnInit {
 
+  
+
   @Input() group : Group;
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  goToGroupDashboard(){
+    this.router.navigate(['student/student-group']);
   }
 
 }

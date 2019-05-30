@@ -1,9 +1,9 @@
 <app-navbar-no-logged></app-navbar-no-logged>
-<div class="containerBackground" [style.backgroundImage]="'url('+ selectedImage  +')'" style="height: 863px;">
-  <div class="row" >
-      <div class="col s12 m5 offset-m3 transparent" style="background: rgba(255,255,255, 0.80)">
+<div class="containerBackground" [style.backgroundImage]="'url('+ selectedImage  +')'" style="height: 927px;">
+  <div class="row transparent">
+      <div class="col s12 m5 offset-m3 " style="background: rgba(255,255,255, 0.80);  margin-top: 90px;">
         <div class="col s12 z-depth-20 card-panel cardOwn animated slideInUp transparent">
-          <form class="login-form transparent" style="padding: 0px 20px 0px 20px; background-color:transparent ">
+          <form class="login-form transparent" style="padding: 0px 20px 0px 20px; background-color:transparent; ">
             <div class="row" >
                 <h1 class="center-align">Blackbriar</h1>
                 <h5 class="center-align">We are glad to have you here again</h5>
@@ -40,7 +40,7 @@
                   <p class="center-align" style="margin: 0px 0px 0px 0px"><a routerLink="/">Forgot your password?</a></p>
                 </div>
                 <div class="input-field col s12">
-                    <p class="center-align" style="margin: 0px 0px 25px 0px">Are you new here? <a routerLink="/">register now</a></p>
+                    <p class="center-align" style="margin: 0px 0px 25px 0px">Are you new here? <a (click)="goToRegister()">register now</a></p>
                 </div>          
               </div>
       
