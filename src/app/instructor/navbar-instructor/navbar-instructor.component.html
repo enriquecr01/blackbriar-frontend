@@ -11,13 +11,22 @@
                     </a>
                 </div>
               </li>
-            <li><a>Sass</a></li>
+              <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons" style="color: gray">notifications_none</i></a>
             <li><a>Components</a></li>
             <!-- Dropdown Trigger -->
           </ul>
         </div>
       </nav>
 </div>
+
+
+<ul id="slide-out" class="sidenav">
+  <li><a>Notifications</a></li>
+  <div class="row" *ngFor="let message of notifications">
+    <app-notifications [notification]=message></app-notifications>
+  </div>
+</ul>
+<!-- <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
 
   <!-- Dropdown Structure -->
   <ul id='dropdown1' class='dropdown-content' style="width: 200px">

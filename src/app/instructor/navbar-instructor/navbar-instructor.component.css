@@ -1,11 +1,11 @@
-li a{
+.nav-wrapper li a{
     color: rgb(235, 147, 65);
 }
 
-li a:hover{
+.nav-wrapper li a:hover{
     color: #fff;
 }
 
-img:hover{
+.nav-wrapper img:hover{
     cursor: pointer;
 }

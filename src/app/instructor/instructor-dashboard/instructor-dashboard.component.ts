@@ -39,7 +39,6 @@ export class InstructorDashboardComponent implements OnInit {
     M.FormSelect.init(elems);
     var el = document.querySelectorAll('.tabs');
     M.Tabs.init(el);
-    console.log(this.groupsService.getInstructorGroups());
     this.groupsService.getInstructorGroups().
     subscribe(
       data  => 

@@ -30,9 +30,7 @@ import { GroupCardComponent } from './instructor/group-card/group-card.component
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FilterPipe } from './filter.pipe';
 import { InstructorGroupComponent } from './instructor/instructor-group/instructor-group.component';
-
-
-
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Route[] = [
   {path: 'home', component: HomeComponent},
@@ -59,8 +57,7 @@ const routes: Route[] = [
     routingStudentComponents,
     FilterPipe,
     InstructorGroupComponent,
-
-
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
