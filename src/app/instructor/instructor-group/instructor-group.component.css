@@ -1,0 +1,112 @@
+.forum-modal {
+    height: 90%;
+    width: 70%;
+}
+
+.card-wrapper {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.modal .sideBar {
+    top: 0;
+    left: 0;
+    float: left;
+    /*height: 100%;
+    width: 30%;*/
+    height: 500px;
+    width: 490px;
+    background-color: brown;
+    position: static;
+}
+
+.modal .modal-header {
+    padding: 10px;
+    background-color: rgb(230, 230, 230);
+}
+
+.modal .body-content {
+    background-color: rgb(255, 255, 255);
+    height: 400px;
+    width: 62.8%;
+    float: right;
+}
+
+.modal .body-content .datePick {
+    float: left;
+    width: 50%;
+    background-color: white;
+}
+
+.modal .body-content .timePick {
+    float: right;
+    width: 50%;
+    border-left: 1px;
+    background-color: white;
+}
+
+.role-logo {
+    height: 46px;
+    width: 46px;
+}
+
+.role-title {
+    margin-left: 35%;
+    align-content: center;
+}
+
+.role-title h5 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.modal input {
+    text-align: center;
+    border-bottom: 1px solid rgb(100, 100, 100);
+}
+
+.modal input:hover {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
+
+.modal input:hover+label {
+    color: #000;
+}
+
+.modal input+label {
+    color: rgb(100, 100, 100);
+}
+
+.description-content {
+    top: 0;
+}
+
+textarea {
+    margin-top: 10px;
+    margin-left: 50px;
+    width: 90%;
+    height: 300px;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+    border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+    border-image: none;
+    border-radius: 6px 6px 6px 6px;
+    border-style: none solid solid none;
+    border-width: medium 1px 1px medium;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+    color: #555555;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    line-height: 1.4em;
+    padding: 5px 8px;
+    transition: background-color 0.2s ease 0s;
+}
+
+textarea:focus {
+    background: none repeat scroll 0 0 #FFFFFF;
+    outline-width: 0;
+}

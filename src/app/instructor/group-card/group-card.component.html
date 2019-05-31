@@ -1,7 +1,7 @@
     <div class="col s12 m4 l3">
         <div class="card z-depth-3 hoverable">
             <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{{group.image}}" height="200px" (click)="goToGroupDashboard()">
+              <img class="activator" src="{{group.image}}" height="200px" (click)="goToGroupDashboard(group.id)">
             </div>
           <div class="card-content">
             <a class='dropdown-trigger' data-target='dropdown1'><i class="material-icons right dropdown-trigger">more_vert</i></a>
