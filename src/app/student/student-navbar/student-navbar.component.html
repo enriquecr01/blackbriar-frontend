@@ -1,17 +1,23 @@
 <div class="navbar-fixed">
   <nav class="navbar-fixed white  shadow z-depth-3" style="border: none;">      
     <div class="nav-wrapper">
-        <a data-target="mobile-demo" class="sidenav-trigger"><i style="color: black" class="material-icons">menu</i></a>
-        <img src="../../../assets/Images/Logo/logo2.png" height="60" width="100" style="left:0; top:-10;  position: fixed;" (click)="goToMyGroups()">
+        <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <img src="../../../assets/Images/Logo/logo2.png" height="60" width="100" style="float:left; position: fixed;" (click)="goToMyGroups()">
         <ul class="left hide-on-med-and-down dark" style="margin-left: 41%;">       
-            <li><a (click)="goToMyGroups()" > My Groups </a></li>
-            <li><a (click)="goToExplore()"> Explore </a></li>
-        </ul>
-        <a class="material-icons notification-icon" style="color:#d3d2d2; float:right; margin-right: 20px; margin-top:18px;">notifications_none</a>
+          <li><a (click)="goToMyGroups()" > My Groups </a></li>
+          <li><a (click)="goToExplore()"> Explore </a></li>
+          <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">notifications_none</i></a>
+          </ul>
     </div> 
   </nav>
 </div>
 
+<ul id="slide-out" class="sidenav">
+  <li><a>Notifications</a></li>
+  <div class="row" *ngFor="let message of notifications">
+    <app-notifications [notification]=message></app-notifications>
+  </div>
+</ul>
         
   <ul class="sidenav" id="mobile-demo">
     <li>
@@ -24,4 +30,7 @@
     </li>
     <li><a (click)="goToMyGroups()" > My Groups </a></li>
     <li><a (click)="goToExplore()"> Explore </a></li>
+    <li><a data-target="slide-out" class="sidenav-trigger show-on-large sidenav-close"><i class="material-icons">notifications_none</i> Notifications</a></li>
   </ul>
+
+

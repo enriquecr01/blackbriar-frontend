@@ -1,14 +1,7 @@
-li a{
-    color: #fff;
-}
-
-li a:hover{
-    color: #fff;
-}
-
-img:hover{
+.nav-wrapper img:hover{
     cursor: pointer;
 }
+
 
 nav{
     background: rgb(23,18,99);

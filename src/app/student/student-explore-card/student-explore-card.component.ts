@@ -11,13 +11,14 @@ import * as M from "materialize-css/dist/js/materialize";
 export class StudentExploreCardComponent implements OnInit {
 
    @Input() group : Group;
+   disabledButton: boolean = false;
 
   constructor(private endPointService : EndpointsService) { }
 
   ngOnInit() {
   }
 
-  joinGroup(groupId, button)
+  joinGroup(groupId)
   {
     this.endPointService.joinGroup(groupId).
     subscribe(
@@ -27,14 +28,12 @@ export class StudentExploreCardComponent implements OnInit {
         //Cambiar estilo objecto DOM
         //object.style.background = "gray";
         //object.innerHTML = "Yo";
-        button.setAttribute("disabled", "");
-        button.setAttribute("onclick", "");
+        this.disabledButton = true;
         M.toast(dataAny.statusMessage, 4000);
       },
       error  => 
       { 
-        button.setAttribute("disabled", "");
-        button.setAttribute("onclick", "");
+        this.disabledButton = true;
         M.toast(error.error.message, 4000);
       }
     );

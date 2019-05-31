@@ -1,5 +1,5 @@
 
-    <div class="col s12 m3 l3">
+    <div class="col s12 m4 l3">
         <div class="card z-depth-5">
           
             <div class="card-image waves-effect waves-block waves-light">
@@ -11,7 +11,7 @@
               <span class="card-title activator grey-text text-darken-4 truncate">{{group.title}}
               </span>
               
-              <a class="btn" style="background:darkorange; border-radius: 10px" *ngIf="!group.active; else buttonSubscribed" (click)="joinGroup(group.id, $event.toElement)">Subscribe</a>
+              <a class="btn amber darken-2" [class.disabled]="disabledButton" style="border-radius: 10px" *ngIf="!group.active; else buttonSubscribed" (click)="joinGroup(group.id)">Subscribe</a>
               <ng-template #buttonSubscribed>
                 <a class="btn" style="background:gray; border-radius: 10px" >Already Subscribed</a>
               </ng-template>
