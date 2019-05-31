@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ForumComponent} from './../group-activities/forum/forum.component';
 
 
 @Component({
