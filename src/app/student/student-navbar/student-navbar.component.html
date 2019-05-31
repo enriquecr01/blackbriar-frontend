@@ -7,11 +7,17 @@
             <li><a (click)="goToMyGroups()" > My Groups </a></li>
             <li><a (click)="goToExplore()"> Explore </a></li>
         </ul>
-        <a class="material-icons notification-icon" style="color:#d3d2d2; float:right; margin-right: 20px; margin-top:18px;">notifications_none</a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons" style="color: gray">notifications_none</i></a>
     </div> 
   </nav>
 </div>
 
+<ul id="slide-out" class="sidenav">
+  <li><a>Notifications</a></li>
+  <div class="row" *ngFor="let message of notifications">
+    <app-notifications [notification]=message></app-notifications>
+  </div>
+</ul>
         
   <ul class="sidenav" id="mobile-demo">
     <li>
@@ -25,3 +31,5 @@
     <li><a (click)="goToMyGroups()" > My Groups </a></li>
     <li><a (click)="goToExplore()"> Explore </a></li>
   </ul>
+
+
