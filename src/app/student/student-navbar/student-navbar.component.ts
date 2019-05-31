@@ -31,7 +31,7 @@ export class StudentNavbarComponent implements OnInit {
     M.Sidenav.init(elems1);
 
     
-    var elems = document.querySelectorAll('.sidenav');
+    var elems = document.querySelectorAll('#slide-out');
     M.Sidenav.init(elems, {edge: "right"});
   }
 
