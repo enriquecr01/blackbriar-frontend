@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Group } from '../../../app/models/group';
 import { Forum } from '../../../app/models/forum';
+import { Observable } from 'rxjs';
 
 let token = "Bearer " + localStorage.getItem("token");
 
@@ -43,6 +44,12 @@ export class EndpointsService {
   getGroupForums(groupId: number) {
     var groupForums = `${this.siteUrl}/groups/${groupId}/forums`;
     return this.http.get(groupForums, httpOptions);
+  }
+
+  // Add Forum
+  addForum(groupId: number, forum: Forum): Observable<Forum> {
+    var addForum = `${this.siteUrl}/groups/${groupId}/forums`;
+    return this.http.post<Forum>(addForum, forum, httpOptions);
   }
 
 
