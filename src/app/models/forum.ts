@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-
-export interface Forum
-{
-    id: number,
-    //atributos que me regresa el api
-=======
 export interface Setting {
     startDate: string;
     endDate: string;
@@ -31,5 +24,4 @@ export interface Forum {
     created: string;
     settings: Setting;
     group: Group;
->>>>>>> dev
 }

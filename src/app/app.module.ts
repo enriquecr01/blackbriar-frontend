@@ -63,15 +63,12 @@ const routes: Route[] = [
     routingStudentComponents,
     FilterPipe,
     InstructorGroupComponent,
-<<<<<<< HEAD
     StudentGroupComponent,
     ForumComponent,
 
 
-=======
     StudentGroupForumsComponent,
     StudentForumComponent,
->>>>>>> dev
     NotificationsComponent,
     StudentGroupComponent
   ],
