@@ -25,6 +25,16 @@
     background-color: rgb(230, 230, 230);
 }
 
+.header-input:focus {
+    background-color: rgb(230, 230, 230);
+    text-align: left;
+    border: none;
+    border-color: transparent;
+    font-size: 22px;
+    border-bottom: 0px solid rgb(255, 255, 255);
+    box-shadow: 0 1px 0 0 rgb(255, 252, 252);
+}
+
 .modal .body-content {
     background-color: rgb(255, 255, 255);
     height: 400px;
@@ -61,7 +71,7 @@
 }
 
 .modal input {
-    text-align: center;
+    text-align: left;
     border-bottom: 1px solid rgb(100, 100, 100);
 }
 
