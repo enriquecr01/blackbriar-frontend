@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Group } from 'src/app/models/group';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-mygroups-card',
@@ -8,11 +9,16 @@ import { Group } from 'src/app/models/group';
 })
 export class StudentMygroupsCardComponent implements OnInit {
 
-  @Input() group : Group;
-  
-  constructor() { }
+  @Input() group: Group;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  goToGroupForums(groupId: number) {
+    //console.log("Has entrado al grupo: " + ggroupId + ' - ' + group.title);
+    this.router.navigate(['student/student-groupforums', { groupId }]);
   }
 
 }

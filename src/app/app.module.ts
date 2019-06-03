@@ -1,8 +1,8 @@
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; 
-import { AppRoutingModule , routingStudentComponents } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule, routingStudentComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Route, RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -27,21 +27,23 @@ import { GroupCardComponent } from './instructor/group-card/group-card.component
 
 //Angular material components
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilterPipe } from './filter.pipe';
 import { InstructorGroupComponent } from './instructor/instructor-group/instructor-group.component';
+import { StudentGroupForumsComponent } from './student/student-group-forums/student-group-forums.component';
+import { StudentForumComponent } from './student/student-forum/student-forum.component';
 
 
 
 
 const routes: Route[] = [
-  {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent},
-  {path: 'student/student-dashboard', component: StudentDashboardComponent},
-  {path: 'instructor/instructor-group', component: InstructorGroupComponent}
-  
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent },
+  { path: 'student/student-dashboard', component: StudentDashboardComponent },
+  { path: 'instructor/instructor-group', component: InstructorGroupComponent }
+
 ];
 
 @NgModule({
@@ -59,18 +61,20 @@ const routes: Route[] = [
     routingStudentComponents,
     FilterPipe,
     InstructorGroupComponent,
+    StudentGroupForumsComponent,
+    StudentForumComponent,
 
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, 
+    AppRoutingModule,
     RouterModule.forRoot(routes),
     AngularFontAwesomeModule,
     FormsModule,
     HttpClientModule,
     MaterializeModule,
-    
+
     BrowserAnimationsModule
   ],
   providers: [
