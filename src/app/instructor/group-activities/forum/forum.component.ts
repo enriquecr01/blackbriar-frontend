@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Forum } from 'src/app/models/forum';
 
 @Component({
   selector: 'app-forum',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class ForumComponent implements OnInit {
 
   constructor() { }
+
+  @Input() forum: Forum;
 
   ngOnInit() {
   }
