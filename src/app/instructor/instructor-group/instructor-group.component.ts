@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+
 import {ForumComponent} from './../group-activities/forum/forum.component';
+import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
@@ -9,6 +10,10 @@ import {ForumComponent} from './../group-activities/forum/forum.component';
 })
 export class InstructorGroupComponent implements OnInit {
 
+
+  @Input()
+  groupId: number;
+
   constructor() { }
 
   ngOnInit() {
@@ -16,6 +21,13 @@ export class InstructorGroupComponent implements OnInit {
     // MODAL START
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
+    // MODAL - DATE PICKER START
+    var elems = document.querySelectorAll('.datepicker');
+    M.Datepicker.init(elems);
+    // MODAL - TIME PICKER START
+    var elems = document.querySelectorAll('.timepicker');
+    M.Timepicker.init(elems);
+
   
     // FLOATING BUTTON
     var elems = document.querySelectorAll('.fixed-action-btn');

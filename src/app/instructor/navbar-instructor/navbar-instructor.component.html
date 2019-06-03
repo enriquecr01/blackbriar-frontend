@@ -1,7 +1,7 @@
 <div class="navbar-fixed">
     <nav class="navbar-fixed white  shadow z-depth-3">
         <div class="nav-wrapper" style="color: black">
-          <a data-target="mobile-demo" class="sidenav-trigger"><i style="color: black" class="material-icons">menu</i></a>
+          <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <img src="../../../assets/Images/Logo/logo2.png" height="60" width="200" style="float:left; position: fixed;" (click)="goToDashboard()" > 
           <ul class="right hide-on-med-and-down">
               <li>
@@ -11,13 +11,22 @@
                     </a>
                 </div>
               </li>
-            <li><a>Sass</a></li>
+              <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">notifications_none</i></a>
             <li><a>Components</a></li>
             <!-- Dropdown Trigger -->
           </ul>
         </div>
       </nav>
 </div>
+
+
+<ul id="slide-out" class="sidenav">
+  <li><a>Notifications</a></li>
+  <div class="row" *ngFor="let message of notifications">
+    <app-notifications [notification]=message></app-notifications>
+  </div>
+</ul>
+<!-- <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
 
   <!-- Dropdown Structure -->
   <ul id='dropdown1' class='dropdown-content' style="width: 200px">
@@ -38,7 +47,5 @@
             </a>
         </div>
       </li>
-      <li><a href="badges.html">Components</a></li>
-      <li><a href="collapsible.html">Javascript</a></li>
-      <li><a href="mobile.html">Mobile</a></li>
+      <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large sidenav-close"><i class="material-icons">notifications_none</i> Notifications</a></li>
     </ul>

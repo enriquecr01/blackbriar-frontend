@@ -30,10 +30,9 @@ import { GroupCardComponent } from './instructor/group-card/group-card.component
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FilterPipe } from './filter.pipe';
 import { InstructorGroupComponent } from './instructor/instructor-group/instructor-group.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 import { StudentGroupComponent } from './student/student-group/student-group.component';
 import { ForumComponent } from './instructor/group-activities/forum/forum.component';
-
-
 
 
 const routes: Route[] = [
@@ -66,6 +65,8 @@ const routes: Route[] = [
     ForumComponent,
 
 
+    NotificationsComponent,
+    StudentGroupComponent
   ],
   imports: [
     BrowserModule,
