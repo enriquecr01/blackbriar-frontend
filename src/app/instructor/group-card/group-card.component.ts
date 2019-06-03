@@ -24,8 +24,8 @@ export class GroupCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  goToGroupDashboard(){
-    this.router.navigate(['instructor/instructor-group']);
+  goToGroupDashboard(groupId: number){
+    this.router.navigate(['instructor/instructor-group' , {groupId}]);  
   }
 
 }
