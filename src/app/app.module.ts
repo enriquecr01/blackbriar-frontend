@@ -32,18 +32,19 @@ import { FilterPipe } from './filter.pipe';
 import { InstructorGroupComponent } from './instructor/instructor-group/instructor-group.component';
 import { StudentGroupForumsComponent } from './student/student-group-forums/student-group-forums.component';
 import { StudentForumComponent } from './student/student-forum/student-forum.component';
-
-
+import { NotificationsComponent } from './notifications/notifications.component';
+import { StudentGroupComponent } from './student/student-group/student-group.component';
 
 
 const routes: Route[] = [
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent },
-  { path: 'student/student-dashboard', component: StudentDashboardComponent },
-  { path: 'instructor/instructor-group', component: InstructorGroupComponent }
-
+  {path: 'home', component: HomeComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent},
+  {path: 'student/student-dashboard', component: StudentDashboardComponent},
+  {path: 'instructor/instructor-group', component: InstructorGroupComponent},
+  {path: 'student/student-group', component: StudentGroupComponent}
+  
 ];
 
 @NgModule({
@@ -63,8 +64,8 @@ const routes: Route[] = [
     InstructorGroupComponent,
     StudentGroupForumsComponent,
     StudentForumComponent,
-
-
+    NotificationsComponent,
+    StudentGroupComponent
   ],
   imports: [
     BrowserModule,

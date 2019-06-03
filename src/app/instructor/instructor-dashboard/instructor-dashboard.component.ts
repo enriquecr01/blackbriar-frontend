@@ -30,6 +30,7 @@ export class InstructorDashboardComponent implements OnInit {
   imageFile: File;
   groups = [];
   groupsFilter = [];
+  groupId: number;
 
   ngOnInit() {  
     this.auth.getExpiration();
@@ -39,7 +40,6 @@ export class InstructorDashboardComponent implements OnInit {
     M.FormSelect.init(elems);
     var el = document.querySelectorAll('.tabs');
     M.Tabs.init(el);
-    console.log(this.groupsService.getInstructorGroups());
     this.groupsService.getInstructorGroups().
     subscribe(
       data  => 
@@ -54,6 +54,8 @@ export class InstructorDashboardComponent implements OnInit {
         console.log("Error", error); 
       }
     );
+
+   
   }
 
   addGroup()
@@ -73,12 +75,13 @@ export class InstructorDashboardComponent implements OnInit {
     }
     else
     {
+
       if (this.image.length < 1 || this.previewImage == "undefined")
       {
         this.image = "https://summer.pes.edu/wp-content/uploads/2019/02/default-2.jpg";
         this.callServiceGroup();
       }
-      if(this.previewImage != "undefined")
+      else if(this.previewImage != "undefined")
       {
         this.filesService.uploadImage(this.selectedFile.file).subscribe(
           data => {
