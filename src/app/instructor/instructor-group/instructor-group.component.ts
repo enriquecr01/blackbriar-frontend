@@ -1,6 +1,9 @@
 
 import {ForumComponent} from './../group-activities/forum/forum.component';
 import { Component, OnInit, Input } from '@angular/core';
+import { EndpointsService } from '../../Student/Services/endpoints.service';
+import { Group } from '../../models/group';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,10 +14,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InstructorGroupComponent implements OnInit {
 
 
-  @Input()
+  @Input() group : Group;
   groupId: number;
+  forums: any = []; 
 
-  constructor() { }
+  constructor(private endpoint: EndpointsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     
@@ -32,6 +36,17 @@ export class InstructorGroupComponent implements OnInit {
     // FLOATING BUTTON
     var elems = document.querySelectorAll('.fixed-action-btn');
     M.FloatingActionButton.init(elems);  
+
+    this.groupId = this.route.snapshot.params["groupId"];
+
+    this.endpoint.getGroupForums(this.groupId).subscribe(
+      forums => {
+        this.forums = forums;
+        console.log(this.forums);
+      },
+      error => {
+        console.log("Error -> getGroupForums", error);
+      })
    
   }
 

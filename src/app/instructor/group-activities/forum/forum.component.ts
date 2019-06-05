@@ -15,4 +15,12 @@ export class ForumComponent implements OnInit {
   ngOnInit() {
   }
 
+  setClasses(){
+    let classes = {
+      forum: true,
+      'visible': this.forum.visible
+    };
+    return classes;
+  }
+
 }
