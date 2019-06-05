@@ -30,6 +30,7 @@ export class InstructorDashboardComponent implements OnInit {
   imageFile: File;
   groups = [];
   groupsFilter = [];
+  groupId: number;
 
   ngOnInit() {  
     this.auth.getExpiration();
@@ -53,6 +54,8 @@ export class InstructorDashboardComponent implements OnInit {
         console.log("Error", error); 
       }
     );
+
+   
   }
 
   addGroup()
