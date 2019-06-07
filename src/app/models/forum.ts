@@ -1,3 +1,7 @@
+
+import { Timestamp } from 'rxjs';
+
+
 export interface Setting {
     startDate: string;
     endDate: string;
@@ -24,4 +28,10 @@ export interface Forum {
     created: string;
     settings: Setting;
     group: Group;
+    warriorPoints: number;
+    healerPoints: number;
+    warlockPoints: number;
+    validResponsePoints: number;
+    published: boolean;
 }
+

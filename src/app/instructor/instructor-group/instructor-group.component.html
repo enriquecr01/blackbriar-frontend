@@ -135,14 +135,13 @@
     </ul>
   </div>
 
-
   <!-- Modal Structure -->
   <div id="modal1" class="modal forum-modal">
    
     <div class="">
      
      <div class="modal-header">
-         <label>Forum Title: </label> <input class="header-input" type="text">
+         <label>Forum Title: </label> <input class="header-input" type="text" [(ngModel)]="forumTitle" name="forumTitle">
      </div>
   
       
@@ -168,9 +167,7 @@
                       <img src="../../../assets/Images/Role-Icons/selesnya.jpg" class="circle responsive-img role-logo">
                     </div>
                     
-                    <div class="col s10">  
-
-                     
+                    <div class="col s10">    
                      
                       <span class="black-text description" style="font-size: 13px;">
                         This is a square image. Add the "circle" class to it to make it appear circular.
@@ -180,8 +177,8 @@
                      <!-- SCORE INPUT STARTS -->
                     <div class="col s2 m2 l2">
                       <div class="input-field inline">
-                        <input id="email_inline" type="text" >
-                        <label for="email_inline">Score</label>         
+                        <input [(ngModel)]="healerScore" name="healerScore" type="text" >
+                        <label for="healerScore">Score</label>         
                       </div>
                     </div>
                   <!-- SCORE INPUT ENDS -->
@@ -225,8 +222,8 @@
                      <!-- SCORE INPUT STARTS -->
                     <div class="col s2 m2 l2">
                       <div class="input-field inline">
-                        <input id="email_inline" type="text" >
-                        <label for="email_inline">Score</label>         
+                        <input [(ngModel)]="warriorScore" name="warriorScore" type="text" >
+                        <label for="warriorScore">Score</label>         
                       </div>
                     </div>
                   <!-- SCORE INPUT ENDS -->
@@ -270,8 +267,8 @@
                  <!-- SCORE INPUT STARTS -->
                     <div class="col s2 m2 l2">
                       <div class="input-field inline">
-                        <input id="email_inline" type="text" >
-                        <label for="email_inline">Score</label>         
+                        <input [(ngModel)]="warlockScore" name="warlockScore" type="text" >
+                        <label for="warlockScore">Score</label>         
                       </div>
                     </div>
                   <!-- SCORE INPUT ENDS -->
@@ -295,34 +292,35 @@
           <!-- DATE AND TIME SETTINGS-->
           <div> 
 
-            <div class="datePick">
-              <input type="text" class="datepicker" placeholder="Start Date">
-            </div>
-            
+            <input id="endDate" name="endDate"[ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event" type="date" name="startDate"/>
+            <!--
             <div class="timePick">
-              <input type="text" class="timepicker" placeholder="Start Time">
+              <input type="text" class="timepicker" placeholder="End Time" [(ngModel)]="endTime" id="endTime" name="endTime">
             </div>
+            -->
 
-            <div class="datePick">
-              <input type="text" class="datepicker" placeholder="End Date">
-            </div>
-            
-            <div class="timePick">
-              <input type="text" class="timepicker" placeholder="End Time">
-            </div>
+             <!-- SCORE INPUT STARTS -->
+                    <div class="col s2 m2 l2">
+                      <div class="input-field inline">
+                        <input [(ngModel)]="answerScore" name="answerScore" type="text" >
+                        <label for="answerScore">Score Per Answer</label>         
+                      </div>
+                    </div>
+                  <!-- SCORE INPUT ENDS -->
+                 
            
             
           </div>
           <!-- DATE AND TIME SETTINGS END-->
           <div class="description-content">
 
-           <textarea placeholder="Type here..." rows="20" name="comment[text]" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
+           <textarea placeholder="Type here..." rows="20" name="description" [(ngModel)]="description" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
 
           </div>
  
           <div class="modal-footer">
-              <a class="waves-effect waves-light btn">Canc  el</a>
-              <a class="waves-effect teal lighten-1 btn">Create</a>
+              <a class="waves-effect waves-light btn">Cancel</a>
+              <a class="waves-effect teal lighten-1 btn" (click)="InsertForum()">Create</a>
           </div>
       
       </div>
