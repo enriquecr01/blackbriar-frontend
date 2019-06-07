@@ -39,6 +39,5 @@ export interface Forum {
     healerPoints: number;
     warlockPoints: number;
     validResponsePoints: number;
-    published: boolean;
 }
 
