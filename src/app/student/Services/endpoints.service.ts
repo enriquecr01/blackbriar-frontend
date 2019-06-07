@@ -45,7 +45,14 @@ export class EndpointsService {
     return this.http.get(groupForums, httpOptions);
   }
 
-
-
-
+  getOneGroup(groupId: number)
+  {
+    let token = "Bearer " + localStorage.getItem("token");
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+    var groupForums = `${this.siteUrl}/groups/${groupId}`;
+    return this.http.get<Group>(groupForums, {headers: headers});
+  }
 }
