@@ -22,20 +22,22 @@ export class NavbarInstructorComponent implements OnInit {
   notifications = [];
 
   constructor(private router:Router, private inboxService: InboxService) 
-  { 
+  {
+     
     this.initializeWebSocketConnection();
   }
 
   ngOnInit()
   {
     var elems = document.querySelectorAll('.dropdown-trigger');
-    var instances = M.Dropdown.init(elems, {constrainWidth: false});
-
+    
+      M.Dropdown.init(elems, {constrainWidth: false});
+    
     var elems1 = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems1);
 
-    var elems = document.querySelectorAll('#slide-out');
-    M.Sidenav.init(elems, {edge: "right"});
+    var elems2 = document.querySelectorAll('#slide-out');
+    M.Sidenav.init(elems2, {edge: "right"});
   }
 
   initializeWebSocketConnection(){
