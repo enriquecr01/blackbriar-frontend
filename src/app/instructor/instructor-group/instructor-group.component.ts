@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ForumInsertService } from 'src/app/services/forum-insert.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Forum } from 'src/app/models/forum';
+import { ForumRequest } from 'src/app/models/forum';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -21,14 +22,12 @@ export class InstructorGroupComponent implements OnInit {
   published: boolean;
 
   @Input()
-  groupId: number;
-  
   ForumInsertService: ForumInsertService;
 
-  constructor(private forumInsertService: ForumInsertService) { }
+  constructor(private router: ActivatedRoute, private forumInsertService: ForumInsertService) { }
 
   ngOnInit() {
-    
+    this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
     // MODAL START
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
@@ -48,24 +47,28 @@ export class InstructorGroupComponent implements OnInit {
     console.log("LE FUUUUCKIIIIING DATA");
       console.log( "Title = " + this.forumTitle);
         console.log( "Description = " + this.description);
-          console.log( "End Date = " + this.endDate);
+          console.log( "End Date = " +  "2019-06-04T05:35:37.659Z");
             console.log( "Warrior Score = " + this.warriorScore);
               console.log( "Healer Score = " + this.healerScore);
                 console.log( "Warlcok Score = " + this.warlockScore);
                   console.log( "Answer Score = " + this.answerScore);
 
-          var forum : Forum;
-          console.log(forum);
-          forum.title = this.forumTitle,
-          forum.description = this.description,
-          forum.content = "content"
-          forum.endDate = "2019-06-04T05:35:37.659Z",
-          forum.warriorPoints = this.warriorScore,
-          forum.healerPoints = this.healerScore,
-          forum.warlockPoints = this.warlockScore,
-          forum.validResponsePoints = this.answerScore,
-          forum.published = this.published
+          var forum : ForumRequest = {
+              title : this.forumTitle,
+              description : this.description,
+              content : "content",
+              endDate : "2019-06-04T05:35:37.659Z",
+              warriorPoints : this.warriorScore,
+              healerPoints : this.healerScore,
+              warlockPoints : this.warlockScore,
+              validResponsePoints : this.answerScore,
+              published : true
 
+          };
+
+         
+          console.log(forum);
+        
           try
           {
             this.forumInsertService.addForum(forum).

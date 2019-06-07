@@ -36,3 +36,16 @@ export interface Forum {
     published: boolean;
 }
 
+export interface ForumRequest {
+    title: string;
+    description: string;
+    content: string;
+    published: boolean;
+    endDate: string;
+    warriorPoints: number;
+    healerPoints: number;
+    warlockPoints: number;
+    validResponsePoints: number;
+}
+
+
