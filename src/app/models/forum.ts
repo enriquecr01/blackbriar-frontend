@@ -1,23 +1,37 @@
+
 import { Timestamp } from 'rxjs';
 
-export class Forum {
 
-    //GroupId: number;
-    
+export interface Setting {
+    startDate: string;
+    endDate: string;
+    fighterPoints: number;
+    healerPoints: number;
+    bloodmagePoints: number;
+    validResponsePoints: number;
+}
+
+export interface Group {
+    id: number;
+    title: string;
+    description: string;
+    image: string;
+    publicGroup: boolean;
+}
+
+export interface Forum {
+    id: number;
     title: string;
     description: string;
     content: string;
-    //startDate: string;
-    endDate: string;
+    visible: boolean;
+    created: string;
+    settings: Setting;
+    group: Group;
     warriorPoints: number;
     healerPoints: number;
     warlockPoints: number;
     validResponsePoints: number;
     published: boolean;
-
-   /*
-    "2019-06-04T05:35:37.659Z",
-    "2019-07-05T05:35:37.659Z",
-    */
-
 }
+
