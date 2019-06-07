@@ -1,12 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { GroupsService } from './../../groups.service';
-import { EndpointsService } from '../../student/Services/endpoints.service';
-import * as moment from 'moment';
 import { ForumInsertService } from 'src/app/services/forum-insert.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Forum } from 'src/app/models/forum';
-import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';
+import { ForumRequest } from 'src/app/models/forum';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-instructor-group',
@@ -14,6 +11,7 @@ import { InstructorForumComponent } from '../instructor-forum/instructor-forum.c
   styleUrls: ['./instructor-group.component.css']
 })
 export class InstructorGroupComponent implements OnInit {
+    
   forumTitle: string;
   description: string;
   endDate: string;
@@ -23,42 +21,13 @@ export class InstructorGroupComponent implements OnInit {
   answerScore: number;
   published: boolean;
 
-  @Input() groupId: number;
-  title: string = "";
-  descriptionGroup: string = "";
-  image: string = "";
-  instructorImage: string = "";
-  instructorName: string = "";
+  @Input()
+  ForumInsertService: ForumInsertService;
 
-  students = [];
-  forums: any = [];
-
-  constructor(private route: ActivatedRoute, private groupsService: GroupsService, private forumInsertService: ForumInsertService, private endPoint: EndpointsService) { }
+  constructor(private router: ActivatedRoute, private forumInsertService: ForumInsertService) { }
 
   ngOnInit() {
-    this.groupId = this.route.snapshot.params["groupId"];
-    var elems = document.querySelectorAll('.parallax');
-    M.Parallax.init(elems);
-
-    this.groupsService.getOneGroup(this.groupId).subscribe(
-      group => {
-        console.log(group);
-        this.title = group.title;
-        this.descriptionGroup = group.description;
-        this.image = group.image;
-        this.instructorName = group.owner.firstName + " " + group.owner.lastName;
-        this.instructorImage = group.owner.photo;
-        console.log(this.description);
-      },
-      error => {
-        console.log("Error -> getGroupForums", error);
-      }
-    )
-
-    
-    var elems = document.querySelectorAll('.collapsible');
-    M.Collapsible.init(elems);
-
+    this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
     // MODAL START
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
@@ -67,99 +36,64 @@ export class InstructorGroupComponent implements OnInit {
     M.Datepicker.init(elems);
     // MODAL - TIME PICKER START
     var elems = document.querySelectorAll('.timepicker');
-    M.Timepicker.init(elems);
-
-  
+    M.Timepicker.init(elems);  
     // FLOATING BUTTON
     var elems = document.querySelectorAll('.fixed-action-btn');
     M.FloatingActionButton.init(elems);  
-
-    this.groupsService.getStudentsOfGroup(this.groupId).subscribe(
-      data => {
-        console.log(data);
-        this.students = data;
-      },
-      error => {
-        console.log("Error -> getGroupForums", error);
-      }
-    );
-    
-    // FLOATING BUTTON
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    M.FloatingActionButton.init(elems);
-
-    // Get group ID
-    this.groupId = this.route.snapshot.params["groupId"];
-
-    // Get all group forums and save them on "forums"    
-    this.endPoint.getGroupForums(this.groupId).subscribe(
-      forums => {
-        this.forums = forums;
-        this.forums = this.forums.reverse();
-        let actualDate = moment().format();
-
-        for (let i = 0; i < this.forums.length; i++) {
-          if (this.forums[i].settings.endDate < actualDate) {
-            this.forums[i].expired = false;
-          } else {
-            this.forums[i].expired = true;
-          }
-
-
-
-          this.forums[i].eDate = moment(this.forums[i].settings.endDate).format('MMM Do YY');
-          this.forums[i].eTime = moment(this.forums[i].settings.endDate).format('h:mm:ss a');
-
-          this.forums[i].sDate = moment(this.forums[i].startDate).format("MMM Do YY");
-          this.forums[i].sTime = moment(this.forums[i].startDate).format("h:mm:ss a");
-
-          this.forums[i].smallDescription = this.forums[i].description.substring(0, 70);
-          console.log(this.forums[i].smallDescription);
-
-        }
-      },
-      error => {
-        console.log("Error -> getGroupForums", error);
-      }
-    )
+   
   }
 
   InsertForum(){
     console.log("LE FUUUUCKIIIIING DATA");
       console.log( "Title = " + this.forumTitle);
         console.log( "Description = " + this.description);
-          console.log( "End Date = " + this.endDate);
+          console.log( "End Date = " +  "2019-06-04T05:35:37.659Z");
             console.log( "Warrior Score = " + this.warriorScore);
               console.log( "Healer Score = " + this.healerScore);
                 console.log( "Warlcok Score = " + this.warlockScore);
                   console.log( "Answer Score = " + this.answerScore);
 
-          var forum : Forum;
-          forum.title = this.forumTitle,
-          forum.description = this.description,
-          forum.content = "content"
-          forum.eDate = "2019-06-04T05:35:37.659Z",
-          forum.warriorPoints = this.warriorScore,
-          forum.healerPoints = this.healerScore,
-          forum.warlockPoints = this.warlockScore,
-          forum.validResponsePoints = this.answerScore,
-          forum.published = this.published
+          var forum : ForumRequest = {
+              title : this.forumTitle,
+              description : this.description,
+              content : "content",
+              endDate : "2019-06-04T05:35:37.659Z",
+              warriorPoints : this.warriorScore,
+              healerPoints : this.healerScore,
+              warlockPoints : this.warlockScore,
+              validResponsePoints : this.answerScore,
+              published : true
 
-          this.forumInsertService.addForum(forum).
-          subscribe(
-            data  => 
-            { 
-                },
-                error => { 
-                  M.toast(error.error.message); 
-                  console.log(error.error.message);
-                }
-              );
-        error  => 
-        { 
-          console.log(error.error.message);
-          
-        }
+          };
+
+         
+          console.log(forum);
+        
+          try
+          {
+            this.forumInsertService.addForum(forum).
+            subscribe(
+              data  => 
+              { 
+                console.log(data);
+              },
+                  error => { 
+                    M.toast(error.error.message); 
+                    console.log(error.error.message);
+                  }
+                );
+          error  => 
+          { 
+            console.log(error.error.message);
+            
+          }
+          }
+          catch (error)
+          {
+            console.log(error);
+          }
+
+      
   }
 
 }

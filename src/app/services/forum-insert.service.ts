@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Forum } from '../models/forum';
+import { Forum, ForumRequest } from '../models/forum';
 import { Title } from '@angular/platform-browser';
 
 
@@ -10,11 +10,11 @@ import { Title } from '@angular/platform-browser';
 })
 export class ForumInsertService {
 
-  GroupId : number;
+  public GroupId:number;
+  
+  constructor(private http: HttpClient, ) { }
 
-  constructor(private http: HttpClient) { }
-
-  addForum(forum: Forum)
+  addForum(forum: ForumRequest)
   {
     var userId = localStorage.getItem("userId");
     
@@ -35,6 +35,8 @@ export class ForumInsertService {
    
       });
     console.log(jsonCoded);
+    console.log("LEEEEE GRRRRRROOOUUUUP ID!!!!");
+    console.log(this.GroupId);
     let token = "Bearer " + localStorage.getItem("token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
