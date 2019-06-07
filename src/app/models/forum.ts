@@ -34,7 +34,6 @@ export interface Forum {
     eDate: string;
     eTime: string;
     smallDescription: string;
-    published: boolean;
     warriorPoints: number;
     healerPoints: number;
     warlockPoints: number;
