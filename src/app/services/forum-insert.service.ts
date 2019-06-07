@@ -26,7 +26,7 @@ export class ForumInsertService {
         title: forum.title,
         description: forum.description,
         content: forum.content,
-        endDate: forum.endDate,
+        endDate: forum.eDate,
         warriorPoints: forum.warlockPoints,
         healerPoints: forum.healerPoints,
         warlockPoints: forum.warlockPoints,

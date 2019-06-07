@@ -23,7 +23,6 @@ export class StudentGroupForumsComponent implements OnInit {
   instructorName: string = "";
 
   // @Input() forum: Forum;
-  groupId: number;
   forums: any = [];
 
 

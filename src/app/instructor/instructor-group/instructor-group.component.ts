@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { ForumInsertService } from 'src/app/services/forum-insert.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Forum } from 'src/app/models/forum';
-import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';\
+import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';
 
 @Component({
   selector: 'app-instructor-group',
@@ -25,7 +25,7 @@ export class InstructorGroupComponent implements OnInit {
 
   @Input() groupId: number;
   title: string = "";
-  description: string = "";
+  descriptionGroup: string = "";
   image: string = "";
   instructorImage: string = "";
   instructorName: string = "";
@@ -33,7 +33,7 @@ export class InstructorGroupComponent implements OnInit {
   students = [];
   forums: any = [];
 
-  constructor(private route: ActivatedRoute, private groupsService: GroupsService, private forumInsertService: ForumInsertService) { }
+  constructor(private route: ActivatedRoute, private groupsService: GroupsService, private forumInsertService: ForumInsertService, private endPoint: EndpointsService) { }
 
   ngOnInit() {
     this.groupId = this.route.snapshot.params["groupId"];
@@ -44,7 +44,7 @@ export class InstructorGroupComponent implements OnInit {
       group => {
         console.log(group);
         this.title = group.title;
-        this.description = group.description;
+        this.descriptionGroup = group.description;
         this.image = group.image;
         this.instructorName = group.owner.firstName + " " + group.owner.lastName;
         this.instructorImage = group.owner.photo;
@@ -92,7 +92,7 @@ export class InstructorGroupComponent implements OnInit {
     this.groupId = this.route.snapshot.params["groupId"];
 
     // Get all group forums and save them on "forums"    
-    this.endpoint.getGroupForums(this.groupId).subscribe(
+    this.endPoint.getGroupForums(this.groupId).subscribe(
       forums => {
         this.forums = forums;
         this.forums = this.forums.reverse();
@@ -134,11 +134,11 @@ export class InstructorGroupComponent implements OnInit {
                 console.log( "Warlcok Score = " + this.warlockScore);
                   console.log( "Answer Score = " + this.answerScore);
 
-          var forum = new Forum();
+          var forum : Forum;
           forum.title = this.forumTitle,
           forum.description = this.description,
           forum.content = "content"
-          forum.endDate = "2019-06-04T05:35:37.659Z",
+          forum.eDate = "2019-06-04T05:35:37.659Z",
           forum.warriorPoints = this.warriorScore,
           forum.healerPoints = this.healerScore,
           forum.warlockPoints = this.warlockScore,
