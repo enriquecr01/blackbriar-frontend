@@ -10,30 +10,29 @@ import { Title } from '@angular/platform-browser';
 })
 export class ForumInsertService {
 
-  public GroupId:number;
-  
+  public GroupId: number;
+
   constructor(private http: HttpClient, ) { }
 
-  addForum(forum: ForumRequest)
-  {
+  addForum(forum: ForumRequest) {
     var userId = localStorage.getItem("userId");
-    
-    let jsonCoded = JSON.stringify({ 
-       
-        
-        //GroupId: forum.GroupId,   
-        
-        title: forum.title,
-        description: forum.description,
-        content: forum.content,
-        endDate: forum.eDate,
-        warriorPoints: forum.warlockPoints,
-        healerPoints: forum.healerPoints,
-        warlockPoints: forum.warlockPoints,
-        validResponsePoints: forum.validResponsePoints,
-        published: forum.published
-   
-      });
+
+    let jsonCoded = JSON.stringify({
+
+
+      //GroupId: forum.GroupId,   
+
+      title: forum.title,
+      description: forum.description,
+      content: forum.content,
+      endDate: forum.endDate,
+      warriorPoints: forum.warlockPoints,
+      healerPoints: forum.healerPoints,
+      warlockPoints: forum.warlockPoints,
+      validResponsePoints: forum.validResponsePoints,
+      published: forum.published
+
+    });
     console.log(jsonCoded);
     console.log("LEEEEE GRRRRRROOOUUUUP ID!!!!");
     console.log(this.GroupId);
@@ -42,7 +41,7 @@ export class ForumInsertService {
       'Content-Type': 'application/json',
       'Authorization': token
     })
-    
+
     return this.http.post<Forum>(`https://api.blackbriar.site/api/groups/${this.GroupId}/forums`, jsonCoded, { headers: headers });
   }
 }
