@@ -1,3 +1,7 @@
+
+import { Timestamp } from 'rxjs';
+
+
 export interface Setting {
     startDate?: any;
     endDate: string;
@@ -31,4 +35,10 @@ export interface Forum {
     eTime: string;
     smallDescription: string;
     published: boolean;
+    warriorPoints: number;
+    healerPoints: number;
+    warlockPoints: number;
+    validResponsePoints: number;
+    published: boolean;
 }
+
