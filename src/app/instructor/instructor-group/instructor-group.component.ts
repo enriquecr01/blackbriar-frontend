@@ -1,15 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { GroupsService } from './../../groups.service';
 import { EndpointsService } from '../../student/Services/endpoints.service';
-import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { ForumInsertService } from 'src/app/services/forum-insert.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Forum } from 'src/app/models/forum';
-
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Forum } from 'src/app/models/forum';
-import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';
-import { ForumInsertService } from 'src/app/services/forum-insert.service';
+import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';\
 
 @Component({
   selector: 'app-instructor-group',
@@ -26,19 +23,41 @@ export class InstructorGroupComponent implements OnInit {
   answerScore: number;
   published: boolean;
 
-  @Input()
-  ForumInsertService: ForumInsertService;
+  @Input() groupId: number;
+  title: string = "";
+  description: string = "";
+  image: string = "";
+  instructorImage: string = "";
+  instructorName: string = "";
 
-  groupId: number;
+  students = [];
   forums: any = [];
 
-
-  constructor(private endpoint: EndpointsService, private route: ActivatedRoute, private forumInsertService: ForumInsertService) { }
-  ForumInsertService: ForumInsertService;
-
-  constructor(private forumInsertService: ForumInsertService) { }
+  constructor(private route: ActivatedRoute, private groupsService: GroupsService, private forumInsertService: ForumInsertService) { }
 
   ngOnInit() {
+    this.groupId = this.route.snapshot.params["groupId"];
+    var elems = document.querySelectorAll('.parallax');
+    M.Parallax.init(elems);
+
+    this.groupsService.getOneGroup(this.groupId).subscribe(
+      group => {
+        console.log(group);
+        this.title = group.title;
+        this.description = group.description;
+        this.image = group.image;
+        this.instructorName = group.owner.firstName + " " + group.owner.lastName;
+        this.instructorImage = group.owner.photo;
+        console.log(this.description);
+      },
+      error => {
+        console.log("Error -> getGroupForums", error);
+      }
+    )
+
+    
+    var elems = document.querySelectorAll('.collapsible');
+    M.Collapsible.init(elems);
 
     // MODAL START
     var elems = document.querySelectorAll('.modal');
@@ -50,6 +69,21 @@ export class InstructorGroupComponent implements OnInit {
     var elems = document.querySelectorAll('.timepicker');
     M.Timepicker.init(elems);
 
+  
+    // FLOATING BUTTON
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    M.FloatingActionButton.init(elems);  
+
+    this.groupsService.getStudentsOfGroup(this.groupId).subscribe(
+      data => {
+        console.log(data);
+        this.students = data;
+      },
+      error => {
+        console.log("Error -> getGroupForums", error);
+      }
+    );
+    
     // FLOATING BUTTON
     var elems = document.querySelectorAll('.fixed-action-btn');
     M.FloatingActionButton.init(elems);
@@ -126,7 +160,6 @@ export class InstructorGroupComponent implements OnInit {
           console.log(error.error.message);
           
         }
-      
   }
 
 }

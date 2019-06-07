@@ -36,6 +36,7 @@ import { StudentForumComponent } from './student/student-forum/student-forum.com
 import { NotificationsComponent } from './notifications/notifications.component';
 import { StudentGroupComponent } from './student/student-group/student-group.component';
 
+import {MatMenuModule} from '@angular/material/menu';
 
 const routes: Route[] = [
   { path: 'home', component: HomeComponent },
@@ -77,8 +78,8 @@ const routes: Route[] = [
     FormsModule,
     HttpClientModule,
     MaterializeModule,
-
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatMenuModule
   ],
   providers: [
     LoginService,
