@@ -8,20 +8,10 @@ import { Forum } from '../../models/forum';
 })
 export class StudentForumComponent implements OnInit {
 
-  @Input() forum: Forum;
+  @Input() forums: Forum;
 
   constructor() { }
 
   ngOnInit() {
   }
-
-  setClasses() {
-    let classes = {
-      forum: true,
-      'visible': this.forum.visible
-    };
-
-    return classes;
-  }
-
 }
