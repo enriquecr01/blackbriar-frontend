@@ -26,6 +26,7 @@ export interface Forum {
     content: string;
     visible: boolean;
     created: string;
+    endDate: string;
     settings: Setting;
     group: Group;
     warriorPoints: number;

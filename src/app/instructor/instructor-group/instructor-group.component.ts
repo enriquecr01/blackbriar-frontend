@@ -22,6 +22,7 @@ export class InstructorGroupComponent implements OnInit {
 
   @Input()
   groupId: number;
+  
   ForumInsertService: ForumInsertService;
 
   constructor(private forumInsertService: ForumInsertService) { }
@@ -53,7 +54,8 @@ export class InstructorGroupComponent implements OnInit {
                 console.log( "Warlcok Score = " + this.warlockScore);
                   console.log( "Answer Score = " + this.answerScore);
 
-          var forum = new Forum();
+          var forum : Forum;
+          console.log(forum);
           forum.title = this.forumTitle,
           forum.description = this.description,
           forum.content = "content"
@@ -64,21 +66,30 @@ export class InstructorGroupComponent implements OnInit {
           forum.validResponsePoints = this.answerScore,
           forum.published = this.published
 
-          this.forumInsertService.addForum(forum).
-          subscribe(
-            data  => 
-            { 
-                },
-                error => { 
-                  M.toast(error.error.message); 
-                  console.log(error.error.message);
-                }
-              );
-        error  => 
-        { 
-          console.log(error.error.message);
-          
-        }
+          try
+          {
+            this.forumInsertService.addForum(forum).
+            subscribe(
+              data  => 
+              { 
+                console.log(data);
+              },
+                  error => { 
+                    M.toast(error.error.message); 
+                    console.log(error.error.message);
+                  }
+                );
+          error  => 
+          { 
+            console.log(error.error.message);
+            
+          }
+          }
+          catch (error)
+          {
+            console.log(error);
+          }
+
       
   }
 
