@@ -1,19 +1,16 @@
 <app-student-navbar></app-student-navbar>
 
-<br>
-<div class="row">
+<div class="container">
+  <br>
+  <!-- FORUMS -->
+  <div class="card">
+    <div class="card-content">
 
-  <div class="col s3"></div>
+      <h5>Forums</h5>
+      <div class="divider"></div>
 
-  <div class="col s6">
-    <ul class="collection with-header">
-      <li class="collection-header">
-        <h5>Foros</h5>
-      </li>
-      <app-student-forum *ngFor="let forum of forums" [forum]="forum"></app-student-forum>
-    </ul>
+      <app-student-forum [forums]="forums"></app-student-forum>
+    </div>
   </div>
-
-  <div class="col s3"></div>
 
 </div>

@@ -1,340 +1,225 @@
 <app-navbar-instructor></app-navbar-instructor>
 
+<div class="container">
+  <br>
+  <!-- FORUMS -->
+  <div class="card">
+    <div class="card-content">
 
-<!-- LEFT BAR CONTAINER -->
-<div class="col s12 m12 l12">
-    
-    <div class="col s12 m4 l3" style=" padding: 10px; float:left; width: 380px; height: 863px; position: sticky; background: rgb(228, 228, 228)">
-        
+      <h5>Forums</h5>
+      <div class="divider"></div>
 
-      <!-- ROW STARTS -->
-        <div class="col s12 m8 offset-m2 l6 offset-l3" style="margin-top: 12px;">    
-          <div class="grey lighten-5 z-depth-1" style="height: 70px; padding: 13px;">
-              <div class="row valign-wrapper">
-                <div class="col s2">
-                  <img src="https://thumbs.dreamstime.com/t/avatar-dirige-el-pict-del-var%C3%B3n-de-la-m%C3%A1scara-ladr%C3%B3n-centro-atenci%C3%B3n-telef%C3%B3nica-silueta-perfil-125308648.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-                </div>
-                <div class="col s10">
-                  <span class="black-text" style="margin-left: 30px;">
-                    Bruce Lee
-                  </span>
-                
-                  <span class="black-text" style="margin-left: 40px;">
-                      <img src="../../../assets/Images/Icons/medal.png" with = "20" height="20">
-                      150 xp
-                    </span>
-                </div>
-              </div>
-            </div>
-          </div>
-  <!-- ROW ENDS -->
-          
-      </div>
-
-
-</div>
-
-<!--  RIGHT SIDE STARTS  -->
-<div class="container col s12 m12 l12" style="float:right; margin-right: 120px;">
-  
-  <div class="row">
-    
-
+      <app-instructor-forum [forums]="forums"></app-instructor-forum>
+    </div>
   </div>
-  <div class="row">
-      <div>
-        <table class="highlight">
-          <thead>
-            <tr>
-              <th> Title </th>
-              <th> Start Date </th>
-              <th> End Date </th>
-              <th> Status </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <!-- BODY ROW -->
-            <tr>
-                <td>
-                 
-                    <div style="font-size: 16px; font-weight: bold;">
-                        Mr. Le Forum 
-                    </div>
-                   
-                 <div>
-                    This forum was created for testing purposes
-                 </div>
-                  
-                
-                
-                </td>
-                <td>May, 29th 2019</td>
-                <td>Dec, 29th 2019</td>
-                <td>3 Days To Start</td>
-            </tr>
-            <!-- BODY ROW -->
-            <tr>
-                <td>
-                  
-                    <div style="font-size: 16px; font-weight: bold;">
-                        Mr. Le Forum 
-                    </div>
-                   
-                 <div>
-                    This forum was created for testing purposes
-                 </div>
-                  
-                
-                
-                </td>
-                <td>May, 29th 2019</td>
-                <td>Dec, 29th 2019</td>
-                <td>3 Days To Start</td>
-            </tr>  <!-- BODY ROW -->
-            <tr>
-                <td>
-                  
-                    <div style="font-size: 16px; font-weight: bold;">
-                        Mr. Le Forum 
-                    </div>
-                   
-                 <div>
-                    This forum was created for testing purposes
-                 </div>
-                  
-               
-                
-                </td>
-                <td>May, 29th 2019</td>
-                <td>Dec, 29th 2019</td>
-                <td>3 Days To Start</td>
-            </tr>
-
-          </tbody>
-        </table>
-
-      
-      
-
-
-      </div>
-   </div>
 
 </div>
+
 
 
 <!-- BUTTON ADD MODAL -->
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large  pink accent-4 z-depth-4">
-      <i class="large material-icons">add</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating red modal-trigger" href="#modal1"><i class="material-icons">chat</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">content_copy</i></a></li>
-    </ul>
-  </div>
+  <a class="btn-floating btn-large  pink accent-4 z-depth-4">
+    <i class="large material-icons">add</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating red modal-trigger" href="#modal1"><i class="material-icons">chat</i></a></li>
+    <li><a class="btn-floating yellow darken-1"><i class="material-icons">content_copy</i></a></li>
+  </ul>
+</div>
 
+<!-- Modal Structure -->
+<div id="modal1" class="modal forum-modal">
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal forum-modal">
-   
-    <div class="">
-     
-     <div class="modal-header">
-         <label>Forum Title: </label> <input class="header-input" type="text">
-     </div>
-  
-      
-      <div class="sideBar">
+  <div class="">
 
-
-       <!-- HEALER CARD  -->
-        <div>
-
-             <div class="col s6 m4 l3">
-               
-                <div class=" card-wrapper  grey lighten-5 z-depth-1">
-
-                 <div class="role-title">
-                        <h5> Healer </h5>  
-                      </div>   
-                    
-                 
-                  <div class="row valign-wrapper">
-
-                  
-                    <div class="col s2 m2 l2">
-                      <img src="../../../assets/Images/Role-Icons/selesnya.jpg" class="circle responsive-img role-logo">
-                    </div>
-                    
-                    <div class="col s10">  
-
-                     
-                     
-                      <span class="black-text description" style="font-size: 13px;">
-                        This is a square image. Add the "circle" class to it to make it appear circular.
-                      </span>      
-                    </div>
-                 
-                     <!-- SCORE INPUT STARTS -->
-                    <div class="col s2 m2 l2">
-                      <div class="input-field inline">
-                        <input id="email_inline" type="text" >
-                        <label for="email_inline">Score</label>         
-                      </div>
-                    </div>
-                  <!-- SCORE INPUT ENDS -->
-                 
-                  </div>
-               
-                </div>
-              
-              </div>
-            
-            </div>
-
-            <!-- WARRIOR CARD  -->
-        <div>
-
-             <div class="col s6 m4 l3">
-               
-                <div class=" card-wrapper  grey lighten-5 z-depth-1">
-
-                 <div class="role-title">
-                        <h5> Warrior </h5>  
-                      </div>   
-                    
-                 
-                  <div class="row valign-wrapper">
-
-                  
-                    <div class="col s2 m2 l2">
-                      <img src="../../../assets/Images/Role-Icons/warrior.jpg" class="circle responsive-img role-logo">
-                    </div>
-                    
-                    <div class="col s10">  
-
-                     
-                     
-                      <span class="black-text description" style="font-size: 13px;">
-                        This is a square image. Add the "circle" class to it to make it appear circular.
-                      </span>      
-                    </div>
-                 
-                     <!-- SCORE INPUT STARTS -->
-                    <div class="col s2 m2 l2">
-                      <div class="input-field inline">
-                        <input id="email_inline" type="text" >
-                        <label for="email_inline">Score</label>         
-                      </div>
-                    </div>
-                  <!-- SCORE INPUT ENDS -->
-                 
-                  </div>
-               
-                </div>
-              
-              </div>
-            
-            </div>
-
-            <!-- WARLOCK CARD  -->
-        <div>
-
-             <div class="col s6 m4 l3">
-               
-                <div class=" card-wrapper  grey lighten-5 z-depth-1">
-
-                 <div class="role-title">
-                        <h5> Warlock </h5>  
-                      </div>   
-                    
-                 
-                  <div class="row valign-wrapper">
-
-                  
-                    <div class="col s2 m2 l2">
-                      <img src="../../../assets/Images/Role-Icons/wizard3.jpg" class="circle responsive-img role-logo">
-                    </div>
-                    
-                    <div class="col s10">  
-
-                     
-                     
-                      <span class="black-text description" style="font-size: 13px;">
-                        This is a square image. Add the "circle" class to it to make it appear circular.
-                      </span>      
-                    </div>
-                 
-                 <!-- SCORE INPUT STARTS -->
-                    <div class="col s2 m2 l2">
-                      <div class="input-field inline">
-                        <input id="email_inline" type="text" >
-                        <label for="email_inline">Score</label>         
-                      </div>
-                    </div>
-                  <!-- SCORE INPUT ENDS -->
-                 
-                  </div>
-               
-                </div>
-              
-              </div>
-            
-            </div>
-
-<!--  CARDS END -->            
-
-      </div>
-
-      <!-- SIDE BAR ENDS -->
-
-      <div class="body-content container ">
-          
-          <!-- DATE AND TIME SETTINGS-->
-          <div> 
-
-            <div class="datePick">
-              <input type="text" class="datepicker" placeholder="Start Date">
-            </div>
-            
-            <div class="timePick">
-              <input type="text" class="timepicker" placeholder="Start Time">
-            </div>
-
-            <div class="datePick">
-              <input type="text" class="datepicker" placeholder="End Date">
-            </div>
-            
-            <div class="timePick">
-              <input type="text" class="timepicker" placeholder="End Time">
-            </div>
-           
-            
-          </div>
-          <!-- DATE AND TIME SETTINGS END-->
-          <div class="description-content">
-
-           <textarea placeholder="Type here..." rows="20" name="comment[text]" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"></textarea>
-
-          </div>
- 
-          <div class="modal-footer">
-              <a class="waves-effect waves-light btn">Canc  el</a>
-              <a class="waves-effect teal lighten-1 btn">Create</a>
-          </div>
-      
-      </div>
-      
-    
+    <div class="modal-header">
+      <label>Forum Title: </label> <input class="header-input" type="text" [(ngModel)]="forumTitle" name="forumTitle">
     </div>
 
- 
-    
-  
+
+    <div class="sideBar">
+
+
+      <!-- HEALER CARD  -->
+      <div>
+
+        <div class="col s6 m4 l3">
+
+          <div class=" card-wrapper  grey lighten-5 z-depth-1">
+
+            <div class="role-title">
+              <h5> Healer </h5>
+            </div>
+
+
+            <div class="row valign-wrapper">
+
+
+              <div class="col s2 m2 l2">
+                <img src="../../../assets/Images/Role-Icons/selesnya.jpg" class="circle responsive-img role-logo">
+              </div>
+
+              <div class="col s10">
+
+                <span class="black-text description" style="font-size: 13px;">
+                  This is a square image. Add the "circle" class to it to make it appear circular.
+                </span>
+              </div>
+
+              <!-- SCORE INPUT STARTS -->
+              <div class="col s2 m2 l2">
+                <div class="input-field inline">
+                  <input [(ngModel)]="healerScore" name="healerScore" type="text">
+                  <label for="healerScore">Score</label>
+                </div>
+              </div>
+              <!-- SCORE INPUT ENDS -->
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- WARRIOR CARD  -->
+      <div>
+
+        <div class="col s6 m4 l3">
+
+          <div class=" card-wrapper  grey lighten-5 z-depth-1">
+
+            <div class="role-title">
+              <h5> Warrior </h5>
+            </div>
+
+
+            <div class="row valign-wrapper">
+
+
+              <div class="col s2 m2 l2">
+                <img src="../../../assets/Images/Role-Icons/warrior.jpg" class="circle responsive-img role-logo">
+              </div>
+
+              <div class="col s10">
+
+
+
+                <span class="black-text description" style="font-size: 13px;">
+                  This is a square image. Add the "circle" class to it to make it appear circular.
+                </span>
+              </div>
+
+              <!-- SCORE INPUT STARTS -->
+              <div class="col s2 m2 l2">
+                <div class="input-field inline">
+                  <input [(ngModel)]="warriorScore" name="warriorScore" type="text">
+                  <label for="warriorScore">Score</label>
+                </div>
+              </div>
+              <!-- SCORE INPUT ENDS -->
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- WARLOCK CARD  -->
+      <div>
+
+        <div class="col s6 m4 l3">
+
+          <div class=" card-wrapper  grey lighten-5 z-depth-1">
+
+            <div class="role-title">
+              <h5> Warlock </h5>
+            </div>
+
+
+            <div class="row valign-wrapper">
+
+
+              <div class="col s2 m2 l2">
+                <img src="../../../assets/Images/Role-Icons/wizard3.jpg" class="circle responsive-img role-logo">
+              </div>
+
+              <div class="col s10">
+
+
+
+                <span class="black-text description" style="font-size: 13px;">
+                  This is a square image. Add the "circle" class to it to make it appear circular.
+                </span>
+              </div>
+
+              <!-- SCORE INPUT STARTS -->
+              <div class="col s2 m2 l2">
+                <div class="input-field inline">
+                  <input [(ngModel)]="warlockScore" name="warlockScore" type="text">
+                  <label for="warlockScore">Score</label>
+                </div>
+              </div>
+              <!-- SCORE INPUT ENDS -->
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!--  CARDS END -->
+
+    </div>
+
+    <!-- SIDE BAR ENDS -->
+
+    <div class="body-content container ">
+
+      <!-- DATE AND TIME SETTINGS-->
+      <div>
+
+        <input id="endDate" name="endDate" [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event"
+          type="date" name="startDate" />
+        <!--
+            <div class="timePick">
+              <input type="text" class="timepicker" placeholder="End Time" [(ngModel)]="endTime" id="endTime" name="endTime">
+            </div>
+            -->
+
+        <!-- SCORE INPUT STARTS -->
+        <div class="col s2 m2 l2">
+          <div class="input-field inline">
+            <input name="answerScore" type="text">
+            <label for="answerScore">Score Per Answer</label>
+          </div>
+        </div>
+        <!-- SCORE INPUT ENDS -->
+
+
+
+      </div>
+      <!-- DATE AND TIME SETTINGS END-->
+      <div class="description-content">
+
+        <textarea placeholder="Type here..." rows="20" name="description" [(ngModel)]="description" cols="40"
+          class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list"
+          aria-haspopup="true"></textarea>
+
+      </div>
+
+      <div class="modal-footer">
+        <a class="waves-effect waves-light btn">Cancel</a>
+        <a class="waves-effect teal lighten-1 btn">Create</a>
+      </div>
+
+    </div>
+
+
   </div>
-  
-        
-
-
