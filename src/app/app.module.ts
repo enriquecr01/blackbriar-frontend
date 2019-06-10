@@ -19,6 +19,7 @@ import { NavbarLoggedComponent } from './navbar-logged/navbar-logged.component';
 import { InstructorDashboardComponent } from './instructor/instructor-dashboard/instructor-dashboard.component';
 import { NavbarInstructorComponent } from './instructor/navbar-instructor/navbar-instructor.component';
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
+import { InstructorForumComponent } from './instructor/instructor-forum/instructor-forum.component';
 
 // Services
 import { LoginService } from './login.service';
@@ -35,16 +36,17 @@ import { StudentForumComponent } from './student/student-forum/student-forum.com
 import { NotificationsComponent } from './notifications/notifications.component';
 import { StudentGroupComponent } from './student/student-group/student-group.component';
 
+import {MatMenuModule} from '@angular/material/menu';
 
 const routes: Route[] = [
-  {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent},
-  {path: 'student/student-dashboard', component: StudentDashboardComponent},
-  {path: 'instructor/instructor-group', component: InstructorGroupComponent},
-  {path: 'student/student-group', component: StudentGroupComponent}
-  
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent },
+  { path: 'student/student-dashboard', component: StudentDashboardComponent },
+  { path: 'instructor/instructor-group', component: InstructorGroupComponent },
+  { path: 'student/student-group', component: StudentGroupComponent }
+
 ];
 
 @NgModule({
@@ -65,7 +67,8 @@ const routes: Route[] = [
     StudentGroupForumsComponent,
     StudentForumComponent,
     NotificationsComponent,
-    StudentGroupComponent
+    StudentGroupComponent,
+    InstructorForumComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,8 +78,8 @@ const routes: Route[] = [
     FormsModule,
     HttpClientModule,
     MaterializeModule,
-
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatMenuModule
   ],
   providers: [
     LoginService,

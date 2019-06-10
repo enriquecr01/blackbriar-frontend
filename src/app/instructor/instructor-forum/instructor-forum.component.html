@@ -7,6 +7,7 @@
       <th>Posts</th>
       <th>Creation</th>
       <th>End Date</th>
+      <th>Published</th>
       <th>Status</th>
     </tr>
   </thead>
@@ -15,7 +16,8 @@
   <tbody>
     <tr *ngFor="let forum of forums">
       <td>
-        <a *ngIf="forum.expired == true" href="http://localhost:4200/student/student-mygroups">{{forum.title}}<br></a>
+        <a *ngIf="forum.expired == true"
+          href="http://localhost:4200/instructor/instructor-dashboard">{{forum.title}}<br></a>
         <p *ngIf="forum.expired == false">{{forum.title}}<br></p>
         <p>{{forum.smallDescription}}...</p>
 
@@ -24,11 +26,22 @@
       <td><span class="badge">0</span></td>
       <td>{{forum.sDate}}<br>{{forum.sTime}}</td>
       <td>{{forum.eDate}}<br>{{forum.eTime}}</td>
+
+      <!-- PUBLISHED -->
+      <td *ngIf="forum.published == true"><span class="new green darken-3 accent-4 badge"
+          data-badge-caption="Yes"></span>
+      </td>
+
+      <td *ngIf="forum.published == false"><span class="new red darken-1 badge" data-badge-caption="No"></span></td>
+
+      <!-- STATUS -->
       <td *ngIf="forum.expired == true"><span class="new green darken-3 accent-4 badge"
           data-badge-caption="Active"></span>
       </td>
 
       <td *ngIf="forum.expired == false"><span class="new red darken-1 badge" data-badge-caption="Finished"></span></td>
+
+
 
 
     </tr>

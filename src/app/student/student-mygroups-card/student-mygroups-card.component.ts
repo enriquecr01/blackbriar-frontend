@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class StudentMygroupsCardComponent implements OnInit {
 
-  @Input() group : Group;
+  @Input() group: Group;
 
   constructor(private router: Router) { }
 
@@ -20,7 +20,12 @@ export class StudentMygroupsCardComponent implements OnInit {
     //console.log("Has entrado al grupo: " + ggroupId + ' - ' + group.title);
     this.router.navigate(['student/student-groupforums', { groupId }]);
   }
+<<<<<<< HEAD
   goToGroupDashboard(){
+=======
+  
+  goToGroupDashboard() {
+>>>>>>> 8640b0e7746c4d9344ffbefdfa42119a9e00bbf0
     this.router.navigate(['student/student-group']);
   }
 
