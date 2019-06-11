@@ -38,12 +38,17 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { StudentGroupComponent } from './student/student-group/student-group.component';
 
 import {MatMenuModule} from '@angular/material/menu';
+
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ModalCreateForumComponent } from './instructor/modal-create-forum/modal-create-forum.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+
+
+import { StudentsListComponent } from './instructor/students-list/students-list.component';
+import { BannerGroupComponent } from './banner-group/banner-group.component';
 
 
 const routes: Route[] = [
@@ -80,6 +85,8 @@ const routes: Route[] = [
     InstructorForumComponent,
     LadingComponent,
     ModalCreateForumComponent,
+    StudentsListComponent,
+    BannerGroupComponent
   ],
   imports: [
     BrowserModule,

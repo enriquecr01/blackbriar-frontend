@@ -1,34 +1,28 @@
 <app-student-navbar></app-student-navbar>
 
-<div class="parallax-container" style="height: 300px;">
-  <div class="row">
-    <div class="col s12 center-align">
-      <h3 class="borderText">{{ title }}</h3>
-      <img class="circle responsive-img" src="{{ instructorImage }}" width="100px">
-      <p class="borderText" style="font-size: 20px">
-        {{ instructorName }}
-        <br>
-        <label class="borderText hyperLinkDescription modal-trigger" data-target="descriptionModal">View description</label>
-      </p>
-    </div>
-  </div>
-  <div class="parallax" materialize="parallax" style="  filter: blur(4px); -webkit-filter: blur(4px);">
-    <img src="{{image}}">
-  </div>
-</div>
-<br>
-
+<app-banner-group [groupId]="groupId"></app-banner-group>
 
 <div class="container">
-  <br>
-  <!-- FORUMS -->
-  <div class="card">
-    <div class="card-content">
-
-      <h5>Forums</h5>
-      <div class="divider"></div>
-
-      <app-student-forum [forums]="forums"></app-student-forum>
+  <div class="row">
+    <!------------------------ TAB CONTROL ------------------->
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a href="#forums">Forums</a></li>
+      </ul>
     </div>
+    <!------------------- END TAB CONTROL --------------->
+    
+    <!---------------- TAB FORUMS ------------------->
+    <div id="forums" class="col s12">
+      <!-- FORUMS -->
+      <div class="card">
+        <div class="card-content">
+          <h5>Forums</h5>
+          <div class="divider"></div>
+          <app-student-forum [forums]="forums"></app-student-forum>
+        </div>
+      </div>
+    </div>
+    <!------ END TAB FORMUS ----------------->
   </div>
 </div>
