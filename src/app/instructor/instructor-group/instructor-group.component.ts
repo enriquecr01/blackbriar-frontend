@@ -11,6 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./instructor-group.component.css']
 })
 export class InstructorGroupComponent implements OnInit {
+
+  groupId: number;
     
   forumTitle: string;
   description: string;
@@ -28,6 +30,12 @@ export class InstructorGroupComponent implements OnInit {
 
   ngOnInit() {
     this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
+    this.groupId = +this.router.snapshot.paramMap.get("groupId");
+    
+    
+    var elems = document.querySelectorAll('.tabs');
+    var instance = M.Tabs.init(elems);
+    
     // MODAL START
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
