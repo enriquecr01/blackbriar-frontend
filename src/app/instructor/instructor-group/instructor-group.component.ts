@@ -3,6 +3,7 @@ import { ForumInsertService } from 'src/app/services/forum-insert.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ForumRequest } from 'src/app/models/forum';
 import { Router, ActivatedRoute } from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./instructor-group.component.css']
 })
 export class InstructorGroupComponent implements OnInit {
-    
+  
+  //Forum Interface
   forumTitle: string;
   description: string;
   endDate: string;
@@ -27,6 +29,8 @@ export class InstructorGroupComponent implements OnInit {
   constructor(private router: ActivatedRoute, private forumInsertService: ForumInsertService) { }
 
   ngOnInit() {
+    
+
     this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
     // MODAL START
     var elems = document.querySelectorAll('.modal');
