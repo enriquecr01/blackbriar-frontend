@@ -7,7 +7,7 @@ import { Forum } from 'src/app/models/forum';
 import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';
 import { ForumInsertService } from 'src/app/services/forum-insert.service';
 import { ForumRequest } from 'src/app/models/forum';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -28,14 +28,12 @@ export class InstructorGroupComponent implements OnInit {
   answerScore: number;
   published: boolean;
 
-  @Input()
   ForumInsertService: ForumInsertService;
 
-  groupId: number;
   forums: any = [];
 
 
-  constructor(private endpoint: EndpointsService, private route: ActivatedRoute, private forumInsertService: ForumInsertService) { }
+  constructor(private endpoint: EndpointsService, private router: ActivatedRoute, private forumInsertService: ForumInsertService) { }
 
 
   ngOnInit() {
