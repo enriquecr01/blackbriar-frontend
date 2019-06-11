@@ -41,18 +41,14 @@ export class ModalCreateForumComponent implements OnInit {
     // FLOATING BUTTON
     elems = document.querySelectorAll('.fixed-action-btn');
     M.FloatingActionButton.init(elems);  
-
   
   }
 
 
   CreateForum(){
 
-      if(this.Validate()){
+    if (this.Validate())
         this.InsertForum();
-        this.ReloadPage();
-      
-      }
   }
 
   InsertForum(){    
@@ -74,6 +70,7 @@ export class ModalCreateForumComponent implements OnInit {
     try
     {
       console.log(forum.endDate);
+      console.log(forum)
       this.forumInsertService.addForum(forum).
       subscribe(
         data  => 
@@ -139,6 +136,7 @@ export class ModalCreateForumComponent implements OnInit {
       return false;
     }
   
+    return true;
   }
 
   ReloadPage(){
