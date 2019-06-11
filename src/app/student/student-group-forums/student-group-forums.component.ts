@@ -14,28 +14,18 @@ import * as moment from 'moment';
 
 export class StudentGroupForumsComponent implements OnInit {
 
-  @Input() group: Group;
-  title: string = "";
-  description: string = "";
-  image: string = "";
-  groupId: number;
-  instructorImage: string = "";
-  instructorName: string = "";
-
-  // @Input() forum: Forum;
+  group: Group;
   forums: any = [];
+  groupId: number;
 
 
   constructor(private endpoint: EndpointsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
     this.groupId = this.route.snapshot.params["groupId"];
-    var elems = document.querySelectorAll('.parallax');
-    var instances = M.Parallax.init(elems);
 
-    var modalElems = document.querySelectorAll('.modal');
-    M.Modal.init(modalElems);
+    var elems = document.querySelectorAll('.tabs');
+    var instance = M.Tabs.init(elems);
 
     // Get all group forums and save them on "forums"    
     this.endpoint.getGroupForums(this.groupId).subscribe(
@@ -61,21 +51,6 @@ export class StudentGroupForumsComponent implements OnInit {
           console.log(this.forums[i].smallDescription);
 
         }
-      },
-      error => {
-        console.log("Error -> getGroupForums", error);
-      }
-    )
-
-    this.endpoint.getOneGroup(this.groupId).subscribe(
-      group => {
-        console.log(group);
-        this.title = group.title;
-        this.description = group.description;
-        this.image = group.image;
-        this.instructorName = group.owner.firstName + " " + group.owner.lastName;
-        this.instructorImage = group.owner.photo;
-        console.log(this.description);
       },
       error => {
         console.log("Error -> getGroupForums", error);

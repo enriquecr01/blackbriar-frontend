@@ -7,6 +7,8 @@ import { Forum } from 'src/app/models/forum';
 import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';
 import { ForumInsertService } from 'src/app/services/forum-insert.service';
 import { ForumRequest } from 'src/app/models/forum';
+import { Router } from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-instructor-group',
@@ -15,6 +17,8 @@ import { ForumRequest } from 'src/app/models/forum';
 })
 export class InstructorGroupComponent implements OnInit {
 
+  groupId: number;
+    
   forumTitle: string;
   description: string;
   endDate: string;
@@ -24,18 +28,24 @@ export class InstructorGroupComponent implements OnInit {
   answerScore: number;
   published: boolean;
 
-  @Input()
   ForumInsertService: ForumInsertService;
 
-  groupId: number;
   forums: any = [];
 
 
-  constructor(private endpoint: EndpointsService, private route: ActivatedRoute, private forumInsertService: ForumInsertService) { }
+  constructor(private endpoint: EndpointsService, private router: ActivatedRoute, private forumInsertService: ForumInsertService) { }
 
 
   ngOnInit() {
-    this.forumInsertService.GroupId = +this.route.snapshot.paramMap.get("groupId");
+    
+
+    this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
+    this.groupId = +this.router.snapshot.paramMap.get("groupId");
+    
+    
+    var elems = document.querySelectorAll('.tabs');
+    var instance = M.Tabs.init(elems);
+    
     // MODAL START
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);

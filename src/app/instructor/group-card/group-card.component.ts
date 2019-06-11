@@ -22,6 +22,7 @@ export class GroupCardComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.group);
   }
 
   goToGroupDashboard(groupId: number){

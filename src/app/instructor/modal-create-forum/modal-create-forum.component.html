@@ -1,0 +1,192 @@
+ <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Create Forum</h4>
+      
+<mat-horizontal-stepper>
+  <mat-step label="Basic Information">
+    <!-- CONTENT 1 START-->
+    <div>
+        <div class="row">
+            <div class="input-field col s6">
+              <input  [(ngModel)]="forumTitle" name="forumTitle" id="forumTitle" type="text" class="validate">
+              <label class="active" for="forumTitle">Forum Title</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input [(ngModel)]="answerScore" name="answerScore" id="answerScore" class="col s3 m3 l3"  type="text" class="validate" >
+              <label for="answerScore">Answer Points</label>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea [(ngModel)]="description" name="description" id="description" class="materialize-textarea" data-length="1500"></textarea>
+            <label for="description">Description</label>
+          </div>
+        </div>
+
+         
+
+      </div>
+    <!-- CONTENT 1 END-->
+  </mat-step>
+ 
+  <mat-step label="End Date">
+   
+          <mat-select>
+            <mat-option value="" disabled selected>Day</mat-option>
+            <mat-option value="01">01</mat-option>
+            <mat-option value="02">02</mat-option>
+            <mat-option value="03">03</mat-option>
+            <mat-option value="04">04</mat-option>
+            <mat-option value="05">05</mat-option>
+            <mat-option value="06">06</mat-option>
+            <mat-option value="07">07</mat-option>
+            <mat-option value="08">08</mat-option>
+            <mat-option value="09">09</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="11">11</mat-option>
+            <mat-option value="12">12</mat-option>
+            <mat-option value="13">13</mat-option>
+            <mat-option value="14">14</mat-option>
+            <mat-option value="15">15</mat-option>
+            <mat-option value="16">16</mat-option>
+            <mat-option value="17">17</mat-option>
+            <mat-option value="18">18</mat-option>
+            <mat-option value="19">19</mat-option>
+            <mat-option value="20">20</mat-option>
+            <mat-option value="21">21</mat-option>
+            <mat-option value="22">22</mat-option>
+            <mat-option value="23">23</mat-option>
+            <mat-option value="24">24</mat-option>
+            <mat-option value="25">25</mat-option>
+            <mat-option value="26">26</mat-option>
+            <mat-option value="27">27</mat-option>
+            <mat-option value="28">28</mat-option>
+            <mat-option value="29">29</mat-option>
+            <mat-option value="30">30</mat-option>
+            <mat-option value="31">31</mat-option>
+          </mat-select>
+          <label>Day</label>
+
+
+<input [matDatepicker]="myDatepicker">
+<mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+<mat-datepicker #myDatepicker></mat-datepicker>
+
+  </mat-step>
+ 
+  <mat-step label="Roles" class="setp-body">
+    <!-- ROLES START-->
+
+
+     <!-- CARD CONTAINER  STATS-->
+ <div class="row ">
+    <div class="col s12 m12 l12">
+ 
+    <!-- CARDS STATS-->
+ 
+        
+        <div class="container-fluid main">
+            <div class="card profile">
+              <div class="card-header profileName">
+                Healer
+          </div>
+
+          <div class="card-body profileBody">
+            <div class="profilePic">
+              <img class="avatar" src="../../../assets/Images/Role-Icons/warrior.jpg" alt="Username">
+            </div>
+
+            <div class="profileInfo">
+              <p>Every time the healer is the first to comment on a student's comment.
+              The whole group gets X extra points at the end of the forum where
+              X is the points you assign to the healer role. </p>
+            </div>
+          </div>
+
+          <div class="card-footer actions">
+              <div class="input-field col s3 m3 l3" style="margin-right: 88px;">
+                 <input  name="healerScore" id="healerScore" [(ngModel)]="healerScore" type="text" class="validate points">
+                  <label class="active" for="healerScore">Points</label>
+              </div>
+          </div>
+    </div>
+  </div>
+
+   <!-- CARDS STATS-->
+ 
+        
+        <div class="container-fluid main2">
+            <div class="card profile2">
+              <div class="card-header profileName">
+                Warrior
+          </div>
+          <div class="card-body profileBody">
+            <div class="profilePic">
+              <img class="avatar" src="../../../assets/Images/Role-Icons/warrior.jpg" alt="Username">
+            </div>
+            <div class="profileInfo">
+              <p>Every time the warrior is the first to comment on a forum.
+              The warrior gets X extra points at the end of the forum where
+              X is the points you assign to the warrior role. 
+              </p>
+            </div>
+          </div>
+          <div class="card-footer actions">
+            <div class="input-field col s3 m3 l3" style="margin-right: 88px;">
+                 <input  name="warriorScore" id="warriorScore" [(ngModel)]="warriorScore" type="text" class="validate points">
+                  <label class="active" for="warriorScore">Points</label>
+              </div>
+          </div>
+    </div>
+  </div>
+  
+
+  <!-- CARD STARTS-->
+
+   <div class="container-fluid main3">
+            <div class="card profile3">
+              <div class="card-header profileName">
+                Warlock
+          </div>
+          <div class="card-body profileBody">
+            <div class="profilePic">
+              <img class="avatar" src="../../../assets/Images/Role-Icons/wizard.jpg" alt="Username">
+            </div>
+            <div class="profileInfo">
+                 <p>Every time the warlock doesn't answer to a forum.
+              The group gets - X points, where X is the points you assign
+              to the warlock role. </p>
+            </div>
+          </div>
+          <div class="card-footer actions">
+            <div class="input-field col s3 m3 l3" style="margin-right: 88px;">
+                 <input id="warlockScore" name="warlockScore" [(ngModel)]="warlockScore" type="text" class="validate points">
+                  <label class="active" for="warlockScore">Points</label>
+              </div>
+          </div>
+    </div>
+  </div>
+    
+   <!-- CARDS ENDS -->
+   
+    </div>
+  </div>
+     <!-- CARD CONTAINER ENDS -->
+
+    <!-- ROLES END-->
+  </mat-step>
+</mat-horizontal-stepper>
+
+    </div>
+        <div class="modal-footer">
+          <button (click)="CreateForum()" class="modal-close waves-effect waves-green btn-flat">Publsh</button>
+        </div>
+  </div>
+  
+
+

@@ -17,6 +17,7 @@ export class ForumInsertService {
   addForum(forum: ForumRequest) {
     var userId = localStorage.getItem("userId");
 
+   
     let jsonCoded = JSON.stringify({
 
 
@@ -33,6 +34,7 @@ export class ForumInsertService {
       published: forum.published
 
     });
+    
     console.log(jsonCoded);
     console.log("LEEEEE GRRRRRROOOUUUUP ID!!!!");
     console.log(this.GroupId);
