@@ -6,7 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { NgLocalization } from '@angular/common';
 import { MatDatepicker } from '@angular/material/datepicker';
-
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-modal-create-forum',
@@ -18,7 +18,7 @@ export class ModalCreateForumComponent implements OnInit {
   //Forum Interface
   forumTitle: string;
   description: string;
-  endDate: string;
+  endDate: string = moment().add(7 , "days").format();
   warriorScore: number;
   healerScore: number;
   warlockScore: number;
@@ -33,7 +33,6 @@ export class ModalCreateForumComponent implements OnInit {
 
   
   ngOnInit() {
-
     this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
     // MODAL START
     var elems = document.querySelectorAll('.modal');
@@ -42,14 +41,17 @@ export class ModalCreateForumComponent implements OnInit {
     // FLOATING BUTTON
     elems = document.querySelectorAll('.fixed-action-btn');
     M.FloatingActionButton.init(elems);  
-   
+
+  
   }
 
 
   CreateForum(){
+
       if(this.Validate()){
         this.InsertForum();
         this.ReloadPage();
+      
       }
   }
 
@@ -59,8 +61,8 @@ export class ModalCreateForumComponent implements OnInit {
       var forum : ForumRequest = {
         title : this.forumTitle,
         description : this.description,
-        content : "content",
-        endDate : "2019-06-04T05:35:37.659Z",
+        content : "contentent",
+        endDate : this.endDate,
         warriorPoints : this.warriorScore,
         healerPoints : this.healerScore,
         warlockPoints : this.warlockScore,
@@ -71,6 +73,7 @@ export class ModalCreateForumComponent implements OnInit {
   
     try
     {
+      console.log(forum.endDate);
       this.forumInsertService.addForum(forum).
       subscribe(
         data  => 

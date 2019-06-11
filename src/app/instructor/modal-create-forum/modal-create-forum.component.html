@@ -35,15 +35,45 @@
   </mat-step>
  
   <mat-step label="End Date">
+   
+          <mat-select>
+            <mat-option value="" disabled selected>Day</mat-option>
+            <mat-option value="01">01</mat-option>
+            <mat-option value="02">02</mat-option>
+            <mat-option value="03">03</mat-option>
+            <mat-option value="04">04</mat-option>
+            <mat-option value="05">05</mat-option>
+            <mat-option value="06">06</mat-option>
+            <mat-option value="07">07</mat-option>
+            <mat-option value="08">08</mat-option>
+            <mat-option value="09">09</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="11">11</mat-option>
+            <mat-option value="12">12</mat-option>
+            <mat-option value="13">13</mat-option>
+            <mat-option value="14">14</mat-option>
+            <mat-option value="15">15</mat-option>
+            <mat-option value="16">16</mat-option>
+            <mat-option value="17">17</mat-option>
+            <mat-option value="18">18</mat-option>
+            <mat-option value="19">19</mat-option>
+            <mat-option value="20">20</mat-option>
+            <mat-option value="21">21</mat-option>
+            <mat-option value="22">22</mat-option>
+            <mat-option value="23">23</mat-option>
+            <mat-option value="24">24</mat-option>
+            <mat-option value="25">25</mat-option>
+            <mat-option value="26">26</mat-option>
+            <mat-option value="27">27</mat-option>
+            <mat-option value="28">28</mat-option>
+            <mat-option value="29">29</mat-option>
+            <mat-option value="30">30</mat-option>
+            <mat-option value="31">31</mat-option>
+          </mat-select>
+          <label>Day</label>
 
-      <div style="z-index: 9999999999; ">
-      
-          <input [matDatepicker]="myDatepicker">
-              <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-              <mat-datepicker #myDatepicker></mat-datepicker>
 
-      </div>
-  
+
   </mat-step>
  
   <mat-step label="Roles" class="setp-body">

@@ -20,6 +20,7 @@ import { InstructorDashboardComponent } from './instructor/instructor-dashboard/
 import { NavbarInstructorComponent } from './instructor/navbar-instructor/navbar-instructor.component';
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { InstructorForumComponent } from './instructor/instructor-forum/instructor-forum.component';
+import { LadingComponent } from './landing/lading/lading.component';
 
 // Services
 import { LoginService } from './login.service';
@@ -37,6 +38,13 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { StudentGroupComponent } from './student/student-group/student-group.component';
 
 import {MatMenuModule} from '@angular/material/menu';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ModalCreateForumComponent } from './instructor/modal-create-forum/modal-create-forum.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+
 
 const routes: Route[] = [
   { path: 'home', component: HomeComponent },
@@ -45,7 +53,8 @@ const routes: Route[] = [
   { path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent },
   { path: 'student/student-dashboard', component: StudentDashboardComponent },
   { path: 'instructor/instructor-group', component: InstructorGroupComponent },
-  { path: 'student/student-group', component: StudentGroupComponent }
+  { path: 'student/student-group', component: StudentGroupComponent },
+  { path: 'lading/lading', component: LadingComponent}
 
 ];
 
@@ -69,6 +78,8 @@ const routes: Route[] = [
     NotificationsComponent,
     StudentGroupComponent,
     InstructorForumComponent,
+    LadingComponent,
+    ModalCreateForumComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +90,12 @@ const routes: Route[] = [
     HttpClientModule,
     MaterializeModule,
     BrowserAnimationsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule 
   ],
   providers: [
     LoginService,
