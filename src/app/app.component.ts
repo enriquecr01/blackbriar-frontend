@@ -19,6 +19,7 @@ export class AppComponent
   
   ngOnInit()
   {
+    //this.goToLanding();
   }
 
   goToMyGroups(){
@@ -28,4 +29,11 @@ export class AppComponent
   goToExplore(){
     this.router.navigate(['student/student-explore']);
   }
+
+  goToLanding(){
+    this.router.navigate(['lading/lading']);
+  }
+
 }
+
+

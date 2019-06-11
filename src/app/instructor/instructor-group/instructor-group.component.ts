@@ -7,6 +7,8 @@ import { Forum } from 'src/app/models/forum';
 import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';
 import { ForumInsertService } from 'src/app/services/forum-insert.service';
 import { ForumRequest } from 'src/app/models/forum';
+import { Router, ActivatedRoute } from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-instructor-group',
@@ -37,6 +39,8 @@ export class InstructorGroupComponent implements OnInit {
 
 
   ngOnInit() {
+    
+
     this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
     this.groupId = +this.router.snapshot.paramMap.get("groupId");
     
