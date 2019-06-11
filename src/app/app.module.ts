@@ -37,6 +37,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { StudentGroupComponent } from './student/student-group/student-group.component';
 
 import {MatMenuModule} from '@angular/material/menu';
+import { StudentsListComponent } from './instructor/students-list/students-list.component';
+import { BannerGroupComponent } from './banner-group/banner-group.component';
 
 const routes: Route[] = [
   { path: 'home', component: HomeComponent },
@@ -69,6 +71,8 @@ const routes: Route[] = [
     NotificationsComponent,
     StudentGroupComponent,
     InstructorForumComponent,
+    StudentsListComponent,
+    BannerGroupComponent
   ],
   imports: [
     BrowserModule,

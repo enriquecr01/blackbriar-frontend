@@ -15,6 +15,8 @@ import { ForumRequest } from 'src/app/models/forum';
 })
 export class InstructorGroupComponent implements OnInit {
 
+  groupId: number;
+    
   forumTitle: string;
   description: string;
   endDate: string;
@@ -35,7 +37,13 @@ export class InstructorGroupComponent implements OnInit {
 
 
   ngOnInit() {
-    this.forumInsertService.GroupId = +this.route.snapshot.paramMap.get("groupId");
+    this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
+    this.groupId = +this.router.snapshot.paramMap.get("groupId");
+    
+    
+    var elems = document.querySelectorAll('.tabs');
+    var instance = M.Tabs.init(elems);
+    
     // MODAL START
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
