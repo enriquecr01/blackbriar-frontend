@@ -28,7 +28,6 @@ export class InstructorGroupComponent implements OnInit {
   answerScore: number;
   published: boolean;
 
-  @Input()
   ForumInsertService: ForumInsertService;
 
   forums: any = [];
@@ -54,6 +53,7 @@ export class InstructorGroupComponent implements OnInit {
     // FLOATING BUTTON
     var elems = document.querySelectorAll('.fixed-action-btn');
     M.FloatingActionButton.init(elems);
+
 
 
     this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
@@ -88,9 +88,6 @@ export class InstructorGroupComponent implements OnInit {
       console.log("Error -> getGroupForums", error);
     }     
    )
-    // ----------------------------------------------------------------------------------------------
-
-
 
 
   }
