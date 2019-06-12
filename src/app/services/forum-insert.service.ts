@@ -46,4 +46,7 @@ export class ForumInsertService {
 
     return this.http.post<Forum>(`https://api.blackbriar.site/api/groups/${this.GroupId}/forums`, jsonCoded, { headers: headers });
   }
+
+ 
+
 }

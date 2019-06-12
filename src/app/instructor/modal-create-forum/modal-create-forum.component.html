@@ -35,6 +35,8 @@
   </mat-step>
  
   <mat-step label="End Date">
+
+    <p><input type="text" class="datepicker"></p>
    
           <mat-select>
             <mat-option value="" disabled selected>Day</mat-option>
@@ -184,7 +186,9 @@
 
     </div>
         <div class="modal-footer">
-          <button (click)="CreateForum()" class="modal-close waves-effect waves-green btn-flat">Publsh</button>
+         <button (click)="CreateForum()" class="modal-close waves-effect waves-green btn-flat grey lighten-2 cancel-button" style="float:left;">Cansel</button>
+          <button (click)="SaveForum()" class="modal-close waves-effect waves-green btn-flat grey lighten-2 save-button">Save Forum</button>
+          <button (click)="CreateForum()" class="modal-close waves-effect btn-flat orange darken-1 publish-button">Publsh </button>
         </div>
   </div>
   

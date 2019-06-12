@@ -7,7 +7,7 @@ import { Forum } from 'src/app/models/forum';
 import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';
 import { ForumInsertService } from 'src/app/services/forum-insert.service';
 import { ForumRequest } from 'src/app/models/forum';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -37,12 +37,7 @@ export class InstructorGroupComponent implements OnInit {
 
 
   ngOnInit() {
-    
 
-    this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
-    this.groupId = +this.router.snapshot.paramMap.get("groupId");
-    
-    
     var elems = document.querySelectorAll('.tabs');
     var instance = M.Tabs.init(elems);
     
@@ -60,43 +55,40 @@ export class InstructorGroupComponent implements OnInit {
     M.FloatingActionButton.init(elems);
 
 
-    // GET FORUMS FROM A GROUP
-    this.groupId = this.route.snapshot.params["groupId"];
 
+    this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
+    this.groupId = +this.router.snapshot.paramMap.get("groupId");
 
-    // ----------------------------------------------------------------------------------------------
-    // Get all group forums and save them on "forums"    
-    // ----------------------------------------------------------------------------------------------
-    this.endpoint.getGroupForums(this.groupId).subscribe(
-      forums => {
-        this.forums = forums;
-        this.forums = this.forums.reverse();
-        let actualDate = moment().format();
+    
+// ----------------------------------------------------------------------------------------------
+   // Get all group forums and save them on "forums"
+   // ----------------------------------------------------------------------------------------------
+   this.endpoint.getGroupForums(this.groupId).subscribe(
+    forums => {
+      this.forums = forums;
+      this.forums = this.forums.reverse();
+      let actualDate = moment().format();        
+      
+      for (let i = 0; i < this.forums.length; i++) {
+        if (this.forums[i].settings.endDate < actualDate) {
+          this.forums[i].expired = false;
+        } else {
+          this.forums[i].expired = true;
+        }          
+        this.forums[i].eDate = moment(this.forums[i].settings.endDate).format('MMM Do YY');
+        this.forums[i].eTime = moment(this.forums[i].settings.endDate).format('h:mm:ss a'); 
+        this.forums[i].sDate = moment(this.forums[i].startDate).format("MMM Do YY");
+        this.forums[i].sTime = moment(this.forums[i].startDate).format("h:mm:ss a");          
+        this.forums[i].smallDescription = this.forums[i].description.substring(0, 70);
 
-        for (let i = 0; i < this.forums.length; i++) {
-          if (this.forums[i].settings.endDate < actualDate) {
-            this.forums[i].expired = false;
-          } else {
-            this.forums[i].expired = true;
-          }
+        
+        console.log(this.forums[i].smallDescription);        }
+    },
+    error => {
+      console.log("Error -> getGroupForums", error);
+    }     
+   )
 
-          this.forums[i].eDate = moment(this.forums[i].settings.endDate).format('MMM Do YY');
-          this.forums[i].eTime = moment(this.forums[i].settings.endDate).format('h:mm:ss a');
-
-          this.forums[i].sDate = moment(this.forums[i].startDate).format("MMM Do YY");
-          this.forums[i].sTime = moment(this.forums[i].startDate).format("h:mm:ss a");
-
-          this.forums[i].smallDescription = this.forums[i].description.substring(0, 70);
-          console.log(this.forums[i].smallDescription);
-
-        }
-      },
-      error => {
-        console.log("Error -> getGroupForums", error);
-      }
-
-      // ----------------------------------------------------------------------------------------------
-    )
 
   }
 
