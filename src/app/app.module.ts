@@ -22,6 +22,7 @@ import { InstructorDashboardComponent } from './instructor/instructor-dashboard/
 import { NavbarInstructorComponent } from './instructor/navbar-instructor/navbar-instructor.component';
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { InstructorForumComponent } from './instructor/instructor-forum/instructor-forum.component';
+import { LadingComponent } from './landing/lading/lading.component';
 
 // Services
 import { LoginService } from './login.service';
@@ -41,14 +42,28 @@ import { StudentGroupComponent } from './student/student-group/student-group.com
 import { MatMenuModule } from '@angular/material/menu';
 import { MarkdownEditorComponent } from './markdown-editor/markdown-editor.component';
 
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ModalCreateForumComponent } from './instructor/modal-create-forum/modal-create-forum.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+
+
+import { StudentsListComponent } from './instructor/students-list/students-list.component';
+import { BannerGroupComponent } from './banner-group/banner-group.component';
+import { ForumComponent } from './student/forum/forum.component';
+
+
 const routes: Route[] = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: LadingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent },
   { path: 'student/student-dashboard', component: StudentDashboardComponent },
   { path: 'instructor/instructor-group', component: InstructorGroupComponent },
-  { path: 'student/student-group', component: StudentGroupComponent }
+  { path: 'student/student-group', component: StudentGroupComponent },
+  { path: 'student/forum', component: ForumComponent }
 
 ];
 
@@ -73,8 +88,11 @@ const routes: Route[] = [
     StudentGroupComponent,
     InstructorForumComponent,
     MarkdownEditorComponent,
-
-
+    LadingComponent,
+    ModalCreateForumComponent,
+    StudentsListComponent,
+    BannerGroupComponent,
+    ForumComponent
   ],
   imports: [
     BrowserModule,
@@ -86,8 +104,12 @@ const routes: Route[] = [
     MaterializeModule,
     BrowserAnimationsModule,
     MatMenuModule,
-    EditorModule
-
+    EditorModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [
     LoginService,

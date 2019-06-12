@@ -6,9 +6,16 @@
     -webkit-text-stroke-color: #000;
 }
 
-.parallax-container {
-    height: "100px";
-  }
+.parallax-container 
+{
+  height: "100px";
+}
+
+.parallax
+{
+  filter: blur(4px); 
+  -webkit-filter: blur(4px);
+}
 
 .hyperLinkDescription
 {
@@ -48,7 +55,7 @@
     transform: scaleX(1);
   }
 
-  #editor-container {
-    height: 375px;
+  .backModal
+  {
+    background: rgba(255, 255, 255, 0.8);
   }
-  

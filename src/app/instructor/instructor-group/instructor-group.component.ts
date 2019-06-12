@@ -7,6 +7,8 @@ import { Forum } from 'src/app/models/forum';
 import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';
 import { ForumInsertService } from 'src/app/services/forum-insert.service';
 import { ForumRequest } from 'src/app/models/forum';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-instructor-group',
@@ -14,6 +16,8 @@ import { ForumRequest } from 'src/app/models/forum';
   styleUrls: ['./instructor-group.component.css']
 })
 export class InstructorGroupComponent implements OnInit {
+
+  groupId: number;
 
   forumTitle: string;
   description: string;
@@ -24,18 +28,19 @@ export class InstructorGroupComponent implements OnInit {
   answerScore: number;
   published: boolean;
 
-  @Input()
   ForumInsertService: ForumInsertService;
 
-  groupId: number;
   forums: any = [];
 
 
-  constructor(private endpoint: EndpointsService, private route: ActivatedRoute, private forumInsertService: ForumInsertService) { }
+  constructor(private endpoint: EndpointsService, private router: ActivatedRoute, private forumInsertService: ForumInsertService) { }
 
 
   ngOnInit() {
-    this.forumInsertService.GroupId = +this.route.snapshot.paramMap.get("groupId");
+
+    var elems = document.querySelectorAll('.tabs');
+    var instance = M.Tabs.init(elems);
+
     // MODAL START
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
@@ -49,13 +54,12 @@ export class InstructorGroupComponent implements OnInit {
     var elems = document.querySelectorAll('.fixed-action-btn');
     M.FloatingActionButton.init(elems);
 
-
-    // GET FORUMS FROM A GROUP
-    this.groupId = this.route.snapshot.params["groupId"];
+    this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
+    this.groupId = +this.router.snapshot.paramMap.get("groupId");
 
 
     // ----------------------------------------------------------------------------------------------
-    // Get all group forums and save them on "forums"    
+    // Get all group forums and save them on "forums"
     // ----------------------------------------------------------------------------------------------
     this.endpoint.getGroupForums(this.groupId).subscribe(
       forums => {
@@ -69,23 +73,21 @@ export class InstructorGroupComponent implements OnInit {
           } else {
             this.forums[i].expired = true;
           }
-
           this.forums[i].eDate = moment(this.forums[i].settings.endDate).format('MMM Do YY');
           this.forums[i].eTime = moment(this.forums[i].settings.endDate).format('h:mm:ss a');
-
           this.forums[i].sDate = moment(this.forums[i].startDate).format("MMM Do YY");
           this.forums[i].sTime = moment(this.forums[i].startDate).format("h:mm:ss a");
-
           this.forums[i].smallDescription = this.forums[i].description.substring(0, 70);
-          console.log(this.forums[i].smallDescription);
 
+
+          console.log(this.forums[i].smallDescription);
         }
       },
       error => {
         console.log("Error -> getGroupForums", error);
       }
     )
-    // ----------------------------------------------------------------------------------------------
+
 
   }
 

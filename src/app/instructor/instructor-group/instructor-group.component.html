@@ -1,17 +1,44 @@
 <app-navbar-instructor></app-navbar-instructor>
 
+<app-banner-group [groupId]="groupId"></app-banner-group>
+
 
 <!-- FORUMS -->
 <div class="container">
-  <br>
-  <div class="card">
-    <div class="card-content">
-
-      <h5>Forums</h5>
-      <div class="divider"></div>
-
-      <app-instructor-forum [forums]="forums"></app-instructor-forum>
+  <div class="row">
+    <!------------------------ TAB CONTROL ------------------->
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a href="#students">Students</a></li>
+        <li class="tab col s3"><a href="#forums">Forums</a></li>
+      </ul>
     </div>
-  </div>
+    <!------------------- END TAB CONTROL --------------->
 
+    <!------------------ TAB STUDENTS ----------------------->
+    <div id="students" class="col s12">
+      <app-students-list [groupId]="groupId"></app-students-list>
+    </div>
+    <!------------------- END TAB STUDENTS ---------------------->
+    
+    <!---------------- TAB FORUMS ------------------->
+    <div id="forums" class="col s12">
+      <!-- FORUMS -->
+      <div class="card">
+        <div class="card-content">
+          <h5>Forums</h5>
+          <div class="divider"></div>
+          <app-instructor-forum [forums]="forums"></app-instructor-forum>
+        </div>
+      </div>
+    </div>
+    <!------ END TAB FORMUS ----------------->
+  </div>
+</div>
+
+<app-modal-create-forum></app-modal-create-forum>
+
+<!-- Modal Trigger -->
+<div class="modal-footer">
+  <a class="btn-floating btn-large pink darken-2 modal-trigger" href="#modal1" style="float:right;margin-top:11%; margin-right:1%;"><i class="material-icons">add</i></a>
 </div>
