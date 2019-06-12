@@ -54,8 +54,6 @@ export class InstructorGroupComponent implements OnInit {
     var elems = document.querySelectorAll('.fixed-action-btn');
     M.FloatingActionButton.init(elems);
 
-
-
     this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
     this.groupId = +this.router.snapshot.paramMap.get("groupId");
 
