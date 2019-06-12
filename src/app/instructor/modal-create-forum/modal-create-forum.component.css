@@ -8,6 +8,10 @@
     margin-bottom: 5px;
 }
 
+.modal {
+    min-height: 90%;
+}
+
 .modal .sideBar {
     top: 0;
     left: 0;
@@ -194,7 +198,7 @@ textarea:focus {
 
 .main {
     width: 100%;
-    height: 100%;
+    height: 95%;
     /*position: absolute;*/
     top: 0;
     left: 0;
@@ -204,7 +208,7 @@ textarea:focus {
 
 .main2 {
     width: 100%;
-    height: 100%;
+    height: 95%;
     /*position: absolute;*/
     top: 0;
     left: 0;
@@ -219,8 +223,8 @@ textarea:focus {
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgb(253, 253, 253);
-    width: 250px;
-    height: 400px;
+    width: 280px;
+    height: 380px;
     position: absolute;
     top: 63%;
     left: 19%;
@@ -238,8 +242,8 @@ textarea:focus {
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgb(253, 253, 253);
-    width: 250px;
-    height: 400px;
+    width: 280px;
+    height: 380px;
     position: absolute;
     top: 43%;
     left: 76%;
@@ -257,8 +261,8 @@ textarea:focus {
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgb(253, 253, 253);
-    width: 250px;
-    height: 400px;
+    width: 280px;
+    height: 380px;
     position: absolute;
     top: 63%;
     left: 50%;
@@ -347,4 +351,28 @@ textarea:focus {
 .points {
     color: #000;
     text-align: center;
+}
+
+.publish-button {
+    border-radius: 8px;
+}
+
+.publish-button:hover {
+    color: white;
+}
+
+.save-button {
+    border-radius: 8px;
+}
+
+.save-button:hover {
+    color: white;
+}
+
+.cancel-button {
+    border-radius: 8px;
+}
+
+.cancel-button:hover {
+    color: white;
 }
