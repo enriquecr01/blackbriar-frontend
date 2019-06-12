@@ -26,12 +26,19 @@
               "node_modules/materialize-css/dist/css/materialize.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/animate.css/animate.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/ngx-simplemde/src/index.css",
+              "node_modules/tinymce/skins/ui/oxide/skin.min.css",
+              "node_modules/tinymce/skins/ui/oxide/content.min.css",
+              "node_modules/tinymce/skins/content/default/content.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
               "node_modules/hammerjs/hammer.js",
-              "node_modules/materialize-css/dist/js/materialize.js"
+              "node_modules/materialize-css/dist/js/materialize.js",
+              "node_modules/simplemde-antd/dist/simplemde.min.js",
+              "node_modules/tinymce/tinymce.min.js",
+              "node_modules/tinymce/themes/silver/theme.js"
             ],
             "es5BrowserSupport": true
           },

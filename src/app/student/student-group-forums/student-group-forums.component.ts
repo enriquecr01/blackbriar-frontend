@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EndpointsService } from '../Services/endpoints.service';
-import { StudentForumComponent } from '../student-forum/student-forum.component';
 import { Group } from '../../models/group';
-import { Forum } from '../../models/forum';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -14,17 +12,17 @@ import * as moment from 'moment';
 
 export class StudentGroupForumsComponent implements OnInit {
 
+  // editorForm: FormGroup;
+
   @Input() group: Group;
-  title: string = "";
-  description: string = "";
+
+  title: string = '';
+  description: string = '';
   image: string = "";
   groupId: number;
   instructorImage: string = "";
   instructorName: string = "";
-
-  // @Input() forum: Forum;
   forums: any = [];
-
 
   constructor(private endpoint: EndpointsService, private route: ActivatedRoute) { }
 
@@ -58,7 +56,6 @@ export class StudentGroupForumsComponent implements OnInit {
           this.forums[i].sTime = moment(this.forums[i].startDate).format("h:mm:ss a");
 
           this.forums[i].smallDescription = this.forums[i].description.substring(0, 70);
-          console.log(this.forums[i].smallDescription);
 
         }
       },
@@ -81,6 +78,8 @@ export class StudentGroupForumsComponent implements OnInit {
         console.log("Error -> getGroupForums", error);
       }
     )
+
+
   }
   setClasses() {
     let classes = {
@@ -89,9 +88,5 @@ export class StudentGroupForumsComponent implements OnInit {
     };
     return classes;
   }
-
-
-
-
 
 }

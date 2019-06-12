@@ -1,7 +1,7 @@
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule, routingStudentComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Route, RouterModule } from '@angular/router';
@@ -9,6 +9,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterializeModule } from 'angular2-materialize';
 import 'materialize-css';
+import { EditorModule } from '@tinymce/tinymce-angular';
+
 
 // Components
 import { LoginComponent } from './login/login.component';
@@ -36,7 +38,8 @@ import { StudentForumComponent } from './student/student-forum/student-forum.com
 import { NotificationsComponent } from './notifications/notifications.component';
 import { StudentGroupComponent } from './student/student-group/student-group.component';
 
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { MarkdownEditorComponent } from './markdown-editor/markdown-editor.component';
 
 const routes: Route[] = [
   { path: 'home', component: HomeComponent },
@@ -69,6 +72,9 @@ const routes: Route[] = [
     NotificationsComponent,
     StudentGroupComponent,
     InstructorForumComponent,
+    MarkdownEditorComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -79,7 +85,9 @@ const routes: Route[] = [
     HttpClientModule,
     MaterializeModule,
     BrowserAnimationsModule,
-    MatMenuModule
+    MatMenuModule,
+    EditorModule
+
   ],
   providers: [
     LoginService,
