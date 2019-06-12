@@ -61,7 +61,7 @@ export class InstructorGroupComponent implements OnInit {
 
 
     // GET FORUMS FROM A GROUP
-    this.groupId = this.route.snapshot.params["groupId"];
+    this.groupId = this.router.snapshot.params["groupId"];
 
 
     // ----------------------------------------------------------------------------------------------

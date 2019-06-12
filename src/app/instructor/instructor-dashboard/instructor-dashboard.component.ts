@@ -199,7 +199,7 @@ export class InstructorDashboardComponent implements OnInit {
       if (myArray[i][property] === searchTerm) return i;
     }
     return -1;
-}
+  }
 
   logout()
   {
