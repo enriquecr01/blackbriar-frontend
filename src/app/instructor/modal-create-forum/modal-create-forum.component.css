@@ -8,6 +8,10 @@
     margin-bottom: 5px;
 }
 
+.modal {
+    min-height: 90%;
+}
+
 .modal .sideBar {
     top: 0;
     left: 0;

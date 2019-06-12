@@ -37,7 +37,9 @@ export class ModalCreateForumComponent implements OnInit {
     // MODAL START
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
-
+    $('.modal').modal();
+    $('.datepicker').datepicker({
+    });
     // FLOATING BUTTON
     elems = document.querySelectorAll('.fixed-action-btn');
     M.FloatingActionButton.init(elems);  
@@ -48,10 +50,15 @@ export class ModalCreateForumComponent implements OnInit {
   CreateForum(){
 
     if (this.Validate())
-        this.InsertForum();
+        this.InsertForum(true);
   }
 
-  InsertForum(){    
+  SaveForum(){
+    if (this.Validate())
+      this.InsertForum(false);
+  }
+
+  InsertForum(published: boolean){    
 
 
       var forum : ForumRequest = {
@@ -63,7 +70,7 @@ export class ModalCreateForumComponent implements OnInit {
         healerPoints : this.healerScore,
         warlockPoints : this.warlockScore,
         validResponsePoints : this.answerScore,
-        published : true
+        published : published
 
     };
   
