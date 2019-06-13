@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ForumService } from '../../services/forum.service';
 
 @Component({
   selector: 'app-forum',
@@ -8,14 +9,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ForumComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  forumId: number;
+  forumTitle: string = "";
+  forumDescription: string = "";
+
+  constructor(private activatedRoute: ActivatedRoute, private forumService: ForumService) { }
 
   ngOnInit() {
-    console.log(this.activatedRoute.snapshot.params.groupId);
-    console.log(this.activatedRoute.snapshot.params.forumId);
+    this.forumId = this.activatedRoute.snapshot.params.forumId;
 
-    
+    this.forumService.getForum(this.forumId).
+    subscribe(
+      data => {
+        this.forumTitle = data.title;
+        this.forumDescription = data.content;
+        console.log(data);
+      },
+      error =>{
+        console.log("Error", error);
+      }
+    )
+  }
 
+  initCollapsible()
+  {    
     var coll = document.getElementsByClassName("collapsible");
     var i;
 
