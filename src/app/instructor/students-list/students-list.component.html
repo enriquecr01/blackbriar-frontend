@@ -5,9 +5,9 @@
 
     <ul class="collapsible">
       <li class="active">
-        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Active Students</div>
-        <div class="collapsible-body" *ngFor="let student of studentsActive">
-          <span>
+        <div class="collapsible-header">Active Students</div>
+        <div class="collapsible-body rowStudent" *ngFor="let student of studentsActive">
+          <span class="valing-wrapper">
             <img src="{{student?.photo}}" class="circle" width="32px">
             {{student?.firstName}} {{student?.lastName}}
             0XP
@@ -15,9 +15,22 @@
         </div>
       </li>
       <li>
-        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Awaiting response</div>
-          <div class="collapsible-body" *ngFor="let student of studentsAwaiting">
-            <span>
+        <div class="collapsible-header">Awaiting approval</div>
+          <div class="collapsible-body rowStudent" *ngFor="let student of studentsWaitingApproval">
+            <span class="valing-wrapper">
+              <img src="{{student?.photo}}" class="circle" width="32px">
+              {{student?.firstName}} {{student?.lastName}}
+            </span>
+            <div class="right-align">
+              <button class="waves-effect waves-light btn" (click)="acceptRequestInstructor(student?.membership.id)">Approve</button>
+              <button class="waves-effect waves-light btn red darken-2" (click)="rejectRequestInstructor(student?.membership.id)">Decline</button>
+            </div>
+          </div>
+        </li>
+      <li>
+        <div class="collapsible-header">Awaiting response</div>
+          <div class="collapsible-body rowStudent" *ngFor="let student of studentsAwaiting">
+            <span class="valing-wrapper">
               <img src="{{student?.photo}}" class="circle" width="32px">
               {{student?.firstName}} {{student?.lastName}}
             </span>
