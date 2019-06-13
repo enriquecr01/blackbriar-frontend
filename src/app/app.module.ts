@@ -35,7 +35,6 @@ import { InstructorGroupComponent } from './instructor/instructor-group/instruct
 import { StudentGroupForumsComponent } from './student/student-group-forums/student-group-forums.component';
 import { StudentForumComponent } from './student/student-forum/student-forum.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { StudentGroupComponent } from './student/student-group/student-group.component';
 
 import {MatMenuModule} from '@angular/material/menu';
 
@@ -59,8 +58,7 @@ const routes: Route[] = [
   { path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent },
   { path: 'student/student-dashboard', component: StudentDashboardComponent },
   { path: 'instructor/instructor-group', component: InstructorGroupComponent },
-  { path: 'student/student-group', component: StudentGroupComponent },
-  { path: 'student/forum', component: ForumComponent}
+  { path: 'student/group/:groupId/forum/:forumId', component: ForumComponent}
 
 ];
 
@@ -82,7 +80,6 @@ const routes: Route[] = [
     StudentGroupForumsComponent,
     StudentForumComponent,
     NotificationsComponent,
-    StudentGroupComponent,
     InstructorForumComponent,
     LadingComponent,
     ModalCreateForumComponent,
