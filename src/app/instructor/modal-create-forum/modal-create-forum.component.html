@@ -1,12 +1,9 @@
- <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer">
-    <div class="modal-content">
       <h4>Create Forum</h4>
       
 <mat-horizontal-stepper>
   <mat-step label="Basic Information">
     <!-- CONTENT 1 START-->
-    <div>
+    <div class="container">
         <div class="row">
             <div class="input-field col s6">
               <input  [(ngModel)]="forumTitle" name="forumTitle" id="forumTitle" type="text" class="validate">
@@ -36,8 +33,7 @@
  
   <mat-step label="End Date">
 
-    <p><input type="text" class="datepicker"></p>
-   
+   <div class="container">
           <mat-select>
             <mat-option value="" disabled selected>Day</mat-option>
             <mat-option value="01">01</mat-option>
@@ -74,11 +70,14 @@
           </mat-select>
           <label>Day</label>
 
-
+<!--
 <input [matDatepicker]="myDatepicker">
 <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
 <mat-datepicker #myDatepicker></mat-datepicker>
 
+  --> 
+   </div>
+   
   </mat-step>
  
   <mat-step label="Roles" class="setp-body">
@@ -179,18 +178,11 @@
     </div>
   </div>
      <!-- CARD CONTAINER ENDS -->
-
+<a class="btn-floating btn-large waves-effect waves-light red" style="float:right; margin-top: 35%;"><i class="material-icons">add</i></a>
     <!-- ROLES END-->
   </mat-step>
 </mat-horizontal-stepper>
 
-    </div>
-        <div class="modal-footer">
-         <button (click)="CreateForum()" class="modal-close waves-effect waves-green btn-flat grey lighten-2 cancel-button" style="float:left;">Cansel</button>
-          <button (click)="SaveForum()" class="modal-close waves-effect waves-green btn-flat grey lighten-2 save-button">Save Forum</button>
-          <button (click)="CreateForum()" class="modal-close waves-effect btn-flat orange darken-1 publish-button">Publsh </button>
-        </div>
-  </div>
   
 
 

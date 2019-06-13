@@ -37,9 +37,6 @@ export class ModalCreateForumComponent implements OnInit {
     // MODAL START
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
-    $('.modal').modal();
-    $('.datepicker').datepicker({
-    });
     // FLOATING BUTTON
     elems = document.querySelectorAll('.fixed-action-btn');
     M.FloatingActionButton.init(elems);  
