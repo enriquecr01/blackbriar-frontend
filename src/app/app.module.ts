@@ -43,6 +43,7 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { StudentsListComponent } from './instructor/students-list/students-list.component';
 import { BannerGroupComponent } from './banner-group/banner-group.component';
+import { ForumUiComponent } from './instructor/forum-ui/forum-ui.component';
 import { ForumComponent } from './student/forum/forum.component';
 import { CreateComponent } from './components/forums/create/create.component';
 
@@ -54,8 +55,8 @@ const routes: Route[] = [
   { path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent },
   { path: 'student/student-dashboard', component: StudentDashboardComponent },
   { path: 'instructor/instructor-group', component: InstructorGroupComponent },
+  { path: 'forum/forum', component: ForumUiComponent},
   { path: 'student/group/:groupId/forum/:forumId', component: ForumComponent}
-
 ];
 
 @NgModule({
@@ -80,6 +81,7 @@ const routes: Route[] = [
     LadingComponent,
     StudentsListComponent,
     BannerGroupComponent,
+    ForumUiComponent,
     ForumComponent,
     CreateComponent
   ],

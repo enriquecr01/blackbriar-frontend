@@ -1,3 +1,7 @@
+.container-body {
+    height: 850px;
+}
+
 .forum-modal {
     height: 90%;
     width: 70%;
@@ -348,4 +352,3 @@ textarea:focus {
     color: #000;
     text-align: center;
 }
-
