@@ -59,4 +59,10 @@ export class StudentNavbarComponent implements OnInit {
     this.router.navigate(['student/explore']);
   }
 
+  logOut()
+  {
+    localStorage.clear();
+    this.router.navigate(['login']);
+  }
+
 }
