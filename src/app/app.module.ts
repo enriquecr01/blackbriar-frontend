@@ -45,7 +45,10 @@ import { BannerGroupComponent } from './banner-group/banner-group.component';
 import { ForumUiComponent } from './instructor/forum-ui/forum-ui.component';
 import { ForumComponent } from './student/forum/forum.component';
 import { CreateComponent } from './components/forums/create/create.component';
+import { DisplayComponent } from './components/forums/display/display.component';
+import { DisplayUsersComponent } from './components/forums/display-users/display-users.component';
 import { CommentComponent } from './components/comment/comment.component';
+
 
 
 const routes: Route[] = [
@@ -82,6 +85,8 @@ const routes: Route[] = [
     ForumUiComponent,
     ForumComponent,
     CreateComponent,
+    DisplayComponent,
+    DisplayUsersComponent,
     CommentComponent
   ],
   imports: [
