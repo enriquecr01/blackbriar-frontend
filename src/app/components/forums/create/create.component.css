@@ -39,6 +39,7 @@
 
 .chip img {
   height: 20px;
+  margin-right: 0;
 }
 
 .circle {
@@ -47,7 +48,8 @@
 }
 
 .assigned-roles {
-  margin-left: 20px;
+  margin-left: 15px;
+  display: inherit;
 }
 
 .scoreboard {
