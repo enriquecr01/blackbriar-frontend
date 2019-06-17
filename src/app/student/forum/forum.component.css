@@ -1,6 +1,134 @@
+.side-nav-m {
+  top: 7%;
+  left: 0;
+  height: 93%;
+  width: 300px;
+  float: left;
+  background-color: white;
+  position: fixed;
+}
+
+.collapsible-body {
+  background-color: white;
+}
+
+.info-body {
+  top: 0;
+  left: 0;
+  height: 89%;
+  width: 100%;
+  background: white;
+  align-items: center;
+  align-content: center;
+  padding-left: 16%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.description-wrapper {
+  padding: 2%;
+}
+
+.collapsible-forum {
+  box-shadow: none;
+}
+
+.collapsible-header {
+  height: 80px;
+  background-color: white;
+}
+
+.collapsible-body {
+  height: 80px;
+  background-color: white;
+}
+
+.comment-body {
+  width: 100%;
+  background-color: rgb(236, 236, 236);
+}
+
+.response-body {
+  margin-left: 10%;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 30px;
+}
+
+.forum-body {
+  margin-top: 3%;
+}
+
+.span-name {
+  font-size: 16px;
+  font-weight: bold;
+  top: -10px;
+}
+
+.span-text {
+  font-size: 14px;
+}
+
+.span-posted-date {
+  font-size: 10px;
+}
+
+.profile-pic {
+  top: 0;
+  height: 100%;
+  float: left;
+  background: rgb(61, 59, 59);
+  margin-right: 10px;
+}
+
+.role-pic {
+  float: right;
+}
+
+.a-show-responses {
+  color: black;
+  font-weight: bold;
+  float: left;
+  margin-left: 35px;
+}
+
+
+/* Style the button that is used to open and close the collapsible content */
+
+.collapsible-comment {
+  background-color: rgb(255, 255, 255);
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  border-radius: 50px;
+}
+
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+.active,
+.collapsible-comment:hover {
+  background-color: #fff;
+}
+
+
+/* Style the collapsible content. Note: hidden by default */
+
 .content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
-  }
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
