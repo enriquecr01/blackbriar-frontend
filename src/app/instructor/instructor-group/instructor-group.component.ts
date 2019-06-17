@@ -31,7 +31,7 @@ export class InstructorGroupComponent implements OnInit {
         this.forums = forums;
         this.forums = this.forums.reverse();
         let actualDate = moment().format();
-
+        console.log(this.forums);
         for (let i = 0; i < this.forums.length; i++) {
           if (this.forums[i].settings.endDate < actualDate) {
             this.forums[i].expired = false;

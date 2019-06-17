@@ -1,5 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { Forum } from '../models/forum';
 import { ForumRequest, ForumResponse, ForumRole } from '../models/forum';
 import { map } from 'rxjs/operators';
 
@@ -7,6 +10,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ForumService {
+
+  constructor(private http: HttpClient) { }
+
   roles: ForumRole[] = [
     {
       name: 'warrior',
@@ -24,8 +30,6 @@ export class ForumService {
       description: 'When the activity finishes, for every student with this role who didn\'t make any comment, points will be subtracted to everyone.'
     }
   ]
-
-  constructor(private http: HttpClient) { }
 
   createForum(forum: ForumRequest, groupId: number) {
     return this.http.post<ForumResponse>(
@@ -48,5 +52,15 @@ export class ForumService {
 
   get roleInfo() {
     return this.roles;
+  }
+
+  getForum(forumId) {
+    let token = "Bearer " + localStorage.getItem("token");
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    })
+
+    return this.http.get<Forum>(`${environment.apiURL}forums/${forumId}`, { headers: headers });
   }
 }

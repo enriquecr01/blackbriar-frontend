@@ -1,0 +1,33 @@
+.side-nav-m {
+    top: 7%;
+    left: 0;
+    height: 93%;
+    width: 300px;
+    float: left;
+    background-color: white;
+    position: fixed;
+}
+
+.collapsible-body {
+    background-color: white;
+}
+
+.info-body {
+    top: 0;
+    left: 0;
+    height: 89%;
+    width: 100%;
+    background: white;
+    align-items: center;
+    align-content: center;
+    padding-left: 16%;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    padding-left: 40px;
+    padding-right: 40px;
+}

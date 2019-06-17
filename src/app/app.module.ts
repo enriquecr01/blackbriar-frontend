@@ -17,7 +17,6 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarLoggedComponent } from './navbar-logged/navbar-logged.component';
 import { InstructorDashboardComponent } from './instructor/instructor-dashboard/instructor-dashboard.component';
 import { NavbarInstructorComponent } from './instructor/navbar-instructor/navbar-instructor.component';
-import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { InstructorForumComponent } from './instructor/instructor-forum/instructor-forum.component';
 import { LadingComponent } from './landing/lading/lading.component';
 
@@ -31,7 +30,6 @@ import { InstructorGroupComponent } from './instructor/instructor-group/instruct
 import { StudentGroupForumsComponent } from './student/student-group-forums/student-group-forums.component';
 import { StudentForumComponent } from './student/student-forum/student-forum.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { StudentGroupComponent } from './student/student-group/student-group.component';
 
 import {MatMenuModule} from '@angular/material/menu';
 
@@ -44,19 +42,23 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { StudentsListComponent } from './instructor/students-list/students-list.component';
 import { BannerGroupComponent } from './banner-group/banner-group.component';
+import { ForumUiComponent } from './instructor/forum-ui/forum-ui.component';
 import { ForumComponent } from './student/forum/forum.component';
 import { CreateComponent } from './components/forums/create/create.component';
+import { DisplayComponent } from './components/forums/display/display.component';
+import { DisplayUsersComponent } from './components/forums/display-users/display-users.component';
+import { CommentComponent } from './components/comment/comment.component';
+
 
 
 const routes: Route[] = [
   { path: '', component: LadingComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent },
-  { path: 'student/student-dashboard', component: StudentDashboardComponent },
-  { path: 'instructor/instructor-group', component: InstructorGroupComponent },
-  { path: 'student/student-group', component: StudentGroupComponent },
-  { path: 'student/forum', component: ForumComponent}
+  { path: 'instructor/dashboard', component: InstructorDashboardComponent },
+  { path: 'instructor/group/:groupId', component: InstructorGroupComponent },
+  { path: 'instructor/group/:groupId/forum/:forumId', component: ForumUiComponent},
+  { path: 'student/group/:groupId/forum/:forumId', component: ForumComponent}
 ];
 
 @NgModule({
@@ -69,7 +71,6 @@ const routes: Route[] = [
     NavbarLoggedComponent,
     InstructorDashboardComponent,
     GroupCardComponent,
-    StudentDashboardComponent,
     NavbarInstructorComponent,
     routingStudentComponents,
     FilterPipe,
@@ -77,13 +78,16 @@ const routes: Route[] = [
     StudentGroupForumsComponent,
     StudentForumComponent,
     NotificationsComponent,
-    StudentGroupComponent,
     InstructorForumComponent,
     LadingComponent,
     StudentsListComponent,
     BannerGroupComponent,
+    ForumUiComponent,
     ForumComponent,
-    CreateComponent
+    CreateComponent,
+    DisplayComponent,
+    DisplayUsersComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
