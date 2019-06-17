@@ -22,10 +22,11 @@ export class GroupCardComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.group);
   }
 
   goToGroupDashboard(groupId: number){
-    this.router.navigate(['instructor/instructor-group' , {groupId}]);  
+    this.router.navigate(['instructor/group/',groupId]);  
   }
 
 }

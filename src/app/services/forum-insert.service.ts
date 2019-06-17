@@ -12,11 +12,12 @@ export class ForumInsertService {
 
   public GroupId: number;
 
-  constructor(private http: HttpClient, ) { }
+  constructor(private http: HttpClient) { }
 
   addForum(forum: ForumRequest) {
     var userId = localStorage.getItem("userId");
 
+   
     let jsonCoded = JSON.stringify({
 
 
@@ -33,6 +34,7 @@ export class ForumInsertService {
       published: forum.published
 
     });
+    
     console.log(jsonCoded);
     console.log("LEEEEE GRRRRRROOOUUUUP ID!!!!");
     console.log(this.GroupId);
@@ -44,4 +46,7 @@ export class ForumInsertService {
 
     return this.http.post<Forum>(`https://api.blackbriar.site/api/groups/${this.GroupId}/forums`, jsonCoded, { headers: headers });
   }
+
+ 
+
 }

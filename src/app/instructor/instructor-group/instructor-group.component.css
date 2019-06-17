@@ -1,3 +1,7 @@
+.container-body {
+    height: 860px;
+}
+
 .forum-modal {
     height: 90%;
     width: 70%;
@@ -121,8 +125,7 @@ textarea:focus {
     outline-width: 0;
 }
 
-.borderText
-{
+.borderText {
     color: white;
     font-weight: 900;
     -webkit-text-stroke-width: 1px;
@@ -131,26 +134,23 @@ textarea:focus {
 
 .parallax-container {
     height: "100px";
-  }
-
-.hyperLinkDescription
-{
-    font-size:16px;
 }
 
+.hyperLinkDescription {
+    font-size: 16px;
+}
 
 .hyperLinkDescription {
     position: relative;
-    font-size:16px;
+    font-size: 16px;
     text-decoration: none;
-  }
+}
 
-.hyperLinkDescription:hover
-{
+.hyperLinkDescription:hover {
     cursor: pointer;
 }
 
-  .hyperLinkDescription:before {
+.hyperLinkDescription:before {
     content: "";
     position: absolute;
     width: 100%;
@@ -163,10 +163,192 @@ textarea:focus {
     transform: scaleX(0);
     -webkit-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
-  }
+}
 
-  .hyperLinkDescription:hover:before {
+.hyperLinkDescription:hover:before {
     visibility: visible;
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
-  }
+}
+
+.setp-body {
+    height: 100%;
+}
+
+
+/* ROLE CARDS */
+
+.card-container {
+    height: 200px;
+    width: 30%;
+}
+
+.card-image-container {
+    align-content: center;
+    margin-bottom: 70px;
+}
+
+.card-image-middle {
+    margin-left: 80px;
+}
+
+.cardContent {
+    margin-top: 150px;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    overflow: auto;
+    background: #fbfbfb;
+}
+
+.main2 {
+    width: 100%;
+    height: 100%;
+    /*position: absolute;*/
+    top: 0;
+    left: 0;
+    overflow: auto;
+    background: #fbfbfb;
+}
+
+.profile2 {
+    /*background-image: url("http://starkovtattoo.spb.ru/images/200/DSC100224440.png");*/
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(253, 253, 253);
+    width: 250px;
+    height: 400px;
+    position: absolute;
+    top: 63%;
+    left: 19%;
+    margin: -200px 0 0 -125px;
+    border-radius: 24px;
+    border: none;
+    box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.2);
+    transition: all .3s;
+}
+
+.profile3 {
+    /*background-image: url("http://starkovtattoo.spb.ru/images/200/DSC100224440.png");*/
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(253, 253, 253);
+    width: 250px;
+    height: 400px;
+    position: absolute;
+    top: 43%;
+    left: 76%;
+    margin: -84px 0 0 -60px;
+    border-radius: 24px;
+    border: none;
+    box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.2);
+    transition: all .3s;
+}
+
+.profile {
+    /*background-image: url("http://starkovtattoo.spb.ru/images/200/DSC100224440.png");*/
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgb(253, 253, 253);
+    width: 250px;
+    height: 400px;
+    position: absolute;
+    top: 63%;
+    left: 50%;
+    margin: -200px 0 0 -125px;
+    border-radius: 24px;
+    border: none;
+    box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.2);
+    transition: all .3s;
+}
+
+.profileName {
+    background: transparent;
+    border: 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: rgb(20, 20, 20);
+}
+
+.isVerified {
+    fill: #eee;
+    margin: 5px;
+}
+
+.card-body {
+    color: rgb(20, 20, 20);
+    margin-top: 1.5em;
+}
+
+.avatar {
+    border-radius: 50%;
+    max-width: 128px;
+    max-height: 128px;
+    transform: scale(0.95);
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.avatar:hover {
+    transform: scale(1);
+    box-shadow: 0 37.125px 70px -12.125px rgba(0, 0, 0, 0.2);
+}
+
+.profilePic {
+    text-align: center;
+}
+
+.isOnline {
+    text-align: center;
+    color: #eee;
+}
+
+.profileInfo {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 1em;
+    font-weight: 250;
+    font-size: 14px;
+    color: rgb(20, 20, 20);
+    text-align: center;
+}
+
+.actions {
+    background: transparent;
+    border: 0;
+    color: #fff;
+    display: inline-flex;
+}
+
+.actionFirst,
+.actionSecond {
+    width: 50%;
+    text-align: center;
+    fill: #ddd;
+    transform: scale(0.8);
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.actionFirst:hover,
+.actionSecond:hover {
+    transform: scale(1);
+    fill: #fff;
+}
+
+.points {
+    color: #000;
+    text-align: center;
+}

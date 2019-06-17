@@ -33,8 +33,8 @@ export class GroupsService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': token
-    })
-    return this.http.post<Group>(`https://api.blackbriar.site/api/users/${userId}/groups/owned`, jsonCoded, { headers: headers });
+    });
+    return this.http.post<Group>(`https://api.blackbriar.site/api/groups`, jsonCoded, { headers: headers });
   }
 
   getOneGroup(groupId: number)

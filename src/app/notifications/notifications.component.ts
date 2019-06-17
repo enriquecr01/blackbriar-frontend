@@ -64,4 +64,10 @@ export class NotificationsComponent implements OnInit {
     );
   }
 
+  goToForum(forumId: number)
+  {
+    console.log(forumId);
+    //go forum
+  }
+
 }

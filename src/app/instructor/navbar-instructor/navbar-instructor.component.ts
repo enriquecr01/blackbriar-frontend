@@ -30,8 +30,7 @@ export class NavbarInstructorComponent implements OnInit {
   ngOnInit()
   {
     var elems = document.querySelectorAll('.dropdown-trigger');
-    
-      M.Dropdown.init(elems, {constrainWidth: false});
+    //M.Dropdown.init(elems, {constrainWidth: false});
     
     var elems1 = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems1);

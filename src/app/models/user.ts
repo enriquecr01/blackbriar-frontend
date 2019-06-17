@@ -1,3 +1,5 @@
+import { Membership } from './membership';
+
 export interface User
 {
   student: any;
@@ -6,4 +8,5 @@ export interface User
     email: string;
     userId: string;
     photo: string;
+    membership: Membership;
 }

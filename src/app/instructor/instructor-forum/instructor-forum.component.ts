@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Forum } from '../../models/forum';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-instructor-forum',
@@ -10,8 +11,14 @@ export class InstructorForumComponent implements OnInit {
 
   @Input() forums: Forum;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    console.log(this.forums);
+  }
+
+  goToForumDashboard(){
+    //this.router.navigate(['forum/forum' , {forumId}]);
+    this.router.navigate(['forum/forum']);  
   }
 }
