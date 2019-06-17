@@ -46,7 +46,10 @@
                 <label for="title">Title of group</label>
               </div>
               <div class="input-field col s12">
-                <input id="description" name="description" type="text" [(ngModel)]="description">
+                
+                <editor formControlName="content" apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53"
+               [init]="{plugins: 'link image', branding: false, min_height: 300}" [(ngModel)]="description"></editor>
+
                 <label for="description">Description</label>
               </div>
             </div>

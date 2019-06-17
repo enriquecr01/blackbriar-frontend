@@ -56,6 +56,6 @@ export class NavbarInstructorComponent implements OnInit {
   }
   
   goToDashboard(){
-    this.router.navigate(['instructor/instructor-dashboard']);
+    this.router.navigate(['instructor/dashboard']);
   }
 }
