@@ -1,4 +1,4 @@
-<div class="navbar-fixed">
+<!-- <div class="navbar-fixed">
   <nav class="navbar-fixed white  shadow z-depth-3" style="border: none;">      
     <div class="nav-wrapper">
         <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -31,6 +31,77 @@
     <li><a (click)="goToMyGroups()" > My Groups </a></li>
     <li><a (click)="goToExplore()"> Explore </a></li>
     <li><a data-target="slide-out" class="sidenav-trigger show-on-large sidenav-close"><i class="material-icons">notifications_none</i> Notifications</a></li>
+  </ul> -->
+
+
+<!-- ---------------------------- -->
+
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+
+      <a href="#" class="brand-logo center">Blackbriar</a>
+
+      <ul class="left">
+        <li><a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
+        <li>
+          <a class="dropdown-trigger" data-target="dropdown1">
+            <img class="circle responsive-image logo-img" src="{{photo}}">{{firstName}}
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i
+              class="material-icons">notifications_none</i></a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<!-- Dropdown Structure -->
+<ul id='dropdown1' class='dropdown-content'>
+  <li class="divider"><a>My Groups</a></li>
+  <li><a (click)="goToMyGroups()"><i class="material-icons">group</i>My Groups</a></li>
+  <li><a (click)="goToExplore()"><i class="material-icons">explore</i>Explore groups</a></li>
+</ul>
+
+<ul id="slide-out" class="sidenav">
+  <li><a>Notifications</a></li>
+  <div class="row" *ngFor="let message of notifications">
+    <app-notifications [notification]=message></app-notifications>
+  </div>
+</ul>
+
+
+<!-- <div ng-app="app" ng-controller="MainCtrl">
+
+  <ul id="dropdown1" class="dropdown-content">
+    <li class="divider"><a href="#!">My Groups</a></li>
+    <li class="divider"></li>
+    <li class="divider"><a href="#!">Explore Groups</a></li>
   </ul>
 
+  <ul id='dropdown2' class='dropdown-content'>
+    <li ng-repeat="item in items"><a href="{{item.url}}">{{item.text}}</a></li>
+  </ul>
 
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo center">Blackbriar</a>
+      <ul class="left hide-on-med-and-down">
+        <li>
+          <a class="dropdown-button" href="#" data-activates="dropdown2">Alexis Gutierrez
+            <i class="mdi-navigation-arrow-drop-down right"></i>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sass.html">Notificacion</a></li>
+      </ul>
+    </div>
+  </nav>
+</div> -->

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { InboxService } from './../../inbox.service';
-
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-student-navbar',
@@ -16,13 +15,12 @@ export class StudentNavbarComponent implements OnInit {
 
   firstName = localStorage.getItem("firstName");
   lastName = localStorage.getItem("lastName");
-  
+
   photo = localStorage.getItem('photo');
 
   notifications = [];
 
-  constructor (private router: Router)
-  {
+  constructor(private router: Router) {
     this.initializeWebSocketConnection();
   }
 
@@ -30,32 +28,39 @@ export class StudentNavbarComponent implements OnInit {
     var elems1 = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems1);
 
-    
+
     var elems = document.querySelectorAll('#slide-out');
-    M.Sidenav.init(elems, {edge: "right"});
+    M.Sidenav.init(elems, { edge: "right" });
+
+
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(elems, {
+      coverTrigger: false,
+      constrainWidth: false
+    });
   }
 
-  initializeWebSocketConnection(){
+  initializeWebSocketConnection() {
     var socket = new SockJS('https://api.blackbriar.site/gs-guide-websocket');
     var stompClient = Stomp.over(socket);
     var userId = localStorage.getItem('userId');
 
     let that = this;
-    
+
     stompClient.connect({}, function (frame) {
-        stompClient.subscribe(`/topic/${userId}`, function({ body }) {
-          var data = JSON.parse(body);
-          console.log(data);
-          that.notifications.unshift(data);
-        });
+      stompClient.subscribe(`/topic/${userId}`, function ({ body }) {
+        var data = JSON.parse(body);
+        console.log(data);
+        that.notifications.unshift(data);
+      });
     });
   }
 
-  goToMyGroups(){
+  goToMyGroups() {
     this.router.navigate(['student/student-mygroups']);
   }
 
-  goToExplore(){
+  goToExplore() {
     this.router.navigate(['student/student-explore']);
   }
 
