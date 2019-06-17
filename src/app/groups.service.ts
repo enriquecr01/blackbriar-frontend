@@ -22,7 +22,7 @@ export class GroupsService {
       'Content-Type': 'application/json',
       'Authorization': token
     })
-    return this.http.get<Group[]>(`https://api.blackbriar.site/api/users/${userId}/groups/owned`, { headers: headers });
+    return this.http.get<Group[]>(`https://api.blackbriar.site/api/groups`, { headers: headers });
   }
 
   addGroupService(title, description, image, publicGroup)

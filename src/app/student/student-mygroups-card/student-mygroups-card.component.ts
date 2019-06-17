@@ -21,8 +21,7 @@ export class StudentMygroupsCardComponent implements OnInit {
     this.router.navigate(['student/student-groupforums', { groupId }]);
   }
   
-  goToGroupDashboard() {
-    this.router.navigate(['student/student-group']);
+  goToGroupDashboard() {    this.router.navigate(['student/student-group']);
   }
 
 }
