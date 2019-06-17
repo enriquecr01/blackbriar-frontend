@@ -17,7 +17,6 @@ import { RegisterComponent } from './register/register.component';
 import { NavbarLoggedComponent } from './navbar-logged/navbar-logged.component';
 import { InstructorDashboardComponent } from './instructor/instructor-dashboard/instructor-dashboard.component';
 import { NavbarInstructorComponent } from './instructor/navbar-instructor/navbar-instructor.component';
-import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
 import { InstructorForumComponent } from './instructor/instructor-forum/instructor-forum.component';
 import { LadingComponent } from './landing/lading/lading.component';
 
@@ -48,16 +47,17 @@ import { ForumComponent } from './student/forum/forum.component';
 import { CreateComponent } from './components/forums/create/create.component';
 import { DisplayComponent } from './components/forums/display/display.component';
 import { DisplayUsersComponent } from './components/forums/display-users/display-users.component';
+import { CommentComponent } from './components/comment/comment.component';
+
 
 
 const routes: Route[] = [
   { path: '', component: LadingComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'instructor/instructor-dashboard', component: InstructorDashboardComponent },
-  { path: 'student/student-dashboard', component: StudentDashboardComponent },
-  { path: 'instructor/instructor-group', component: InstructorGroupComponent },
-  { path: 'forum/forum', component: ForumUiComponent},
+  { path: 'instructor/dashboard', component: InstructorDashboardComponent },
+  { path: 'instructor/group/:groupId', component: InstructorGroupComponent },
+  { path: 'instructor/group/:groupId/forum/:forumId', component: ForumUiComponent},
   { path: 'student/group/:groupId/forum/:forumId', component: ForumComponent}
 ];
 
@@ -71,7 +71,6 @@ const routes: Route[] = [
     NavbarLoggedComponent,
     InstructorDashboardComponent,
     GroupCardComponent,
-    StudentDashboardComponent,
     NavbarInstructorComponent,
     routingStudentComponents,
     FilterPipe,
@@ -87,7 +86,8 @@ const routes: Route[] = [
     ForumComponent,
     CreateComponent,
     DisplayComponent,
-    DisplayUsersComponent
+    DisplayUsersComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

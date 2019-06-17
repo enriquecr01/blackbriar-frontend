@@ -52,11 +52,11 @@ export class StudentNavbarComponent implements OnInit {
   }
 
   goToMyGroups(){
-    this.router.navigate(['student/student-mygroups']);
+    this.router.navigate(['student/dashboard']);
   }
 
   goToExplore(){
-    this.router.navigate(['student/student-explore']);
+    this.router.navigate(['student/explore']);
   }
 
 }
