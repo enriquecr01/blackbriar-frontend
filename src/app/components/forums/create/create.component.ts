@@ -27,7 +27,7 @@ export class CreateComponent implements OnInit, AfterViewInit {
     this.forum = this.formBuilder.group({
       title: ['', [Validators.required, Validators.maxLength(200)]],
       description: ['', [Validators.required, Validators.maxLength(255)]],
-      content: ['', [Validators.required, Validators.maxLength(1500)]],
+      content: ['', [Validators.required, Validators.maxLength(5000)]],
       published: [true, [Validators.required]],
       warriorPoints: [20, [Validators.required, Validators.min(0), Validators.max(100)]],
       healerPoints: [10, [Validators.required, Validators.min(0), Validators.max(100)]],
