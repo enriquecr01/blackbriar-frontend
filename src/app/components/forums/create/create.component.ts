@@ -52,7 +52,11 @@ export class CreateComponent implements OnInit, AfterViewInit {
         ...this.forum.value,
         endDate: new Date(`${this.date} ${this.time}`)
       }, this.groupId).subscribe(
-        (data) => { this.scoreboard = data; },
+        (data) => {
+          this.scoreboard = data;
+          M.toast({ html: `Your forum was successfully created!` });
+          this.forum.reset();
+        },
         (error) => { M.toast({ html: error.error.message }); }
       );
     } else {
