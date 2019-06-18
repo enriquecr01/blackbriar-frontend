@@ -13,6 +13,14 @@ nav{
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(167,19,127,1) 71%, rgba(7,133,167,1) 100%);*/
 }
 
+.menuOption:hover{
+    background-color: rgba(212, 212, 212, 0.849);
+}
+
+
+.menuOption{
+    background-color: white;
+}
 
 .logo-img {
     position:absolute;
