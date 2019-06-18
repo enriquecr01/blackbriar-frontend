@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class StudentForumComponent implements OnInit {
 
   @Input() forums: Forum;
+  @Input() idGroup: number;
 
   constructor(private router: Router) { }
 
@@ -19,6 +20,7 @@ export class StudentForumComponent implements OnInit {
   goToForum(forumId: number)
   {
     console.log(forumId);
-    this.router.navigate(['forum/',forumId]);
+    let navString = "student/group/" + this.idGroup + "/forum/";
+    this.router.navigate([navString, forumId]);
   }
 }

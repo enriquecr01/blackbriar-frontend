@@ -13,9 +13,9 @@
 
   <!-- Table rows -->
   <tbody>
-    <tr *ngFor="let forum of forums">
+    <tr *ngFor="let forum of forums" (click)="goToForum(forum.id)">
       <td>
-        <a *ngIf="forum.expired == true" (click)="goToForum(forum.id)">{{forum.title}}<br></a>
+        <a *ngIf="forum.expired == true" >{{forum.title}}<br></a>
         <p *ngIf="forum.expired == false">{{forum.title}}<br></p>
         <p>{{forum.smallDescription}}...</p>
 
