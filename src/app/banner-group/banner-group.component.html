@@ -11,10 +11,9 @@
     </div>
     <div class="col s12 m8">
         <h3 class="borderText">{{ group?.title }}</h3>
-        <p class="borderText trucate" style="font-size: 20px">
-            {{ group?.description }}
-          <label class="borderText hyperLinkDescription modal-trigger" data-target="descriptionModal">Read more</label>
+        <p class="borderText trucate" style="font-size: 20px" [innerHTML]="group?.description">
         </p>
+        <label class="borderText hyperLinkDescription modal-trigger" data-target="descriptionModal">Read more</label>
     </div>
   </div>
   <div class="parallax" materialize="parallax">
@@ -28,7 +27,7 @@
     <div>
       <div class="modal-content">
         <h4>Description of {{ group?.title }}</h4>
-        <p>{{ group?.description }}</p>
+        <p [innerHTML]="group?.description"></p>
       </div>
       <div class="modal-footer backModal">
         <a class="modal-close waves-effect waves-green btn-flat">Close</a>
