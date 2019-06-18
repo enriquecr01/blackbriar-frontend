@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { InboxService } from './../../inbox.service';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
-import * as $ from "jquery";
 
 @Component({
   selector: 'app-student-navbar',
@@ -13,10 +12,13 @@ import * as $ from "jquery";
 })
 export class StudentNavbarComponent implements OnInit {
 
+
+
   firstName = localStorage.getItem("firstName");
   lastName = localStorage.getItem("lastName");
 
   photo = localStorage.getItem('photo');
+  instance: any;
 
   notifications = [];
 
@@ -32,13 +34,15 @@ export class StudentNavbarComponent implements OnInit {
     var elems = document.querySelectorAll('#slide-out');
     M.Sidenav.init(elems, { edge: "right" });
 
-
     var elems = document.querySelectorAll('.dropdown-trigger');
-    M.Dropdown.init(elems, {
+    var instance = M.Dropdown.init(elems, {
       coverTrigger: false,
-      constrainWidth: false
+      constrainWidth: false,
     });
+
   }
+
+
 
   initializeWebSocketConnection() {
     var socket = new SockJS('https://api.blackbriar.site/gs-guide-websocket');
@@ -57,11 +61,11 @@ export class StudentNavbarComponent implements OnInit {
   }
 
   goToMyGroups() {
-    this.router.navigate(['student/student-mygroups']);
+    this.router.navigate(['student/dashboard']);
   }
 
   goToExplore() {
-    this.router.navigate(['student/student-explore']);
+    this.router.navigate(['student/explore']);
   }
 
 }

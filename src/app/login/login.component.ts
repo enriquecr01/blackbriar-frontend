@@ -83,11 +83,11 @@ export class LoginComponent  {
               localStorage.setItem('student', userInfo.student);
               if(userInfo.student)
               {
-                this.router.navigate(['student/student-mygroups']);
+                this.router.navigate(['student/dashboard']);
               }
               else
               {
-                this.router.navigate(['instructor/instructor-dashboard']);
+                this.router.navigate(['instructor/dashboard']);
               }
             },
             error => { M.toast({html: error.error.message}); }

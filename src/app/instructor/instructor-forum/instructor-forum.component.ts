@@ -14,10 +14,11 @@ export class InstructorForumComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    console.log(this.forums);
   }
 
-  goToForumDashboard(forumId: number){
-    console.log("TEEEEEEEEEEEEEE");
-    this.router.navigate(['instructor/instructor-group' , {forumId}]);  
+  goToForumDashboard(){
+    //this.router.navigate(['forum/forum' , {forumId}]);
+    this.router.navigate(['forum/forum']);  
   }
 }

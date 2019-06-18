@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: "url"
+  apiURL: "https://api.blackbriar.site/api/"
 };
 
 /*

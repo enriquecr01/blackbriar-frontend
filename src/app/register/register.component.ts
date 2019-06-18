@@ -93,11 +93,11 @@ export class RegisterComponent {
                   M.toast('Registered succesfully', 4000);
                   if(userInfo.student)
                   {
-                    this.router.navigate(['student/student-mygroups']);
+                    this.router.navigate(['student/dashboard']);
                   }
                   else
                   {
-                    this.router.navigate(['instructor/instructor-dashboard']);
+                    this.router.navigate(['instructor/dashboard']);
                   }
                 },
                 error => { M.toast(error.error.message); }

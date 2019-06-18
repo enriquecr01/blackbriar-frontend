@@ -15,7 +15,7 @@
         </div>
       </li>
       <li>
-        <div class="collapsible-header">Awaiting approval</div>
+        <div class="collapsible-header">Requests</div>
           <div class="collapsible-body rowStudent" *ngFor="let student of studentsWaitingApproval">
             <span class="valing-wrapper">
               <img src="{{student?.photo}}" class="circle" width="32px">
@@ -28,7 +28,7 @@
           </div>
         </li>
       <li>
-        <div class="collapsible-header">Awaiting response</div>
+        <div class="collapsible-header">Pending invitations</div>
           <div class="collapsible-body rowStudent" *ngFor="let student of studentsAwaiting">
             <span class="valing-wrapper">
               <img src="{{student?.photo}}" class="circle" width="32px">

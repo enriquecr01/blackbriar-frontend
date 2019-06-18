@@ -12,7 +12,7 @@ export class ForumInsertService {
 
   public GroupId: number;
 
-  constructor(private http: HttpClient, ) { }
+  constructor(private http: HttpClient) { }
 
   addForum(forum: ForumRequest) {
     var userId = localStorage.getItem("userId");
