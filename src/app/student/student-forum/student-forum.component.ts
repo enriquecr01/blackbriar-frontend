@@ -12,7 +12,6 @@ export class StudentForumComponent implements OnInit {
   @Input() forums: Forum;
   @Input() idGroup: number;
 
-
   constructor(private router: Router) { }
 
   ngOnInit() {

@@ -2,10 +2,12 @@
   <nav class="navbar-fixed white  shadow z-depth-3" style="border: none;">      
     <div class="nav-wrapper">
         <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <img src="../../../assets/Images/Logo/logo2.png" height="60" width="100" style="float:left; position: fixed;" (click)="goToMyGroups()">
+        <img src="../../../assets/Images/Logo/logo2.png" height="60" width="100" style="float:left; position: static;" (click)="goToMyGroups()">
         <ul class="left hide-on-med-and-down dark" style="margin-left: 41%;">       
           <li><a (click)="goToMyGroups()" > My Groups </a></li>
           <li><a (click)="goToExplore()"> Explore </a></li>
+          <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons" style="margin-left: 720px;float:right;">notifications_none</i></a>
+          </ul>
           <li><a (click)="logOut()"> Log Out </a></li>
           <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">notifications_none</i></a>
         </ul>

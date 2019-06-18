@@ -1,11 +1,10 @@
-.nav-wrapper img:hover{
+.nav-wrapper img:hover {
     cursor: pointer;
 }
 
-
-nav{
-    background: rgb(23,18,99);
-    background: linear-gradient(90deg, rgba(23,18,99,1) 0%, rgba(167,19,127,1) 65%, rgba(7,133,167,1) 100%);
+nav {
+    background: rgb(23, 18, 99);
+    background: linear-gradient(90deg, rgba(23, 18, 99, 1) 0%, rgba(167, 19, 127, 1) 65%, rgba(7, 133, 167, 1) 100%);
     /*background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(167,19,127,1) 71%, rgba(7,133,167,1) 100%);*/
 }
