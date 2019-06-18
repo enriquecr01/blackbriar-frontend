@@ -18,7 +18,7 @@ export class StudentMygroupsCardComponent implements OnInit {
 
   goToGroupForums(groupId: number) {
     //console.log("Has entrado al grupo: " + ggroupId + ' - ' + group.title);
-    this.router.navigate(['instructor/group/',groupId]);
+    this.router.navigate(['student/group/',groupId]);
     //this.router.navigate(['student/student-groupforums', { groupId }]);
   }
   

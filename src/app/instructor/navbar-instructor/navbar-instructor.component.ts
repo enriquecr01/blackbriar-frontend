@@ -58,4 +58,18 @@ export class NavbarInstructorComponent implements OnInit {
   goToDashboard(){
     this.router.navigate(['instructor/instructor-dashboard']);
   }
+
+  
+  logOut()
+  {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('email');
+    localStorage.removeItem('photo');
+    localStorage.removeItem('student');
+    localStorage.clear();
+    this.router.navigate(['login']);
+  }
 }
