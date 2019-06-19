@@ -2,7 +2,6 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import {MaterializeAction } from 'angular2-materialize';
 import { Router } from '@angular/router';
 import { InboxService } from './../../inbox.service';
-
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 
@@ -57,19 +56,5 @@ export class NavbarInstructorComponent implements OnInit {
   
   goToDashboard(){
     this.router.navigate(['instructor/dashboard']);
-  }
-
-  
-  logOut()
-  {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('lastName');
-    localStorage.removeItem('email');
-    localStorage.removeItem('photo');
-    localStorage.removeItem('student');
-    localStorage.clear();
-    this.router.navigate(['login']);
   }
 }
