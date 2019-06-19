@@ -41,19 +41,10 @@
       <div class="row">
           <form class="col s12">
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s12 m6">
                 <input name="title" type="text" [(ngModel)]="title">
                 <label for="title">Title of group</label>
               </div>
-              <div class="input-field col s12">
-                
-                <editor formControlName="content" apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53"
-               [init]="{plugins: 'link image', branding: false, min_height: 300}" [(ngModel)]="description"></editor>
-
-                <label for="description">Description</label>
-              </div>
-            </div>
-            <div class="row">
               <div class="col s12 m6 ">
                   <div class="switch">
                       <label style="color: black; font-size: 16px">
@@ -65,24 +56,24 @@
                       </label>
                     </div>
               </div>
-              <ul class="tabs col s12 m6">
-                  <li class="tab col s6 m3"><a class="active" href="#test1">File</a></li>
-                  <li class="tab col s6 m3"><a href="#test2">URL</a></li>
-                </ul>
-              <div id="test1" class="col s12 m6">
+              <div class="input-field col s12">
+                <label>Description</label>
+                <editor formControlName="content" apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53"
+               [init]="{plugins: 'link image', branding: false, min_height: 300}" [(ngModel)]="description"></editor>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <label>Upload your image of group</label>
                 <div class="file-field input-field">
                   <div class="btn">
-                    <span>File</span>
+                    <span>Upload file</span>
                     <input #imageInput type="file" accept="image/*"(change)="processFile(imageInput, imageInput.files)">
                   </div>
                   <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
                   </div>
                 </div>
-              </div>
-              <div id="test2" class="col s12 m6">
-                  <input id="image" name="image" type="text" [(ngModel)]="image">
-                  <label for="image">URL Upload</label>
               </div>
             </div>
             <div *ngIf="selectedFile" class="img-preview-container">

@@ -1,4 +1,3 @@
-
 <!----------------------PARALAX------------------------------------->
 <div class="parallax-container" style="height: 300px;">
   <div class="row">
@@ -11,7 +10,7 @@
     </div>
     <div class="col s12 m8">
         <h3 class="borderText">{{ group?.title }}</h3>
-        <p class="borderText trucate" style="font-size: 20px" [innerHTML]="group?.description">
+        <p class="borderText trucate" style="font-size: 20px; overflow: hidden; white-space: nowrap;" [innerHTML]="group?.description">
         </p>
         <label class="borderText hyperLinkDescription modal-trigger" data-target="descriptionModal">Read more</label>
     </div>
