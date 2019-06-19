@@ -1,18 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Answer } from 'src/app/models/answer';
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
 })
-export class CommentComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() 
-  {
-    
-    var coll = document.getElementsByClassName("collapsible-comment ");
+export class CommentComponent implements OnInit, AfterViewInit {
+  ngAfterViewInit(): void {
+    var coll = document.getElementsByClassName("collapsible-comment");
     var i;
     
     for (i = 0; i < coll.length; i++) 
@@ -30,6 +26,16 @@ export class CommentComponent implements OnInit {
         }
       });
     }
+    console.log(coll);
+  }
+
+  @Input() comment: Answer;
+
+  constructor() { }
+
+  ngOnInit() 
+  {
+    console.log(this.comment);
   }
 
 }

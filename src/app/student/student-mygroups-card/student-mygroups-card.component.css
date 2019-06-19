@@ -2,3 +2,9 @@
     webkit-filter: blur(4px); /* Chrome, Safari, Opera */
     filter: blur(4px);
 }
+
+.vert
+{
+    float: right;
+    cursor: pointer;
+}
