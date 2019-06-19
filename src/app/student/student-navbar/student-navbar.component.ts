@@ -12,8 +12,6 @@ import * as SockJS from 'sockjs-client';
 })
 export class StudentNavbarComponent implements OnInit {
 
-
-
   firstName = localStorage.getItem("firstName");
   lastName = localStorage.getItem("lastName");
 
@@ -27,6 +25,23 @@ export class StudentNavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    var nav = document.getElementById('nav-student');
+    var optionMenu = document.getElementById('menuOption');
+    window.onscroll = function () {
+      if (window.pageYOffset > 100) {
+        nav.style.background = "linear-gradient(90deg, rgba(69,0,99,1) 13%, " + " rgba(67,40,116,1) 40%, " + " rgba(67,40,116,1) 86%)";
+        nav.style.opacity = "0.97";
+
+      } else {
+        nav.style.background = "rgba(0, 0, 0, 0.3)";
+
+      }
+    }
+
+    var url = window.location.href;
+    console.log("URL => " + url);
+
     var elems1 = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems1);
 
@@ -66,6 +81,18 @@ export class StudentNavbarComponent implements OnInit {
 
   goToExplore() {
     this.router.navigate(['student/explore']);
+  }
+
+  logOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('email');
+    localStorage.removeItem('photo');
+    localStorage.removeItem('student');
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 
 }
