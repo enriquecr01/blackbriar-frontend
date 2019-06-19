@@ -1,4 +1,4 @@
-<div class="navbar-fixed">
+<!-- <div class="navbar-fixed">
   <nav class="navbar-fixed white  shadow z-depth-3" style="border: none;">      
     <div class="nav-wrapper">
         <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -34,4 +34,55 @@
     <li><a (click)="goToMyGroups()" > My Groups </a></li>
     <li><a (click)="goToExplore()"> Explore </a></li>
     <li><a data-target="slide-out" class="sidenav-trigger show-on-large sidenav-close"><i class="material-icons">notifications_none</i> Notifications</a></li>
-  </ul>
+  </ul> -->
+
+
+<!-- ---------------------------- -->
+
+<div class="navbar-fixed">
+  <nav id="nav-student">
+    <div class="nav-wrapper">
+
+      <a (click)="goToMyGroups()" class="brand-logo center">Blackbriar</a>
+
+      <ul class="left ">
+        <li><a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
+        <li>
+
+          <a [matMenuTriggerFor]="menu">
+
+            <span><img class="circle responsive-image logo-img" src="{{photo}}"></span>
+            #<span><i style="padding-left: 30px" class="material-icons right">arrow_drop_down</i></span>
+
+          </a>
+          <mat-menu #menu="matMenu">
+            <button class="menuOption" (click)="goToMyGroups()" mat-menu-item> My Groups</button>
+            <button class="menuOption" (click)="goToExplore()" mat-menu-item> Explore Groups</button>
+            <button class="menuOption" mat-menu-item>Log out</button>
+          </mat-menu>
+        </li>
+      </ul>
+
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i
+              class="material-icons">notifications_none</i></a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<!-- Dropdown Structure -->
+<ul id='dropdown1' class='dropdown-content'>
+  <li class="divider"><a>My Groups</a></li>
+  <li><a (click)="goToMyGroups()"><i class="material-icons">group</i>My Groups</a></li>
+  <li><a (click)="goToExplore()"><i class="material-icons">explore</i>Explore groups</a></li>
+</ul>
+
+<!-- Notification SideNav -->
+<ul id="slide-out" class="sidenav">
+  <li><a>Notifications</a></li>
+  <div class="row" *ngFor="let message of notifications">
+    <app-notifications [notification]=message></app-notifications>
+  </div>
+</ul>

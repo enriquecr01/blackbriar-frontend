@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Forum } from '../../models/forum';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-student-forum',
   templateUrl: './student-forum.component.html',
@@ -15,6 +16,8 @@ export class StudentForumComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+
+
   }
 
   goToForum(forumId: number)

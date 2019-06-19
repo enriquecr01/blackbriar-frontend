@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders  } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Group } from './models/group';
 import { User } from './models/user';
 
@@ -8,13 +8,11 @@ import { User } from './models/user';
 })
 export class GroupsService {
 
-  constructor(private http: HttpClient) 
-  {
+  constructor(private http: HttpClient) {
     console.log("grupos");
   }
 
-  getInstructorGroups()
-  {
+  getInstructorGroups() {
     var userId = localStorage.getItem("userId");
 
     let token = "Bearer " + localStorage.getItem("token");
@@ -25,8 +23,7 @@ export class GroupsService {
     return this.http.get<Group[]>(`https://api.blackbriar.site/api/users/${userId}/groups/owned`, { headers: headers });
   }
 
-  addGroupService(title, description, image, publicGroup)
-  {
+  addGroupService(title, description, image, publicGroup) {
     var userId = localStorage.getItem("userId");
     let jsonCoded = JSON.stringify({ title: title, description: description, image: image, publicGroup: publicGroup });
     let token = "Bearer " + localStorage.getItem("token");
@@ -37,25 +34,23 @@ export class GroupsService {
     return this.http.post<Group>(`https://api.blackbriar.site/api/groups`, jsonCoded, { headers: headers });
   }
 
-  getOneGroup(groupId: number)
-  {
+  getOneGroup(groupId: number) {
     let token = "Bearer " + localStorage.getItem("token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': token
     });
     var groupForums = `https://api.blackbriar.site/api/groups/${groupId}`;
-    return this.http.get<Group>(groupForums, {headers: headers});
+    return this.http.get<Group>(groupForums, { headers: headers });
   }
 
-  getStudentsOfGroup(groupId: number)
-  {
+  getStudentsOfGroup(groupId: number) {
     let token = "Bearer " + localStorage.getItem("token");
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': token
     });
     var groupForums = `https://api.blackbriar.site/api/groups/${groupId}/students`;
-    return this.http.get<User[]>(groupForums, {headers: headers});
+    return this.http.get<User[]>(groupForums, { headers: headers });
   }
 }

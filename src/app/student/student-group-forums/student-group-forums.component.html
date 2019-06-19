@@ -1,28 +1,30 @@
-<app-student-navbar></app-student-navbar>
+<!-- <app-student-navbar></app-student-navbar> -->
 
-<app-banner-group [groupId]="groupId"></app-banner-group>
+<div style="position: absolute; top: 0; width: 100%">
+  <app-banner-group [groupId]="groupId"></app-banner-group>
 
-<div class="container">
-  <div class="row">
-    <!------------------------ TAB CONTROL ------------------->
-    <div class="col s12">
-      <ul class="tabs">
-        <li class="tab col s3"><a href="#forums">Forums</a></li>
-      </ul>
-    </div>
-    <!------------------- END TAB CONTROL --------------->
-    
-    <!---------------- TAB FORUMS ------------------->
-    <div id="forums" class="col s12">
-      <!-- FORUMS -->
-      <div class="card">
-        <div class="card-content">
-          <h5>Forums</h5>
-          <div class="divider"></div>
-          <app-student-forum [forums]="forums" [idGroup]="groupId"></app-student-forum>
+  <div class="container">
+    <div class="row">
+      <!------------------------ TAB CONTROL ------------------->
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a href="#forums">Forums</a></li>
+        </ul>
+      </div>
+      <!------------------- END TAB CONTROL --------------->
+
+      <!---------------- TAB FORUMS ------------------->
+      <div id="forums" class="col s12">
+        <!-- FORUMS -->
+        <div class="card">
+          <div class="card-content">
+            <h5>Forums</h5>
+            <div class="divider"></div>
+            <app-student-forum [forums]="forums" [idGroup]="groupId"></app-student-forum>
+          </div>
         </div>
       </div>
+      <!------ END TAB FORMUS ----------------->
     </div>
-    <!------ END TAB FORMUS ----------------->
   </div>
 </div>

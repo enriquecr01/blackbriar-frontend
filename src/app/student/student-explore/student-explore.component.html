@@ -1,4 +1,4 @@
-<app-student-navbar></app-student-navbar>
+<!-- <app-student-navbar></app-student-navbar> -->
 
 <div class="container">
   <div class="row" style="margin-top: 30px;">
@@ -7,12 +7,12 @@
       <label for="search">Search...</label>
     </div>
     <div class="input-field col s6">
-        <select default="1" [(ngModel)]="selectedValue" (change)="onChange()">
-          <option value="1">All Groups</option>
-          <option value="2">Public Groups</option>
-          <option value="3">Private Groups</option>
-        </select>
-        <label>Filter visibility of group</label>
+      <select default="1" [(ngModel)]="selectedValue" (change)="onChange()">
+        <option value="1">All Groups</option>
+        <option value="2">Public Groups</option>
+        <option value="3">Private Groups</option>
+      </select>
+      <label>Filter visibility of group</label>
     </div>
   </div>
 
@@ -23,4 +23,3 @@
   </div>
 
 </div>
-

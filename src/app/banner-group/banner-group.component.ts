@@ -14,11 +14,10 @@ export class BannerGroupComponent implements OnInit {
 
   constructor(private groupService: GroupsService) { }
 
-  ngOnInit() 
-  {
+  ngOnInit() {
     var modalElems = document.querySelectorAll('.modal');
     M.Modal.init(modalElems);
-    
+
     /**************PARALLAX**********/
     var elems = document.querySelectorAll('.parallax');
     var instances = M.Parallax.init(elems);

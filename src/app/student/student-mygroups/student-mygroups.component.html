@@ -1,26 +1,25 @@
-<app-student-navbar></app-student-navbar>
+<!-- <app-student-navbar></app-student-navbar> -->
 <div class="container">
-<div class="row" style="margin-top: 30px;">
+  <div class="row" style="margin-top: 30px">
     <div class="input-field col s6">
-        <input type="text" id="search" name="search" [(ngModel)]="searchText" (input)="Search()">
-        <label for="search">Search...</label>
+      <input type="text" id="search" name="search" [(ngModel)]="searchText" (input)="Search()">
+      <label for="search">Search...</label>
     </div>
 
     <div class="input-field col s6">
-    <select default="1" [(ngModel)]="selectedValue" (change)="onChange()">
-      <option value="1">My Groups</option>
-      <option value="2">My Public Groups</option>
-      <option value="3">My Private Groups</option>
-    </select>
-    <label>Filter visibility of group</label>
+      <select default="1" [(ngModel)]="selectedValue" (change)="onChange()">
+        <option value="1">My Groups</option>
+        <option value="2">My Public Groups</option>
+        <option value="3">My Private Groups</option>
+      </select>
+      <label>Filter visibility of group</label>
+    </div>
   </div>
-  </div>     
-                                                        
+
   <div class="row">
-    <div *ngFor= "let group of groups">
-      <app-student-mygroups-card [group] = group></app-student-mygroups-card>
+    <div *ngFor="let group of groups">
+      <app-student-mygroups-card [group]=group></app-student-mygroups-card>
     </div>
   </div>
 
 </div>
-
