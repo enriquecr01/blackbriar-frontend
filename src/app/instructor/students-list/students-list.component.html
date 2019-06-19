@@ -5,17 +5,23 @@
 
     <ul class="collapsible">
       <li class="active">
-        <div class="collapsible-header">Active Students</div>
+        <div class="collapsible-header">
+          Active Students
+          <i class="material-icons dropdown-arrow">arrow_drop_down</i>
+        </div>
         <div class="collapsible-body rowStudent" *ngFor="let student of studentsActive">
           <span class="valing-wrapper">
             <img src="{{student?.photo}}" class="circle" width="32px">
             {{student?.firstName}} {{student?.lastName}}
-            0XP
+            0 xp
           </span>
         </div>
       </li>
       <li>
-        <div class="collapsible-header">Requests</div>
+        <div class="collapsible-header">
+            Requests
+            <i class="material-icons dropdown-arrow">arrow_drop_down</i>
+          </div>
           <div class="collapsible-body rowStudent" *ngFor="let student of studentsWaitingApproval">
             <span class="valing-wrapper">
               <img src="{{student?.photo}}" class="circle" width="32px">
@@ -28,7 +34,10 @@
           </div>
         </li>
       <li>
-        <div class="collapsible-header">Pending invitations</div>
+        <div class="collapsible-header">
+          Pending invitations
+          <i class="material-icons dropdown-arrow">arrow_drop_down</i>
+        </div>
           <div class="collapsible-body rowStudent" *ngFor="let student of studentsAwaiting">
             <span class="valing-wrapper">
               <img src="{{student?.photo}}" class="circle" width="32px">

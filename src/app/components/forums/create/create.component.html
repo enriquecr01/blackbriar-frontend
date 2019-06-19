@@ -17,15 +17,17 @@
         </div>
 
         <div class="row">
-          <div class="col s4">
-            <input (change)="changeDate($event)" type="text" placeholder="Finalization date" class="datepicker">
+          <div class="col s4 input-field">
+            <input (change)="changeDate($event)" id="datepicker" type="text" class="datepicker">
+            <label for="datepicker">Finalization Date</label>
           </div>
-          <div class="col s4">
-            <input (change)="changeTime($event)" type="text" placeholder="Finalization time" class="timepicker">
+          <div class="col s4 input-field">
+            <input (change)="changeTime($event)" id="timepicker" type="text"  class="timepicker">
+            <label for="timepicker">Finalization Date</label>
           </div>
-          <div class="col s4">
-            <input type="number" placeholder="Valid response points" min="0" max="100"
-              formControlName="validResponsePoints">
+          <div class="col s4 input-field">
+              <input type="number" id="validResponsePoints"  min="0" max="100" formControlName="validResponsePoints">
+              <label for="validResponsePoints">Points per valid response</label>
           </div>
         </div>
 
