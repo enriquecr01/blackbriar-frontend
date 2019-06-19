@@ -81,6 +81,7 @@
           <a class="btn grey lighten-2 black-text" (click)="stepper.reset()">
             <i class="material-icons left">refresh</i>Reset
           </a>
+
           <a class="btn red accent-2" (click)="createForum()">
             <div *ngIf="published; else saveDraft">
               <i class="material-icons left">publish</i>Publish
@@ -92,15 +93,17 @@
           </a>
         </div>
 
-        <ul class="collection scoreboard" *ngIf="scoreboard">
+        <ul class="collection scoreboard" *ngIf="scoreboard && scoreboard.length">
           <li class="collection-item avatar valign-wrapper" *ngFor="let participant of scoreboard">
             <img src={{participant.photo}} alt={{participant.firstName}} class="circle">
             <span class="title">{{participant.firstName}} {{participant.lastName}}</span>
 
             <div class="assigned-roles">
-              <div class="chip" [ngClass]="{'hide': participant[role.name]}" *ngFor="let role of roleInfo">
-                <img src={{role.iconPath}} alt={{role.name}}>
-                {{role.name | titlecase}}
+              <div *ngFor="let role of roleInfo">
+                <div class="chip" *ngIf="participant[role.name]">
+                  <img src={{role.iconPath}} alt={{role.name}}>
+                  {{role.name | titlecase}}
+                </div>
               </div>
             </div>
           </li>

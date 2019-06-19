@@ -17,10 +17,10 @@ export class StudentForumComponent implements OnInit {
   ngOnInit() {
   }
 
-  goToForum(forumId: number)
+  goToForum(forumId : number)
   {
     console.log(forumId);
-    let navString = "student/group/" + this.idGroup + "/forum/";
-    this.router.navigate([navString, forumId]);
+    let string = "student/group/"+this.idGroup+ "/forum/";
+    this.router.navigate([string, forumId ]);
   }
 }
