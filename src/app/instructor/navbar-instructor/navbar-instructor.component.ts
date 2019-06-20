@@ -26,20 +26,7 @@ export class NavbarInstructorComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    var nav = document.getElementById('nav-student');
-    var optionMenu = document.getElementById('menuOption');
-    window.onscroll = function () {
-      if (window.pageYOffset > 100) {
-        nav.style.background = "linear-gradient(90deg, rgba(69,0,99,1) 13%, " + " rgba(67,40,116,1) 40%, " + " rgba(67,40,116,1) 86%)";
-        nav.style.opacity = "0.97";
-
-      } else {
-        nav.style.background = "rgba(0, 0, 0, 0.3)";
-
-      }
-    }
-
+    this.transparentColor();
     var elems = document.querySelectorAll('.dropdown-trigger');
     //M.Dropdown.init(elems, {constrainWidth: false});
 
@@ -68,6 +55,7 @@ export class NavbarInstructorComponent implements OnInit {
 
   goToDashboard() {
     this.router.navigate(['instructor/dashboard']);
+    this.solidColor();
   }
 
   logOut() {
@@ -80,5 +68,27 @@ export class NavbarInstructorComponent implements OnInit {
     localStorage.removeItem('student');
     localStorage.clear();
     this.router.navigate(['login']);
+  }
+
+
+  solidColor() {
+    var nav = document.getElementById('nav-student');
+    nav.style.background = "linear-gradient(90deg, rgba(69,0,99,1) 13%, " + " rgba(67,40,116,1) 40%, " + " rgba(67,40,116,1) 86%)";
+    nav.style.opacity = "0.97";
+  }
+
+  transparentColor() {
+    var nav = document.getElementById('nav-student');
+    var optionMenu = document.getElementById('menuOption');
+    window.onscroll = function () {
+      if (window.pageYOffset > 100) {
+        nav.style.background = "linear-gradient(90deg, rgba(69,0,99,1) 13%, " + " rgba(67,40,116,1) 40%, " + " rgba(67,40,116,1) 86%)";
+        nav.style.opacity = "0.97";
+
+      } else {
+        nav.style.background = "rgba(0, 0, 0, 0.3)";
+
+      }
+    }
   }
 }
