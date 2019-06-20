@@ -92,4 +92,10 @@ export class StudentNavbarComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  solidColor() {
+    var nav = document.getElementById('nav-student');
+    nav.style.background = "linear-gradient(90deg, rgba(69,0,99,1) 13%, " + " rgba(67,40,116,1) 40%, " + " rgba(67,40,116,1) 86%)";
+    nav.style.opacity = "0.97";
+  }
+
 }

@@ -26,6 +26,7 @@ export class InstructorGroupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     const elems = document.querySelectorAll('.tabs');
     M.Tabs.init(elems);
 
@@ -42,14 +43,14 @@ export class InstructorGroupComponent implements OnInit {
     this.endpoint.getGroupForums(this.groupId).subscribe(
       forums => {
         this.forums = forums;
-    this.forums = this.forums.reverse();
-  let actualDate = moment().format();
-  console.log(this.forums);
+        this.forums = this.forums.reverse();
+        let actualDate = moment().format();
+        console.log(this.forums);
         for (let i = 0; i < this.forums.length; i++) {
           if (this.forums[i].settings.endDate < actualDate) {
-          this.forums[i].expired = false;
+            this.forums[i].expired = false;
           } else {
-          this.forums[i].expired = true;
+            this.forums[i].expired = true;
           }
           this.forums[i].eDate = moment(this.forums[i].settings.endDate).format('MMM Do YY');
           this.forums[i].eTime = moment(this.forums[i].settings.endDate).format('h:mm:ss a');
