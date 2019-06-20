@@ -39,9 +39,6 @@ export class StudentNavbarComponent implements OnInit {
       }
     }
 
-    var url = window.location.href;
-    console.log("URL => " + url);
-
     var elems1 = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems1);
 

@@ -5,19 +5,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RegisterService {
-
-  constructor(private http: HttpClient) 
-  { 
-    console.log("marrano pero de registro");
-  }
-
-  register(firstName, lastName, email, password, student)
-  {
-    console.log(JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password, photo: "default.jpg", student: student }));
-    let jsonCoded = JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password, photo: "default.jpg", student: student });
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json'});
-    let options = { headers: headers };
-    return this.http.post("https://api.blackbriar.site/api/users", jsonCoded, options);
+  constructor(private http: HttpClient) { }
+  
+  register(firstName, lastName, email, password, student) {
+    return this.http.post("https://api.blackbriar.site/api/users", {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      photo: "default.jpg",
+      student: student
+    });
   }
 }
