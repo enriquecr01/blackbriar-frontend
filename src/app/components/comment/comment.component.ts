@@ -7,35 +7,37 @@ import { Answer } from 'src/app/models/answer';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit, AfterViewInit {
-  ngAfterViewInit(): void {
-    var coll = document.getElementsByClassName("collapsible-comment");
-    var i;
-    
-    for (i = 0; i < coll.length; i++) 
-    {
-      coll[i].addEventListener("click", function() 
-      {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight)
-        {
-          content.style.maxHeight = null;
-        } else 
-        {
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
-      });
-    }
-    console.log(coll);
+  ngAfterViewInit() {
   }
 
   @Input() comment: Answer;
+  hasFeedback: boolean = false;
 
   constructor() { }
 
   ngOnInit() 
   {
-    console.log(this.comment);
+    if(this.comment.replies.length > 0)
+    {
+      this.hasFeedback = true;
+    }
+  }
+
+    
+  toggleAccordian(event, index) {
+    var element = event.target;
+    element.classList.toggle("active");
+    if(this.comment[index].isActive) {
+      this.comment[index].isActive = false;
+    } else {
+      this.comment[index].isActive = true;
+    }      
+    var panel = element.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
   }
 
 }
