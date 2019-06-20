@@ -35,19 +35,10 @@ export class ForumService {
   createForum(forum: ForumRequest, groupId: number) {
     return this.http.post<ForumResponse>(
       `https://api.blackbriar.site/api/groups/${groupId}/forums`,
-      forum,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      }
+      forum
     ).pipe(
-      map(({ scoreboard }) => {
-        return scoreboard.filter(({healer, warrior, warlock}) => {
-          console.log(`${healer} ${warrior} ${warlock}`);
-          return healer || warrior || warlock;
-        })
-      })
+      map(({ scoreboard }) => scoreboard
+        .filter(({healer, warrior, warlock}) => healer || warrior || warlock))
     )
   }
 
@@ -56,22 +47,11 @@ export class ForumService {
   }
 
   getForum(forumId) {
-    let token = "Bearer " + localStorage.getItem("token");
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': token
-    })
-
-    return this.http.get<Forum>(`${environment.apiURL}forums/${forumId}`, { headers: headers });
+    return this.http.get<Forum>(`${environment.apiURL}forums/${forumId}`);
   }
 
   
   getForumResponses(forumId: number) {
-    let token = "Bearer " + localStorage.getItem("token");
-    const headers = new HttpHeaders({
-      'Authorization': token
-    })
-
-    return this.http.get<Answer[]>(`${environment.apiURL}forums/${forumId}/answers`, { headers: headers });
+    return this.http.get<Answer[]>(`${environment.apiURL}forums/${forumId}/answers`);
   }
 }

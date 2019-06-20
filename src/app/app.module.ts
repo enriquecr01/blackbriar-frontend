@@ -5,11 +5,10 @@ import { AppRoutingModule, routingStudentComponents } from './app-routing.module
 import { AppComponent } from './app.component';
 import { Route, RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterializeModule } from 'angular2-materialize';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import 'materialize-css';
-
 
 import { LoginComponent } from './login/login.component';
 import { NavbarNoLoggedComponent } from './navbar-no-logged/navbar-no-logged.component';
@@ -50,6 +49,7 @@ import { CreateComponent } from './components/forums/create/create.component';
 import { DisplayComponent } from './components/forums/display/display.component';
 import { DisplayUsersComponent } from './components/forums/display-users/display-users.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { TokenInterceptor } from './services/token.interceptor';
 
 
 
@@ -115,7 +115,12 @@ const routes: Route[] = [
   providers: [
     LoginService,
     RegisterService,
-    AppComponent
+    AppComponent,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -11,21 +11,12 @@ export class InboxService {
 
   instructorAcceptMembership(membershipId)
   {
-    let token = "Bearer " + localStorage.getItem("token");
-    const headers = new HttpHeaders({
-      'Authorization': token
-    });
-    //Cuando no se le envia un body se ingresa un null
-    return this.http.put<Membership>(`https://api.blackbriar.site/api/memberships/${membershipId}/approve`, null,{headers: headers});
+    return this.http.put<Membership>(`https://api.blackbriar.site/api/memberships/${membershipId}/approve`, null);
   }
 
   rejectInstructorMembership(membershipId)
   {
-    let token = "Bearer " + localStorage.getItem("token");
-    const headers = new HttpHeaders({
-      'Authorization': token
-    });
-    return this.http.delete(`https://api.blackbriar.site/api/memberships/${membershipId}/deny`, {headers: headers});
+    return this.http.delete(`https://api.blackbriar.site/api/memberships/${membershipId}/deny`);
   }
 }
 
