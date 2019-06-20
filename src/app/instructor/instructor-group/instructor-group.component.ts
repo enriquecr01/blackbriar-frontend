@@ -29,9 +29,7 @@ export class InstructorGroupComponent implements OnInit {
     const elems = document.querySelectorAll('.tabs');
     M.Tabs.init(elems);
 
-    this.forumInsertService.GroupId = +this.router.snapshot.paramMap.get("groupId");
     this.groupId = +this.router.snapshot.paramMap.get("groupId");
-
 
     // ----------------------------------------------------------------------------------------------
     // Get all group forums and save them on "forums"

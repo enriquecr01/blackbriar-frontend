@@ -6,28 +6,18 @@ import { User } from './models/user';
   providedIn: 'root'
 })
 export class LoginService {
-
-  constructor(private http: HttpClient) 
-  { 
+  constructor(private http: HttpClient) {
     console.log("marrano");
   }
 
-  login(email, password)
-  {
-    console.log(JSON.stringify({ email: email, password: password }));
-    let jsonCoded = JSON.stringify({ email: email, password: password });
-    return this.http.post("https://api.blackbriar.site/api/users/login", jsonCoded);
+  login(email, password) {
+    return this.http.post("https://api.blackbriar.site/api/users/login", {
+      email: email,
+      password: password
+    });
   }
 
-  getInfoUser(userId)
-  {
-    let token = "Bearer " + localStorage.getItem("token");
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': token
-    })
-
-    return this.http.get<User>(`https://api.blackbriar.site/api/users/${userId}`, {headers: headers});
-
+  getInfoUser(userId) {
+    return this.http.get<User>(`https://api.blackbriar.site/api/users/${userId}`);
   }
 }
