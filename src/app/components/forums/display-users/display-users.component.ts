@@ -1,19 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ForumMemberState, Setting } from 'src/app/models/forum';
+import { ForumService } from 'src/app/services/forum.service';
 
 @Component({
   selector: 'app-display-users',
   templateUrl: './display-users.component.html',
   styleUrls: ['./display-users.component.css']
 })
+
 export class DisplayUsersComponent implements OnInit {
 
   name: string;
   pic: string;
   role: string;
+ 
+  @Input() scoreboard: ForumMemberState[];
+  students : any = [];
+  id: number;
+  title: string;
+  description: string;
+  content: string;
+  published: boolean;
+  created: Date;
+  settings: Setting;
+  scoreboard2: [ForumMemberState];
 
-  constructor() { }
+  
+  constructor(private forum: ForumService) { }
 
   ngOnInit() {
+    this.getForumStudents();
 
     this.name = "Bruce Lee";
     this.pic = "Pic";
@@ -34,5 +50,26 @@ export class DisplayUsersComponent implements OnInit {
       });
     } 
   }
+
+
+  getForumStudents(){
+    this.forum.getStudents(1).subscribe(
+     students =>{
+         this.id = students.id;
+         this.title = students.title;
+         this.description = students.description;
+         this.content = students.content;
+         this.published = students.published;
+         this.created = students.created;
+         this.settings = students.settings;
+         this.scoreboard2 = students.scoreboard;
+         console.log(students.scoreboard);         
+     }
+
+   );
+   
+}
+
+  
 
 }

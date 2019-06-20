@@ -54,4 +54,10 @@ export class ForumService {
   getForumResponses(forumId: number) {
     return this.http.get<Answer[]>(`${environment.apiURL}forums/${forumId}/answers`);
   }
+
+  getStudents(forumId:number){
+    return this.http.get<ForumResponse>(`https://api.blackbriar.site/api/forums/${forumId}`);
+    
+  }
+
 }
