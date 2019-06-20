@@ -8,29 +8,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css'],
   providers: [LoginService]
 })
-export class AppComponent 
-{
+export class AppComponent {
 
   constructor(private router: Router) {
-    
+
   }
 
   logged: boolean = false;
-  
-  ngOnInit()
-  {
+
+  ngOnInit() {
     //this.goToLanding();
   }
 
-  goToMyGroups(){
+  goToMyGroups() {
     this.router.navigate(['student/student-mygroups']);
   }
 
-  goToExplore(){
+  goToExplore() {
     this.router.navigate(['student/student-explore']);
   }
 
-  goToLanding(){
+  goToLanding() {
     this.router.navigate(['lading/lading']);
   }
 
