@@ -1,39 +1,39 @@
 <button class="collapsible-comment">
   <div class="profile-pic">
-    <img class="responsive-img" src="cool_pic.jpg">
+    <img class="circle responsive-img" width="32px" src="{{ comment.studentDetails.photo }}">
   </div>
   <div>
-    <span class="span-name"> Pedro Navajas </span>
+    <span class="span-name"> {{ comment.studentDetails.firstName }} {{ comment.studentDetails.lastName }}</span>
     <span> 3 Days ago</span>
   </div>
   <div>
-    <span class="span-text"> Pedro Navajas and Hitler went for cawamas yesterday! Fierro Pariente Kun! </span>
+    <span class="span-text" [innerHTML]=comment.content> </span>
   </div>
   <a class="a-show-responses"> Show responses</a>
 </button>
 <div class="content">
-    <div class="response-body">
-      <div class="profile-pic">
-        <img class="responsive-img" src="cool_pic.jpg">
-      </div>
-      <div>
-        <span class="span-name"> Pedro Navajas </span>
-        <span> 3 Days ago</span>
-      </div>
-      <div>
-        <span class="span-text"> Pedro Navajas and Hitler went for cawamas yesterday! Fierro Pariente Kun! </span>
-      </div>
+  <div class="response-body">
+    <div class="profile-pic">
+      <img class="responsive-img" src="cool_pic.jpg">
     </div>
-    <div class="response-body">
-      <div class="profile-pic">
-        <img class="responsive-img" src="cool_pic.jpg">
-      </div>
-      <div>
-        <span class="span-name"> Pedro Navajas </span>
-        <span> 3 Days ago</span>
-      </div>
-      <div>
-        <span class="span-text"> Pedro Navajas and Hitler went for cawamas yesterday! Fierro Pariente Kun! </span>
-      </div>
+    <div>
+      <span class="span-name"> Pedro Navajas </span>
+      <span> 3 Days ago</span>
+    </div>
+    <div>
+      <span class="span-text"> Pedro Navajas and Hitler went for cawamas yesterday! Fierro Pariente Kun! </span>
     </div>
   </div>
+  <div class="response-body">
+    <div class="profile-pic">
+      <img class="responsive-img" src="cool_pic.jpg">
+    </div>
+    <div>
+      <span class="span-name"> Pedro Navajas </span>
+      <span> 3 Days ago</span>
+    </div>
+    <div>
+      <span class="span-text"> Pedro Navajas and Hitler went for cawamas yesterday! Fierro Pariente Kun! </span>
+    </div>
+  </div>
+</div>

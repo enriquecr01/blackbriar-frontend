@@ -1,25 +1,24 @@
-
 <!----------------------PARALAX------------------------------------->
-<div class="parallax-container" style="height: 300px;">
+<div class="parallax-container" style="height: 380px;">
   <div class="row">
-    <div class="col s12 m4 center-align">
-        <img class="circle responsive-img" width="200px" src="{{ group?.owner.photo }}">
-        <br>
-        <p class="borderText">
-          {{ group?.owner.firstName }}  {{ group?.owner.lastName }}
-        </p>
+    <div class="col s12 m4 center-align" style="padding-top: 120px">
+      <img class="circle responsive-img" width="160px" src="{{ group?.owner.photo }}">
+      <br>
+      <p class="borderText">
+        {{ group?.owner.firstName }} {{ group?.owner.lastName }}
+      </p>`
     </div>
-    <div class="col s12 m8">
-        <h3 class="borderText">{{ group?.title }}</h3>
-        <p class="borderText trucate" style="font-size: 20px" [innerHTML]="group?.description">
-        </p>
-        <label class="borderText hyperLinkDescription modal-trigger" data-target="descriptionModal">Read more</label>
+    <div class="col s12 m8"><br><br><br><br><br><br>
+      <h3 class="borderText">{{ group?.title }}</h3>
+      <p class="borderText trucate" style="font-size: 20px" [innerHTML]="group?.description">
+      </p>
+      <label class="borderText hyperLinkDescription modal-trigger" data-target="descriptionModal">Read more</label>
     </div>
   </div>
   <div class="parallax" materialize="parallax">
     <img src="{{group?.image}}">
   </div>
-</div>  	
+</div>
 
 <!-- Modal Structure -->
 <div id="descriptionModal" class="modal modal-fixed-footer backModal">

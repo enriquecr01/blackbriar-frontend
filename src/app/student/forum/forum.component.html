@@ -13,5 +13,7 @@
 </div>
 
 <div class="container">
-  <app-comment></app-comment>
+    <div class="row" *ngFor="let comment of responses">
+        <app-comment [comment]=comment></app-comment>
+    </div>
 </div>

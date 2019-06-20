@@ -5,6 +5,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Forum } from '../models/forum';
 import { ForumRequest, ForumResponse, ForumRole } from '../models/forum';
 import { map } from 'rxjs/operators';
+import { Answer } from '../models/answer';
 
 @Injectable({
   providedIn: 'root'
@@ -62,5 +63,15 @@ export class ForumService {
     })
 
     return this.http.get<Forum>(`${environment.apiURL}forums/${forumId}`, { headers: headers });
+  }
+
+  
+  getForumResponses(forumId: number) {
+    let token = "Bearer " + localStorage.getItem("token");
+    const headers = new HttpHeaders({
+      'Authorization': token
+    })
+
+    return this.http.get<Answer[]>(`${environment.apiURL}forums/${forumId}/answers`, { headers: headers });
   }
 }
