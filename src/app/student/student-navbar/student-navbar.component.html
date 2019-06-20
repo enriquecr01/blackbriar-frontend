@@ -63,7 +63,7 @@
           <mat-menu #menu="matMenu">
             <button class="menuOption" (click)="goToMyGroups()" mat-menu-item> My Groups</button>
             <button class="menuOption" (click)="goToExplore()" mat-menu-item> Explore Groups</button>
-            <button class="menuOption" mat-menu-item>Log out</button>
+            <button class="menuOption" (click)="logOut()" mat-menu-item>Log out</button>
           </mat-menu>
         </li>
       </ul>
@@ -75,14 +75,6 @@
     </div>
   </nav>
 </div>
-
-
-<!-- Dropdown Structure -->
-<ul id='dropdown1' class='dropdown-content'>
-  <li class="divider"><a>My Groups</a></li>
-  <li><a (click)="goToMyGroups()"><i class="material-icons">group</i>My Groups</a></li>
-  <li><a (click)="goToExplore()"><i class="material-icons">explore</i>Explore groups</a></li>
-</ul>
 
 <!-- Notification SideNav -->
 <ul id="slide-out" class="sidenav">
