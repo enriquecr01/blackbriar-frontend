@@ -4,6 +4,7 @@ import { Setting, ForumMemberState, ForumResponse } from 'src/app/models/forum';
 import { EndpointsService } from 'src/app/student/Services/endpoints.service';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-forum-ui',
   templateUrl: './forum-ui.component.html',
@@ -20,6 +21,9 @@ export class ForumUiComponent implements OnInit {
   settings: Setting;
   scoreboard: [ForumMemberState];
 
+  response = "";
+  responses = [];
+
   forumId:string;
   
   constructor(private forum: ForumService, private route :ActivatedRoute) { }
@@ -28,6 +32,7 @@ export class ForumUiComponent implements OnInit {
     this.forumId = this.route.snapshot.paramMap.get("forumId");
 
     this.getForumStudents(); 
+    this.getForumResponses();
 
     var elems = document.querySelectorAll('.collapsible');
     M.Collapsible.init(elems);
@@ -68,5 +73,20 @@ export class ForumUiComponent implements OnInit {
       );
       
   }
+
+  getForumResponses()
+  {
+    this.forum.getForumResponses(parseInt(this.forumId)).
+    subscribe(
+      data => {
+        this.responses = data;
+        console.log(data);
+      },
+      error =>{
+        console.log("Error", error);
+      }
+    );
+  }
+
 
 }
