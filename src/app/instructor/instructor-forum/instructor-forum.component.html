@@ -14,7 +14,7 @@
 
   <!-- Table rows -->
   <tbody>
-    <tr *ngFor="let forum of forums"  (click)="goToForumDashboard()">
+    <tr *ngFor="let forum of forums"  (click)="goToForumDashboard(forum.id)">
       <td>
         <a *ngIf="forum.expired == true"
           href="http://localhost:4200/instructor/instructor-dashboard">{{forum.title}}<br></a>
