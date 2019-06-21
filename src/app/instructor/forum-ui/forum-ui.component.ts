@@ -2,6 +2,7 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { ForumService } from 'src/app/services/forum.service';
 import { Setting, ForumMemberState, ForumResponse } from 'src/app/models/forum';
 import { EndpointsService } from 'src/app/student/Services/endpoints.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-forum-ui',
@@ -18,10 +19,13 @@ export class ForumUiComponent implements OnInit {
   created: Date;
   settings: Setting;
   scoreboard: [ForumMemberState];
+
+  forumId:string;
   
-  constructor(private forum: ForumService) { }
+  constructor(private forum: ForumService, private route :ActivatedRoute) { }
 
   ngOnInit() {
+    this.forumId = this.route.snapshot.paramMap.get("forumId");
 
     this.getForumStudents(); 
 
@@ -46,7 +50,7 @@ export class ForumUiComponent implements OnInit {
   }
   
   getForumStudents(){
-       this.forum.getStudents(1).subscribe(
+       this.forum.getStudents(parseInt(this.forumId)).subscribe(
         students =>{
             this.id = students.id;
             this.title = students.title;
