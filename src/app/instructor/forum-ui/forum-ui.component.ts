@@ -23,7 +23,8 @@ export class ForumUiComponent implements OnInit {
 
   ngOnInit() {
 
-    //this.getForumStudents(); 
+    this.getForumStudents(); 
+
     var elems = document.querySelectorAll('.collapsible');
     M.Collapsible.init(elems);
   
@@ -55,6 +56,8 @@ export class ForumUiComponent implements OnInit {
             this.created = students.created;
             this.settings = students.settings;
             this.scoreboard = students.scoreboard;
+
+            document.getElementById('content').innerHTML = students.content;
           
         }
 

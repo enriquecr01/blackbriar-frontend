@@ -2,10 +2,11 @@
     top: 7%;
     left: 0;
     height: 93%;
-    width: 300px;
+    width: 350px;
     float: left;
     background-color: white;
     position: fixed;
+    overflow: scroll;
 }
 
 .collapsible-body {
