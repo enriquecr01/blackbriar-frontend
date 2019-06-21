@@ -1,27 +1,34 @@
 
 <div class="show-users-wrapper">
 
-  <button class="collapsible-users">
-      <span class="collapsible-users-title">Active Users</span>
-  </button>
+ 
 
-  <div class="content-users">
+ 
 
     <mat-form-field>
       <mat-label>Role: </mat-label>
-      <mat-select>
+      <mat-select [(ngModel)]="roleFilter" name="roleFilter" id="roleFilter" (selectionChange)="onChange()">
             <mat-option value="All">All</mat-option>
             <mat-option value="Warrior">Warrior</mat-option>
             <mat-option value="Healer">Healer</mat-option>
-            <mat-option value="Warlock">Warlock</mat-option>         
+            <mat-option value="Warlock">Warlock</mat-option>   
+            <mat-option value="Humans">Humans</mat-option>         
         </mat-select>
     </mat-form-field>
 
-    <div class="row"  *ngFor="let item of scoreboard2">
-         <img class="responsive-img" src="item.photo">
-         <span class="users-span-name"> {{item.firstName}} </span>
+    <div class="row student-row"  *ngFor="let item of studentsFilter">
+    
+         <span class="users-span-name">
+             <img width="30" height="30" class="responsive-img circle" src="{{item.photo}}">
+              {{item.firstName}} {{item.lastName}}
+          </span>
+           
+         <img *ngIf="item.warrior" src={{warriorIcon}}  class="role-icon">
+         <img *ngIf="item.healer" src={{healerIcon}} class="role-icon">
+         <img *ngIf="item.warlock" src={{warlockIcon}}  class="role-icon">
+          
     </div>
   
-  </div> 
+ 
 
 </div>
