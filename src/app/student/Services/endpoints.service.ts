@@ -48,4 +48,5 @@ export class EndpointsService {
 
     return this.http.post<Forum>(addForum, forum);
   }
+  
 }

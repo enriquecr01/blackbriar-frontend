@@ -1,34 +1,36 @@
-<div style="background: linear-gradient(90deg, rgba(69,0,99,1) 13%,  rgba(67,40,116,1) 40%, rgba(67,40,116,1) 86%);">
+<div
+  style="background: linear-gradient(90deg, rgba(69,0,99,1) 13%,  rgba(67,40,116,1) 40%, rgba(67,40,116,1) 86%); opacity: 0.9">
   <app-navbar-instructor></app-navbar-instructor>
 </div>
 
-<div class="container">
+<div class="background" style="background: #E6ECF0; height: 100%">
+  <div class="container">
 
-  <div class="row" style="margin-top:30px">
-    <div class="input-field col s6">
-      <input type="text" id="search" name="search" [(ngModel)]="searchText" (input)="Search()">
-      <label for="search">Search by name</label>
-    </div>
-    <div class="input-field col s6">
-      <select default="1" [(ngModel)]="selectedValue" (change)="onChange()">
-        <option value="1">All Groups</option>
-        <option value="2">Public Groups</option>
-        <option value="3">Private Groups</option>
-      </select>
-      <label>Filter visibility of group</label>
-    </div>
-  </div>
-
-  <div class="animated fadeInLeft" id="gridGroups" style="margin-top: 20px;">
-    <div class="row">
-      <div *ngFor="let group of groups">
-        <app-group-card [group]=group></app-group-card>
+    <div class="row" style="padding-top:30px">
+      <div class=" input-field col s6">
+        <input type="text" id="search" name="search" [(ngModel)]="searchText" (input)="Search()">
+        <label for="search" style="color: #191919 ">Search by name</label>
+      </div>
+      <div class="input-field col s6">
+        <select default="1" [(ngModel)]="selectedValue" (change)="onChange()" style=" color: #191919">
+          <option value="1">All Groups</option>
+          <option value="2">Public Groups</option>
+          <option value="3">Private Groups</option>
+        </select>
+        <label>Filter visibility of group</label>
       </div>
     </div>
+
+    <div class="animated fadeInLeft" id="gridGroups" style="-top: 20px;">
+      <div class="row">
+        <div *ngFor="let group of groups">
+          <app-group-card [group]=group></app-group-card>
+        </div>
+      </div>
+    </div>
+
   </div>
-
 </div>
-
 
 <div class="fixed-action-btn">
   <a class="btn-floating btn-large modal-trigger pink accent-4 z-depth-4" data-target="modal1">

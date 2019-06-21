@@ -5,6 +5,7 @@
       {{ comment.studentDetails.firstName }} {{ comment.studentDetails.lastName }}
       <p class="span-text" style="margin: 0px 0px 0px 20px">
         <span [innerHTML]=comment.content></span>
+
       </p>
       <p *ngIf="hasFeedback" class="showResponses" style="margin: 0px 0px 0px 20px">Show Responses</p>
     </summary>
