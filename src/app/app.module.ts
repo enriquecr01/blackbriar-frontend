@@ -5,7 +5,7 @@ import { AppRoutingModule, routingStudentComponents } from './app-routing.module
 import { AppComponent } from './app.component';
 import { Route, RouterModule } from '@angular/router';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterializeModule } from 'angular2-materialize';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import 'materialize-css';
@@ -31,14 +31,15 @@ import { StudentGroupForumsComponent } from './student/student-group-forums/stud
 import { StudentForumComponent } from './student/student-forum/student-forum.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { MarkdownEditorComponent } from './markdown-editor/markdown-editor.component';
 
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 
 import { StudentsListComponent } from './instructor/students-list/students-list.component';
 import { BannerGroupComponent } from './banner-group/banner-group.component';
@@ -48,17 +49,18 @@ import { CreateComponent } from './components/forums/create/create.component';
 import { DisplayComponent } from './components/forums/display/display.component';
 import { DisplayUsersComponent } from './components/forums/display-users/display-users.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { TokenInterceptor } from './services/token.interceptor';
 
 
 
 const routes: Route[] = [
-  { path: '', component: LadingComponent},
+  { path: '', component: LadingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'instructor/dashboard', component: InstructorDashboardComponent },
   { path: 'instructor/group/:groupId', component: InstructorGroupComponent },
-  { path: 'instructor/group/:groupId/forum/:forumId', component: ForumUiComponent},
-  { path: 'student/group/:groupId/forum/:forumId', component: ForumComponent}
+  { path: 'instructor/group/:groupId/forum/:forumId', component: ForumUiComponent },
+  { path: 'student/group/:groupId/forum/:forumId', component: ForumComponent }
 ];
 
 @NgModule({
@@ -79,6 +81,7 @@ const routes: Route[] = [
     StudentForumComponent,
     NotificationsComponent,
     InstructorForumComponent,
+    MarkdownEditorComponent,
     LadingComponent,
     StudentsListComponent,
     BannerGroupComponent,
@@ -101,17 +104,23 @@ const routes: Route[] = [
     MaterializeModule,
     BrowserAnimationsModule,
     MatMenuModule,
+    EditorModule,
     MatStepperModule,
     MatFormFieldModule,
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule 
+    MatSelectModule
   ],
   providers: [
     LoginService,
     RegisterService,
-    AppComponent
+    AppComponent,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

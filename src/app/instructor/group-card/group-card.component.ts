@@ -25,7 +25,9 @@ export class GroupCardComponent implements OnInit {
     console.log(this.group);
   }
 
+
   goToGroupDashboard(groupId: number){
+    console.log(groupId);
     this.router.navigate(['instructor/group/',groupId]);  
   }
 

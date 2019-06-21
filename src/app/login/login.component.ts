@@ -64,6 +64,7 @@ export class LoginComponent  {
       subscribe(
         data  => 
         { 
+          localStorage.clear();
           console.log("POST Request is successful ", data);
           let token: any = data;
           const helper = new JwtHelperService();

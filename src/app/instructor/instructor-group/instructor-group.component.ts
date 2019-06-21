@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { EndpointsService } from '../../student/Services/endpoints.service';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Forum } from 'src/app/models/forum';
+import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';
+import { ForumInsertService } from 'src/app/services/forum-insert.service';
+import { ForumRequest } from 'src/app/models/forum';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-instructor-group',
@@ -10,6 +17,7 @@ import * as moment from 'moment';
 })
 export class InstructorGroupComponent implements OnInit {
   groupId: number;
+  forumInsertService: any;
   forums: any = [];
 
   constructor(
@@ -18,9 +26,15 @@ export class InstructorGroupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     const elems = document.querySelectorAll('.tabs');
     M.Tabs.init(elems);
 
+    this.groupId = +this.router.snapshot.paramMap.get("groupId");
+
+    // ----------------------------------------------------------------------------------------------
+    // Get all group forums and save them on "forums"
+    // ----------------------------------------------------------------------------------------------
     this.groupId = +this.router.snapshot.paramMap.get("groupId");
 
     // ----------------------------------------------

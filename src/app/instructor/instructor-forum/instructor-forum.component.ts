@@ -18,7 +18,6 @@ export class InstructorForumComponent implements OnInit {
   }
 
   goToForumDashboard(){
-    //this.router.navigate(['forum/forum' , {forumId}]);
-    this.router.navigate(['forum/forum']);  
+    this.router.navigate(['instructor/group/:groupId/forum/:forumId']);  
   }
 }

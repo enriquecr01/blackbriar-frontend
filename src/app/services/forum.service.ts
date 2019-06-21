@@ -5,6 +5,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Forum } from '../models/forum';
 import { ForumRequest, ForumResponse, ForumRole } from '../models/forum';
 import { map } from 'rxjs/operators';
+import { Answer } from '../models/answer';
 
 @Injectable({
   providedIn: 'root'
@@ -34,19 +35,10 @@ export class ForumService {
   createForum(forum: ForumRequest, groupId: number) {
     return this.http.post<ForumResponse>(
       `https://api.blackbriar.site/api/groups/${groupId}/forums`,
-      forum,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      }
+      forum
     ).pipe(
-      map(({ scoreboard }) => {
-        return scoreboard.filter(({healer, warrior, warlock}) => {
-          console.log(`${healer} ${warrior} ${warlock}`);
-          return healer || warrior || warlock;
-        })
-      })
+      map(({ scoreboard }) => scoreboard
+        .filter(({healer, warrior, warlock}) => healer || warrior || warlock))
     )
   }
 
@@ -55,12 +47,17 @@ export class ForumService {
   }
 
   getForum(forumId) {
-    let token = "Bearer " + localStorage.getItem("token");
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': token
-    })
-
-    return this.http.get<Forum>(`${environment.apiURL}forums/${forumId}`, { headers: headers });
+    return this.http.get<Forum>(`${environment.apiURL}forums/${forumId}`);
   }
+
+  
+  getForumResponses(forumId: number) {
+    return this.http.get<Answer[]>(`${environment.apiURL}forums/${forumId}/answers`);
+  }
+
+  getStudents(forumId:number){
+    return this.http.get<ForumResponse>(`https://api.blackbriar.site/api/forums/${forumId}`);
+    
+  }
+
 }

@@ -1,4 +1,4 @@
-<div class="navbar-fixed">
+<!-- <div class="navbar-fixed">
     <nav class="navbar-fixed white  shadow z-depth-3">
         <div class="nav-wrapper" style="color: black">
           <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -7,7 +7,7 @@
               <li>
                 <div class="row valign-wrapper">
                     <a [matMenuTriggerFor]="menu">
-                        <img class="circle responsive-image" src="{{photo}}" width="32px">
+                        <img class="circle responsive-image" src="{{photo}}" width="32px" style="margin-top: 18px;">
                     </a>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item>Item 1</button>
@@ -16,24 +16,24 @@
                 </div>
               </li>
               <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">notifications_none</i></a>
-            <li><a>Components</a></li>
-            <!-- Dropdown Trigger -->
+              <li><a (click)="logOut()"> Log Out </a></li>
+           
           </ul>
         </div>
       </nav>
-</div>
+</div> -->
 
 
-<ul id="slide-out" class="sidenav">
+<!-- <ul id="slide-out" class="sidenav">
   <li><a>Notifications</a></li>
   <div class="row" *ngFor="let message of notifications">
     <app-notifications [notification]=message></app-notifications>
   </div>
-</ul>
+</ul> -->
 <!-- <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
 
-  <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content' style="width: 200px">
+<!-- Dropdown Structure -->
+<!-- <ul id='dropdown1' class='dropdown-content' style="width: 200px">
       <li><a><i class="material-icons">account_circle</i>  {{firstName}} {{lastName}}</a></li>
       <li><a href="#!">two</a></li>
       <li class="divider" tabindex="-1"></li>
@@ -52,4 +52,46 @@
         </div>
       </li>
       <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large sidenav-close"><i class="material-icons">notifications_none</i> Notifications</a></li>
-    </ul>
+    </ul> -->
+
+
+
+
+<div class="navbar-fixed">
+  <nav id="nav-student">
+    <div class="nav-wrapper">
+
+      <a (click)="goToDashboard()" class="brand-logo center">Blackbriar</a>
+
+      <ul class="left ">
+        <li><a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
+        <li>
+
+          <a [matMenuTriggerFor]="menu">
+
+            <span><img class="circle responsive-image logo-img" src="{{photo}}"></span>
+            #<span><i style="padding-left: 30px" class="material-icons right">arrow_drop_down</i></span>
+
+          </a>
+          <mat-menu #menu="matMenu">
+            <button class="menuOption" (click)="goToDashboard()" mat-menu-item> My Groups</button>
+            <button class="menuOption" (click)="logOut()" mat-menu-item>Log out</button>
+          </mat-menu>
+        </li>
+      </ul>
+
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i
+              class="material-icons">notifications_none</i></a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<!-- Notification SideNav -->
+<ul id="slide-out" class="sidenav">
+  <li><a>Notifications</a></li>
+  <div class="row" *ngFor="let message of notifications">
+    <app-notifications [notification]=message></app-notifications>
+  </div>
+</ul>

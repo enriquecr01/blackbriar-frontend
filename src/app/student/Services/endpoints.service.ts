@@ -4,20 +4,10 @@ import { Group } from '../../../app/models/group';
 import { Forum } from '../../../app/models/forum';
 import { Observable } from 'rxjs';
 
-let token = "Bearer " + localStorage.getItem("token");
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': token
-  })
-}
-
 @Injectable({
   providedIn: 'root'
 })
 export class EndpointsService {
-
   siteUrl: string = 'https://api.blackbriar.site/api';
   userId = localStorage.getItem('userId');
 
@@ -25,40 +15,37 @@ export class EndpointsService {
 
   get_StudentRegisteredGroups() {
     var studentsRegisteredGroupsAPI = `${this.siteUrl}/users/${this.userId}/groups/subscribed`;
-    return this.http.get<Group[]>(studentsRegisteredGroupsAPI, httpOptions);
+    
+    return this.http.get<Group[]>(studentsRegisteredGroupsAPI);
   }
 
   get_AllGroups() {
-    //var userId = "KbgSRGca21WWzyJ901xNKGeQk2kOfW";
     var AllGroupsAPI = `${this.siteUrl}/groups`;
-    return this.http.get<Group[]>(AllGroupsAPI, httpOptions);
+
+    return this.http.get<Group[]>(AllGroupsAPI);
   }
 
   joinGroup(groupId: number) {
     var membershipGroupAPI = `${this.siteUrl}/memberships`;
-    let jsonCoded = { groupId: groupId };
-    return this.http.post(membershipGroupAPI, jsonCoded, httpOptions);
+
+    return this.http.post(membershipGroupAPI, { groupId: groupId });
   }
 
-  // GET Forums from a Group
   getGroupForums(groupId: number) {
     var groupForums = `${this.siteUrl}/groups/${groupId}/forums`;
-    return this.http.get(groupForums, httpOptions);
+
+    return this.http.get(groupForums);
   }
-  getOneGroup(groupId: number)
-  {
-    let token = "Bearer " + localStorage.getItem("token");
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': token
-    });
+  getOneGroup(groupId: number) {
     var groupForums = `${this.siteUrl}/groups/${groupId}`;
-    return this.http.get<Group>(groupForums, {headers: headers});
+
+    return this.http.get<Group>(groupForums);
   }
 
   // Add Forum
   addForum(groupId: number, forum: Forum): Observable<Forum> {
     var addForum = `${this.siteUrl}/groups/${groupId}/forums`;
-    return this.http.post<Forum>(addForum, forum, httpOptions);
+
+    return this.http.post<Forum>(addForum, forum);
   }
 }

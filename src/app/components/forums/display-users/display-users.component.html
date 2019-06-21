@@ -17,9 +17,9 @@
         </mat-select>
     </mat-form-field>
 
-    <div class="row">
-         <img class="responsive-img" src="cool_pic.jpg">
-         <span class="users-span-name"> {{name}} </span>
+    <div class="row"  *ngFor="let item of scoreboard2">
+         <img class="responsive-img" src="item.photo">
+         <span class="users-span-name"> {{item.firstName}} </span>
     </div>
   
   </div> 

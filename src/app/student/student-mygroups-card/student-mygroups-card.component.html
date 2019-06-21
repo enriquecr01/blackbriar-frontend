@@ -1,17 +1,19 @@
-
-    <div class="col s12 m4 l3" *ngIf="group.membership.active">
-        <div class="card z-depth-5">
-          
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" height="200" src="{{group.image}}" (click)="goToGroupForums(group.id)">
-            </div>
-              
-            <div class="card-content">
-              <!-- Dropdown Structure -->
-              <i class="material-icons right dropdown-trigger" data-target='dropdown1'>more_vert</i>
-              <span class="card-title activator grey-text text-darken-4 truncate">{{group.title}}
-              </span>
-            </div>
-              
-          </div>
+<div class="col s12 m4 l3" *ngIf="group.membership.active">
+  <div class="card z-depth-5">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" height="200" src="{{group.image}}" (click)="goToGroupForums(group.id)">
     </div>
+    <div class="card-content">
+      <!-- Dropdown Structure -->
+      <i class="material-icons vert" [matMenuTriggerFor]="menu">more_vert</i>
+      <span class="card-title activator grey-text text-darken-4 truncate">{{group.title}}
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Edit group</button>
+  <button mat-menu-item class="red lighten-1">Delete group</button>
+</mat-menu>
