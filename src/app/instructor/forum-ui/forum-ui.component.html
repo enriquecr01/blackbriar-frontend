@@ -27,7 +27,19 @@
              
                <!-- OPTION 1 -->
                 <div id="test-swipe-1" class="col s12 ">
-                      <app-display> </app-display>
+                      <div class="row" *ngFor="let comment of responses">
+        <div class="row" *ngIf="!comment.approve && responses.length == 1">
+            <div class="col s12">
+                <div class="card-panel teal">
+                    <span class="white-text">Esperate un rato cabron, el instructor esta evaluando tu respuesta
+                    </span>
+                </div>
+            </div>
+        </div>
+            <app-comment [comment]=comment></app-comment>
+
+    </div>
+
                 </div>
               
                  <!-- OPTION 2 -->
