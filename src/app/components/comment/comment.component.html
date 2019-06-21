@@ -1,24 +1,33 @@
-<article class="card">
-  <details class="card-content">
-    <summary class="card-title" [class.colapsiblleArrow]="hasFeedback"><img class="circle responsive-img" width="32px" src="{{ comment.studentDetails.photo }}"> 
-      {{ comment.studentDetails.firstName }} {{ comment.studentDetails.lastName }}    
-      <p>
-        <span class="span-text" [innerHTML]=comment.content> </span>
+<article class="card z-depth-5">
+  <details class="card-content" style="padding: 10px 0px 10px 20px">
+    <summary class="card-title"><img class="circle responsive-img" width="32px"
+        src="{{ comment.studentDetails.photo }}">
+      {{ comment.studentDetails.firstName }} {{ comment.studentDetails.lastName }}
+      <p class="span-text" style="margin: 0px 0px 0px 20px">
+        <span [innerHTML]=comment.content></span>
       </p>
+      <p *ngIf="hasFeedback" class="showResponses" style="margin: 0px 0px 0px 20px">Show Responses</p>
     </summary>
     <div *ngFor="let reply of comment.replies">
-      <details class="card-content" *ngIf="reply.studentDetails; else instructorReply">
-        <summary class="card-title"><img class="circle responsive-img" width="32px" src="{{ reply.studentDetails.photo }}"> 
-          {{ reply.studentDetails.firstName }} {{ reply.studentDetails.lastName }} 
+      <details class="card-content" style="padding: 10px 0px 10px 20px"
+        *ngIf="reply.studentDetails; else instructorReply">
+        <summary class="card-title"><img class="circle responsive-img" width="32px"
+            src="{{ reply.studentDetails.photo }}">
+          {{ reply.studentDetails.firstName }} {{ reply.studentDetails.lastName }}
           <div>
             <span class="span-text" [innerHTML]=reply.content> </span>
           </div>
         </summary>
       </details>
       <ng-template #instructorReply>
-        <details class="card-content">
-          <summary class="card-title"><img class="circle responsive-img" width="32px" src="{{ reply.instructorDetails.photo }}"> 
-            {{ reply.instructorDetails.firstName }} {{ reply.instructorDetails.lastName }} <i class="material-icons" style="color: #ffd600">star</i>
+        <details class="card-content" style="padding: 10px 0px 10px 20px">
+          <summary class="card-title"><img class="circle responsive-img" width="32px"
+              src="{{ reply.instructorDetails.photo }}">
+            {{ reply.instructorDetails.firstName }} {{ reply.instructorDetails.lastName }}
+            <div class="chip">
+              <img src="assets/Images/Icons/graduation.svg" alt="Instructor">
+              Instructor
+            </div>
             <div>
               <span class="span-text" [innerHTML]=reply.content> </span>
             </div>
