@@ -93,6 +93,7 @@ section {
 .body {
     background-color: #935d8c;
     color: rgba(255, 255, 255, 0.65);
+    min-height: 100%;
 }
 
 a {
@@ -330,6 +331,7 @@ body.is-preload #header.alt .logo {
     background-color: #ffffff;
     color: #636363;
     border-radius: 10px;
+    height: 100%;
 }
 
 #main {
