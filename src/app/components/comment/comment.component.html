@@ -35,10 +35,14 @@
           </summary>
         </details>
       </ng-template>
-      </div>
-      <div class="container">
-        <app-markdown-editor> </app-markdown-editor>
-      </div>    
+    </div>
+
+    <editor apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53"
+      [init]="{plugins: 'link image', branding: false, min_height: 300}" name="response"
+      [(ngModel)]="feedback" id="{{comment.studentDetails.userId}}"></editor>
+    <a class="waves-effect waves-light btn" (click)="registerComment(comment.id)"><i class="material-icons left">send</i> Send
+      comment</a>
+
   </details>
 </article>
 
