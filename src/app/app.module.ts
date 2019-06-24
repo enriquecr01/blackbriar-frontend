@@ -51,6 +51,7 @@ import { DisplayUsersComponent } from './components/forums/display-users/display
 import { CommentComponent } from './components/comment/comment.component';
 import { TokenInterceptor } from './services/token.interceptor';
 import { ForumResponseComponent } from './components/forum-response/forum-response.component';
+import { InstructorForumDisplayComponent } from './components/forums/instructor-forum-display/instructor-forum-display.component';
 
 
 
@@ -92,7 +93,8 @@ const routes: Route[] = [
     DisplayComponent,
     DisplayUsersComponent,
     CommentComponent,
-    ForumResponseComponent
+    ForumResponseComponent,
+    InstructorForumDisplayComponent
   ],
   imports: [
     BrowserModule,
