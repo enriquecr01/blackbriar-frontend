@@ -16,28 +16,32 @@
     <div class="row" *ngIf="responses.length == 0">
         <div class="col s12">
             <div class="card-panel teal">
-                <span class="white-text">No ha respondido nadien o eres el primero, animate a comprobar si eres el
-                    primero ;)
-                </span>
+                <span class="white-text">There are no answers, maybe you are the first one, animate to answer</span>
             </div>
         </div>
     </div>
     <div class="row" *ngFor="let comment of responses">
-        <div class="row" *ngIf="!comment.approve && responses.length == 1">
-            <div class="col s12">
-                <div class="card-panel teal">
-                    <span class="white-text">Esperate un rato cabron, el instructor esta evaluando tu respuesta
-                    </span>
+        <div *ngIf="!comment.approved && responses.length == 1">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card-panel teal">
+                        <span class="white-text">Wait a little bit, the instructor is evaluating your answer
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
             <app-comment [comment]=comment></app-comment>
-
+        </div>
+        <div *ngIf="comment.approved">
+            <app-comment [comment]=comment></app-comment>
+        </div>
     </div>
 
+    <div *ngIf="!commented">
+        <editor apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53" 
+            [init]="{plugins: 'link image', branding: false, min_height: 300}" id="response" name="response"
+            [(ngModel)]="response"></editor>
+            <a class="waves-effect waves-light btn" (click)="registerComment()"><i class="material-icons left">send</i> Send comment</a>
+    </div>
 
-    <editor apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53"
-        [init]="{plugins: 'link image', branding: false, min_height: 300}" id="response" name="response"
-        [(ngModel)]="response"></editor>
-    <a class="btn" (click)="registerComment()">Enviar</a>
 </div>
