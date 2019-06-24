@@ -67,6 +67,7 @@ section {
 }
 
 .body {
+    min-height: 100%;
     background-color: #935d8c;
     background-image: url("../../../assets/Images/Backgrounds/overlay.png"), -moz-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
     background-image: url("../../../assets/Images/Backgrounds/overlay.png"), -webkit-linear-gradient(45deg, #e37682 15%, #5f4d93 85%);
@@ -200,6 +201,7 @@ h6 {
 
 .box {
     border-color: rgba(255, 255, 255, 0.35);
+    padding-bottom: 1050px;
 }
 
 
@@ -328,6 +330,7 @@ body.is-preload #header.alt .logo {
 /* Main */
 
 #main {
+    height: 100%;
     background-color: #ffffff;
     color: #636363;
     border-radius: 10px;
