@@ -29,7 +29,6 @@ export class InstructorForumDisplayComponent implements OnInit {
       data => {
         this.responses = data;
         console.log(data);
-        console.log(data);
       },
       error =>{
         console.log("Error", error);

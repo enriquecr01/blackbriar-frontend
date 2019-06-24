@@ -1,58 +1,6 @@
 <app-navbar-instructor></app-navbar-instructor>
 
 <div class="body">
-<<<<<<< HEAD
-  <!-- Wrapper -->
-  <div id="wrapper">
-
-    <!-- Header -->
-    <header id="header" class="alt">
-      <span class="logo"><img src="images/logo.svg" alt="" /></span>
-      <h1>{{title}}</h1>
-      <p>{{description}}<br />
-        <span id="content"> </span>
-      </p>
-    </header>
-
-    <!-- Main -->
-    <div id="main">
-
-      <div class="row tab-control-row">
-        <!-- SELECT NAV -->
-        <ul id="tabs-swipe-demo" class="tabs">
-          <li class="tab col s3"><a href="#test-swipe-1" class="active">Forum</a></li>
-          <li class="tab col s3"><a href="#test-swipe-2">Students</a></li>
-          <li class="tab col s3"><a href="#test-swipe-3">Responses to Validate</a></li>
-        </ul>
-      </div>
-
-      <!-- OPTION 1 -->
-      <div id="test-swipe-1" class="col s12 ">
-        <div class="row" *ngFor="let comment of responses">
-          <div class="row" *ngIf="!comment.approve && responses.length == 1">
-            <div class="col s12">
-              <div class="card-panel teal">
-                <span class="white-text">Esperate un rato cabron, el instructor esta evaluando tu respuesta
-                </span>
-              </div>
-            </div>
-          </div>
-          <app-comment [comment]=comment></app-comment>
-
-        </div>
-
-      </div>
-
-      <!-- OPTION 2 -->
-      <div id="test-swipe-2" class="col s12 ">
-        <app-display-users> </app-display-users>
-
-      </div>
-
-      <!-- OPTION 3 -->
-      <div id="test-swipe-3" class="col s12 ">
-        <app-forum-response> </app-forum-response>
-=======
 	<!-- Wrapper -->
 			<div id="wrapper">
 
@@ -96,12 +44,8 @@
             
             </div>
     
->>>>>>> 227f747505e23077c28dca87243251eb1f9bf7c0
       </div>
 
 
     </div>
 
-  </div>
-
-</div>
