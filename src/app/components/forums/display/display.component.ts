@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ForumResponseComponent } from '../../forum-response/forum-response.component';
 
 @Component({
   selector: 'app-display',
