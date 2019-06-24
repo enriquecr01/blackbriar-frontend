@@ -1,10 +1,6 @@
 <div class="show-users-wrapper">
 
-
-
-
-
-  <mat-form-field>
+  <mat-form-field class="filter-form-field">
     <mat-label>Role: </mat-label>
     <mat-select [(ngModel)]="roleFilter" name="roleFilter" id="roleFilter" (selectionChange)="onChange()">
       <mat-option value="All">All</mat-option>
@@ -14,20 +10,28 @@
       <mat-option value="Humans">Humans</mat-option>
     </mat-select>
   </mat-form-field>
-
-  <div class="row student-row" *ngFor="let item of studentsFilter">
-
-    <span class="users-span-name">
-      <img width="30" height="30" class="responsive-img circle" src="{{item.photo}}">
-      {{item.firstName}} {{item.lastName}}
-    </span>
-
-    <img *ngIf="item.warrior" src={{warriorIcon}} class="role-icon">
-    <img *ngIf="item.healer" src={{healerIcon}} class="role-icon">
-    <img *ngIf="item.warlock" src={{warlockIcon}} class="role-icon">
-
-  </div>
-
-
+  
+  <table class="responsive-table">
+    <thead>
+        <tr>
+          <th> Name </th>
+          <th> Role 1 </th>
+          <th> Role 2 </th>
+          <th> Role 3 </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="" *ngFor="let item of studentsFilter">
+            <td> 
+              <span class="users-span-name"> 
+                <img width="30" height="30" class="responsive-img circle" src="{{item.photo}}">{{item.firstName}} {{item.lastName}}
+              </span>
+            </td>
+            <td> <img *ngIf="item.warrior" src={{warriorIcon}} class="role-icon"></td>
+            <td> <img *ngIf="item.healer" src={{healerIcon}} class="role-icon"></td>
+            <td> <img *ngIf="item.warlock" src={{warlockIcon}} class="role-icon"></td>
+        </tr>
+    </tbody>
+  </table>
 
 </div>

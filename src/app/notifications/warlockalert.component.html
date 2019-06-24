@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col s4">
+    <img style="margin-left: -120px;" src="assets/Images/Role-Icons/warlockgif2.gif" alt="Warlock GIF" width="400px">
+  </div>
+  <div class="col s8">
+    <h1 mat-dialog-title style="margin-bottom: 0;">You don't want to be a Warlock...</h1>
+
+    <div mat-dialog-content>
+      <p>You were one of the first responders in <strong>{{data.groupName}}</strong> who got their comment approved by the group instructor. You will receive extra points for your amazing deed. Keep up the good work.</p>
+    </div>
+
+    <div mat-dialog-actions>
+      <button class="btn red" (click)="onNoClick()">Dismiss</button>
+      <button style="margin-left: 10px;" class="btn">Comment</button>
+    </div>
+  </div>
+</div>
+

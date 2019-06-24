@@ -19,6 +19,8 @@ import { InstructorDashboardComponent } from './instructor/instructor-dashboard/
 import { NavbarInstructorComponent } from './instructor/navbar-instructor/navbar-instructor.component';
 import { InstructorForumComponent } from './instructor/instructor-forum/instructor-forum.component';
 import { LadingComponent } from './landing/lading/lading.component';
+import { WarriorAlertComponent } from './notifications/warrioralert.component';
+import { WarlockAlertComponent } from './notifications/warlockalert.component'
 
 import { LoginService } from './login.service';
 import { RegisterService } from './register.service';
@@ -40,6 +42,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { StudentsListComponent } from './instructor/students-list/students-list.component';
 import { BannerGroupComponent } from './banner-group/banner-group.component';
@@ -51,8 +54,7 @@ import { DisplayUsersComponent } from './components/forums/display-users/display
 import { CommentComponent } from './components/comment/comment.component';
 import { TokenInterceptor } from './services/token.interceptor';
 import { ForumResponseComponent } from './components/forum-response/forum-response.component';
-
-
+import { InstructorForumDisplayComponent } from './components/forums/instructor-forum-display/instructor-forum-display.component';
 
 const routes: Route[] = [
   { path: '', component: LadingComponent },
@@ -65,6 +67,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
+  entryComponents: [WarriorAlertComponent, WarlockAlertComponent],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -79,6 +82,8 @@ const routes: Route[] = [
     FilterPipe,
     InstructorGroupComponent,
     StudentGroupForumsComponent,
+    WarriorAlertComponent,
+    WarlockAlertComponent,
     StudentForumComponent,
     NotificationsComponent,
     InstructorForumComponent,
@@ -92,7 +97,8 @@ const routes: Route[] = [
     DisplayComponent,
     DisplayUsersComponent,
     CommentComponent,
-    ForumResponseComponent
+    ForumResponseComponent,
+    InstructorForumDisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -109,6 +115,7 @@ const routes: Route[] = [
     EditorModule,
     MatStepperModule,
     MatFormFieldModule,
+    MatDialogModule,
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
