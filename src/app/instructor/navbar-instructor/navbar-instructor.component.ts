@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { InboxService } from './../../inbox.service';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
+import { MatDialog } from '@angular/material/dialog';
+import { WarriorAlertComponent } from 'src/app/notifications/warrioralert.component';
+import { WarlockAlertComponent } from 'src/app/notifications/warlockalert.component';
 
 
 @Component({
@@ -20,8 +23,11 @@ export class NavbarInstructorComponent implements OnInit {
 
   notifications = [];
 
-  constructor(private router: Router, private inboxService: InboxService) {
-
+  constructor(
+    private router: Router,
+    private inboxService: InboxService,
+    public dialog: MatDialog
+  ) {
     this.initializeWebSocketConnection();
   }
 
@@ -90,5 +96,27 @@ export class NavbarInstructorComponent implements OnInit {
 
       }
     }
+  }
+
+  public openDialog(): void {
+    const ref = this.dialog.open(WarriorAlertComponent, {
+      width: '600px',
+      data: { groupName: 'Test Group' }
+    });
+
+    ref.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  public openDialog2(): void {
+    const ref = this.dialog.open(WarlockAlertComponent, {
+      width: '600px',
+      data: { groupName: 'Test Group' }
+    });
+
+    ref.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }
