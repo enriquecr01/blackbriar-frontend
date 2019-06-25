@@ -27,8 +27,7 @@ export class CommentComponent implements OnInit, AfterViewInit {
   }
 
   registerComment(answerId)
-  {
-    
+  { 
     this.commentService.responseAnswer(answerId, this.feedback).
     subscribe(
       data => {
@@ -39,5 +38,4 @@ export class CommentComponent implements OnInit, AfterViewInit {
       }
     );
   }
-
 }
