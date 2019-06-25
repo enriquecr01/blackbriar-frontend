@@ -38,7 +38,7 @@ export class ForumService {
       forum
     ).pipe(
       map(({ scoreboard }) => scoreboard
-        .filter(({healer, warrior, warlock}) => healer || warrior || warlock))
+        .filter(({ healer, warrior, warlock }) => healer || warrior || warlock))
     )
   }
 
@@ -50,14 +50,22 @@ export class ForumService {
     return this.http.get<Forum>(`${environment.apiURL}forums/${forumId}`);
   }
 
-  
+
+  // Forum Responses
   getForumResponses(forumId: number) {
     return this.http.get<Answer[]>(`${environment.apiURL}forums/${forumId}/answers`);
   }
 
-  getStudents(forumId:number){
+  // Decline/Approve forum response
+  toggleForumResponse(answer: number, action: boolean) {
+    const url = `${environment.apiURL}answers/${answer}/review?approve=${action}`
+    return this.http.put(url, answer);
+  }
+
+
+  getStudents(forumId: number) {
     return this.http.get<ForumResponse>(`https://api.blackbriar.site/api/forums/${forumId}`);
-    
+
   }
 
 }

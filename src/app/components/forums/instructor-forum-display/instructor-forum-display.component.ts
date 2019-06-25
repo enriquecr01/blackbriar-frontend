@@ -12,28 +12,27 @@ export class InstructorForumDisplayComponent implements OnInit {
   response = "";
   responses = [];
 
-  forumId:string;
-  
-  constructor(private forum: ForumService, private route :ActivatedRoute) { }
+  forumId: string;
+
+  constructor(private forum: ForumService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.forumId = this.route.snapshot.paramMap.get("forumId");
     this.getForumResponses();
-   
+
   }
 
-  getForumResponses()
-  {
+  getForumResponses() {
     this.forum.getForumResponses(parseInt(this.forumId)).
-    subscribe(
-      data => {
-        this.responses = data;
-        console.log(data);
-      },
-      error =>{
-        console.log("Error", error);
-      }
-    );
+      subscribe(
+        data => {
+          this.responses = data;
+          //console.log(data);
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
   }
 
 }

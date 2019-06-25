@@ -1,8 +1,7 @@
 import { User } from './user';
 import { Feedback } from './feedback';
 
-export interface Answer 
-{
+export interface Answer {
     id: number;
     content: string;
     approved: boolean;
@@ -10,4 +9,5 @@ export interface Answer
     created: Date;
     update: Date;
     replies: Feedback[];
+    createdSince: string;
 }
