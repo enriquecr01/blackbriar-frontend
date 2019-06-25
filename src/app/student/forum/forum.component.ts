@@ -22,12 +22,13 @@ export class ForumComponent implements OnInit {
 
   ngOnInit() {
     this.forumId = this.activatedRoute.snapshot.params.forumId;
-
+    
     this.forumService.getForum(this.forumId).
     subscribe(
       data => {
         this.forumTitle = data.title;
         this.forumDescription = data.content;
+        document.getElementById('contentForum').innerHTML = this.forumDescription;
         this.getForumResponses();
       },
       error =>{
