@@ -5,8 +5,7 @@ import { InboxService } from './../../inbox.service';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { MatDialog } from '@angular/material/dialog';
-import { WarriorAlertComponent } from 'src/app/notifications/warrioralert.component';
-import { WarlockAlertComponent } from 'src/app/notifications/warlockalert.component';
+import { HealerInfoComponent } from 'src/app/notifications/healerinfo.component';
 
 
 @Component({
@@ -99,20 +98,9 @@ export class NavbarInstructorComponent implements OnInit {
   }
 
   public openDialog(): void {
-    const ref = this.dialog.open(WarriorAlertComponent, {
+    const ref = this.dialog.open(HealerInfoComponent, {
       width: '600px',
-      data: { groupName: 'Test Group' }
-    });
-
-    ref.afterClosed().subscribe(result => {
-      console.log(result);
-    });
-  }
-
-  public openDialog2(): void {
-    const ref = this.dialog.open(WarlockAlertComponent, {
-      width: '600px',
-      data: { groupName: 'Test Group' }
+      data: { forumName: 'Test Forum' }
     });
 
     ref.afterClosed().subscribe(result => {

@@ -1,12 +1,14 @@
 <div class="navbar-fixed">
   <nav id="nav-student">
     <div class="nav-wrapper">
-        <button class="btn" (click)="openDialog()">Warrior</button>
-        <button class="btn" (click)="openDialog2()">Warlock</button>
       <a (click)="goToDashboard()" class="brand-logo center">Blackbriar</a>
 
       <ul class="left ">
-        <li><a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
+        <li>
+          <a data-target="mobile-demo" class="sidenav-trigger">
+            <i class="material-icons">menu</i>
+          </a>
+        </li>
         <li>
           <a [matMenuTriggerFor]="menu">
             <span><img class="circle responsive-image logo-img" src="{{photo}}"></span>

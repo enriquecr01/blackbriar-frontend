@@ -3,15 +3,15 @@
     <img style="margin-left: -120px;" src="assets/Images/Role-Icons/warlockgif2.gif" alt="Warlock GIF" width="400px">
   </div>
   <div class="col s8">
-    <h1 mat-dialog-title style="margin-bottom: 0;">You don't want to be a Warlock...</h1>
+    <h1 mat-dialog-title style="margin-bottom: 0;">You haven't participated yet...</h1>
 
     <div mat-dialog-content>
-      <p>You were one of the first responders in <strong>{{data.groupName}}</strong> who got their comment approved by the group instructor. You will receive extra points for your amazing deed. Keep up the good work.</p>
+      <p>The forum <strong>{{data.forumName}}</strong> is about to end and you haven't responded. You don't want to be the warlock, do you?</p>
     </div>
 
     <div mat-dialog-actions>
-      <button class="btn red" (click)="onNoClick()">Later...</button>
-      <button style="margin-left: 10px;" class="btn">Go for it</button>
+      <button class="btn grey lighten-3 black-text" (click)="onNoClick()">Not now</button>
+      <button style="margin-left: 10px;" class="btn deep-purple accent-4">Let's do it!</button>
     </div>
   </div>
 </div>

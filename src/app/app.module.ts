@@ -55,6 +55,8 @@ import { CommentComponent } from './components/comment/comment.component';
 import { TokenInterceptor } from './services/token.interceptor';
 import { ForumResponseComponent } from './components/forum-response/forum-response.component';
 import { InstructorForumDisplayComponent } from './components/forums/instructor-forum-display/instructor-forum-display.component';
+import { HealerAlertComponent } from './notifications/healeralert.component';
+import { HealerInfoComponent } from './notifications/healerinfo.component';
 
 const routes: Route[] = [
   { path: '', component: LadingComponent },
@@ -67,7 +69,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  entryComponents: [WarriorAlertComponent, WarlockAlertComponent],
+  entryComponents: [WarriorAlertComponent, WarlockAlertComponent, HealerAlertComponent, HealerInfoComponent],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -84,6 +86,8 @@ const routes: Route[] = [
     StudentGroupForumsComponent,
     WarriorAlertComponent,
     WarlockAlertComponent,
+    HealerAlertComponent,
+    HealerInfoComponent,
     StudentForumComponent,
     NotificationsComponent,
     InstructorForumComponent,
