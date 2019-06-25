@@ -14,8 +14,8 @@ export class ForumUiComponent implements OnInit {
   students : any = [];
   id: number;
   title: string;
-  description: string;
-  content: string;
+  descriptionForum: string;
+  contentForum: string;
   published: boolean;
   created: Date;
   settings: Setting;
@@ -32,26 +32,14 @@ export class ForumUiComponent implements OnInit {
     this.forumId = this.route.snapshot.paramMap.get("forumId");
 
     this.getForumStudents(); 
-    this.getForumResponses();
+    //this.getForumResponses();
+
+
+    $('.tabs').tabs();
 
     var elems = document.querySelectorAll('.collapsible');
     M.Collapsible.init(elems);
-  
-    var coll = document.getElementsByClassName("collapsible-comment ");
-    var i;
-    
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight){
-          content.style.maxHeight = null;
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
-      });
-    }
-    
+        
   }
   
   getForumStudents(){
@@ -59,34 +47,19 @@ export class ForumUiComponent implements OnInit {
         students =>{
             this.id = students.id;
             this.title = students.title;
-            this.description = students.description;
-            this.content = students.content;
+            this.descriptionForum = students.description;
+            this.contentForum = students.content;
             this.published = students.published;
             this.created = students.created;
             this.settings = students.settings;
             this.scoreboard = students.scoreboard;
 
-            document.getElementById('content').innerHTML = students.content;
+            document.getElementById('contentForum').innerHTML = students.content;
           
         }
 
       );
       
   }
-
-  getForumResponses()
-  {
-    this.forum.getForumResponses(parseInt(this.forumId)).
-    subscribe(
-      data => {
-        this.responses = data;
-        console.log(data);
-      },
-      error =>{
-        console.log("Error", error);
-      }
-    );
-  }
-
 
 }

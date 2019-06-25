@@ -8,8 +8,8 @@
             <header id="header" class="alt">
               <span class="logo"><img src="images/logo.svg" alt="" /></span>
               <h1>{{title}}</h1>
-              <p>{{description}}<br/>
-              <span id="content"> </span>
+              <p>{{descriptionForum}}<br/>
+              <span id="contentForum"> </span>
               </p>
             </header>
 
@@ -27,19 +27,7 @@
              
                <!-- OPTION 1 -->
                 <div id="test-swipe-1" class="col s12 ">
-                      <div class="row" *ngFor="let comment of responses">
-        <div class="row" *ngIf="!comment.approve && responses.length == 1">
-            <div class="col s12">
-                <div class="card-panel teal">
-                    <span class="white-text">Esperate un rato cabron, el instructor esta evaluando tu respuesta
-                    </span>
-                </div>
-            </div>
-        </div>
-            <app-comment [comment]=comment></app-comment>
-
-    </div>
-
+                    <app-instructor-forum-display></app-instructor-forum-display>
                 </div>
               
                  <!-- OPTION 2 -->
@@ -58,4 +46,6 @@
     
       </div>
 
-</div>
+
+    </div>
+

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { Answer } from 'src/app/models/answer';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-comment',
@@ -12,8 +13,10 @@ export class CommentComponent implements OnInit, AfterViewInit {
 
   @Input() comment: Answer;
   hasFeedback: boolean = false;
+  feedback: string = "";
 
-  constructor() { }
+
+  constructor(private commentService: CommentService) { }
 
   ngOnInit() 
   {
@@ -23,21 +26,18 @@ export class CommentComponent implements OnInit, AfterViewInit {
     }
   }
 
+  registerComment(answerId)
+  {
     
-  toggleAccordian(event, index) {
-    var element = event.target;
-    element.classList.toggle("active");
-    if(this.comment[index].isActive) {
-      this.comment[index].isActive = false;
-    } else {
-      this.comment[index].isActive = true;
-    }      
-    var panel = element.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
+    this.commentService.responseAnswer(answerId, this.feedback).
+    subscribe(
+      data => {
+        console.log(data);
+      },
+      error =>{
+        console.log("Error", error);
+      }
+    );
   }
 
 }
