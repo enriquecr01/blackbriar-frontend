@@ -8,7 +8,6 @@ export interface Answer {
     studentDetails: User;
     created: Date;
     update: Date;
-    message: string;
     replies: Feedback[];
     createdSince: string;
 }

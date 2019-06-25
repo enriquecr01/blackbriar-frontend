@@ -1,18 +1,20 @@
 <app-student-navbar></app-student-navbar>
 
-<div class="row">
-    <div class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">{{ forumTitle }}</span>
-                <hr>
-                <p [innerHTML]="forumDescription"></p>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="body">
+	<!-- Wrapper -->
+			<div id="wrapper">
+          <!-- Header -->
+            <header id="header" class="alt">
+              <span class="logo"><img src="images/logo.svg" alt="" /></span>
+              <h1>{{forumTitle}}</h1>
+              <!--<p>{{forumDescription}}<br/></p>-->
+              <span id="contentForum"> </span>
+              
+            </header>
 
-<div class="container">
+
+<!-- Main -->
+<div id="main">              
     <div class="row" *ngIf="responses.length == 0">
         <div class="col s12">
             <div class="card-panel teal">
@@ -20,6 +22,7 @@
             </div>
         </div>
     </div>
+
     <div class="row" *ngFor="let comment of responses">
         <div *ngIf="!comment.approved && responses.length == 1">
             <div class="row">
@@ -37,11 +40,32 @@
         </div>
     </div>
 
-    <div *ngIf="!commented">
-        <editor apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53" 
-            [init]="{plugins: 'link image', branding: false, min_height: 300}" id="response" name="response"
-            [(ngModel)]="response"></editor>
-            <a class="waves-effect waves-light btn" (click)="registerComment()"><i class="material-icons left">send</i> Send comment</a>
+    <div class="row" *ngIf="!commented">
+        <div class="col s12">
+            <editor apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53"
+                [init]="{plugins: 'link image', branding: false, min_height: 300}" id="response" name="response"
+                [(ngModel)]="response"></editor>
+        </div>
+        <div class="col s12 m6">
+            <div class="file-field input-field">
+                <div class="btn">
+                    <i class="material-icons left">file_upload</i>
+                    <span>Upload file</span>
+                    <input #imageInput type="file" multiple
+                        (change)="processFile(imageInput, imageInput.files)">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <a class="waves-effect btn" (click)="registerComment()" style="width: 100%"><i
+                    class="material-icons left">send</i>
+                Send comment</a>
+        </div>
     </div>
+</div>
 
+</div>
 </div>
