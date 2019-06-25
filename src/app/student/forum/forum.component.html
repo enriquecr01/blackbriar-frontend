@@ -37,11 +37,29 @@
         </div>
     </div>
 
-    <div *ngIf="!commented">
-        <editor apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53" 
-            [init]="{plugins: 'link image', branding: false, min_height: 300}" id="response" name="response"
-            [(ngModel)]="response"></editor>
-            <a class="waves-effect waves-light btn" (click)="registerComment()"><i class="material-icons left">send</i> Send comment</a>
+    <div class="row" *ngIf="!commented">
+        <div class="col s12">
+            <editor apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53"
+                [init]="{plugins: 'link image', branding: false, min_height: 300}" id="response" name="response"
+                [(ngModel)]="response"></editor>
+        </div>
+        <div class="col s12 m6">
+            <div class="file-field input-field">
+                <div class="btn">
+                    <i class="material-icons left">file_upload</i>
+                    <span>Upload file</span>
+                    <input #imageInput type="file" multiple
+                        (change)="processFile(imageInput, imageInput.files)">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <a class="waves-effect btn" (click)="registerComment()" style="width: 100%"><i
+                    class="material-icons left">send</i>
+                Send comment</a>
+        </div>
     </div>
-
 </div>
