@@ -3,6 +3,7 @@ import { ForumService } from 'src/app/services/forum.service';
 import { Setting, ForumMemberState, ForumResponse } from 'src/app/models/forum';
 import { EndpointsService } from 'src/app/student/Services/endpoints.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommentService } from 'src/app/services/comment.service';
 
 
 @Component({
@@ -26,7 +27,11 @@ export class ForumUiComponent implements OnInit {
 
   forumId:string;
   
-  constructor(private forum: ForumService, private route :ActivatedRoute) { }
+  constructor(
+    private forum: ForumService, 
+    private route :ActivatedRoute, 
+    private comments: CommentService
+  ) { }
 
   ngOnInit() {
     this.forumId = this.route.snapshot.paramMap.get("forumId");
@@ -60,6 +65,11 @@ export class ForumUiComponent implements OnInit {
 
       );
       
+  }
+
+
+  createFeedback(answerId: number, comment: string){
+    this.comments.responseAnswer(answerId,comment);
   }
 
 }
