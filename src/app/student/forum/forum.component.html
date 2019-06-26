@@ -25,7 +25,7 @@
             </div>
 
             <div class="row" *ngFor="let comment of responses">
-                <div *ngIf="!comment.approved && responses.length == 1">
+                <div *ngIf="comment.approved == null && responses.length == 1">
                     <div class="row">
                         <div class="col s12">
                             <div class="card-panel teal">
@@ -36,6 +36,17 @@
                     </div>
                     <app-comment [comment]=comment></app-comment>
                 </div>
+                <div *ngIf="!comment.approved && responses.length == 1">
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="card-panel teal">
+                                    <span class="white-text">Your instructor declined your answer, don't worry, try it again!
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <app-comment [comment]=comment></app-comment>
+                    </div>
                 <div *ngIf="comment.approved">
                     <app-comment [comment]=comment></app-comment>
                 </div>

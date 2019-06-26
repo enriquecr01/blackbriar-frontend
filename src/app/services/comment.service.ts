@@ -12,7 +12,7 @@ export class CommentService {
   constructor(private http: HttpClient) { }
 
   commentForum(comment: string, forumId: number) {
-    return function (files: string[]) {
+    return (files: string[]) => {
       return this.http.post(`${environment.apiURL}forums/${forumId}/answers`, {
         content: comment,
         files: files.join(',')
