@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ForumService } from '../../services/forum.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { Answer } from '../../models/answer';
 
@@ -9,32 +9,26 @@ import { Answer } from '../../models/answer';
   templateUrl: './forum-response.component.html',
   styleUrls: ['./forum-response.component.css']
 })
-export class ForumResponseComponent implements OnInit, AfterViewInit {
+export class ForumResponseComponent implements OnInit {
 
   @Input() answer: Answer;
 
   forumId: number;
-  forumResponses: Answer[];
+  forumResponses: any[];
   studentName: string;
   temp: number;
+  textareaValue: string;
 
-  constructor(private forumService: ForumService, private route: ActivatedRoute) { }
+  constructor(private forumService: ForumService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-
-
+    this.textareaValue = "";
     this.getForumResponses();
-    const counterFields = document.querySelectorAll('.counted');
-    M.CharacterCounter.init(counterFields);
-
   }
 
-  ngAfterViewInit() {
-    const counterFields = document.querySelectorAll('.counted');
-    M.CharacterCounter.init(counterFields);
-  }
 
   getForumResponses() {
+
     this.forumId = +this.route.snapshot.params["forumId"];
     console.log("FORUM ID => " + this.forumId);
     this.forumService.getForumResponses(this.forumId).subscribe(
@@ -51,12 +45,15 @@ export class ForumResponseComponent implements OnInit, AfterViewInit {
           this.forumResponses[i].createdSince = moment(this.forumResponses[i].created).startOf('day').fromNow();
         }
 
-
       }, error => {
         console.log("Error -> getForumResponses", error);
       }
     )
 
+  }
+
+  refreshResponsesComponent() {
+    this.forumResponses
   }
 
   openCollapsible(id) {
@@ -80,18 +77,24 @@ export class ForumResponseComponent implements OnInit, AfterViewInit {
     console.log("Declined:  " + id);
     console.log(this.forumResponses);
 
+    var reason = "nein";
+
     for (let i = 0; i < this.forumResponses.length; i++) {
 
       if (this.forumResponses[i].id == id) {
+
         this.forumResponses[i].approved == false;
+        console.log(this.forumResponses[i].approved);
+
         console.log("array: " + i + "id: " + id);
-        this.forumService.toggleForumResponse(id, false).subscribe();
+        this.forumService.toggleForumResponse(id, false, reason).subscribe();
         console.log("Done decline ");
         M.toast({ html: 'Response has been declined!' });
+
       }
 
     }
-    this.getForumResponses();
+    this.ngOnInit();
   }
 
 
@@ -99,18 +102,21 @@ export class ForumResponseComponent implements OnInit, AfterViewInit {
     console.log("Approved: " + id);
     console.log(this.forumResponses);
 
+    var reason = this.textareaValue;
+
     for (let i = 0; i < this.forumResponses.length; i++) {
 
       if (this.forumResponses[i].id == id) {
         this.forumResponses[i].approved == true;
         console.log("array: " + i + "id: " + id);
-        this.forumService.toggleForumResponse(id, true).subscribe();
+        this.forumService.toggleForumResponse(id, true, reason).subscribe();
         console.log("Done approve ");
         M.toast({ html: 'Response has been approved!' });
       }
 
     }
-    this.getForumResponses();
+
+    this.ngOnInit();
   }
 
 }
