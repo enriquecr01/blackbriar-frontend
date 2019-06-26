@@ -25,16 +25,17 @@
           <p>It will notify the student that his/her answer has been declided. </p>
         </div>
 
-        <form class="col s12">
-          <div class="input-field col s12" style="padding-left: 20px; padding-right: 20px">
-            <textarea id="textarea1" class="materialize-textarea counted " maxlength="255" data-length="255"></textarea>
-            <label for="textarea1">What's wrong?</label>
-          </div>
-        </form>
+
+        <div class="input-field col s12" style="padding-left: 20px; padding-right: 20px">
+          <textarea id="textareaDecline" [(ngModel)]="textareaValue" class="materialize-textarea counted "
+            maxlength="255" data-length="255"></textarea>
+          <label for="textarea1">(Optional) Feedback</label>
+        </div>
+
 
         <div class="modal-footer">
           <a class="modal-close btn-flat">Cancel</a>
-          <a (click)="decline(temp, answer)" class="modal-close btn-flat">Send Feedback</a>
+          <a (click)="decline(temp, answer)" class="modal-close btn-flat">Yes I'm shure</a>
         </div>
       </div>
 
@@ -44,9 +45,16 @@
           <h5>Are you sure you want to aprove this response?</h5>
           <p>It will notify the student that his/her answer has been aproved.</p>
         </div>
+
+        <div class="input-field col s12" style="padding-left: 20px; padding-right: 20px">
+          <textarea id="textareaApprove" [(ngModel)]="textareaValue" class="materialize-textarea counted "
+            maxlength="255" data-length="255"></textarea>
+          <label for="textarea2">(Optional) Feedback </label>
+        </div>
+
         <div class="modal-footer">
           <a class="modal-close btn-flat">Cancel</a>
-          <a (click)="approve(temp, answer)" class="modal-close btn-flat">I'm shure</a>
+          <a (click)="approve(temp, answer)" class="modal-close btn-flat">Yes I'm shure</a>
         </div>
       </div>
     </li>

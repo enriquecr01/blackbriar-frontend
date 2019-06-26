@@ -57,9 +57,12 @@ export class ForumService {
   }
 
   // Decline/Approve forum response
-  toggleForumResponse(answer: number, action: boolean) {
-    const url = `${environment.apiURL}answers/${answer}/review?approve=${action}`
-    return this.http.put(url, answer);
+  toggleForumResponse(answer: number, action: boolean, reason: string) {
+    const url = `${environment.apiURL}answers/${answer}/review`
+    return this.http.put(url, {
+      reason: reason,
+      approved: action
+    });
   }
 
 
