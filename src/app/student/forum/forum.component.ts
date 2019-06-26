@@ -5,6 +5,7 @@ import { CommentService } from '../../services/comment.service';
 import { Answer } from 'src/app/models/answer';
 import { ImageSnippet } from 'src/app/models/imagesnippet';
 import { FilesService } from './../../files.service';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-forum',
@@ -20,7 +21,8 @@ export class ForumComponent implements OnInit {
   responses = [];
   commented: boolean = false;
   selectedFile: ImageSnippet;
-  files : string[] = [];
+  files = [];
+  fileTypeName = [];
   
 
   constructor(private activatedRoute: ActivatedRoute, private forumService: ForumService, private commentService: CommentService, private filesService: FilesService) { }
@@ -45,44 +47,57 @@ export class ForumComponent implements OnInit {
 
   registerComment() 
   {
-    console.log(this.files);
-    if (this.response.length > 0) 
-    {
-      this.commentService.commentForum(this.response, this.forumId).
-        subscribe(
-          data => {
-            console.log(data);
-            this.getForumResponses();
-          },
-          error => {
-            console.log("Error", error);
-          }
-        );
-    }
-    else { M.toast({html: 'You have to comment something'}); }
+    this.filesService.uploadFiles(this.files)
+    .pipe(mergeMap(this.commentService.commentForum(this.response, this.forumId)))
+    .subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log("Error", error);
+      }
+    );
+    // this.filesService.uploadFiles(this.files).
+    //     subscribe(
+    //       data => {
+    //         console.log(data);
+    //       },
+    //       error => {
+    //         console.log("Error", error);
+    //       }
+    //     );
+    // if (this.response.length > 0) 
+    // {
+    //   this.commentService.commentForum(this.response, this.forumId).
+    //     subscribe(
+    //       data => {
+    //         console.log(data);
+    //         this.getForumResponses();
+    //       },
+    //       error => {
+    //         console.log("Error", error);
+    //       }
+    //     );
+    // }
+    // else { M.toast({html: 'You have to comment something'}); }
   }
 
   processFile(imageInput: any, imageInputFile: any) {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
+    const extractFileType = fileName => fileName.match(/\.(\w+)$/)[1].toLowerCase();
 
-    console.log(imageInput);
-    console.log(imageInputFile);
+    this.fileTypeName = [];
+    this.files = imageInputFile;
     
     for(let file of imageInputFile)
     {
-      console.log(file);
-      this.filesService.uploadImage(file).subscribe(
-        data => {
-          this.files.push(data);
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        });
+      let fileTypeAndName = {"name" : file.name, "type": extractFileType(file.name)};
+      this.fileTypeName.push(fileTypeAndName);
     }
 
+    //console.log(this.files);
+    this.files = imageInputFile;
     console.log(this.files);
+    console.log(this.fileTypeName);
 
     // imageInputFile.forEach((file) => {
     //   console.log(file);

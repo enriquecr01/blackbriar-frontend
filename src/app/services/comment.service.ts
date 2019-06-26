@@ -11,11 +11,13 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  commentForum(comment: string, forumId: number)
-  {
-    return this.http.post<Answer>(`${environment.apiURL}forums/${forumId}/answers`, {
-      content: comment,
-    });
+  commentForum(comment: string, forumId: number) {
+    return function (files: string[]) {
+      return this.http.post(`${environment.apiURL}forums/${forumId}/answers`, {
+        content: comment,
+        files: files.join(',')
+      });
+    }
   }
 
   responseAnswer(answerId: number, comment: string)
