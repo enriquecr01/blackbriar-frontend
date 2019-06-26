@@ -14,7 +14,7 @@ export class ForumResponseComponent implements OnInit {
   @Input() answer: Answer;
 
   forumId: number;
-  forumResponses: any[];
+  forumResponses: Answer[];
   studentName: string;
   temp: number;
   textareaValue: string;
@@ -37,7 +37,7 @@ export class ForumResponseComponent implements OnInit {
         this.forumResponses = response;
         this.forumResponses = this.forumResponses.filter(function (fResponse) {
           return fResponse.approved == null;
-        })
+        });
         this.forumResponses = this.forumResponses.reverse();
 
         for (let i = 0; i < this.forumResponses.length; i++) {
@@ -52,9 +52,6 @@ export class ForumResponseComponent implements OnInit {
 
   }
 
-  refreshResponsesComponent() {
-    this.forumResponses
-  }
 
   openCollapsible(id) {
     var elems = document.querySelectorAll('.collapsible');
@@ -77,13 +74,13 @@ export class ForumResponseComponent implements OnInit {
     console.log("Declined:  " + id);
     console.log(this.forumResponses);
 
-    var reason = "nein";
+    var reason = this.textareaValue;
 
     for (let i = 0; i < this.forumResponses.length; i++) {
 
       if (this.forumResponses[i].id == id) {
 
-        this.forumResponses[i].approved == false;
+        this.forumResponses[i].approved = false;
         console.log(this.forumResponses[i].approved);
 
         console.log("array: " + i + "id: " + id);
@@ -94,7 +91,9 @@ export class ForumResponseComponent implements OnInit {
       }
 
     }
-    this.ngOnInit();
+    this.forumResponses = this.forumResponses.filter(function (fResponse) {
+      return fResponse.approved == null;
+    });
   }
 
 
@@ -107,7 +106,7 @@ export class ForumResponseComponent implements OnInit {
     for (let i = 0; i < this.forumResponses.length; i++) {
 
       if (this.forumResponses[i].id == id) {
-        this.forumResponses[i].approved == true;
+        this.forumResponses[i].approved = true;
         console.log("array: " + i + "id: " + id);
         this.forumService.toggleForumResponse(id, true, reason).subscribe();
         console.log("Done approve ");
@@ -116,7 +115,9 @@ export class ForumResponseComponent implements OnInit {
 
     }
 
-    this.ngOnInit();
+    this.forumResponses = this.forumResponses.filter(function (fResponse) {
+      return fResponse.approved == null;
+    });
   }
 
 }
