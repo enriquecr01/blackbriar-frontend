@@ -23,63 +23,43 @@ export class ForumComponent implements OnInit {
   selectedFile: ImageSnippet;
   files = [];
   fileTypeName = [];
-  
+
 
   constructor(private activatedRoute: ActivatedRoute, private forumService: ForumService, private commentService: CommentService, private filesService: FilesService) { }
 
   ngOnInit() {
     this.forumId = this.activatedRoute.snapshot.params.forumId;
-    
-    this.forumService.getForum(this.forumId).
-    subscribe(
-      data => {
-        this.forumTitle = data.title;
-        this.forumDescription = data.content;
-        document.getElementById('contentForum').innerHTML = this.forumDescription;
-        this.getForumResponses();
-      },
-      error =>{
-        console.log("Error", error);
-      }
-    );
 
+    this.forumService.getForum(this.forumId).
+      subscribe(
+        data => {
+          this.forumTitle = data.title;
+          this.forumDescription = data.content;
+          document.getElementById('contentForum').innerHTML = this.forumDescription;
+          this.getForumResponses();
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
   }
 
-  registerComment() 
-  {
-    this.filesService.uploadFiles(this.files)
-    .pipe(mergeMap(this.commentService.commentForum(this.response, this.forumId)))
-    .subscribe(
-      data => {
-        console.log(data);
-      },
-      error => {
-        console.log("Error", error);
-      }
-    );
-    // this.filesService.uploadFiles(this.files).
-    //     subscribe(
-    //       data => {
-    //         console.log(data);
-    //       },
-    //       error => {
-    //         console.log("Error", error);
-    //       }
-    //     );
-    // if (this.response.length > 0) 
-    // {
-    //   this.commentService.commentForum(this.response, this.forumId).
-    //     subscribe(
-    //       data => {
-    //         console.log(data);
-    //         this.getForumResponses();
-    //       },
-    //       error => {
-    //         console.log("Error", error);
-    //       }
-    //     );
-    // }
-    // else { M.toast({html: 'You have to comment something'}); }
+  registerComment() {
+    if (this.response.length > 0) {
+      this.filesService.uploadFiles(this.files)
+        .pipe(mergeMap(this.commentService.commentForum(this.response, this.forumId)))
+        .subscribe(
+          data => {
+            console.log(data);
+            this.getForumResponses();
+          },
+          error => {
+            console.log("Error", error);
+          }
+        );
+    }
+    else { M.toast({ html: 'You have to comment something' }); }
+
   }
 
   processFile(imageInput: any, imageInputFile: any) {
@@ -87,29 +67,14 @@ export class ForumComponent implements OnInit {
 
     this.fileTypeName = [];
     this.files = imageInputFile;
-    
-    for(let file of imageInputFile)
+
+    for (let file of imageInputFile) 
     {
-      let fileTypeAndName = {"name" : file.name, "type": extractFileType(file.name)};
+      let fileTypeAndName = { "name": file.name, "type": extractFileType(file.name) };
       this.fileTypeName.push(fileTypeAndName);
     }
 
-    //console.log(this.files);
     this.files = imageInputFile;
-    console.log(this.files);
-    console.log(this.fileTypeName);
-
-    // imageInputFile.forEach((file) => {
-    //   console.log(file);
-    //   // this.filesService.uploadImage(this.selectedFile.file).subscribe(
-    //   //   data => {
-    //   //     console.log(data);
-    //   //   },
-    //   //   error => {
-    //   //     console.log(error);
-    //   //   });
-    // })
-
   }
 
   getForumResponses() {
@@ -133,7 +98,7 @@ export class ForumComponent implements OnInit {
           })
 
           this.responses = data;
-          this.commented = (this.responses.length > 0) ? this.commented = true : this.commented = false;
+          this.commented = (this.responses.length > 0 && this.responses[0].approved != false) ? this.commented = true : this.commented = false;
           console.log(this.responses);
         },
         error => {
