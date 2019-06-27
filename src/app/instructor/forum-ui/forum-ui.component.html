@@ -2,45 +2,51 @@
 
 <div class="body">
 
-	<!-- Wrapper -->
-			<div id="wrapper">
-          <!-- Header -->
-            <header id="header" class="alt">
-              <span class="logo"><img src="images/logo.svg" alt="" /></span>
-              <h1>{{title}}</h1>
-              <p>{{descriptionForum}}<br/>
-              <span id="contentForum"> </span>
-              </p>
-            </header>
+  <!-- Wrapper -->
+  <div id="wrapper">
+    <!-- Header -->
+    <header id="header" class="alt">
+      <span class="logo"><img src="images/logo.svg" alt="" /></span>
+      <h1>{{title}}</h1>
+      <p>{{descriptionForum}}<br />
+        <span id="contentForum"> </span>
+      </p>
+    </header>
 
-          <!-- Main -->
-            <div id="main">
-              
-              <div class="row tab-control-row">
-                <!-- SELECT NAV -->
-                  <ul id="tabs-swipe-demo" class="tabs">
-                    <li class="tab col s3"><a href="#test-swipe-1" class="active" >Forum</a></li>
-                    <li class="tab col s3"><a href="#test-swipe-2">Students</a></li>
-                    <li class="tab col s3"><a href="#test-swipe-3">Responses to Validate</a></li>
-                  </ul>
-              </div>
-             
-               <!-- OPTION 1 -->
-                <div id="test-swipe-1" class="col s12 ">
-                    <app-instructor-forum-display></app-instructor-forum-display>
-                </div>
-              
-                 <!-- OPTION 2 -->
-                <div id="test-swipe-2" class="col s12 ">
-                    <app-display-users> </app-display-users>
-                
-                </div>
-                
-                 <!-- OPTION 3 -->
-                <div id="test-swipe-3" class="col s12 ">
-                    <app-forum-response> </app-forum-response>
-                </div>
-            
-          </div>
+    <!-- Main -->
+    <div id="main">
+
+      <div class="row tab-control-row">
+        <!-- SELECT NAV -->
+        <ul id="tabs-swipe-demo" class="tabs">
+          <li class="tab col s3"><a href="#test-swipe-1" class="active">Forum</a></li>
+          <li class="tab col s3"><a href="#test-swipe-2">Students</a></li>
+          <li class="tab col s3"><a href="#test-swipe-3">Validate Responses</a></li>
+          <li class="tab col s3"><a href="#test-swipe-4">Validate Feedback</a></li>
+        </ul>
+      </div>
+
+      <!-- FORUM RESPONSES -->
+      <div id="test-swipe-1" class="col s12 ">
+        <app-instructor-forum-display></app-instructor-forum-display>
+      </div>
+
+      <!-- STUDENTS ROLES -->
+      <div id="test-swipe-2" class="col s12 ">
+        <app-display-users> </app-display-users>
+
+      </div>
+
+      <!-- FORUM RESPONSES VALIDATION -->
+      <div id="test-swipe-3" class="col s12 ">
+        <app-forum-response> </app-forum-response>
+      </div>
+
+      <!-- FORUM STUDENT RESPONSES FEEDBACK -->
+      <div id="test-swipe-4" class="col s12 ">
+        <app-forum-response-feedback></app-forum-response-feedback>
+      </div>
+
     </div>
+  </div>
 </div>

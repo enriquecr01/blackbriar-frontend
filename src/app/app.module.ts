@@ -57,6 +57,7 @@ import { ForumResponseComponent } from './components/forum-response/forum-respon
 import { InstructorForumDisplayComponent } from './components/forums/instructor-forum-display/instructor-forum-display.component';
 import { HealerAlertComponent } from './notifications/healeralert.component';
 import { HealerInfoComponent } from './notifications/healerinfo.component';
+import { ForumResponseFeedbackComponent } from './components/forum-response-feedback/forum-response-feedback.component';
 
 const routes: Route[] = [
   { path: '', component: LadingComponent },
@@ -102,7 +103,8 @@ const routes: Route[] = [
     DisplayUsersComponent,
     CommentComponent,
     ForumResponseComponent,
-    InstructorForumDisplayComponent
+    InstructorForumDisplayComponent,
+    ForumResponseFeedbackComponent
   ],
   imports: [
     BrowserModule,

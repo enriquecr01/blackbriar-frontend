@@ -1,5 +1,5 @@
 <div class="row" *ngFor="let comment of responses">
-      <app-comment [comment]=comment></app-comment>
+      <div *ngIf="comment.approved === true">
+            <app-comment [comment]=comment></app-comment>
+      </div>
 </div>
-
-  
