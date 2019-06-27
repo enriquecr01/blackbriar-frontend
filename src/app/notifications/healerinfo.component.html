@@ -6,12 +6,12 @@
     <h1 mat-dialog-title style="margin-bottom: 0;">Not everyone is a healer!</h1>
 
     <div mat-dialog-content>
-      <p>The forum <strong>{{data.forumName}}</strong> is about to end. Remember, only the first healer to give feedback on a response will be taking in to consideration to increase points. However, not everyone is a healer!.</p>
+      <p>{{data.dialogMessage}}</p>
     </div>
 
     <div mat-dialog-actions>
         <button class="btn grey lighten-3 black-text" (click)="onNoClick()">Not now</button>
-        <button style="margin-left: 10px;" class="btn deep-purple accent-4">Let's do it!</button>
+        <button style="margin-left: 10px;" class="btn deep-purple accent-4">Take a chance!</button>
     </div>
   </div>
 </div>
