@@ -25,6 +25,7 @@ export class BannerGroupComponent implements OnInit {
     this.groupService.getOneGroup(this.groupId).subscribe(
       group => {
         this.group = group;
+        document.getElementById('groupDescription').innerHTML = this.group.description;
         console.log(group);
       },
       error => {
