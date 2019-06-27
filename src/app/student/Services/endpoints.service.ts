@@ -50,8 +50,9 @@ export class EndpointsService {
   }
 
   public unsubcribeFromGroup(membershipId : number){
-    const url = "https://api.blackbriar.site/api/memberships/" + membershipId;
-    this.http.delete(url);
+    const url = "https://api.blackbriar.site/api/memberships/";
+    this.http.delete(url + membershipId).subscribe();
+    console.log(url + membershipId);
   }
 
   

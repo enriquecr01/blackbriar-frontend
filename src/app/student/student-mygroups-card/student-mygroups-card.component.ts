@@ -33,6 +33,7 @@ export class StudentMygroupsCardComponent implements OnInit {
   unsubscribeMe(membershipId : number) {
     this.test.unsubcribeFromGroup(membershipId);
     console.log("works" + membershipId);
+    
   }
 
 }
