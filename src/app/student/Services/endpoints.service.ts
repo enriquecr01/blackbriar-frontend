@@ -48,5 +48,12 @@ export class EndpointsService {
 
     return this.http.post<Forum>(addForum, forum);
   }
+
+  public unsubcribeFromGroup(membershipId : number){
+    const url = "https://api.blackbriar.site/api/memberships/";
+    this.http.delete(url + membershipId).subscribe();
+    console.log(url + membershipId);
+  }
+
   
 }

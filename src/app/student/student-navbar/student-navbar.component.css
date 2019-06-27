@@ -29,3 +29,7 @@ nav {
     margin-top: 10px;
     width: 45px;
 }
+
+.brand-logo {
+    cursor: pointer;
+}
