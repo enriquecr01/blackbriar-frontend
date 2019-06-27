@@ -49,3 +49,9 @@ summary::-webkit-details-marker {
 {
   text-decoration: underline;
 }
+
+.files
+{
+  font-size: 12px; 
+  padding: 2px;
+}

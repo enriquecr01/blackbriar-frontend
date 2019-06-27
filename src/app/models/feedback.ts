@@ -10,4 +10,6 @@ export interface Feedback
     instructorDetaill: User;
     created: Date;
     update: Date;
+    files: string;
+    filesArray: any;
 }
