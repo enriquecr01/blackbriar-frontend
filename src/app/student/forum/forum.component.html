@@ -25,7 +25,7 @@
             </div>
 
             <div class="row" *ngFor="let comment of responses">
-                <div *ngIf="comment.approved == null && responses.length == 1">
+                <div *ngIf="comment.approved === null">
                     <div class="row">
                         <div class="col s12">
                             <div class="card-panel teal">
@@ -36,18 +36,19 @@
                     </div>
                     <app-comment [comment]=comment></app-comment>
                 </div>
-                <div *ngIf="!comment.approved && responses.length == 1">
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="card-panel teal">
-                                    <span class="white-text">Your instructor declined your answer, don't worry, try it again!
-                                    </span>
-                                </div>
+                <div *ngIf="comment.approved === false">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="card-panel teal">
+                                <span class="white-text">Your instructor declined your answer, don't worry, try it
+                                    again!
+                                </span>
                             </div>
                         </div>
-                        <app-comment [comment]=comment></app-comment>
                     </div>
-                <div *ngIf="comment.approved">
+                    <app-comment [comment]=comment></app-comment>
+                </div>
+                <div *ngIf="comment.approved === true">
                     <app-comment [comment]=comment></app-comment>
                 </div>
             </div>
@@ -72,9 +73,12 @@
                     </div>
                 </div>
                 <div class="col s12 m6">
-                    <a class="waves-effect btn" (click)="registerComment()" style="width: 100%"><i
-                            class="material-icons left">send</i>
-                        Send comment</a>
+                    <div class="file-field input-field">
+                        <div class="btn" (click)="registerComment()" style="width: 100%">
+                            <i class="material-icons left">send</i>
+                            <span>Send comment</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">

@@ -22,8 +22,11 @@ export class CommentService {
 
   responseAnswer(answerId: number, comment: string)
   {
-    return this.http.post<Feedback>(`${environment.apiURL}answers/${answerId}/replies`, {
-      content: comment,
-    });
+    return (files: string[]) => {
+      return this.http.post<Feedback>(`${environment.apiURL}answers/${answerId}/replies`, {
+        content: comment,
+        files: files.join(',')
+      });
+    }
   }
 }

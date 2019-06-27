@@ -10,5 +10,7 @@ export interface Answer {
     update: Date;
     replies: Feedback[];
     createdSince: string;
+    files: string;
     feedbackQuantity: number;
+
 }
