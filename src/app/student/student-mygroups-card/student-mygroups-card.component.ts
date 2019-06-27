@@ -2,8 +2,8 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { Group } from 'src/app/models/group';
 import { Router } from '@angular/router';
 import { group } from '@angular/animations';
-import { UserUnsubscribeGroupService } from 'src/app/services/user-unsubscribe-group.service';
 import { Membership } from 'src/app/models/membership';
+import { EndpointsService } from '../Services/endpoints.service';
 
 @Component({
   selector: 'app-student-mygroups-card',
@@ -16,7 +16,7 @@ export class StudentMygroupsCardComponent implements OnInit {
 
   @Input() group: Group;
 
-  constructor(private router: Router, private test : UserUnsubscribeGroupService) { }
+  constructor(private router: Router, public test : EndpointsService) { }
 
   ngOnInit() {
     this.membership = this.group.membership;
@@ -31,7 +31,7 @@ export class StudentMygroupsCardComponent implements OnInit {
   }
 
   unsubscribeMe(membershipId : number) {
-    this.test.unsubcribe_from_group(membershipId);
+    this.test.unsubcribeFromGroup(membershipId);
     console.log("works" + membershipId);
   }
 
