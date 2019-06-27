@@ -14,5 +14,5 @@
 
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item class="red lighten-1">Unsubscribe group</button>
+  <button mat-menu-item class="red lighten-1" (click)="unsubscribeMe(group.membership.id)">Unsubscribe</button>
 </mat-menu>

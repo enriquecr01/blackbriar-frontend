@@ -13,7 +13,8 @@
 
 
   <tbody *ngFor="let forum of forums">
-    <tr (click)="goToForum(forum.id)">
+    <tr *ngIf = "forum.expired" (click)="goToForum(forum.id)">
+    
       <td>
         <a *ngIf="forum.expired == true">{{forum.title}}<br></a>
         <p *ngIf="forum.expired == false">{{forum.title}}<br></p>
@@ -32,5 +33,49 @@
 
 
     </tr>
+    <tr *ngIf = "!forum.expired" class="modal-trigger" href="#modal1">
+    
+        <td>
+          <a *ngIf="forum.expired == true">{{forum.title}}<br></a>
+          <p *ngIf="forum.expired == false">{{forum.title}}<br></p>
+          <p>{{forum.smallDescription}}...</p>
+
+
+        </td>
+        <td><span class="badge">0</span></td>
+        <td>{{forum.sDate}}<br>{{forum.sTime}}</td>
+        <td>{{forum.eDate}}<br>{{forum.eTime}}</td>
+        <td *ngIf="forum.expired == true"><span class="new green darken-3 accent-4 badge"
+            data-badge-caption="Active"></span>
+        </td>
+
+        <td *ngIf="forum.expired == false"><span class="new red darken-1 badge" data-badge-caption="Finished"></span></td>
+
+    </tr>
+
   </tbody>
 </table>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+     <div class="row">
+        <div class="col s3">
+          <img src="assets/Images/Role-Icons/wizard.gif" alt="Healer GIF" width="170px" class="wizard-pic">
+        </div>
+        <div class="col s9">
+          <h1 mat-dialog-title class="wizard-title">Forum has ended!</h1>
+          <div mat-dialog-content>
+            <p class="wizard-note">The instructor is reviewing the reponses. <br>    
+              You'll be notified as soon as everything is up-to date! 
+            </p>
+          </div>       
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div mat-dialog-actions>
+        <button style="margin-left: 10px;" class="btn deep-purple accent-4">Understood!</button>
+      </div>
+    </div>
+  </div>

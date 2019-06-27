@@ -1,7 +1,6 @@
 import { User } from './user';
 
-export interface Feedback 
-{
+export interface Feedback {
     id: number;
     content: string;
     parentId: number;
@@ -12,4 +11,5 @@ export interface Feedback
     update: Date;
     files: string;
     filesArray: any;
+    createdSince: string;
 }

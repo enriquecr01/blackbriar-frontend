@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ForumService } from '../../services/forum.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { Answer } from '../../models/answer';
 
@@ -19,7 +19,7 @@ export class ForumResponseComponent implements OnInit {
   temp: number;
   textareaValue: string;
 
-  constructor(private forumService: ForumService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private forumService: ForumService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.textareaValue = "";
@@ -38,7 +38,6 @@ export class ForumResponseComponent implements OnInit {
         this.forumResponses = this.forumResponses.filter(function (fResponse) {
           return fResponse.approved == null;
         });
-        this.forumResponses = this.forumResponses.reverse();
 
         for (let i = 0; i < this.forumResponses.length; i++) {
 
