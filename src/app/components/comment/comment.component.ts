@@ -23,48 +23,35 @@ export class CommentComponent implements OnInit, AfterViewInit {
 
   constructor(private commentService: CommentService, private filesService: FilesService) { }
 
-  ngOnInit() 
-  {
-    if(this.comment.replies.length > 0)
-    {
+  ngOnInit() {
+    if (this.comment.replies.length > 0) {
       this.hasFeedback = true;
     }
 
-    console.log(this.comment.files);
-    let files = this.comment.files.split(',');
-    console.log(files);
+    //console.log(this.comment.files);
+    if (this.comment.files) {
+      let files = this.comment.files.split(',');
 
-    const extractFileType = fileName => fileName.match(/\.(\w+)$/)[1].toLowerCase();
 
-    this.fileTypeName = [];
+      //console.log(files);
+      // const extractFileType = fileName => fileName.match(/\.(\w+)$/)[1].toLowerCase();
 
-    for (let file of files) 
-    {
-      let gettingFileWithTimestamp = file.split('/');
-      let gettingFileName = gettingFileWithTimestamp[4].split('-');
-      let fileTypeAndName = { "name": gettingFileName[1], "type": extractFileType(gettingFileName[1]), "url": file };
-      this.fileTypeName.push(fileTypeAndName);
+
+
+      // this.fileTypeName = [];
+
+      // for (let file of files) {
+      //   let gettingFileWithTimestamp = file.split('/');
+      //   let gettingFileName = gettingFileWithTimestamp[4].split('-');
+      //   let fileTypeAndName = { "name": gettingFileName[1], "type": extractFileType(gettingFileName[1]), "url": file };
+      //   this.fileTypeName.push(fileTypeAndName);
+      // }
     }
 
-    for (let i = 0; i < this.comment.replies.length; i++) 
-    {
-      console.log(this.comment.replies[i].files);
-      let filesReply = this.comment.replies[i].files.split(',');
-      let replaceFiles = [];
-      for (let replyFile of filesReply)
-      {
-        let gettingFileWithTimestamp = replyFile.split('/');
-        let gettingFileName = gettingFileWithTimestamp[4].split('-');
-        let fileTypeAndName = { "name": gettingFileName[1], "type": extractFileType(gettingFileName[1]), "url": replyFile };
-        replaceFiles.push(fileTypeAndName);
-      }
-      this.comment.replies[i].filesArray = replaceFiles;
-    }
-    console.log(this.comment);
+    //console.log(this.comment);
   }
 
-  registerComment(answerId)
-  { 
+  registerComment(answerId) {
     if (this.feedback.length > 0) {
       this.filesService.uploadFiles(this.files)
         .pipe(mergeMap(this.commentService.responseAnswer(answerId, this.feedback)))
@@ -82,15 +69,14 @@ export class CommentComponent implements OnInit, AfterViewInit {
     else { M.toast({ html: 'You have to comment something' }); }
   }
 
-  
+
   processFile(imageInput: any, imageInputFile: any) {
     const extractFileType = fileName => fileName.match(/\.(\w+)$/)[1].toLowerCase();
 
     this.fileFeedbackTypeName = [];
     this.files = imageInputFile;
 
-    for (let file of imageInputFile) 
-    {
+    for (let file of imageInputFile) {
       let fileTypeAndName = { "name": file.name, "type": extractFileType(file.name) };
       this.fileFeedbackTypeName.push(fileTypeAndName);
     }
