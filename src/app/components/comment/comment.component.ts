@@ -29,26 +29,22 @@ export class CommentComponent implements OnInit, AfterViewInit {
     }
 
     //console.log(this.comment.files);
-    if (this.comment.files) {
-      let files = this.comment.files.split(',');
-
-
+    let files = this.comment.files.split(',');
     const extractFileType = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[2].toLowerCase();
     const extractFileName = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[1];
 
-      //console.log(files);
-      // const extractFileType = fileName => fileName.match(/\.(\w+)$/)[1].toLowerCase();
+    //console.log(files);
+    // const extractFileType = fileName => fileName.match(/\.(\w+)$/)[1].toLowerCase();
 
 
 
-    for (let file of files) 
-    {
+    for (let file of files) {
       let gettingFileWithTimestamp = file.split('/');
       let gettingFileName = gettingFileWithTimestamp[4].split('-');
       let fileTypeAndName = { "name": extractFileName(gettingFileWithTimestamp[4]), "type": extractFileType(gettingFileWithTimestamp[4]), "url": file };
       this.fileTypeName.push(fileTypeAndName);
     }
-/*console.table(hola2.match(/\d+-(.+)\.([a-z]+)$/i))*/ 
+    /*console.table(hola2.match(/\d+-(.+)\.([a-z]+)$/i))*/
     this.comment.replies.forEach((reply) => {
       let filesReply = reply.files.split(',');
       let arrayFiles = [];
