@@ -34,7 +34,8 @@ export class CommentComponent implements OnInit, AfterViewInit {
     let files = this.comment.files.split(',');
     console.log(files);
 
-    const extractFileType = fileName => fileName.match(/\.(\w+)$/)[1].toLowerCase();
+    const extractFileType = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[2].toLowerCase();
+    const extractFileName = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[1];
 
     this.fileTypeName = [];
 
@@ -42,24 +43,22 @@ export class CommentComponent implements OnInit, AfterViewInit {
     {
       let gettingFileWithTimestamp = file.split('/');
       let gettingFileName = gettingFileWithTimestamp[4].split('-');
-      let fileTypeAndName = { "name": gettingFileName[1], "type": extractFileType(gettingFileName[1]), "url": file };
+      let fileTypeAndName = { "name": extractFileName(gettingFileWithTimestamp[4]), "type": extractFileType(gettingFileWithTimestamp[4]), "url": file };
       this.fileTypeName.push(fileTypeAndName);
     }
+/*console.table(hola2.match(/\d+-(.+)\.([a-z]+)$/i))*/ 
+    this.comment.replies.forEach((reply) => {
+      let filesReply = reply.files.split(',');
+      let arrayFiles = [];
+      // Se realiza un Foreach pero de las respuestas de una respuesta
+      filesReply.forEach((files) => {
+        let gettingFileWithTimestamp = files.split('/');
+        let fileTypeAndName = { "name": extractFileName(gettingFileWithTimestamp[4]), "type": extractFileType(gettingFileWithTimestamp[4]), "url": files };
+        arrayFiles.push(fileTypeAndName);
+      })
+      reply.filesArray = arrayFiles;
+    })
 
-    for (let i = 0; i < this.comment.replies.length; i++) 
-    {
-      console.log(this.comment.replies[i].files);
-      let filesReply = this.comment.replies[i].files.split(',');
-      let replaceFiles = [];
-      for (let replyFile of filesReply)
-      {
-        let gettingFileWithTimestamp = replyFile.split('/');
-        let gettingFileName = gettingFileWithTimestamp[4].split('-');
-        let fileTypeAndName = { "name": gettingFileName[1], "type": extractFileType(gettingFileName[1]), "url": replyFile };
-        replaceFiles.push(fileTypeAndName);
-      }
-      this.comment.replies[i].filesArray = replaceFiles;
-    }
     console.log(this.comment);
   }
 

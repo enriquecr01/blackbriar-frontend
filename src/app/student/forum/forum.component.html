@@ -9,10 +9,7 @@
             <h1>{{forumTitle}}</h1>
             <!--<p>{{forumDescription}}<br/></p>-->
             <span id="contentForum"> </span>
-
         </header>
-
-
         <!-- Main -->
         <div id="main">
             <div class="row" *ngIf="responses.length == 0">
@@ -28,7 +25,7 @@
                 <div *ngIf="comment.approved === null">
                     <div class="row">
                         <div class="col s12">
-                            <div class="card-panel teal">
+                            <div class="card-panel light-blue accent-2">
                                 <span class="white-text">Wait a little bit, the instructor is evaluating your answer
                                 </span>
                             </div>
@@ -39,7 +36,7 @@
                 <div *ngIf="comment.approved === false">
                     <div class="row">
                         <div class="col s12">
-                            <div class="card-panel teal">
+                            <div class="card-panel amber lighten-3">
                                 <span class="white-text">Your instructor declined your answer, don't worry, try it
                                     again!
                                 </span>
