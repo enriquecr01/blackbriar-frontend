@@ -31,7 +31,7 @@ export class ForumResponseFeedbackComponent implements OnInit {
     console.log("answer ID: " + id);
     this.temp = id;
   }
-  2
+  2 // TODO: Ask wtf is this
   getResponsesFeedbacks() {
 
     this.forumId = +this.route.snapshot.params["forumId"];
