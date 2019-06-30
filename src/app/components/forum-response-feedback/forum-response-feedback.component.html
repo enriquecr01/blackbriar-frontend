@@ -1,19 +1,11 @@
 <div>
 
   <ul class="collapsible popout" *ngFor="let forumResponse of forumResponses">
-    <li (click)="openCollapsible(forumResponse.id)">
-      <div class="collapsible-header">
-        <i>
-          <img class="circle responsive-img" src="{{forumResponse.studentDetails.photo}}" alt="" />
-        </i>
-        {{forumResponse.studentDetails.firstName}}
-        {{forumResponse.studentDetails.lastName}}
-        <span class="badge">
-          {{forumResponse.feedbackQuantity}}
-          replies
-        </span>
-      </div>
-
+    <li (click)="openAnswerCollapsible(forumResponse.id)">
+      <div class="collapsible-header"><i><img class="circle responsive-img" src="{{forumResponse.studentDetails.photo}}"
+            alt="" /></i>{{forumResponse.studentDetails.firstName}}
+        {{forumResponse.studentDetails.lastName}}<span class="badge">{{forumResponse.feedbackQuantity}}
+          feedbacks</span></div>
       <div class="collapsible-body">
         <div class="row">
           <div class="col s12 m12">
@@ -26,26 +18,68 @@
           </div>
         </div>
 
-        <!-- <div>
+        <div>
           <ul class="collapsible popout" *ngFor="let responseFeedback of forumResponse.replies">
-            <li (click)="openCollapsible(forumResponse.id)">
+            <li (click)="openFeedbackCollapsible(responseFeedback?.id)" *ngIf="responseFeedback.studentDetails">
               <div class="collapsible-header">
-                <i><img class="circle responsive-img" src="{{responseFeedback.studentDetails.photo}}" alt="" /></i>
-                {{responseFeedback.studentDetails.firstName}}
-                {{responseFeedback.studentDetails.lastName}}
-                <span class="badge">{{responseFeedback.createdSince}}</span>
+                <i><img class="circle responsive-img" src="{{responseFeedback.studentDetails?.photo}}" alt="" /></i>
+                {{responseFeedback.studentDetails?.firstName}}
+                {{responseFeedback.studentDetails?.lastName}}
+                <span class="badge">{{responseFeedback?.createdSince}}</span>
               </div>
-              <div class="collapsible-body"><span [innerHTML]=responseFeedback.content></span><br><br>
+              <div class="collapsible-body"><span [innerHTML]=responseFeedback?.content></span><br><br>
                 <hr color=#dddddd>
                 <div style="text-align: right; padding-top: 15px">
-                  <a class="waves-light red darken-1 btn-small modal-trigger" style="margin-right: 15px">Decline</a>
-                  <a class="waves-light btn-small modal-trigger">Aprove</a>
+                  <a (click)="declineModal(forumResponse.id)" href="#modalDecline"
+                    class="waves-light red darken-1 btn-small modal-trigger" style="margin-right: 15px">Decline</a>
+                  <a (click)="approveModal(forumResponse.id)" href="#modalApprove"
+                    class="waves-light btn-small modal-trigger">Aprove</a>
                 </div>
               </div>
             </li>
-
           </ul>
-        </div> -->
+        </div>
+
+        <!-- Modal Structure DECLINE-->
+        <div id="modalDecline" class="modal">
+          <div class="modal-content">
+            <h5>Are you sure you want to decline this feedback?</h5>
+            <p>It will notify the student that his/her feedback has been declided. </p>
+          </div>
+
+
+          <div class="input-field col s12" style="padding-left: 20px; padding-right: 20px">
+            <textarea id="textareaDecline" [(ngModel)]="textareaValue" class="materialize-textarea counted "
+              maxlength="255" data-length="255"></textarea>
+            <label for="textarea1">(Optional) Feedback</label>
+          </div>
+
+
+          <div class="modal-footer">
+            <a class="modal-close btn-flat">Cancel</a>
+            <a (click)="decline(feedback)" class="modal-close btn-flat">Yes I'm sure</a>
+          </div>
+        </div>
+
+        <!-- Modal Structure APPROVE-->
+        <div id="modalApprove" class="modal">
+          <div class="modal-content">
+            <h5>Are you sure you want to aprove this feedback?</h5>
+            <p>It will notify the student that his/her feedback has been aproved.</p>
+          </div>
+
+          <div class="input-field col s12" style="padding-left: 20px; padding-right: 20px">
+            <textarea id="textareaApprove" [(ngModel)]="textareaValue" class="materialize-textarea counted "
+              maxlength="255" data-length="255"></textarea>
+            <label for="textarea2">(Optional) Feedback </label>
+          </div>
+
+          <div class="modal-footer">
+            <a class="modal-close btn-flat">Cancel</a>
+            <a (click)="approve(feedback)" class="modal-close btn-flat">Yes I'm sure</a>
+          </div>
+        </div>
+
       </div>
     </li>
   </ul>

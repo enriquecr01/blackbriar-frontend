@@ -43,10 +43,11 @@ export class ForumResponseComponent implements OnInit {
 
           this.forumResponses[i].createdSince = moment(this.forumResponses[i].created).startOf('day').fromNow();
         }
-
+        console.log(this.forumResponses);
       }, error => {
         console.log("Error -> getForumResponses", error);
       }
+
     )
 
   }
