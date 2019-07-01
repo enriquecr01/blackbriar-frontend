@@ -79,4 +79,7 @@ export class ForumUiComponent implements OnInit {
     this.comments.responseAnswer(answerId,comment);
   }
 
+  get forumEnded(): boolean {
+    return new Date() >= new Date(this.settings.endDate);
+  }
 }

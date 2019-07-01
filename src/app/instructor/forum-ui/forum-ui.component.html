@@ -11,7 +11,7 @@
       <p>{{descriptionForum}}<br />
         <span id="contentForum"> </span>
       </p>
-      <button class="btn indigo lighten-5 black-text"
+      <button *ngIf="forumEnded" class="btn indigo lighten-5 black-text"
               (click)="finalizeForum()"
               [disabled]="finishedManually">
         Finalize
