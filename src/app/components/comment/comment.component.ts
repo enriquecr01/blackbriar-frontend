@@ -25,7 +25,7 @@ export class CommentComponent implements OnInit {
       this.hasFeedback = true;
     }
 
-    if (this.comment.files) {
+    if (this.comment.files != "" && this.comment.files) {
       let files = this.comment.files.split(',');
       const extractFileType = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[2].toLowerCase();
       const extractFileName = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[1];
