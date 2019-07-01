@@ -77,7 +77,7 @@
 </div>
 
 <!-- Notification SideNav -->
-<ul id="slide-out" class="sidenav">
+<ul id="slide-out" class="sidenav" style="z-index:999;">
   <li><a>Notifications</a></li>
   <div class="row" *ngFor="let message of notifications">
     <app-notifications [notification]=message></app-notifications>
