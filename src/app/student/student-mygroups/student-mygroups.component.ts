@@ -9,10 +9,11 @@ import { Group } from 'src/app/models/group';
   styleUrls: ['./student-mygroups.component.css']
 })
 export class StudentMygroupsComponent implements OnInit {
+  thisInstance: StudentMygroupsComponent = this;
   selectedValue: string;
   searchText: string = "";
 
-  groups = [];
+  public groups = [];
   groupsFilter = [];
 
   constructor(private endpoint: EndpointsService) { }
@@ -74,4 +75,20 @@ export class StudentMygroupsComponent implements OnInit {
 
   }
 
+
+  updateGroups(){
+    var elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems);
+    this.endpoint.get_StudentRegisteredGroups().
+      subscribe(
+        data => {
+          this.groups = data;
+          this.groupsFilter = this.groups;
+          console.log(this.groups);
+        },
+        error => {
+          console.log("Error", error);
+        }
+      )
+  }
 }

@@ -1,10 +1,23 @@
 .card-image img:hover {
-    webkit-filter: blur(4px); /* Chrome, Safari, Opera */
+    webkit-filter: blur(4px);
+    /* Chrome, Safari, Opera */
     filter: blur(4px);
 }
 
-.vert
-{
+.vert {
     float: right;
     cursor: pointer;
+}
+
+.modal-header {
+    text-align: center;
+}
+
+.modalText {
+    text-align: center;
+    font-size: 20px;
+}
+
+.modal-agree {
+    color: white;
 }

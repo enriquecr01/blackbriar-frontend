@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Group } from '../../../app/models/group';
 import { Forum } from '../../../app/models/forum';
 import { Observable } from 'rxjs';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class EndpointsService {
   siteUrl: string = 'https://api.blackbriar.site/api';
   userId = localStorage.getItem('userId');
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   get_StudentRegisteredGroups() {
     var studentsRegisteredGroupsAPI = `${this.siteUrl}/users/${this.userId}/groups/subscribed`;
@@ -50,9 +51,9 @@ export class EndpointsService {
   }
 
   public unsubcribeFromGroup(membershipId : number){
-    const url = "https://api.blackbriar.site/api/memberships/";
+    const url = this.siteUrl + "/memberships/";
     this.http.delete(url + membershipId).subscribe();
-    console.log(url + membershipId);
+    
   }
 
   
