@@ -1,7 +1,6 @@
 <div>
 
   <ul class="collapsible popout" *ngFor="let forumResponse of forumResponses">
-
     <li (click)="openAnswerCollapsible(forumResponse.id)">
       <div class="collapsible-header"><i><img class="circle responsive-img" src="{{forumResponse.studentDetails.photo}}"
             alt="" /></i>{{forumResponse.studentDetails.firstName}}

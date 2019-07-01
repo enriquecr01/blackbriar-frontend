@@ -83,7 +83,9 @@ export class ForumService {
 
   getStudents(forumId: number) {
     return this.http.get<ForumResponse>(`https://api.blackbriar.site/api/forums/${forumId}`);
-
   }
 
+  finishForum(forumId: number) {
+    return this.http.put<ForumResponse>(`${environment.apiURL}forums/${forumId}/finish`, null);
+  }
 }

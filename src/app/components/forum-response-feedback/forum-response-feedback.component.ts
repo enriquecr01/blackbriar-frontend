@@ -52,7 +52,6 @@ export class ForumResponseFeedbackComponent implements OnInit {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
   }
-
   getResponsesFeedbacks() {
 
     this.forumId = +this.route.snapshot.params["forumId"];

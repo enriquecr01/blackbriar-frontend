@@ -21,6 +21,7 @@ export class ForumUiComponent implements OnInit {
   created: Date;
   settings: Setting;
   scoreboard: [ForumMemberState];
+  finishedManually: boolean = false;
 
   response = "";
   responses = [];
@@ -37,14 +38,23 @@ export class ForumUiComponent implements OnInit {
     this.forumId = this.route.snapshot.paramMap.get("forumId");
 
     this.getForumStudents(); 
-    //this.getForumResponses();
-
 
     $('.tabs').tabs();
 
     var elems = document.querySelectorAll('.collapsible');
     M.Collapsible.init(elems);
-        
+  }
+
+  public finalizeForum(): void {
+    this.forum.finishForum(this.id)
+      .subscribe(
+        ({ scoreboard }) => {
+          M.toast({ html: 'You can check the updated scoreboard now!' });
+          this.scoreboard = scoreboard;
+          this.finishedManually = true;
+        },
+        ({ error }) => { M.toast({ html: error.message }); }
+      )
   }
   
   getForumStudents(){
@@ -60,16 +70,16 @@ export class ForumUiComponent implements OnInit {
             this.scoreboard = students.scoreboard;
 
             document.getElementById('contentForum').innerHTML = students.content;
-          
         }
-
       );
-      
   }
 
-
+  // TODO: Ask if this method is being used in this context
   createFeedback(answerId: number, comment: string){
     this.comments.responseAnswer(answerId,comment);
   }
 
+  get forumEnded(): boolean {
+    return new Date() >= new Date(this.settings.endDate);
+  }
 }
