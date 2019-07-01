@@ -105,9 +105,8 @@ export class ForumResponseFeedbackComponent implements OnInit {
 
         console.log("array: " + i + "id: " + id);
         this.forumService.toggleForumFeedback(id, false, reason).subscribe();
-        //console.log("Done decline ");
+        // FIXME: This causes a bug because it was not initalized (toast)
         M.toast({ html: 'Feedback has been declined!' });
-
       }
 
     }

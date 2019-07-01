@@ -18,6 +18,7 @@
           <th> Role 1 </th>
           <th> Role 2 </th>
           <th> Role 3 </th>
+          <th> Score </th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +31,7 @@
             <td> <img *ngIf="item.warrior" src={{warriorIcon}} class="role-icon"></td>
             <td> <img *ngIf="item.healer" src={{healerIcon}} class="role-icon"></td>
             <td> <img *ngIf="item.warlock" src={{warlockIcon}} class="role-icon"></td>
+            <td>{{item.score}}</td>
         </tr>
     </tbody>
   </table>
