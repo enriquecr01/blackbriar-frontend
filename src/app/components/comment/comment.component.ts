@@ -9,17 +9,14 @@ import { mergeMap } from 'rxjs/operators';
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
 })
-export class CommentComponent implements OnInit, AfterViewInit {
-  files: any;
-  ngAfterViewInit() {
-  }
-
+export class CommentComponent implements OnInit {
   @Input() comment: Answer;
   hasFeedback: boolean = false;
   feedback: string = "";
   fileTypeName = [];
   fileFeedbackTypeName = [];
   feedbackFiles = [];
+  files = [];
 
   constructor(private commentService: CommentService, private filesService: FilesService) { }
 
@@ -28,34 +25,31 @@ export class CommentComponent implements OnInit, AfterViewInit {
       this.hasFeedback = true;
     }
 
-    //console.log(this.comment.files);
-    let files = this.comment.files.split(',');
-    const extractFileType = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[2].toLowerCase();
-    const extractFileName = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[1];
+    if (this.comment.files) {
+      let files = this.comment.files.split(',');
+      const extractFileType = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[2].toLowerCase();
+      const extractFileName = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[1];
 
-    //console.log(files);
-    // const extractFileType = fileName => fileName.match(/\.(\w+)$/)[1].toLowerCase();
-
-
-
-    for (let file of files) {
-      let gettingFileWithTimestamp = file.split('/');
-      let gettingFileName = gettingFileWithTimestamp[4].split('-');
-      let fileTypeAndName = { "name": extractFileName(gettingFileWithTimestamp[4]), "type": extractFileType(gettingFileWithTimestamp[4]), "url": file };
-      this.fileTypeName.push(fileTypeAndName);
-    }
-    /*console.table(hola2.match(/\d+-(.+)\.([a-z]+)$/i))*/
-    this.comment.replies.forEach((reply) => {
-      let filesReply = reply.files.split(',');
-      let arrayFiles = [];
-      // Se realiza un Foreach pero de las respuestas de una respuesta
-      filesReply.forEach((files) => {
-        let gettingFileWithTimestamp = files.split('/');
-        let fileTypeAndName = { "name": extractFileName(gettingFileWithTimestamp[4]), "type": extractFileType(gettingFileWithTimestamp[4]), "url": files };
-        arrayFiles.push(fileTypeAndName);
+      for (let file of files) {
+        let gettingFileWithTimestamp = file.split('/');
+        let fileTypeAndName = { "name": extractFileName(gettingFileWithTimestamp[4]), "type": extractFileType(gettingFileWithTimestamp[4]), "url": file };
+        this.fileTypeName.push(fileTypeAndName);
+      }
+      this.comment.replies.forEach((reply) => {
+        let filesReply = reply.files.split(',');
+        let arrayFiles = [];
+        // Se realiza un Foreach pero de las respuestas de una respuesta
+        filesReply.forEach((files) => {
+          let gettingFileWithTimestamp = files.split('/');
+          let fileTypeAndName = { "name": extractFileName(gettingFileWithTimestamp[4]), "type": extractFileType(gettingFileWithTimestamp[4]), "url": files };
+          arrayFiles.push(fileTypeAndName);
+        })
+        reply.filesArray = arrayFiles;
       })
-      reply.filesArray = arrayFiles;
-    })
+    }
+    else {
+      console.log("no hay archivos :(");
+    }
 
     console.log(this.comment);
 
@@ -84,7 +78,6 @@ export class CommentComponent implements OnInit, AfterViewInit {
     const extractFileType = fileName => fileName.match(/\.(\w+)$/)[1].toLowerCase();
 
     this.fileFeedbackTypeName = [];
-    this.files = imageInputFile;
 
     for (let file of imageInputFile) {
       let fileTypeAndName = { "name": file.name, "type": extractFileType(file.name) };

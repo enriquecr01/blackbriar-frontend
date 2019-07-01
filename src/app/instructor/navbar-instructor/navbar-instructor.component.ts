@@ -31,7 +31,7 @@ export class NavbarInstructorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.transparentColor();
+    //this.transparentColor();
     var elems = document.querySelectorAll('.dropdown-trigger');
     //M.Dropdown.init(elems, {constrainWidth: false});
 

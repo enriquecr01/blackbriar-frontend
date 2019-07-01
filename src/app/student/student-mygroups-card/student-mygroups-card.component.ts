@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Group } from 'src/app/models/group';
 import { Router } from '@angular/router';
 import { group } from '@angular/animations';
 import { Membership } from 'src/app/models/membership';
 import { EndpointsService } from '../Services/endpoints.service';
+import { StudentMygroupsComponent } from '../student-mygroups/student-mygroups.component';
 
 @Component({
   selector: 'app-student-mygroups-card',
@@ -13,13 +14,20 @@ import { EndpointsService } from '../Services/endpoints.service';
 export class StudentMygroupsCardComponent implements OnInit {
 
   membership : Membership;
+  membershipId : number;
 
   @Input() group: Group;
+  @Input() parent: StudentMygroupsComponent;
+  @Output() refresh = new EventEmitter<string>();
 
   constructor(private router: Router, public test : EndpointsService) { }
 
   ngOnInit() {
-    this.membership = this.group.membership;
+    this.membership = this.group.membership;  
+    this.membershipId = this.membership.id;
+    
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
   }
 
   goToGroupForums(groupId: number) {   
@@ -32,8 +40,8 @@ export class StudentMygroupsCardComponent implements OnInit {
 
   unsubscribeMe(membershipId : number) {
     this.test.unsubcribeFromGroup(membershipId);
-    console.log("works" + membershipId);
-    
+    console.log(membershipId);
+    this.parent.updateGroups();
   }
 
 }

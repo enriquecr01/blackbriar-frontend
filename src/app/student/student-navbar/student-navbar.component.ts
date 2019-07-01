@@ -32,6 +32,7 @@ export class StudentNavbarComponent implements OnInit {
 
     var nav = document.getElementById('nav-student');
     var optionMenu = document.getElementById('menuOption');
+    /*
     window.onscroll = function () {
       if (window.pageYOffset > 100) {
         nav.style.background = "linear-gradient(90deg, rgba(69,0,99,1) 13%, " + " rgba(67,40,116,1) 40%, " + " rgba(67,40,116,1) 86%)";
@@ -42,6 +43,7 @@ export class StudentNavbarComponent implements OnInit {
 
       }
     }
+    */
 
     var elems1 = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems1);
