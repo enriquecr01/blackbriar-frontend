@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Feedback } from 'src/app/models/feedback';
 import { Answer } from 'src/app/models/answer';
 import * as moment from 'moment';
+import { ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-forum-response-feedback',
@@ -19,6 +20,7 @@ export class ForumResponseFeedbackComponent implements OnInit {
   answer: number;
   textareaValue: string;
   feedbackQuantity: number;
+  feedbackObject: any;
 
   constructor(private forumService: ForumService, private route: ActivatedRoute) { }
 
@@ -60,11 +62,10 @@ export class ForumResponseFeedbackComponent implements OnInit {
 
         this.forumResponses = response;
         console.log(this.forumResponses);
+
         this.forumResponses = this.forumResponses.filter(function (fResponse) {
-
-          // fResponse.replies.filter(function (reply) { return reply.approved == false; });
-
-          return fResponse.approved == true && fResponse.replies.length > 0;
+          fResponse.replies = fResponse.replies.filter(function (reply) { return reply.approved == false });
+          return fResponse.approved == true;
         });
 
 
@@ -74,6 +75,7 @@ export class ForumResponseFeedbackComponent implements OnInit {
 
           this.forumResponses[i].feedbackQuantity = this.forumResponses[i].replies.length;
           //console.log("Response " + i + " has : " + this.forumResponses[i].feedbackQuantity + " feedbacks");
+
           for (let j = 0; j < this.forumResponses[i].replies.length; j++) {
             this.forumResponses[i].replies[j].createdSince = moment(this.forumResponses[i].replies[j].created).startOf('day').fromNow();
 
@@ -89,59 +91,59 @@ export class ForumResponseFeedbackComponent implements OnInit {
 
   }
 
-  decline(id: number, feedback: Feedback) {
-    console.log("Declined:  " + id);
-    //console.log(this.forumResponses);
+  delete(id: number, parentId: number) {
+    console.log("Deleting:  " + id);
+    let indexParent = this.arrayObjectIndexOf(this.forumResponses, parentId, "id");
+    let indexChild = this.arrayObjectIndexOf(this.forumResponses[indexParent].replies, id, "id");
+    this.forumResponses[indexParent].replies.splice(indexChild, 1);
 
-    var reason = this.textareaValue;
-
-    for (let i = 0; i < this.forumResponses.length; i++) {
-
-      if (this.forumResponses[i].id == id) {
-
-        for (let j = 0; j < this.forumResponses[i].replies.length; j++) {
-          this.forumResponses[i].replies[j].approved = false;
-          console.log(this.forumResponses[i].replies[j].approved);
+    this.forumService.deleteForumFeedback(id).
+      subscribe(
+        data => {
+          console.log(data);
+          let index = this.arrayObjectIndexOf(this.forumResponses, id, "replies.id");
+        },
+        error => {
+          console.log(error);
         }
+      );
+    //console.log("Done delete ");
+    M.toast({ html: 'Feedback has been deleted!' });
 
-        console.log("array: " + i + "id: " + id);
-        this.forumService.toggleForumFeedback(id, false, reason).subscribe();
-        //console.log("Done decline ");
-        M.toast({ html: 'Feedback has been declined!' });
 
-      }
-
-    }
     this.forumResponses = this.forumResponses.filter(function (fResponse) {
+
       return fResponse.approved == true && fResponse.replies.length > 0;
     });
   }
 
 
-  approve(id: number) {
-    console.log("Approved: " + id);
-    //console.log(this.forumResponses);
+  approve(id: number, parentId: number) {
+    console.log("Approving: " + id);
+
+    let indexParent = this.arrayObjectIndexOf(this.forumResponses, parentId, "id");
+    let indexChild = this.arrayObjectIndexOf(this.forumResponses[indexParent].replies, id, "id");
 
     var reason = this.textareaValue;
 
-    for (let i = 0; i < this.forumResponses.length; i++) {
 
-      if (this.forumResponses[i].id == id) {
-        for (let j = 0; j < this.forumResponses[i].replies.length; j++) {
-          this.forumResponses[i].replies[j].approved = true;
-          console.log(this.forumResponses[i].replies[j].approved);
-        }
-        console.log("array: " + i + "id: " + id);
-        this.forumService.toggleForumFeedback(id, true, reason).subscribe();
-        //console.log("Done approve ");
-        M.toast({ html: 'Feedback has been approved!' });
-      }
 
-    }
+
+    this.forumResponses[indexParent].replies[indexChild].approved = true;
+    this.forumService.toggleForumFeedback(id, true, reason).subscribe();
+    M.toast({ html: 'Feedback has been approved!' });
+
 
     this.forumResponses = this.forumResponses.filter(function (fResponse) {
       return fResponse.approved == true && fResponse.replies.length > 0;
     });
+  }
+
+  arrayObjectIndexOf(myArray, searchTerm, property) {
+    for (var i = 0, len = myArray.length; i < len; i++) {
+      if (myArray[i][property] === searchTerm) return i;
+    }
+    return -1;
   }
 
 }
