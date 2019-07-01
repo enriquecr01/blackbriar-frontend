@@ -14,6 +14,24 @@
 
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>Edit group</button>
-  <button mat-menu-item class="red lighten-1">Delete group</button>
+  
+  <button mat-menu-item class="red" (click)="unsubscribeMe(group.membership.id)">Unsubscribe</button>
+  <!-- <a class="red btn modal-trigger" href="#modal1">Unsubscribe</a> -->
+
 </mat-menu>
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4 class="modal-header">Unsubscribe</h4>
+      <p class="modalText">Are you sure that you want to unsubscribe from this group?
+      <br>
+      All your data from this group will be deleted.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <a  class="modal-close btn-flat">Cancel</a>
+      <button class="btn-flat red modal-agree" (click)="unsubscribeMe(membershipId)">Agree</button>
+    </div>
+  </div>

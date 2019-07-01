@@ -38,7 +38,7 @@ export class ForumService {
       forum
     ).pipe(
       map(({ scoreboard }) => scoreboard
-        .filter(({healer, warrior, warlock}) => healer || warrior || warlock))
+        .filter(({ healer, warrior, warlock }) => healer || warrior || warlock))
     )
   }
 
@@ -50,14 +50,42 @@ export class ForumService {
     return this.http.get<Forum>(`${environment.apiURL}forums/${forumId}`);
   }
 
-  
+
+  // Forum Responses
   getForumResponses(forumId: number) {
     return this.http.get<Answer[]>(`${environment.apiURL}forums/${forumId}/answers`);
   }
 
-  getStudents(forumId:number){
-    return this.http.get<ForumResponse>(`https://api.blackbriar.site/api/forums/${forumId}`);
-    
+  // Decline/Approve forum response
+  toggleForumResponse(answer: number, action: boolean, reason: string) {
+    const url = `${environment.apiURL}answers/${answer}/review`;
+    return this.http.put(url, {
+      reason: reason,
+      approved: action
+    });
   }
 
+  // Decline/Approve response feedback
+  toggleForumFeedback(feedback: number, action: boolean, reason: string) {
+    const url = `${environment.apiURL}feedback/${feedback}/review`;
+    return this.http.put(url, {
+      reason: reason,
+      approved: action
+    });
+  }
+
+  // Delete Forum Feedback
+  deleteForumFeedback(feedback: number) {
+    const url = `${environment.apiURL}feedback/${feedback}`;
+    return this.http.delete(url);
+  }
+
+
+  getStudents(forumId: number) {
+    return this.http.get<ForumResponse>(`https://api.blackbriar.site/api/forums/${forumId}`);
+  }
+
+  finishForum(forumId: number) {
+    return this.http.put<ForumResponse>(`${environment.apiURL}forums/${forumId}/finish`, null);
+  }
 }

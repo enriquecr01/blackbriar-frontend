@@ -1,8 +1,7 @@
-<div style="background: linear-gradient(90deg, rgba(69,0,99,1) 13%,  rgba(67,40,116,1) 40%, rgba(67,40,116,1) 86%);">
-  <app-student-navbar></app-student-navbar>
-</div>
+<app-student-navbar style="z-index:999999;"></app-student-navbar>
 
 <div class="container">
+  <h5>My groups</h5>
   <div class="row" style="margin-top: 30px">
     <div class="input-field col s6">
       <input type="text" id="search" name="search" [(ngModel)]="searchText" (input)="Search()">
@@ -21,7 +20,7 @@
 
   <div class="row">
     <div *ngFor="let group of groups">
-      <app-student-mygroups-card [group]=group></app-student-mygroups-card>
+      <app-student-mygroups-card [group]=group [parent]=thisInstance></app-student-mygroups-card>
     </div>
   </div>
 

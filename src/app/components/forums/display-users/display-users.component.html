@@ -1,27 +1,39 @@
-
 <div class="show-users-wrapper">
 
-  <button class="collapsible-users">
-      <span class="collapsible-users-title">Active Users</span>
-  </button>
-
-  <div class="content-users">
-
-    <mat-form-field>
-      <mat-label>Role: </mat-label>
-      <mat-select  [(ngModel)]="selectedValue" (change)="onChange()">
-            <mat-option value="All">All</mat-option>
-            <mat-option value="Warrior">Warrior</mat-option>
-            <mat-option value="Healer">Healer</mat-option>
-            <mat-option value="Warlock">Warlock</mat-option>         
-        </mat-select>
-    </mat-form-field>
-
-    <div class="row"  *ngFor="let item of scoreboard2">
-         <img width= "25px" class="responsive-img" src={{item.photo}}>
-         <span class="users-span-name"> {{item.firstName}} </span>
-    </div>
+  <mat-form-field class="filter-form-field">
+    <mat-label>Role: </mat-label>
+    <mat-select [(ngModel)]="roleFilter" name="roleFilter" id="roleFilter" (selectionChange)="onChange()">
+      <mat-option value="All">All</mat-option>
+      <mat-option value="Warrior">Warrior</mat-option>
+      <mat-option value="Healer">Healer</mat-option>
+      <mat-option value="Warlock">Warlock</mat-option>
+      <mat-option value="Humans">Humans</mat-option>
+    </mat-select>
+  </mat-form-field>
   
-  </div> 
+  <table class="responsive-table">
+    <thead>
+        <tr>
+          <th> Name </th>
+          <th> Role 1 </th>
+          <th> Role 2 </th>
+          <th> Role 3 </th>
+          <th> Score </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="" *ngFor="let item of studentsFilter">
+            <td> 
+              <span class="users-span-name"> 
+                <img width="30" height="30" class="responsive-img circle" src="{{item.photo}}">{{item.firstName}} {{item.lastName}}
+              </span>
+            </td>
+            <td> <img *ngIf="item.warrior" src={{warriorIcon}} class="role-icon"></td>
+            <td> <img *ngIf="item.healer" src={{healerIcon}} class="role-icon"></td>
+            <td> <img *ngIf="item.warlock" src={{warlockIcon}} class="role-icon"></td>
+            <td>{{item.score}}</td>
+        </tr>
+    </tbody>
+  </table>
 
 </div>

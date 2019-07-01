@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { InboxService } from './../../inbox.service';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
+import { MatDialog } from '@angular/material/dialog';
+import { HealerInfoComponent } from 'src/app/notifications/healerinfo.component';
 
 
 @Component({
@@ -20,13 +22,16 @@ export class NavbarInstructorComponent implements OnInit {
 
   notifications = [];
 
-  constructor(private router: Router, private inboxService: InboxService) {
-
+  constructor(
+    private router: Router,
+    private inboxService: InboxService,
+    public dialog: MatDialog
+  ) {
     this.initializeWebSocketConnection();
   }
 
   ngOnInit() {
-    this.transparentColor();
+    //this.transparentColor();
     var elems = document.querySelectorAll('.dropdown-trigger');
     //M.Dropdown.init(elems, {constrainWidth: false});
 
@@ -90,5 +95,16 @@ export class NavbarInstructorComponent implements OnInit {
 
       }
     }
+  }
+
+  public openDialog(): void {
+    const ref = this.dialog.open(HealerInfoComponent, {
+      width: '600px',
+      data: { forumName: 'Test Forum' }
+    });
+
+    ref.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }

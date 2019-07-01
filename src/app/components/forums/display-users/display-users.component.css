@@ -1,5 +1,5 @@
 .show-users-wrapper {
-    margin-top: 80px;
+    margin-top: 50px;
 }
 
 
@@ -41,6 +41,38 @@
 }
 
 .users-span-name {
-    top: 0;
+    top: -15;
     margin-left: 20px;
+    align-content: top;
+    align-items: top;
+    padding-bottom: 10px;
+}
+
+mat-form-field {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.role-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.student-row {
+    height: 50px;
+    border-color: black;
+}
+
+.student-row:hover {
+    background: rgb(204, 204, 204);
+}
+
+.circle {
+    margin-top: 10px;
+    margin-right: 16px;
+}
+
+.filter-form-field {
+    float: right;
 }

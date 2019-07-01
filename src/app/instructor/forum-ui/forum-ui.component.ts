@@ -2,6 +2,9 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { ForumService } from 'src/app/services/forum.service';
 import { Setting, ForumMemberState, ForumResponse } from 'src/app/models/forum';
 import { EndpointsService } from 'src/app/student/Services/endpoints.service';
+import { ActivatedRoute } from '@angular/router';
+import { CommentService } from 'src/app/services/comment.service';
+
 
 @Component({
   selector: 'app-forum-ui',
@@ -12,54 +15,71 @@ export class ForumUiComponent implements OnInit {
   students : any = [];
   id: number;
   title: string;
-  description: string;
-  content: string;
+  descriptionForum: string;
+  contentForum: string;
   published: boolean;
   created: Date;
   settings: Setting;
   scoreboard: [ForumMemberState];
+  finishedManually: boolean = false;
+
+  response = "";
+  responses = [];
+
+  forumId:string;
   
-  constructor(private forum: ForumService) { }
+  constructor(
+    private forum: ForumService, 
+    private route :ActivatedRoute, 
+    private comments: CommentService
+  ) { }
 
   ngOnInit() {
+    this.forumId = this.route.snapshot.paramMap.get("forumId");
 
-    //this.getForumStudents(); 
+    this.getForumStudents(); 
+
+    $('.tabs').tabs();
+
     var elems = document.querySelectorAll('.collapsible');
     M.Collapsible.init(elems);
-  
-    var coll = document.getElementsByClassName("collapsible-comment ");
-    var i;
-    
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight){
-          content.style.maxHeight = null;
-        } else {
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
-      });
-    }
-    
+  }
+
+  public finalizeForum(): void {
+    this.forum.finishForum(this.id)
+      .subscribe(
+        ({ scoreboard }) => {
+          M.toast({ html: 'You can check the updated scoreboard now!' });
+          this.scoreboard = scoreboard;
+          this.finishedManually = true;
+        },
+        ({ error }) => { M.toast({ html: error.message }); }
+      )
   }
   
   getForumStudents(){
-       this.forum.getStudents(1).subscribe(
+       this.forum.getStudents(parseInt(this.forumId)).subscribe(
         students =>{
             this.id = students.id;
             this.title = students.title;
-            this.description = students.description;
-            this.content = students.content;
+            this.descriptionForum = students.description;
+            this.contentForum = students.content;
             this.published = students.published;
             this.created = students.created;
             this.settings = students.settings;
             this.scoreboard = students.scoreboard;
-          
-        }
 
+            document.getElementById('contentForum').innerHTML = students.content;
+        }
       );
-      
   }
 
+  // TODO: Ask if this method is being used in this context
+  createFeedback(answerId: number, comment: string){
+    this.comments.responseAnswer(answerId,comment);
+  }
+
+  get forumEnded(): boolean {
+    return new Date() >= new Date(this.settings.endDate);
+  }
 }

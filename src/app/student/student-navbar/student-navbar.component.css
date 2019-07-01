@@ -2,6 +2,11 @@
     cursor: pointer;
 }
 
+#nav-student {
+    background: linear-gradient(90deg, rgba(69, 0, 99, 1) 13%, rgba(67, 40, 116, 1) 40%, rgba(67, 40, 116, 1) 86%);
+    opacity: 0.97
+}
+
 nav {
     /* background:  #432874; */
     background: rgba(0, 0, 0, 0.3);
@@ -10,23 +15,30 @@ nav {
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(167,19,127,1) 71%, rgba(7,133,167,1) 100%);*/
 }
 
-.nav-gradient{
+.navbar-fixed {
+    z-index: 99999999;
+}
+
+.nav-gradient {
     background: linear-gradient(90deg, rgba(23, 18, 99, 1) 0%, rgba(167, 19, 127, 1) 65%, rgba(7, 133, 167, 1) 100%);
 }
 
-.menuOption:hover{
+.menuOption:hover {
     /* background-color: rgba(212, 212, 212, 0.849); */
     background-color: #450063;
     color: white;
 }
 
-
-.menuOption{
+.menuOption {
     background-color: white;
 }
 
 .logo-img {
-    position: absolute; 
+    position: absolute;
     margin-top: 10px;
     width: 45px;
+}
+
+.brand-logo {
+    cursor: pointer;
 }

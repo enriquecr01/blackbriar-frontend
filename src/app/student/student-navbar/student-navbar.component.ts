@@ -4,6 +4,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { InboxService } from './../../inbox.service';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
+import { MatDialog } from '@angular/material/dialog';
+import { HealerInfoComponent } from 'src/app/notifications/healerinfo.component';
+import { HealerAlertComponent } from 'src/app/notifications/healeralert.component';
+import { WarlockAlertComponent } from 'src/app/notifications/warlockalert.component';
 
 @Component({
   selector: 'app-student-navbar',
@@ -11,7 +15,6 @@ import * as SockJS from 'sockjs-client';
   styleUrls: ['./student-navbar.component.css']
 })
 export class StudentNavbarComponent implements OnInit {
-
   firstName = localStorage.getItem("firstName");
   lastName = localStorage.getItem("lastName");
 
@@ -20,14 +23,16 @@ export class StudentNavbarComponent implements OnInit {
 
   notifications = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public dialog: MatDialog) {
     this.initializeWebSocketConnection();
+    console.log('Me inicialize wao woa wao');
   }
 
   ngOnInit() {
 
     var nav = document.getElementById('nav-student');
     var optionMenu = document.getElementById('menuOption');
+    /*
     window.onscroll = function () {
       if (window.pageYOffset > 100) {
         nav.style.background = "linear-gradient(90deg, rgba(69,0,99,1) 13%, " + " rgba(67,40,116,1) 40%, " + " rgba(67,40,116,1) 86%)";
@@ -38,6 +43,7 @@ export class StudentNavbarComponent implements OnInit {
 
       }
     }
+    */
 
     var elems1 = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems1);
@@ -67,7 +73,25 @@ export class StudentNavbarComponent implements OnInit {
       stompClient.subscribe(`/topic/${userId}`, function ({ body }) {
         var data = JSON.parse(body);
         console.log(data);
-        that.notifications.unshift(data);
+
+        if (data.category === 'FMHLA') {
+          that.dialog.open(HealerAlertComponent, {
+            width: '600px',
+            data: { dialogMessage: data.content }
+          });
+        } else if (data.category === 'FMHLI') {
+          that.dialog.open(HealerInfoComponent, {
+            width: '600px',
+            data: { dialogMessage: data.content }
+          });
+        } else if (data.category === 'FMWLK') {
+          that.dialog.open(WarlockAlertComponent, {
+            width: '600px',
+            data: { dialogMessage: data.content }
+          });
+        } else {
+          that.notifications.unshift(data);
+        }
       });
     });
   }

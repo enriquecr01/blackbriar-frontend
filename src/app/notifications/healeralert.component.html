@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col s3">
+    <img style="margin-top: -20px; margin-left: -30px;" src="assets/Images/Role-Icons/potion1.gif" alt="Healer GIF" width="170px">
+  </div>
+  <div class="col s9">
+    <h1 mat-dialog-title style="margin-bottom: 0;">Heal your teammates!</h1>
+
+    <div mat-dialog-content>
+      <p>{{data.dialogMessage}}</p>
+    </div>
+
+    <div mat-dialog-actions>
+        <button class="btn grey lighten-3 black-text" (click)="onNoClick()">Not now</button>
+        <button style="margin-left: 10px;" class="btn deep-purple accent-4">Let's do it!</button>
+    </div>
+  </div>
+</div>
+

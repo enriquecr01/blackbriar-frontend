@@ -20,10 +20,10 @@ summary::-webkit-details-marker {
    font-size: 16px;
  }
 
-summary::-webkit-details-marker
+.example::-webkit-details-marker
 {
-  color: #00ACF3;
-  font-size: 125%;
+  color: black;
+  font-size: 80%;
   margin-right: 2px;
 }
 
@@ -31,3 +31,27 @@ summary::-webkit-details-marker
  {
   padding: 3px 3px 3px 3px;
  }
+
+ .span-text 
+ {
+   margin: 0px 0px 0px 20px;
+  font-size: 14px;
+  }
+
+.showResponses 
+{
+  margin: 0px 0px 0px 20px;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.showResponses:hover 
+{
+  text-decoration: underline;
+}
+
+.files
+{
+  font-size: 12px; 
+  padding: 2px;
+}
