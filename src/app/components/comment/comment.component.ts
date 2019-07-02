@@ -27,11 +27,13 @@ export class CommentComponent implements OnInit {
 
     if (this.comment.files != "" && this.comment.files) {
       let files = this.comment.files.split(',');
+      console.log(files);
       const extractFileType = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[2].toLowerCase();
       const extractFileName = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[1];
 
       for (let file of files) {
         let gettingFileWithTimestamp = file.split('/');
+        console.log(gettingFileWithTimestamp);
         let fileTypeAndName = { "name": extractFileName(gettingFileWithTimestamp[4]), "type": extractFileType(gettingFileWithTimestamp[4]), "url": file };
         this.fileTypeName.push(fileTypeAndName);
       }
