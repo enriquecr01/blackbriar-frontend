@@ -1,3 +1,5 @@
+@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+
 .side-nav-m {
     top: 7%;
     left: 0;
@@ -133,7 +135,7 @@ h1 {
     transition: max-height 0.2s ease-out;
 }
 
-@import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+
 
 /*
 	Stellar by HTML5 UP

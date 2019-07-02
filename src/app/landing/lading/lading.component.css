@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 body {
     box-sizing: border-box;
 }
@@ -193,7 +195,6 @@ body {
     animation-fill-mode: both;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
 .landing-container {
     background-color: #111;
 }
