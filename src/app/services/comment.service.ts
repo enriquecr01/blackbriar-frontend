@@ -29,4 +29,14 @@ export class CommentService {
       });
     }
   }
+
+  editAnswer(comment: string, answerId: number)
+  {
+    return (files: string[]) => {
+      return this.http.put<Answer>(`${environment.apiURL}answers/${answerId}`, {
+        content: comment,
+        files: files.join(',')
+      });
+    }
+  }
 }
