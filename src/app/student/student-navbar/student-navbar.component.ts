@@ -14,7 +14,7 @@ import { WarlockAlertComponent } from 'src/app/notifications/warlockalert.compon
   templateUrl: './student-navbar.component.html',
   styleUrls: ['./student-navbar.component.css']
 })
-export class StudentNavbarComponent implements OnInit {
+export class StudentNavbarComponent implements OnInit, OnDestroy {
   firstName = localStorage.getItem("firstName");
   lastName = localStorage.getItem("lastName");
 
@@ -22,6 +22,14 @@ export class StudentNavbarComponent implements OnInit {
   instance: any;
 
   notifications = [];
+
+  stompClient;
+
+  ngOnDestroy()
+  {
+    this.stompClient.disconnect();
+    this.stompClient.unsubscribe();
+  }
 
   constructor(private router: Router, public dialog: MatDialog) {
     this.initializeWebSocketConnection();
@@ -64,13 +72,13 @@ export class StudentNavbarComponent implements OnInit {
 
   initializeWebSocketConnection() {
     var socket = new SockJS('https://api.blackbriar.site/gs-guide-websocket');
-    var stompClient = Stomp.over(socket);
+    this.stompClient = Stomp.over(socket);
     var userId = localStorage.getItem('userId');
 
     let that = this;
 
-    stompClient.connect({}, function (frame) {
-      stompClient.subscribe(`/topic/${userId}`, function ({ body }) {
+    this.stompClient.connect({}, function (frame) {
+      that.stompClient.subscribe(`/topic/${userId}`, function ({ body }) {
         var data = JSON.parse(body);
         console.log(data);
 
