@@ -1,6 +1,6 @@
 <div class="col s12 m4 l3" *ngIf="group.membership.active">
   <div class="card z-depth-5">
-    <div class="card-image waves-effect waves-block waves-light">
+    <div class="card-image">
       <img class="activator" height="200" src="{{group.image}}" (click)="goToGroupForums(group.id)">
     </div>
     <div class="card-content">
@@ -14,10 +14,8 @@
 
 
 <mat-menu #menu="matMenu">
-  
   <button mat-menu-item class="red" (click)="unsubscribeMe(group.membership.id)">Unsubscribe</button>
   <!-- <a class="red btn modal-trigger" href="#modal1">Unsubscribe</a> -->
-
 </mat-menu>
 
 

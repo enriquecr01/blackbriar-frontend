@@ -1,8 +1,19 @@
 .borderText {
     color: white;
     font-weight: 900;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #000;
+    font-weight: bolder;
+    font-size: 56px;
+}
+
+.ownerText {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.description {
+    font-size: 24px;
+    font-weight: bolder;
 }
 
 .parallax-container {
