@@ -58,12 +58,12 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
 
 
     var elems = document.querySelectorAll('#slide-out');
-    M.Sidenav.init(elems, { edge: "right" });
+    M.Sidenav.init(elems, { edge: "right", draggable: true });
 
     var elems = document.querySelectorAll('.dropdown-trigger');
     var instance = M.Dropdown.init(elems, {
       coverTrigger: false,
-      constrainWidth: false,
+      constrainWidth: false
     });
 
   }

@@ -62,6 +62,24 @@ export class ForumComponent implements OnInit {
 
   }
 
+  editComment(answerId) {
+    if (this.response.length > 0) {
+      this.filesService.uploadFiles(this.files)
+        .pipe(mergeMap(this.commentService.editAnswer(this.response, answerId)))
+        .subscribe(
+          data => {
+            console.log(data);
+            this.getForumResponses();
+          },
+          error => {
+            console.log("Error", error);
+          }
+        );
+    }
+    else { M.toast({ html: 'You must to write something' }); }
+
+  }
+
   processFile(imageInput: any, imageInputFile: any) {
     const extractFileType = fileName => fileName.match(/\.(\w+)$/)[1].toLowerCase();
 

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {EndpointsService} from '../Services/endpoints.service';
 import { Group } from 'src/app/models/group';
 import * as M from "materialize-css/dist/js/materialize";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-explore-card',
@@ -13,9 +14,14 @@ export class StudentExploreCardComponent implements OnInit {
    @Input() group : Group;
    disabledButton: boolean = false;
 
-  constructor(private endPointService : EndpointsService) { }
+  constructor(private endPointService : EndpointsService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  
+  goToGroupForums(groupId: number) {   
+    this.router.navigate(['student/group/',groupId]);
   }
 
   joinGroup(groupId)
