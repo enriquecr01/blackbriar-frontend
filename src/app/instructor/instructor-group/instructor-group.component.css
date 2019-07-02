@@ -1,4 +1,14 @@
 @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400';
+.tabsControl {
+    margin-left: 22em;
+    margin-bottom: 5em;
+}
+
+.tabs li a {
+    font-size: 16px;
+    font-weight: bold;
+}
+
 .container-body {
     height: 860px;
 }

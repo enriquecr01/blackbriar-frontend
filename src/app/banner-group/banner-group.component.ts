@@ -11,10 +11,12 @@ export class BannerGroupComponent implements OnInit {
 
   @Input() groupId: number;
   group: Group;
+  isStudent: string = localStorage.getItem('student');
 
   constructor(private groupService: GroupsService) { }
 
   ngOnInit() {
+
     var modalElems = document.querySelectorAll('.modal');
     M.Modal.init(modalElems);
 
