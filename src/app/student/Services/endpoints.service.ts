@@ -10,12 +10,12 @@ import {Router} from '@angular/router';
 })
 export class EndpointsService {
   siteUrl: string = 'https://api.blackbriar.site/api';
-  userId = localStorage.getItem('userId');
 
   constructor(private http: HttpClient, private router: Router) { }
 
   get_StudentRegisteredGroups() {
-    var studentsRegisteredGroupsAPI = `${this.siteUrl}/users/${this.userId}/groups/subscribed`;
+    let userId = localStorage.getItem('userId');
+    var studentsRegisteredGroupsAPI = `${this.siteUrl}/users/${userId}/groups/subscribed`;
     
     return this.http.get<Group[]>(studentsRegisteredGroupsAPI);
   }

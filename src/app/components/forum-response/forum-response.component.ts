@@ -38,9 +38,25 @@ export class ForumResponseComponent implements OnInit {
         this.forumResponses = this.forumResponses.filter(function (fResponse) {
           return fResponse.approved == null;
         });
+        
 
         for (let i = 0; i < this.forumResponses.length; i++) {
-
+          let files = this.forumResponses[i].files.split(',');
+          if(this.forumResponses[i].files != "" && this.forumResponses[i].files)
+          {
+            console.log(files);
+            const extractFileType = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[2].toLowerCase();
+            const extractFileName = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[1];
+            
+            let arrayFiles = [];
+            for (let file of files) {
+              let gettingFileWithTimestamp = file.split('/');
+              let fileTypeAndName = { "name": extractFileName(gettingFileWithTimestamp[4]), "type": extractFileType(gettingFileWithTimestamp[4]), "url": file };
+              arrayFiles.push(fileTypeAndName);
+            }
+            this.forumResponses[i].filesArray = arrayFiles;
+  
+          }
           this.forumResponses[i].createdSince = moment(this.forumResponses[i].created).startOf('day').fromNow();
         }
         console.log(this.forumResponses);

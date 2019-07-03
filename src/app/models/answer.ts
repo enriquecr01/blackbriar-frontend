@@ -11,6 +11,6 @@ export interface Answer {
     replies: Feedback[];
     createdSince: string;
     files: string;
+    filesArray: any;
     feedbackQuantity: number;
-
 }

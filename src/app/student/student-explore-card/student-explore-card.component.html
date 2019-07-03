@@ -1,26 +1,26 @@
+<div class="col s12 m4 l3">
+  <div class="card z-depth-5">
 
-    <div class="col s12 m4 l3">
-        <div class="card z-depth-5">
-          
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" height="200" src="{{group.image}}">
-            </div>
-              
-            <div class="card-content">
-             
-              <span class="card-title activator grey-text text-darken-4 truncate">{{group.title}}
-              </span>
-              
-              <a class="btn amber darken-2" [class.disabled]="disabledButton" *ngIf="group.membership === null; else buttonSubscribed" (click)="joinGroup(group.id)">Subscribe</a>
-              <ng-template #buttonSubscribed>
-                <a class="btn" (click)="goToGroupForums(group.id)" >Go To Group</a>
-              </ng-template>
-              
-              <i class="" *ngIf = "group.publicGroup; else unlocked" ></i>
-                <ng-template #unlocked>
-                  <i class="material-icons" style="float:right;">lock_outline</i>
-                </ng-template>
-              </div>
-        
-          </div>
+    <div class="card-image">
+      <img class="activator" height="200" src="{{group.image}}">
+      <span class="card-title activator text-white truncate">{{group.title}}</span>
+      <a class="btn-floating halfway-fab waves-effect waves-light red">
+        <i class="material-icons" *ngIf="group.publicGroup; else unlocked">lock_open</i>
+        <ng-template #unlocked>
+          <i class="material-icons">lock_outline</i>
+        </ng-template>
+      </a>
     </div>
+
+    <div class="card-content">
+      <div class="left-align">
+        <a class="btn amber darken-2 buttonText" [class.disabled]="disabledButton" *ngIf="group.membership === null"
+          (click)="joinGroup(group.id)">Subscribe</a>
+        <a class="btn purple darken-1 buttonText" *ngIf="group.membership?.active === true" (click)="goToGroupForums(group.id)">Go To
+          Group</a>
+        <a class="btn grey darken-1 buttonText" *ngIf="group.membership?.active === false">Pending approval</a>
+      </div>
+    </div>
+
+  </div>
+</div>
