@@ -80,6 +80,10 @@ export class ForumUiComponent implements OnInit {
   }
 
   get forumEnded(): boolean {
-    return new Date() >= new Date(this.settings.endDate);
+    if (this.settings) {
+      return new Date() >= new Date(this.settings.endDate);
+    } else {
+      return false;
+    }
   }
 }
