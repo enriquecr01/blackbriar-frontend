@@ -17,8 +17,7 @@
     <tr *ngIf="forum.expired" class="modal-trigger" href="#modal1">
     
       <td>
-        <a *ngIf = "forum.expired" (click)="goToForum(forum.id)" class="forumTitle" 
-          href="http://localhost:4200/instructor/instructor-dashboard">{{forum.title}}<br></a>
+        <a *ngIf = "forum.expired" (click)="goToForum(forum.id)" class="forumTitle">{{forum.title}}<br></a>
         
         <p class="forumTitleDisabled "  *ngIf="forum.expired == false" >{{forum.title}}<br></p>
         <p *ngIf="forum.expired == true"> {{forum.smallDescription}}...</p>
