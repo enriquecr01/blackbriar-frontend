@@ -55,6 +55,8 @@ export class DisplayUsersComponent implements OnInit {
     } 
   }
 
+  
+
 
   getForumStudents(){
     this.forum.getStudents(parseInt(this.forumId)).subscribe(

@@ -3,7 +3,7 @@
 <div class="container">
 
   <div class="row" style="margin-top: 30px">
-   <h5>My groups</h5>
+   <h3 class="myGroup-title">My groups</h3>
     <div class="input-field col s6">
       <input type="text" id="search" name="search" [(ngModel)]="searchText" (input)="Search()">
       <label for="search">Search...</label>
@@ -21,7 +21,7 @@
 
   <div class="row">
     <div *ngFor="let group of groups">
-      <app-student-mygroups-card [group]=group [parent]=thisInstance></app-student-mygroups-card>
+      <app-student-mygroups-card [group]=group ></app-student-mygroups-card>
     </div>
   </div>
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EndpointsService } from '../Services/endpoints.service';
 import { Group } from 'src/app/models/group';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -73,6 +74,46 @@ export class StudentMygroupsComponent implements OnInit {
 
     }
 
+  }
+
+  unsubscribeMeAlert(membershipId:number){
+    //Swal.fire('Hello world!');
+   Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to leave this group!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, unsubscribe!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        this.unsubscribeMe(membershipId);
+        Swal.fire(
+          'Unsubscribed!',
+          'You has been unsubscribed.',
+          'success'
+        )
+      // For more information about handling dismissals please visit
+      // https://sweetalert2.github.io/#handling-dismissals
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your subscription is safe :)',
+          'error'
+        )
+      }
+    });
+  }
+
+  unsubscribeMe(membershipId : number) {
+    this.endpoint.unsubcribeFromGroup(membershipId).
+    subscribe(
+      data => 
+      {},
+      error => {
+        this.updateGroups();
+      }
+    );
   }
 
 

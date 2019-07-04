@@ -1,50 +1,106 @@
-<!-- LEFT BAR CONTAINER -->
-<div class="row">    
+<div class="row">
   <div class="col s12">
-    <h4>Students</h4>
-
-    <ul class="collapsible">
-      <li>
-        <div class="collapsible-header">
-          Active Students
-          <i class="material-icons dropdown-arrow">arrow_drop_down</i>
-        </div>
-        <div class="collapsible-body rowStudent" *ngFor="let student of studentsActive">
-          <span class="valing-wrapper">
-            <img src="{{student?.photo}}" class="circle" width="32px">
-            {{student?.firstName}} {{student?.lastName}}
-            0 xp
-          </span>
-        </div>
-      </li>
-      <li>
-        <div class="collapsible-header">
-            Requests
-            <i class="material-icons dropdown-arrow">arrow_drop_down</i>
-          </div>
-          <div class="collapsible-body rowStudent" *ngFor="let student of studentsWaitingApproval">
-            <span class="valing-wrapper">
-              <img src="{{student?.photo}}" class="circle" width="32px">
-              {{student?.firstName}} {{student?.lastName}}
-            </span>
-            <div class="right-align">
-              <button class="waves-effect waves-light btn" (click)="acceptRequestInstructor(student?.membership.id)">Approve</button>
-              <button class="waves-effect waves-light btn red darken-2" (click)="rejectRequestInstructor(student?.membership.id)">Decline</button>
-            </div>
-          </div>
-        </li>
-      <li>
-        <div class="collapsible-header">
-          Pending invitations
-          <i class="material-icons dropdown-arrow">arrow_drop_down</i>
-        </div>
-          <div class="collapsible-body rowStudent" *ngFor="let student of studentsAwaiting">
-            <span class="valing-wrapper">
-              <img src="{{student?.photo}}" class="circle" width="32px">
-              {{student?.firstName}} {{student?.lastName}}
-            </span>
-          </div>
-        </li>
+    <ul class="tabs">
+      <li class="tab col s3"><a href="#test1">Active</a></li>
+      <li class="tab col s3"><a class="active" href="#test2">Pedngin Request</a></li>
+      <li class="tab col s3"><a href="#test3">Invited</a></li>
+     
     </ul>
   </div>
-</div>
+  <div id="test1" class="col s12">
+  
+        <!-- TABLE ACTIVE STUDENTS -->
+    
+        <table class="table table-left">
+          <thead>
+            <tr>
+              <th> Active Students </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let student of studentsActive">
+              <td> 
+              <span class="valing-wrapper">
+                  <img src="{{student?.photo}}" class="circle" width="32px">
+                  {{student?.firstName}} {{student?.lastName}}
+              </span> 
+            </td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  
+  <div id="test2" class="col s12">
+      <!-- PENDING APROVALS -->
+        <table class="table table-mid">
+          <thead>
+            <tr>
+              <th> Pending Aprovals </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let student of studentsWaitingApproval">
+              <td> 
+              <span class="valing-wrapper">
+                  <img src="{{student?.photo}}" class="circle" width="32px">
+                  {{student?.firstName}} {{student?.lastName}}
+              </span> 
+            </td>
+            <td>
+              <button class="waves-effect waves-light btn" (click)="acceptRequestInstructor(student?.membership.id)">Approve</button>
+            </td>
+            <td>
+                <button class="waves-effect waves-light btn red darken-2" (click)="rejectRequestInstructor(student?.membership.id)">Decline</button>
+            </td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  
+  
+  <div id="test3" class="col s12">               
+        <!-- PENDING APROVALS -->
+        
+        <table class="table table-right">
+          <thead>
+            <tr>
+              <th> On Waiting </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let student of studentsAwaiting">
+              <td> 
+              <span class="valing-wrapper">
+                  <img src="{{student?.photo}}" class="circle" width="32px">
+                  {{student?.firstName}} {{student?.lastName}}
+              </span> 
+            </td>
+            
+            </tr>
+          </tbody>
+        </table>       
+  </div>
+
+
+    
+    
+    
+    
+    
+        
+    
+    
+    
+    
+    
+    
+    
+ 
+   
+     
+
+           
+
+
+ 
+

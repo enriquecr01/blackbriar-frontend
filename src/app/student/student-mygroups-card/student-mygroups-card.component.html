@@ -7,19 +7,19 @@
             <i class="material-icons" [matMenuTriggerFor]="menu">more_vert</i>
         </a>
     </div>
-    <div class="card-action">
-        <a mat-raised-button matTooltip="Active Students"><i class="material-icons">group</i> 0 </a>
-        <a mat-raised-button matTooltip="{{ group.owner.firstName }} {{ group.owner.lastName }}"> <img class="circle responsive-image" width="32px" src="{{ group.owner.photo }}"> </a>
-      </div>
+    <div class="card-action ">
+        <label class="left-align"> <img class="circle responsive-image" width="32px" src="{{ group.owner.photo }}">
+            <span style="font-weight:bold; font-size:14px; color: #424242;">{{ group.owner.firstName }} {{ group.owner.lastName }} </span>
+          </label>
+        <label class="right-align" style="float:right; margin-top: 5px; color: #ff9800;"> <i class="material-icons">group</i> 0 </label>
+    </div>
   </div>
 </div>
 
-
 <mat-menu #menu="matMenu">
-  <button mat-menu-item class="red" (click)="unsubscribeMe(group.membership.id)">Unsubscribe</button>
+  <button mat-menu-item class="red" (click)="m()">Unsubscribe</button>
   <!-- <a class="red btn modal-trigger" href="#modal1">Unsubscribe</a> -->
 </mat-menu>
-
 
   <!-- Modal Structure -->
   <div id="modal1" class="modal">

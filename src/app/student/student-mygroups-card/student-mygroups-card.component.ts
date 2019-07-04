@@ -17,10 +17,9 @@ export class StudentMygroupsCardComponent implements OnInit {
   membershipId : number;
 
   @Input() group: Group;
-  @Input() parent: StudentMygroupsComponent;
   @Output() refresh = new EventEmitter<string>();
 
-  constructor(private router: Router, public test : EndpointsService) { }
+  constructor(private router: Router, private dashboard: StudentMygroupsComponent) { }
 
   ngOnInit() {
     this.membership = this.group.membership;  
@@ -30,17 +29,17 @@ export class StudentMygroupsCardComponent implements OnInit {
     var instances = M.Modal.init(elems);
   }
 
+  m()
+  {
+    this.dashboard.unsubscribeMeAlert(this.group.membership.id)
+  }
+
   goToGroupForums(groupId: number) {   
     this.router.navigate(['student/group/',groupId]);
   }
   
-  goToGroupDashboard() {
-    this.router.navigate(['student/student-group']);
+  goToGroupDashboard() {    this.router.navigate(['student/student-group']);
   }
 
-  unsubscribeMe(membershipId : number) {
-    this.test.unsubcribeFromGroup(membershipId);
-    this.parent.updateGroups();
-  }
 
 }

@@ -27,6 +27,19 @@ export class GroupsService {
     });
   }
 
+  editGroupService(description, image, publicGroup, groupId) {
+    return this.http.put<Group>(`https://api.blackbriar.site/api/groups/${groupId}`, {
+      description: description,
+      image: image,
+      publicGroup: publicGroup
+    });
+  }
+
+  deleteGroupService(groupId){
+    return this.http.delete<Group>(`https://api.blackbriar.site/api/groups/${groupId}`, {
+    });
+  }
+
   getOneGroup(groupId: number) {
     var groupForums = `https://api.blackbriar.site/api/groups/${groupId}`;
     return this.http.get<Group>(groupForums);
