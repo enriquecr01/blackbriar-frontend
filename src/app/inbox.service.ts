@@ -9,13 +9,11 @@ export class InboxService {
 
   constructor(private http: HttpClient) { }
 
-  instructorAcceptMembership(membershipId)
-  {
+  instructorAcceptMembership(membershipId) {
     return this.http.put<Membership>(`https://api.blackbriar.site/api/memberships/${membershipId}/approve`, null);
   }
 
-  rejectInstructorMembership(membershipId)
-  {
+  rejectInstructorMembership(membershipId) {
     return this.http.delete(`https://api.blackbriar.site/api/memberships/${membershipId}/deny`);
   }
 }
