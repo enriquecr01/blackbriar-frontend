@@ -2,18 +2,15 @@
   <div class="card z-depth-5">
 
     <div class="card-image">
-      <img class="activator" height="200" src="{{group.image}}">
-      <span class="card-title activator text-white truncate">{{group.title}}</span>
-      <a class="btn-floating halfway-fab waves-effect waves-light red">
-        <i class="material-icons" *ngIf="group.publicGroup; else unlocked">lock_open</i>
-        <ng-template #unlocked>
-          <i class="material-icons">lock_outline</i>
-        </ng-template>
+        <img class="activator groupImage" height="200" src="{{group.image}}">
+      <span class="card-title activator text-white truncate center-align">{{group.title}}</span>
+      <a class="btn-floating halfway-fab waves-effect waves-light red" *ngIf="!group.publicGroup;">
+        <i class="material-icons">lock_outline</i>
       </a>
     </div>
 
     <div class="card-content">
-      <div class="left-align">
+      <div class="center-align">
         <a class="btn amber darken-2 buttonText" [class.disabled]="disabledButton" *ngIf="group.membership === null"
           (click)="joinGroup(group.id)">Subscribe</a>
         <a class="btn purple darken-1 buttonText" *ngIf="group.membership?.active === true" (click)="goToGroupForums(group.id)">Go To
