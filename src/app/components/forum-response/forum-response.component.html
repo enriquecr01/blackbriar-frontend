@@ -2,32 +2,13 @@
 
   <ul class="collapsible popout" *ngFor="let forumResponse of forumResponses">
     <li (click)="openCollapsible(forumResponse.id)">
-      <div class="collapsible-header"><i><img class="circle responsive-img" src="{{forumResponse.studentDetails.photo}}"
-            alt="" /></i>
+     
+      <div class="collapsible-header"><i><img class="circle responsive-img" src="{{forumResponse.studentDetails.photo}}" alt="" /></i>
         {{forumResponse.studentDetails.firstName}}
         {{forumResponse.studentDetails.lastName}}
         <span class="badge">{{forumResponse.createdSince}}</span>
       </div>
-      <div class="collapsible-body"><span [innerHTML]=forumResponse.content></span><br>
-        <div *ngIf="forumResponse.filesArray?.length > 0">
-          <div class="row">
-            <label class="span-text">Files attached</label>
-            <br>
-            <div class="col s3 m1" *ngFor="let file of forumResponse.filesArray">
-              <div class="card">
-                <div class="card-content truncate files">
-                  <a href="{{ file.url }}" target="_blank">
-                    {{ file.name }}
-                  </a>
-                </div>
-                <div class="card-image">
-                  <img src="assets/Images/Icons/{{file.type}}.svg">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br>
+      <div class="collapsible-body"><span [innerHTML]=forumResponse.content></span><br><br>
         <hr color=#dddddd>
         <div style="text-align: right; padding-top: 15px">
           <a (click)="declineModal(forumResponse.id)" href="#modalDecline"
