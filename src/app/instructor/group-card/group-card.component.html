@@ -14,6 +14,18 @@
         </div>
     </div>
 
+
+    
+
+
+  
+<mat-menu #menu="matMenu">
+<button mat-menu-item class="red" (click)="this.dashboard.deleteAlert(group.id)">Delete</button>
+  <!--<button mat-menu-item class="red" (click)="deleteServiceGroup(group.id)">Delete</button>-->
+  <!-- <a class="red btn modal-trigger" href="#modal1">Unsubscribe</a> -->
+
+</mat-menu>
+
     <ul id='dropdown1' class='dropdown-content'>
         <li><a href="#!">one</a></li>
         <li><a href="#!">two</a></li>

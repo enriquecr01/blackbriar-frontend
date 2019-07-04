@@ -7,6 +7,8 @@ import { GroupsService } from './../../groups.service';
 import { FilesService } from './../../files.service';
 import { ImageSnippet } from './../../models/imagesnippet';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-instructor-dashboard',
   templateUrl: './instructor-dashboard.component.html',
@@ -54,6 +56,61 @@ export class InstructorDashboardComponent implements OnInit {
 
 
   }
+
+  deleteServiceGroup(groupId:number){
+    this.groupsService.deleteGroupService(groupId).
+    subscribe(
+      data => {
+        this.groupsService.getInstructorGroups().
+      subscribe(
+        data => {
+          console.log("GET Request is successful ", data);
+          this.groups = data;
+          this.groupsFilter = this.groups;
+          console.log(this.groupsFilter);
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+
+      },
+      error => {
+        console.log(error.error.message);
+        M.toast({ html: error.error.message });
+      }
+    );
+  }
+
+  deleteAlert(groupId:number){
+    //Swal.fire('Hello world!');
+   Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this imaginary file!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        this.deleteServiceGroup(groupId);
+        Swal.fire(
+          'Deleted!',
+          'Your group was deleted sucessfully.',
+          'success'
+        )
+      // For more information about handling dismissals please visit
+      // https://sweetalert2.github.io/#handling-dismissals
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your group is safe :)',
+          'error'
+        )
+      }
+    });
+  }
+
 
   addGroup() {
     console.log(this.previewImage);
@@ -123,6 +180,7 @@ export class InstructorDashboardComponent implements OnInit {
 
     }
   }
+
 
   callServiceGroup() {
     this.groupsService.addGroupService(this.title, this.description, this.image, this.public).

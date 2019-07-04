@@ -52,7 +52,7 @@ export class EndpointsService {
 
   public unsubcribeFromGroup(membershipId : number){
     const url = this.siteUrl + "/memberships/";
-    this.http.delete(url + membershipId).subscribe();
+    return this.http.delete(url + membershipId);
     
   }
 
