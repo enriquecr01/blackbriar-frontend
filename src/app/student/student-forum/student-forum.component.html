@@ -3,53 +3,79 @@
   <!-- Table column names -->
   <thead>
     <tr>
-      <th>Forum</th>
+     <th>Forum</th>
       <th>Posts</th>
       <th>Creation</th>
       <th>End Date</th>
+      <th>Published</th>
       <th>Status</th>
     </tr>
   </thead>
 
 
   <tbody *ngFor="let forum of forums">
-    <tr *ngIf = "forum.expired" (click)="goToForum(forum.id)">
+    <tr *ngIf="forum.expired">
     
       <td>
-        <a *ngIf="forum.expired == true">{{forum.title}}<br></a>
-        <p *ngIf="forum.expired == false">{{forum.title}}<br></p>
-        <p>{{forum.smallDescription}}...</p>
-
+        <a *ngIf = "forum.expired" (click)="goToForum(forum.id)" class="forumTitle">{{forum.title}}<br></a>
+        
+        <p class="forumTitleDisabled "  *ngIf="forum.expired == false" >{{forum.title}}<br></p>
+        <p *ngIf="forum.expired == true"> {{forum.smallDescription}}...</p>
+        <p class="forumDescriptionDisabled" *ngIf="forum.expired == false"> {{forum.smallDescription}}...</p>
 
       </td>
-      <td><span class="badge">0</span></td>
-      <td>{{forum.sDate}}<br>{{forum.sTime}}</td>
-      <td>{{forum.eDate}}<br>{{forum.eTime}}</td>
-      <td *ngIf="forum.expired == true"><span class="new green darken-3 accent-4 badge"
-          data-badge-caption="Active"></span>
-      </td>
+      <td *ngIf="forum.expired == true"> <span class="badge"> 0 </span> </td>
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="badge"> 0 </span> </td>
 
-      <td *ngIf="forum.expired == false"><span class="new red darken-1 badge" data-badge-caption="Finished"></span></td>
+      <td *ngIf="forum.expired == true"> <span class="date"> {{forum.sDate}} </span> <br> {{forum.sTime}} </td>
+      <td *ngIf="forum.expired == true"> <span class="date"> {{forum.eDate}} </span> <br> {{forum.eTime}} </td>
 
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="date"> {{forum.sDate}} </span> <br> {{forum.sTime}} </td>
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="date"> {{forum.eDate}} </span> <br> {{forum.eTime}} </td>
+
+
+      <!-- PUBLISHED -->
+      <td *ngIf="forum.published == true" class="badge"> <span class="green darken-3 accent-4 statusSpan" >Yes</span></td>
+
+      <td *ngIf="forum.published == false" class="badge"> <span class="red darken-1 statusSpan"> No </span></td>
+
+      <!-- STATUS -->
+      <td *ngIf="forum.expired == true" class="badge"> <span class="green darken-3 accent-4 statusSpan"> Active </span> </td>
+
+      <td *ngIf="forum.expired == false" class="badge"> <span class="red darken-1 statusSpan"> Finished </span> </td>
 
     </tr>
-    <tr *ngIf = "!forum.expired" class="modal-trigger" href="#modal1">
+
+     <tr *ngIf="!forum.expired" class="modal-trigger" href="#modal1">
     
-        <td>
-          <a *ngIf="forum.expired == true">{{forum.title}}<br></a>
-          <p *ngIf="forum.expired == false">{{forum.title}}<br></p>
-          <p>{{forum.smallDescription}}...</p>
+      <td>
+        <a *ngIf = "forum.expired" (click)="goToForum(forum.id)" class="forumTitle" >{{forum.title}}<br></a>
+        
+        <p class="forumTitleDisabled modal-trigger" href="#modal1" *ngIf="forum.expired == false" >{{forum.title}}<br></p>
+        <p *ngIf="forum.expired == true"> {{forum.smallDescription}}...</p>
+        <p class="forumDescriptionDisabled" *ngIf="forum.expired == false"> {{forum.smallDescription}}...</p>
 
 
-        </td>
-        <td><span class="badge">0</span></td>
-        <td>{{forum.sDate}}<br>{{forum.sTime}}</td>
-        <td>{{forum.eDate}}<br>{{forum.eTime}}</td>
-        <td *ngIf="forum.expired == true"><span class="new green darken-3 accent-4 badge"
-            data-badge-caption="Active"></span>
-        </td>
+      </td>
+      <td *ngIf="forum.expired == true"> <span class="badge"> 0 </span> </td>
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="badge"> 0 </span> </td>
 
-        <td *ngIf="forum.expired == false"><span class="new red darken-1 badge" data-badge-caption="Finished"></span></td>
+      <td *ngIf="forum.expired == true"> <span class="date"> {{forum.sDate}} </span> <br> {{forum.sTime}} </td>
+      <td *ngIf="forum.expired == true"> <span class="date"> {{forum.eDate}} </span> <br> {{forum.eTime}} </td>
+
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="date"> {{forum.sDate}} </span> <br> {{forum.sTime}} </td>
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="date"> {{forum.eDate}} </span> <br> {{forum.eTime}} </td>
+
+
+      <!-- PUBLISHED -->
+      <td *ngIf="forum.published == true" class="badge"> <span class="green darken-3 accent-4 statusSpan" >Yes</span></td>
+
+      <td *ngIf="forum.published == false" class="badge"> <span class="red darken-1 statusSpan"> No </span></td>
+
+      <!-- STATUS -->
+      <td *ngIf="forum.expired == true" class="badge"> <span class="green darken-3 accent-4 statusSpan"> Active </span> </td>
+
+      <td *ngIf="forum.expired == false" class="badge"> <span class="red darken-1 statusSpan"> Finished </span> </td>
 
     </tr>
 

@@ -22,21 +22,22 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
   instance: any;
 
   notifications = [];
+  notificationsCounter: Number;
 
   stompClient;
 
-  ngOnDestroy()
-  {
+  ngOnDestroy() {
     this.stompClient.disconnect();
     this.stompClient.unsubscribe();
   }
 
   constructor(private router: Router, public dialog: MatDialog) {
     this.initializeWebSocketConnection();
-    console.log('Me inicialize wao woa wao');
   }
 
   ngOnInit() {
+
+    this.notificationsCounter = 0;
 
     var nav = document.getElementById('nav-student');
     var optionMenu = document.getElementById('menuOption');
@@ -58,12 +59,12 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
 
 
     var elems = document.querySelectorAll('#slide-out');
-    M.Sidenav.init(elems, { edge: "right" });
+    M.Sidenav.init(elems, { edge: "right", draggable: true });
 
     var elems = document.querySelectorAll('.dropdown-trigger');
     var instance = M.Dropdown.init(elems, {
       coverTrigger: false,
-      constrainWidth: false,
+      constrainWidth: false
     });
 
   }
@@ -71,16 +72,18 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
 
 
   initializeWebSocketConnection() {
+
     var socket = new SockJS('https://api.blackbriar.site/gs-guide-websocket');
     this.stompClient = Stomp.over(socket);
     var userId = localStorage.getItem('userId');
 
     let that = this;
+    var counter: Number;
 
     this.stompClient.connect({}, function (frame) {
       that.stompClient.subscribe(`/topic/${userId}`, function ({ body }) {
         var data = JSON.parse(body);
-        console.log(data);
+        counter = 1;
 
         if (data.category === 'FMHLA') {
           that.dialog.open(HealerAlertComponent, {
@@ -98,10 +101,26 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
             data: { dialogMessage: data.content }
           });
         } else {
+          that.updateNotificationCounter(counter);
           that.notifications.unshift(data);
         }
       });
     });
+  }
+
+  updateNotificationCounter(count: Number) {
+
+    var bell = document.querySelector('.notification');
+    console.log("Notificacions => " + count);
+
+    // count = Number(bell.getAttribute('data-count')) || 0;
+    bell.setAttribute('data-count', count.toString());
+    //bell.classList.remove('notify');
+    // bell.offsetWidth = bell.offsetWidth;
+    bell.classList.add('notify');
+    if (count === 1) {
+      bell.classList.add('show-count');
+    }
   }
 
   goToMyGroups() {

@@ -2,15 +2,15 @@
 <div class="parallax-container" style="height: 380px;">
   <div class="row">
     <div class="col s12 m4 center-align" style="padding-top: 120px">
-      <img class="circle responsive-img" width="160px" src="{{ group?.owner.photo }}">
+      <img *ngIf="isStudent == 'true' "class="circle responsive-img" width="160px" src="{{ group?.owner.photo }}">
       <br>
-      <p class="borderText">
+      <p class="ownerText" *ngIf="isStudent == 'true'">
         {{ group?.owner.firstName }} {{ group?.owner.lastName }}
-      </p>`
+      </p>
     </div>
     <div class="col s12 m8"><br><br><br><br><br><br>
       <h3 class="borderText">{{ group?.title }}</h3>
-       <label class="borderText hyperLinkDescription modal-trigger" data-target="descriptionModal">Read Description</label>
+       <label class="borderText hyperLinkDescription modal-trigger description" data-target="descriptionModal">Read Description</label>
         <!-- <p class="borderText truncate" style="font-size: 20px" > 
       </p>
       -->

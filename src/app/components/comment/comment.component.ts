@@ -72,7 +72,7 @@ export class CommentComponent implements OnInit {
           }
         );
     }
-    else { M.toast({ html: 'You have to comment something' }); }
+    else { M.toast({ html: 'You must to write something' }); }
   }
 
 

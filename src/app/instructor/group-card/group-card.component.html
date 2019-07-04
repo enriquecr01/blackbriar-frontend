@@ -1,14 +1,16 @@
     <div class="col s12 m4 l3">
         <div class="card z-depth-3 hoverable">
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{{group.image}}" height="200px" (click)="goToGroupDashboard(group.id)">
+            <div class="card-image">
+              <img class="activator" height="200" src="{{group.image}}" (click)="goToGroupDashboard(group.id)">
+              <span class="card-title activator text-white truncate" (click)="goToGroupDashboard(group.id)">{{group.title}}</span>
+              <a class="btn-floating halfway-fab waves-effect waves-light red">
+                  <i class="material-icons" [matMenuTriggerFor]="menu">more_vert</i>
+              </a>
             </div>
-          <div class="card-content">
-            <a class='dropdown-trigger' [matMenuTriggerFor]="menu"><i class="material-icons right dropdown-trigger">more_vert</i></a>
-            <span class="card-title activator grey-text text-darken-4 truncate">{{group.title}}</span>
-             
-          </div>
-          
+            <div class="card-action">
+                <a mat-raised-button matTooltip="Active Students"><i class="material-icons">group</i> 0 </a>
+                <a mat-raised-button matTooltip="Total Forum Points"> <i class="material-icons">forum</i> 0</a>
+              </div>
         </div>
     </div>
 

@@ -1,23 +1,23 @@
 <div class="col s12 m4 l3" *ngIf="group.membership.active">
   <div class="card z-depth-5">
-    <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" height="200" src="{{group.image}}" (click)="goToGroupForums(group.id)">
+    <div class="card-image">
+        <img class="activator" height="200" src="{{group.image}}" (click)="goToGroupForums(group.id)">
+        <span class="card-title activator text-white truncate" (click)="goToGroupForums(group.id)">{{group.title}}</span>
+        <a class="btn-floating halfway-fab waves-effect waves-light red">
+            <i class="material-icons" [matMenuTriggerFor]="menu">more_vert</i>
+        </a>
     </div>
-    <div class="card-content">
-      <!-- Dropdown Structure -->
-      <i class="material-icons vert" [matMenuTriggerFor]="menu">more_vert</i>
-      <span class="card-title activator grey-text text-darken-4 truncate">{{group.title}}
-      </span>
-    </div>
+    <div class="card-action">
+        <a mat-raised-button matTooltip="Active Students"><i class="material-icons">group</i> 0 </a>
+        <a mat-raised-button matTooltip="{{ group.owner.firstName }} {{ group.owner.lastName }}"> <img class="circle responsive-image" width="32px" src="{{ group.owner.photo }}"> </a>
+      </div>
   </div>
 </div>
 
 
 <mat-menu #menu="matMenu">
-  
   <button mat-menu-item class="red" (click)="unsubscribeMe(group.membership.id)">Unsubscribe</button>
   <!-- <a class="red btn modal-trigger" href="#modal1">Unsubscribe</a> -->
-
 </mat-menu>
 
 

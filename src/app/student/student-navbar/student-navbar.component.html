@@ -69,16 +69,29 @@
       </ul>
 
       <ul class="right hide-on-med-and-down">
-        <li><a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i
-              class="material-icons">notifications_none</i></a></li>
+
+        <li><a (click)="goToMyGroups()"><i class="material-icons" mat-raised-button
+              matTooltip="My Groups">supervisor_account
+            </i></a>
+        </li>
+
+        <li><a (click)="goToExplore()"><i class="material-icons" mat-raised-button
+              matTooltip="Explore Groups">explore</i></a>
+        </li>
+
+        <li>
+          <a href="#" class="notification sidenav-trigger show-on-large" data-target="slide-out"
+            matTooltip="Notifications"></a>
+        </li>
+
       </ul>
     </div>
   </nav>
 </div>
 
 <!-- Notification SideNav -->
-<ul id="slide-out" class="sidenav" style="z-index:999;">
-  <li><a>Notifications</a></li>
+<ul id="slide-out" class="sidenav" style="z-index:99999999;">
+  <li><a>Notifications </a></li>
   <div class="row" *ngFor="let message of notifications">
     <app-notifications [notification]=message></app-notifications>
   </div>
