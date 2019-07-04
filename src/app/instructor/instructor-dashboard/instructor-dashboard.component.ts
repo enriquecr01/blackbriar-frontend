@@ -61,7 +61,6 @@ export class InstructorDashboardComponent implements OnInit {
     this.groupsService.deleteGroupService(groupId).
     subscribe(
       data => {
-        M.toast({ html: 'Your group was deleted sucessfully'});
         this.groupsService.getInstructorGroups().
       subscribe(
         data => {
@@ -97,7 +96,7 @@ export class InstructorDashboardComponent implements OnInit {
         this.deleteServiceGroup(groupId);
         Swal.fire(
           'Deleted!',
-          'Your imaginary file has been deleted.',
+          'Your group was deleted sucessfully.',
           'success'
         )
       // For more information about handling dismissals please visit
@@ -105,7 +104,7 @@ export class InstructorDashboardComponent implements OnInit {
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelled',
-          'Your imaginary file is safe :)',
+          'Your group is safe :)',
           'error'
         )
       }
