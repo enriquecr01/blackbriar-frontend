@@ -23,7 +23,7 @@ export class InstructorDashboardComponent implements OnInit {
   public: boolean = false;
   GroupsService: any;
   searchText: string = "";
-  selectedValue: string
+  selectedValue: string;
   selectedFile: ImageSnippet;
   previewImage: any;
   imageFile: File;
@@ -152,7 +152,8 @@ export class InstructorDashboardComponent implements OnInit {
   }
 
 
-  processFile(imageInput: any, imageInputFile: any) {
+  processFile(imageInput: any, imageInputFile: any) 
+  {
     const file: File = imageInput.files[0];
     const reader = new FileReader();
 
@@ -167,9 +168,9 @@ export class InstructorDashboardComponent implements OnInit {
       mimeType.match(/image\/*/);
 
       this.imageFile = imageInputFile;
-      reader.readAsDataURL(imageInputFile[0]);
-      reader.onload = (_event) => {
-        this.previewImage = reader.result;
+      reader.readAsDataURL(imageInputFile[0]); 
+      reader.onload = (_event) => { 
+        this.previewImage = reader.result; 
       }
     });
 

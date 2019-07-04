@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as M from "materialize-css/dist/js/materialize";
 import { Group } from 'src/app/models/group';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ForumEditModal } from './edit-forum-modal';
 
 @Component({
   selector: 'app-group-card',
@@ -15,9 +15,19 @@ export class GroupCardComponent implements OnInit {
 
   @Input() group: Group;
 
-  constructor (private router: Router)
-  {
+  constructor (private router: Router, private dialog: MatDialog){
 
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ForumEditModal, {
+      width: '50%',
+      data: this.group
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 
