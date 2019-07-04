@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import * as M from "materialize-css/dist/js/materialize";
 import { Group } from 'src/app/models/group';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ForumEditModal } from './edit-forum-modal';
 import { GroupsService } from 'src/app/groups.service';
 import { FilesService } from 'src/app/files.service';
 import { ImageSnippet } from 'src/app/models/imagesnippet';
@@ -25,12 +26,22 @@ export class GroupCardComponent implements OnInit, AfterViewInit {
   previewImage: any;
   selectedFile: ImageSnippet;
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ForumEditModal, {
+      width: '50%',
+      data: this.group
+    });
   constructor (private router: Router, 
     private groupsService: GroupsService, 
     private filesService: FilesService,
-    public dashboard: InstructorDashboardComponent)
+    public dashboard: InstructorDashboardComponent,
+              private dialog: MatDialo)
   {
 
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 
