@@ -4,12 +4,25 @@
               <img class="activator" src="{{group.image}}" height="200px" (click)="goToGroupDashboard(group.id)">
             </div>
           <div class="card-content">
-            <a class='dropdown-trigger' data-target='dropdown1'><i class="material-icons right dropdown-trigger">more_vert</i></a>
+            <a class='dropdown-trigger' [matMenuTriggerFor]="menu"><i class="material-icons right dropdown-trigger">more_vert</i></a>
             <span class="card-title activator grey-text text-darken-4 truncate">{{group.title}}</span>
              
           </div>
+          
         </div>
     </div>
+
+
+    
+
+
+  
+<mat-menu #menu="matMenu">
+<button mat-menu-item class="red" (click)="this.dashboard.deleteAlert(group.id)">Delete</button>
+  <!--<button mat-menu-item class="red" (click)="deleteServiceGroup(group.id)">Delete</button>-->
+  <!-- <a class="red btn modal-trigger" href="#modal1">Unsubscribe</a> -->
+
+</mat-menu>
 
     <ul id='dropdown1' class='dropdown-content'>
         <li><a href="#!">one</a></li>
