@@ -121,24 +121,25 @@ export class InstructorDashboardComponent implements OnInit {
     else if (this.arrayObjectIndexOf(this.groupsFilter, this.title, "title") > -1) {
       M.toast({ html: 'You already have a group with the same name' });
     }
-    else {
-
-      if (this.image.length < 1 && this.previewImage === "undefined") {
+    
+    else if (this.previewImage != "undefined") {
+      this.filesService.uploadImage(this.selectedFile.file).subscribe(
+        data => {
+          console.log(data);
+          this.image = data;
+          this.callServiceGroup();
+        },
+        error => {
+          console.log(error);
+        });
+  
+  }
+  else{
+      //else if (this.image.length < 1 || this.previewImage === "undefined") {
         this.image = "https://summer.pes.edu/wp-content/uploads/2019/02/default-2.jpg";
         this.callServiceGroup();
       }
-      else if (this.previewImage != "undefined") {
-        this.filesService.uploadImage(this.selectedFile.file).subscribe(
-          data => {
-            console.log(data);
-            this.image = data;
-            this.callServiceGroup();
-          },
-          error => {
-            console.log(error);
-          });
-      }
-    }
+     
   }
 
 
