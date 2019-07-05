@@ -31,26 +31,20 @@ export class GroupCardComponent implements OnInit, AfterViewInit {
       width: '50%',
       data: this.group
     });
-  constructor (private router: Router, 
-    private groupsService: GroupsService, 
-    private filesService: FilesService,
-    public dashboard: InstructorDashboardComponent,
-              private dialog: MatDialo)
-  {
-
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.group = result;
     });
+  }
+
+  constructor (private router: Router, 
+    public dashboard: InstructorDashboardComponent,
+    private dialog: MatDialog)
+  {
   }
 
 
   ngOnInit() {
-    console.log(this.group);
-    var elems = document.querySelectorAll('.modal');
-    M.Modal.init(elems);
-    Swal.fire('Hello world!');
-
   }
 
 
@@ -58,59 +52,5 @@ export class GroupCardComponent implements OnInit, AfterViewInit {
     console.log(groupId);
     this.router.navigate(['instructor/group/',groupId]);  
   }
-
-  updateGroup(){
-    if(this.group.description.length < 1){
-      M.toast({ html: 'Your group must to have a description' });
-    }
-    else {
-
-      if (this.group.image.length < 1 && this.previewImage == "undefined") {
-        this.group.image = "https://summer.pes.edu/wp-content/uploads/2019/02/default-2.jpg";
-        this.editServiceGroup();
-      }
-      else if (this.previewImage != "undefined") {
-        this.filesService.uploadImage(this.selectedFile.file).subscribe(
-          data => {
-            console.log(data);
-            this.group.image = data;
-            this.editServiceGroup();
-          },
-          error => {
-            console.log(error);
-          });
-      }
-    }
-
-
-  }
-
-  
-
-  editServiceGroup() {
-    this.groupsService.editGroupService(this.group.description, this.group.image, this.group.publicGroup, this.group.id).
-      subscribe(
-        data => {
-          M.toast({ html: 'Your group was edited sucessfully' });
-          this.group.description = "";
-          this.group.image = "";
-          this.groupsService.getInstructorGroups().
-            subscribe(
-              data => {
-                console.log("GET Request is successful ", data);
-                //this.Groups = data;
-              },
-              error => {
-                console.log("Error", error);
-              }
-            );
-        },
-        error => {
-          console.log(error.error.message);
-          M.toast({ html: error.error.message });
-        }
-      );
-  }  
-
 }
 

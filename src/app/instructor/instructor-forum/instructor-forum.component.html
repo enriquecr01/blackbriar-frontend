@@ -16,8 +16,7 @@
   <tbody>
     <tr *ngFor="let forum of forums"  (click)="goToForumDashboard(forum.id)">
       <td>
-        <a class="forumTitle" *ngIf="forum.expired == true"
-          href="http://localhost:4200/instructor/instructor-dashboard">{{forum.title}}<br></a>
+        <a class="forumTitle" *ngIf="forum.expired == true">{{forum.title}}<br></a>
         <p class="forumTitleDisabled"*ngIf="forum.expired == false">{{forum.title}}<br></p>
         <p *ngIf="forum.expired == true"> {{forum.smallDescription}}...</p>
         <p class="forumDescriptionDisabled" *ngIf="forum.expired == false"> {{forum.smallDescription}}...</p>
