@@ -79,20 +79,39 @@
               matTooltip="Explore Groups">explore</i></a>
         </li>
 
+        <!-- Version con sideNav
         <li>
           <a href="#" class="notification sidenav-trigger show-on-large" data-target="slide-out"
+            matTooltip="Notifications"></a>
+        </li> -->
+
+        <li>
+          <a (click)="openNotificationDropdown()" class="notification dropdown-button"
+            data-activates="dropdownNotification" data-target='dropdownNotification' data-beloworigin="true"
             matTooltip="Notifications"></a>
         </li>
 
       </ul>
     </div>
   </nav>
+
 </div>
 
-<!-- Notification SideNav -->
-<ul id="slide-out" class="sidenav" style="z-index:99999999;">
-  <li><a>Notifications </a></li>
+
+
+
+<!-- Dropdown Structure -->
+<ul id="dropdownNotification" class="dropdown-content">
   <div class="row" *ngFor="let message of notifications">
     <app-notifications [notification]=message></app-notifications>
   </div>
 </ul>
+
+<!-- Notification SideNav -->
+<!-- <ul id="slide-out" class="sidenav collapsible" style="z-index:99999999;">
+  <li>Notifications</li>
+  <div class="row" *ngFor="let message of notifications">
+    <app-notifications [notification]=message></app-notifications>
+  </div>
+
+</ul> -->
