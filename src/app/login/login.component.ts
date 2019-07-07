@@ -4,8 +4,6 @@ import { AppComponent } from './../app.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
-import { InboxService } from '../inbox.service';
-import { Message } from '../models/message'
 
 
 @Component({
@@ -28,7 +26,7 @@ export class LoginComponent {
   images: string[] = ["assets/Images/Backgrounds/mtg12.jpg", "assets/Images/Backgrounds/liliana2.jpg"];
   selectedImage: string = "";
 
-  constructor(private loginService: LoginService, private router: Router, private inboxService: InboxService) {
+  constructor(private loginService: LoginService, private router: Router) {
 
   }
 
@@ -77,15 +75,6 @@ export class LoginComponent {
                   localStorage.setItem('email', userInfo.email);
                   localStorage.setItem('photo', userInfo.photo);
                   localStorage.setItem('student', userInfo.student);
-
-                  this.inboxService.getUserNotifications().subscribe(
-                    message => {
-                      this.inboxService.userNotifications = message;
-                      //console.log(this.inboxService.userNotifications);
-                    }, error => {
-                      console.log("Error", error);
-                    }
-                  );
 
                   if (userInfo.student) {
                     this.router.navigate(['student/dashboard']);

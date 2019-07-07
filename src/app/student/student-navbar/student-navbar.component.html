@@ -102,7 +102,7 @@
 
 <!-- Dropdown Structure -->
 <ul id="dropdownNotification" class="dropdown-content">
-  <div class="row" *ngFor="let message of notifications">
+  <div *ngFor="let message of notifications">
     <app-notifications [notification]=message></app-notifications>
   </div>
 </ul>

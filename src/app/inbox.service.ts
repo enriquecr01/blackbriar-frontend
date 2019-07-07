@@ -10,8 +10,6 @@ export class InboxService {
 
   constructor(private http: HttpClient) { }
 
-  userNotifications: Message[];
-
   getUserNotifications() {
     return this.http.get<Message[]>(`https://api.blackbriar.site/api/messages`);
   }
