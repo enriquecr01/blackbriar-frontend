@@ -23,7 +23,6 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
   instance: any;
 
   notifications = [];
-  notificationsCounter: [];
   stompClient;
 
   ngOnDestroy() {
@@ -31,15 +30,16 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
     this.stompClient.unsubscribe();
   }
 
-  constructor(private router: Router, public dialog: MatDialog, private inboxService: InboxService, private loginComponent: LoginComponent) {
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private inboxService: InboxService,
+    private loginComponent: LoginComponent
+  ) {
     this.initializeWebSocketConnection();
   }
 
   ngOnInit() {
-
-
-
-    // this.notificationsCounter = this.loginComponent.userNotifications;
     var nav = document.getElementById('nav-student');
     var optionMenu = document.getElementById('menuOption');
     /*
@@ -62,14 +62,17 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
     var elems = document.querySelectorAll('#slide-out');
     M.Sidenav.init(elems, { edge: "right", draggable: true });
 
-    // var elems = document.querySelectorAll('.dropdown-trigger');
-    // var instance = M.Dropdown.init(elems, {
-    //   coverTrigger: false,
-    //   constrainWidth: false
-    // });
+    const dropdown = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(dropdown, {
+      closeOnClick: false
+    });
 
+    this.inboxService.getUserNotifications()
+      .subscribe(
+        (inboxMessages) => { this.notifications = inboxMessages; },
+        ({ error }) => { M.toast({ html: error.message }); }
+      )
   }
-
 
   initializeWebSocketConnection() {
 

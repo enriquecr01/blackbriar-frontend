@@ -22,7 +22,6 @@ export class StudentExploreComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.inboxService.userNotifications);
 
     var elems = document.querySelectorAll('select');
     M.FormSelect.init(elems);
