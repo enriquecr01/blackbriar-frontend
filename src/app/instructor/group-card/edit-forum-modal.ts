@@ -1,4 +1,4 @@
-import { Component, Inject, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Group } from 'src/app/models/forum';
 import { ImageSnippet } from 'src/app/models/imagesnippet';
@@ -11,11 +11,7 @@ import { mergeMap } from 'rxjs/operators';
   templateUrl: 'edit-forum-modal.html',
   styleUrls: ['./edit-forum-modal.css']
 })
-export class ForumEditModal implements AfterViewInit {
-  ngAfterViewInit(): void {
-  this.image = this.group.image;
-    console.log(this.image);
-  }
+export class ForumEditModal {
 
   group;
   title: string = "";
@@ -26,14 +22,13 @@ export class ForumEditModal implements AfterViewInit {
   previewImage: any;
   uploadedImage: boolean = false;
   imageFile;
-  @Output() updatedGroup = new EventEmitter();
 
   constructor(
     private groupsService: GroupsService,
     private filesService: FilesService,
     public dialogRef: MatDialogRef<ForumEditModal>,
     @Inject(MAT_DIALOG_DATA) public data: Group) {
-    console.log(data);
+    this.dialogRef.disableClose = true;
     this.group = data;
     this.public = data.publicGroup;
     this.description = data.description;
@@ -41,7 +36,8 @@ export class ForumEditModal implements AfterViewInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    console.log(this.group);
+    this.dialogRef.close(this.group);
   }
 
   processFile(imageInput: any, imageInputFile: any) {
@@ -77,7 +73,7 @@ export class ForumEditModal implements AfterViewInit {
         .subscribe(
           data => {
             console.log(data);
-            M.toast({html: "Group edited!"});
+            M.toast({ html: "Group edited!" });
             this.dialogRef.close(data);
           },
           error => {

@@ -61,10 +61,41 @@ export class ForumResponseFeedbackComponent implements OnInit {
 
         var responses = this.forumResponses.length;
         for (let i = 0; i < responses; i++) {
+          let files = this.forumResponses[i].files.split(',');
+          if(this.forumResponses[i].files != "" && this.forumResponses[i].files)
+          {
+            console.log(files);
+            const extractFileType = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[2].toLowerCase();
+            const extractFileName = fileName => fileName.match(/\d+-(.+)\.([a-z]+)$/i)[1];
+            
+            let arrayFiles = [];
+            for (let file of files) {
+              let gettingFileWithTimestamp = file.split('/');
+              let fileTypeAndName = { "name": extractFileName(gettingFileWithTimestamp[4]), "type": extractFileType(gettingFileWithTimestamp[4]), "url": file };
+              arrayFiles.push(fileTypeAndName);
+            }
+            this.forumResponses[i].filesArray = arrayFiles;
+
+            this.forumResponses[i].replies.forEach((reply) => {
+              let filesReply = reply.files.split(',');
+              let arrayFiles = [];
+              // Se realiza un Foreach pero de las respuestas de una respuesta
+              filesReply.forEach((files) => {
+                let gettingFileWithTimestamp = files.split('/');
+                let fileTypeAndName = { "name": extractFileName(gettingFileWithTimestamp[4]), "type": extractFileType(gettingFileWithTimestamp[4]), "url": files };
+                arrayFiles.push(fileTypeAndName);
+              })
+              reply.filesArray = arrayFiles;
+            });
+  
+          }
+
+
           this.forumResponses[i].feedbackQuantity = this.forumResponses[i].replies.length;
           for (let j = 0; j < this.forumResponses[i].replies.length; j++) {
             this.forumResponses[i].replies[j].createdSince = moment(this.forumResponses[i].replies[j].created).startOf('day').fromNow();
           }
+          console.log(this.forumResponses);
         }
       }, error => {
         console.log("Error -> getForumResponses", error);

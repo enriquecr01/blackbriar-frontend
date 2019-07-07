@@ -1,41 +1,42 @@
 <article class="card">
- 
+
   <details class="card-content" style="padding: 10px 0px 10px 20px">
     <summary class="card-title ">
-        <div class="row" >
-          <img class="circle responsive-img col s2 m2 l2" width="20px" style="height: 90px; width: 120px;" src="{{ comment.studentDetails.photo }}">
-            
-            <span class="commentNames"> {{ comment.studentDetails.firstName }} {{ comment.studentDetails.lastName }} </span>  
-            <p class="span-text" style="margin: 0px 0px 0px 20px">
-            <span class="col s6 m6 l6"[innerHTML]=comment.content></span>
-            </p>
-          
-            <div *ngIf="fileTypeName.length > 0" class="col col s2 m2 l2">
-             
-                <label class="span-text">Files attached</label>
-                <br>
-                <div class="" *ngFor="let file of fileTypeName">
-                  <div class="card" style="width: 50px; height: 80px;">
-                    <div class="card-content truncate files">
-                      <a href="{{ file.url }}" target="_blank">
-                        {{ file.name }}
-                      </a>
-                    </div>
-                    <div class="card-image">
-                      <img src="assets/Images/Icons/{{file.type}}.svg">
-                    </div>
-                    </div>
-                  
-                </div>
+      <div class="row">
+        <img class="circle responsive-img col s2 m2 l2" width="20px" style="height: 90px; width: 120px;"
+          src="{{ comment.studentDetails.photo }}">
+
+        <span class="commentNames"> {{ comment.studentDetails.firstName }} {{ comment.studentDetails.lastName }} </span>
+        <p class="span-text" style="margin: 0px 0px 0px 20px">
+          <span class="col s6 m6 l6" [innerHTML]=comment.content></span>
+        </p>
+
+        <div *ngIf="fileTypeName.length > 0" class="col col s2 m2 l2">
+
+          <label class="span-text">Files attached</label>
+          <br>
+          <div class="" *ngFor="let file of fileTypeName">
+            <div class="card" style="width: 50px; height: 80px;">
+              <div class="card-content truncate files">
+                <a href="{{ file.url }}" target="_blank">
+                  {{ file.name }}
+                </a>
+              </div>
+              <div class="card-image">
+                <img src="assets/Images/Icons/{{file.type}}.svg">
               </div>
             </div>
-            <p *ngIf="hasFeedback; else writeFeedback" class="showResponses" style="margin: 0px 0px 0px 20px">Show Responses
-            </p>
-            <ng-template #writeFeedback>
-              <p class="showResponses" style="margin: 0px 0px 0px 20px">Leave a feedback!</p>
-            </ng-template>
+
+          </div>
+        </div>
+      </div>
+      <p *ngIf="hasFeedback; else writeFeedback" class="showResponses" style="margin: 0px 0px 0px 20px">Show Responses
+      </p>
+      <ng-template #writeFeedback>
+        <p class="showResponses" style="margin: 0px 0px 0px 20px">Leave a feedback!</p>
+      </ng-template>
     </summary>
-  
+
     <div *ngFor="let reply of comment.replies">
       <details class="card-content" style="padding: 10px 0px 10px 20px"
         *ngIf="reply.studentDetails; else instructorReply">
@@ -81,7 +82,9 @@
                       </a>
                     </div>
                     <div class="card-image">
-                      <img src="assets/Images/Icons/{{fileOfArray.type}}.svg">
+                      <a href="{{ fileOfArray.url }}" target="_blank">
+                        <img src="assets/Images/Icons/{{fileOfArray.type}}.svg">
+                      </a>
                     </div>
                   </div>
                 </div>

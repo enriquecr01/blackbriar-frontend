@@ -12,7 +12,19 @@
         </header>
         <!-- Main -->
         <div id="main">
-            <div class="row" *ngIf="responses.length == 0">
+            <div *ngIf="disableComment === true">
+                <div class="row" *ngIf="responses.length == 0">
+                    <div class="col s12">
+                        <div class="card-panel orange darken-4">
+                            <span class="white-text">You are not authorized for this forum, the forum started before you
+                                entered the group :(
+
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="responses.length == 0 && disableComment === false">
                 <div class="col s12">
                     <div class="card-panel teal">
                         <span class="white-text">There are no answers, maybe you are the first one, animate to
@@ -83,7 +95,7 @@
                 </div>
             </div>
 
-            <div class="row" *ngIf="responses.length == 0">
+            <div class="row" *ngIf="responses.length == 0 && disableComment === false">
                 <div class="col s12">
                     <editor apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53"
                         [init]="{plugins: 'link image', branding: false, min_height: 300}" id="response" name="response"

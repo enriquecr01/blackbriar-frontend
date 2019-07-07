@@ -18,7 +18,7 @@ import { InstructorGroupComponent } from '../instructor-group/instructor-group.c
 })
 export class GroupCardComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
-    
+
   }
 
   //@Input() Groups: Group[];
@@ -33,14 +33,18 @@ export class GroupCardComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.group = result;
+      try {
+        this.group = result;
+      }
+      catch (error) {
+        console.log(error);
+      }
     });
   }
 
-  constructor (private router: Router, 
+  constructor(private router: Router,
     public dashboard: InstructorDashboardComponent,
-    private dialog: MatDialog)
-  {
+    private dialog: MatDialog) {
   }
 
 
@@ -48,8 +52,8 @@ export class GroupCardComponent implements OnInit, AfterViewInit {
   }
 
 
-  goToGroupDashboard(groupId: number){
-    this.router.navigate(['instructor/group/',groupId]);  
+  goToGroupDashboard(groupId: number) {
+    this.router.navigate(['instructor/group/', groupId]);
   }
 }
 

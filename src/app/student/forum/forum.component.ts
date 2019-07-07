@@ -23,6 +23,7 @@ export class ForumComponent implements OnInit {
   selectedFile: ImageSnippet;
   files = [];
   fileTypeName = [];
+  disableComment : boolean = false;
 
 
   constructor(private activatedRoute: ActivatedRoute, private forumService: ForumService, private commentService: CommentService, private filesService: FilesService) { }
@@ -121,6 +122,7 @@ export class ForumComponent implements OnInit {
         },
         error => {
           console.log("Error", error);
+          this.disableComment = true;
         }
       );
   }
