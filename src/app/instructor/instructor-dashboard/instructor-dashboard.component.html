@@ -72,13 +72,13 @@
                 <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput, imageInput.files)">
               </div>
               <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
+                <input id="image-name" class="file-path validate" type="text" value = "" name= "imageNme">
               </div>
             </div>
           </div>
         </div>
         <div *ngIf="selectedFile" class="img-preview-container">
-          <div class="img-preview img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
+          <div class="img-preview"
             [ngStyle]="{'background-image': 'url('+ previewImage + ')'}">
           </div>
 

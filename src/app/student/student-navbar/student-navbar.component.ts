@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { InboxService } from './../../inbox.service';
@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { HealerInfoComponent } from 'src/app/notifications/healerinfo.component';
 import { HealerAlertComponent } from 'src/app/notifications/healeralert.component';
 import { WarlockAlertComponent } from 'src/app/notifications/warlockalert.component';
+import { LoginComponent } from '../../login/login.component';
 
 @Component({
   selector: 'app-student-navbar',
@@ -22,8 +23,6 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
   instance: any;
 
   notifications = [];
-  notificationsCounter: Number;
-
   stompClient;
 
   ngOnDestroy() {
@@ -31,14 +30,16 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
     this.stompClient.unsubscribe();
   }
 
-  constructor(private router: Router, public dialog: MatDialog) {
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private inboxService: InboxService,
+    private loginComponent: LoginComponent
+  ) {
     this.initializeWebSocketConnection();
   }
 
   ngOnInit() {
-
-    this.notificationsCounter = 0;
-
     var nav = document.getElementById('nav-student');
     var optionMenu = document.getElementById('menuOption');
     /*
@@ -61,15 +62,17 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
     var elems = document.querySelectorAll('#slide-out');
     M.Sidenav.init(elems, { edge: "right", draggable: true });
 
-    var elems = document.querySelectorAll('.dropdown-trigger');
-    var instance = M.Dropdown.init(elems, {
-      coverTrigger: false,
-      constrainWidth: false
+    const dropdown = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(dropdown, {
+      closeOnClick: false
     });
 
+    this.inboxService.getUserNotifications()
+      .subscribe(
+        (inboxMessages) => { this.notifications = inboxMessages; },
+        ({ error }) => { M.toast({ html: error.message }); }
+      )
   }
-
-
 
   initializeWebSocketConnection() {
 
@@ -106,6 +109,24 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
         }
       });
     });
+  }
+
+  openNotificationDropdown() {
+
+
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(elems, {
+      closeOnClick: false,
+    });
+
+    console.log("opened dropdown");
+  }
+
+  openCollapsible() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instance = M.Collapsible.init(elems);
+
+    console.log("Opened collapsible!");
   }
 
   updateNotificationCounter(count: Number) {

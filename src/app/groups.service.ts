@@ -15,7 +15,7 @@ export class GroupsService {
   getInstructorGroups() {
     var userId = localStorage.getItem("userId");
 
-    return this.http.get<Group[]>(`https://api.blackbriar.site/api/users/${userId}/groups/owned`);
+    return this.http.get<Group[]>(`https://api.blackbriar.site/api/groups/owned`);
   }
 
   addGroupService(title, description, image, publicGroup) {

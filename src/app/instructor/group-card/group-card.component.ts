@@ -49,7 +49,6 @@ export class GroupCardComponent implements OnInit, AfterViewInit {
 
 
   goToGroupDashboard(groupId: number){
-    console.log(groupId);
     this.router.navigate(['instructor/group/',groupId]);  
   }
 }

@@ -6,9 +6,7 @@ import { User } from './models/user';
   providedIn: 'root'
 })
 export class LoginService {
-  constructor(private http: HttpClient) {
-    console.log("marrano");
-  }
+  constructor(private http: HttpClient) {}
 
   login(email, password) {
     return this.http.post("https://api.blackbriar.site/api/users/login", {
