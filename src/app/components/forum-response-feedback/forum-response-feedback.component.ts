@@ -63,7 +63,7 @@ export class ForumResponseFeedbackComponent implements OnInit {
         for (let i = 0; i < responses; i++) {
           this.forumResponses[i].feedbackQuantity = this.forumResponses[i].replies.length;
           for (let j = 0; j < this.forumResponses[i].replies.length; j++) {
-            this.forumResponses[i].replies[j].createdSince = moment(this.forumResponses[i].replies[j].created).startOf('day').fromNow();
+            this.forumResponses[i].replies[j].createdSince = moment(this.forumResponses[i].replies[j].created).fromNow();
           }
         }
       }, error => {

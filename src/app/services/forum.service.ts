@@ -36,10 +36,7 @@ export class ForumService {
     return this.http.post<ForumResponse>(
       `https://api.blackbriar.site/api/groups/${groupId}/forums`,
       forum
-    ).pipe(
-      map(({ scoreboard }) => scoreboard
-        .filter(({ healer, warrior, warlock }) => healer || warrior || warlock))
-    )
+    );
   }
 
   get roleInfo() {

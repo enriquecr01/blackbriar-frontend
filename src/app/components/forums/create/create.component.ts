@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { ForumService } from 'src/app/services/forum.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ForumRole, ForumMemberState } from 'src/app/models/forum';
+import { ForumRole, ForumMemberState, ForumResponse } from 'src/app/models/forum';
 
 @Component({
   selector: 'create-forum',
@@ -10,6 +10,8 @@ import { ForumRole, ForumMemberState } from 'src/app/models/forum';
 })
 export class CreateComponent implements OnInit, AfterViewInit {
   @Input() groupId: number;
+  @Output() forumCreated = new EventEmitter<ForumResponse>();
+
   forum: FormGroup;
   roleInfo: ForumRole[];
   scoreboard: ForumMemberState[];
@@ -53,7 +55,12 @@ export class CreateComponent implements OnInit, AfterViewInit {
         endDate: new Date(`${this.date} ${this.time}`)
       }, this.groupId).subscribe(
         (data) => {
-          this.scoreboard = data;
+          this.forumCreated.emit(data);
+
+          this.scoreboard = data.scoreboard.filter(
+            ({ healer, warrior, warlock }) => healer || warrior || warlock
+          );
+
           M.toast({ html: `Your forum was successfully created!` });
           this.forum.reset();
         },

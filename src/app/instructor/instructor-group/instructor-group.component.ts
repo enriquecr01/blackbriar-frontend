@@ -2,13 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EndpointsService } from '../../student/Services/endpoints.service';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Forum } from 'src/app/models/forum';
-import { InstructorForumComponent } from '../instructor-forum/instructor-forum.component';
-import { ForumInsertService } from 'src/app/services/forum-insert.service';
-import { ForumRequest } from 'src/app/models/forum';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ForumResponse } from 'src/app/models/forum';
 
 @Component({
   selector: 'app-instructor-group',
@@ -18,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class InstructorGroupComponent implements OnInit {
   groupId: number;
   forumInsertService: any;
-  forums: any = [];
+  forums: any;
 
   constructor(
     private endpoint: EndpointsService,
@@ -65,5 +59,9 @@ export class InstructorGroupComponent implements OnInit {
         console.log("Error -> getGroupForums", error);
       }
     )
+  }
+
+  addForum(created: ForumResponse) {
+    this.forums = [created, ...this.forums];
   }
 }

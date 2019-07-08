@@ -57,7 +57,7 @@ export class ForumResponseComponent implements OnInit {
             this.forumResponses[i].filesArray = arrayFiles;
   
           }
-          this.forumResponses[i].createdSince = moment(this.forumResponses[i].created).startOf('day').fromNow();
+          this.forumResponses[i].createdSince = moment(this.forumResponses[i].created).fromNow();
         }
         console.log(this.forumResponses);
       }, error => {

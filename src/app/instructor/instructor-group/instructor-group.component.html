@@ -19,7 +19,7 @@
                 <app-instructor-forum [forums]="forums"></app-instructor-forum>
               </div>
               <div id="createForum" class="col s12">
-                <create-forum [groupId]="groupId"></create-forum>
+                <create-forum [groupId]="groupId" (forumCreated)="addForum($event)"></create-forum>
               </div>
           </div>
       </div>
