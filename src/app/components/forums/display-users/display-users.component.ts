@@ -28,7 +28,7 @@ export class DisplayUsersComponent {
         return this.scoreboard.filter(element => element.warlock);
       case 'All':
         return this.scoreboard;
-      case 'Humans':
+      case 'Civilians':
         return this.scoreboard.filter(
           element => !element.warlock && !element.warrior && !element.healer
         );

@@ -3,29 +3,25 @@
   <details class="card-content" style="padding: 10px 0px 10px 20px">
     <summary class="card-title ">
       <div class="row">
-        <div class="valign-wrapper">
-            <img class="circle" height="60px" widht="60px"
-            src="{{ comment.studentDetails.photo }}">
-  
-          <span class="commentNames">
-            {{ comment.studentDetails.firstName }} {{ comment.studentDetails.lastName }}
-          </span>
-        </div>
+        <img class="circle responsive-img col s2 m2 l2" width="15px" style="height: 90px; width: 112px;"
+          src="{{ comment.studentDetails.photo }}">
 
-        <p class="span-text">
-          <span class="col s6 m6 l6" [innerHTML]=comment.content></span>
+        <span class="commentNames"> {{ comment.studentDetails.firstName }} {{ comment.studentDetails.lastName }} </span>
+        <p class="span-text" style="margin: 0px 0px 0px 20px">
+          <span class="col s8 m8 l8" style="margin-left: -10px;" [innerHTML]=comment.content></span>
         </p>
 
         <div *ngIf="fileTypeName.length > 0" class="col col s2 m2 l2">
+
           <label class="span-text">Files attached</label>
           <br>
           <div class="" *ngFor="let file of fileTypeName">
-            <div class="card" style="width: 50px; height: 80px;">
-              <div class="card-content truncate files">
-                <a href="{{ file.url }}" target="_blank">
-                  {{ file.name }}
-                </a>
-              </div>
+
+            <div class="card-content truncate files" style="width: 50px; height: 80px;">
+              <a href="{{ file.url }}" target="_blank">
+                {{ file.name }}
+              </a>
+
               <div class="card-image">
                 <img src="assets/Images/Icons/{{file.type}}.svg">
               </div>
@@ -46,7 +42,9 @@
         *ngIf="reply.studentDetails; else instructorReply">
         <summary class="card-title"><img class="circle responsive-img" width="32px"
             src="{{ reply.studentDetails.photo }}">
-          {{ reply.studentDetails.firstName }} {{ reply.studentDetails.lastName }}
+          <span class="replyNames">
+            {{ reply.studentDetails.firstName }} {{ reply.studentDetails.lastName }}
+          </span>
           <div>
             <span class="span-text" [innerHTML]=reply.content> </span>
           </div>
@@ -70,7 +68,9 @@
         <details class="card-content" style="padding: 10px 0px 10px 20px">
           <summary class="card-title">
             <img class="circle responsive-img" width="32px" src="{{ reply.instructorDetails.photo }}">
-            {{ reply.instructorDetails.firstName }} {{ reply.instructorDetails.lastName }}
+            <span class="replyNames">
+              {{ reply.instructorDetails.firstName }} {{ reply.instructorDetails.lastName }}
+            </span>
             <div class="chip">
               <img src="assets/Images/Icons/graduation.svg" alt="Instructor">
               Instructor

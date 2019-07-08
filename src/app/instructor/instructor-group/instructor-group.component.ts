@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EndpointsService } from '../../student/Services/endpoints.service';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { ForumResponse } from 'src/app/models/forum';
 
 @Component({
   selector: 'app-instructor-group',
@@ -11,7 +12,7 @@ import * as moment from 'moment';
 export class InstructorGroupComponent implements OnInit {
   groupId: number;
   forumInsertService: any;
-  forums: any = [];
+  forums: any;
 
   constructor(
     private endpoint: EndpointsService,
@@ -58,5 +59,9 @@ export class InstructorGroupComponent implements OnInit {
         console.log("Error -> getGroupForums", error);
       }
     )
+  }
+
+  addForum(created: ForumResponse) {
+    this.forums = [created, ...this.forums];
   }
 }
