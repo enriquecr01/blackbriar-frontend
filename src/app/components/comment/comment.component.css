@@ -61,6 +61,11 @@ details details summary {
     font-size: 18px;
 }
 
+.replyNames {
+    font-weight: bold;
+    font-size: 15px;
+}
+
 .commentContent {
     margin-left: 12px;
 }

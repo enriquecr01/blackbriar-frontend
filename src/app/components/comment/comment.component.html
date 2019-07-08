@@ -41,7 +41,9 @@
         *ngIf="reply.studentDetails; else instructorReply">
         <summary class="card-title"><img class="circle responsive-img" width="32px"
             src="{{ reply.studentDetails.photo }}">
-          {{ reply.studentDetails.firstName }} {{ reply.studentDetails.lastName }}
+            <span class="replyNames">
+              {{ reply.studentDetails.firstName }} {{ reply.studentDetails.lastName }}
+              </span>
           <div>
             <span class="span-text" [innerHTML]=reply.content> </span>
           </div>
@@ -65,7 +67,9 @@
         <details class="card-content" style="padding: 10px 0px 10px 20px">
           <summary class="card-title">
             <img class="circle responsive-img" width="32px" src="{{ reply.instructorDetails.photo }}">
-            {{ reply.instructorDetails.firstName }} {{ reply.instructorDetails.lastName }}
+              <span class="replyNames">
+                {{ reply.instructorDetails.firstName }} {{ reply.instructorDetails.lastName }}
+                </span>
             <div class="chip">
               <img src="assets/Images/Icons/graduation.svg" alt="Instructor">
               Instructor
