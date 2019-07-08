@@ -1,7 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ForumMemberState, Setting, ForumRole } from 'src/app/models/forum';
-import { ForumService } from 'src/app/services/forum.service';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { ForumMemberState } from 'src/app/models/forum';
 
 @Component({
   selector: 'app-display-users',
@@ -9,105 +7,33 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./display-users.component.css']
 })
 
-export class DisplayUsersComponent implements OnInit {
- 
+export class DisplayUsersComponent {
   @Input() scoreboard: ForumMemberState[];
-  students : any = [];
-  id: number;
-  title: string;
-  description: string;
-  content: string;
-  published: boolean;
-  created: Date;
-  settings: Setting;
-  scoreboard2: ForumMemberState[];
+  @Input() studentId: string = '';
+  warriorIcon: string = "assets/Images/Icons/helmet.svg";
+  healerIcon: string = "assets/Images/Icons/healer.svg";
+  warlockIcon: string = "assets/Images/Icons/warlock.svg";
+  roleFilter: string;
+  forumId: string;
 
-  warriorIcon : string = "assets/Images/Icons/helmet.svg";
-  healerIcon : string = "assets/Images/Icons/healer.svg";
-  warlockIcon : string = "assets/Images/Icons/warlock.svg";
+  constructor() { }
 
-  roleFilter : string;
-  studentsFilter : ForumMemberState[];
-
-  forumId:string;
-
-  constructor(private forum: ForumService, private route :ActivatedRoute) {
-   
-  }
-
-  ngOnInit() {
-    this.forumId = this.route.snapshot.paramMap.get("forumId");
-    
-    this.getForumStudents();
-    var coll = document.getElementsByClassName("collapsible-users");
-    var i;
-
-    for (i = 0; i < coll.length; i++) {
-      coll[i].addEventListener("click", function() {
-        this.classList.toggle("active-users");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-          content.style.display = "none";
-        } else {
-          content.style.display = "block";
-        }
-      });
-    } 
-  }
-
-  
-
-
-  getForumStudents(){
-    this.forum.getStudents(parseInt(this.forumId)).subscribe(
-     students =>{
-         this.id = students.id;
-         this.title = students.title;
-         this.description = students.description;
-         this.content = students.content;
-         this.published = students.published;
-         this.created = students.created;
-         this.settings = students.settings;
-         this.scoreboard2 = students.scoreboard;      
-         this.studentsFilter = this.scoreboard2; 
-     }
-   ); 
-  }
-
-  onChange(){
-
-    switch(this.roleFilter){
-      
+  get filteredScores() {
+    switch (this.roleFilter) {
       case 'Warrior':
-          this.studentsFilter = this.scoreboard2.filter(element =>{
-            return element.warrior === true;
-          });
-        break;
-      
+        return this.scoreboard.filter(element => element.warrior);
       case 'Healer':
-          this.studentsFilter = this.scoreboard2.filter(element =>{
-            return element.healer === true;
-          });
-        break;
-      
+        return this.scoreboard.filter(element => element.healer);
       case 'Warlock':
-          this.studentsFilter = this.scoreboard2.filter(element =>{
-            return element.warlock === true;
-          });
-        break;
+        return this.scoreboard.filter(element => element.warlock);
       case 'All':
-          this.studentsFilter = this.scoreboard2;
-          break;
+        return this.scoreboard;
       case 'Humans':
-          this.studentsFilter = this.scoreboard2.filter(element =>{
-            return element.warlock == false && element.warrior == false && element.healer == false;
-          });
-          break;
+        return this.scoreboard.filter(
+          element => !element.warlock && !element.warrior && !element.healer
+        );
+      default:
+        return this.scoreboard;
     }
-    
   }
-
-
-
-
 }

@@ -1,43 +1,5 @@
 .show-users-wrapper {
-    margin-top: 50px;
-}
-
-
-/* Style the button that is used to open and close the collapsible content */
-
-.collapsible-users {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-}
-
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-
-.active-users,
-.collapsible-users:hover {
-    background-color: #ccc;
-}
-
-.collapsible-users-title {
-    font-size: 16px;
-}
-
-
-/* Style the collapsible content. Note: hidden by default */
-
-.content-users {
-    padding: 0 18px;
-    padding-left: 30px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
+    margin-top: 0px;
 }
 
 .users-span-name {
@@ -49,8 +11,8 @@
 }
 
 mat-form-field {
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .role-icon {
