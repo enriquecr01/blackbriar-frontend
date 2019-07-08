@@ -25,7 +25,7 @@ export class InstructorDashboardComponent implements OnInit {
   public: boolean = false;
   GroupsService: any;
   searchText: string = "";
-  selectedValue: string
+  selectedValue: string;
   selectedFile: ImageSnippet;
   previewImage: any;
   imageFile: File;
@@ -99,8 +99,6 @@ export class InstructorDashboardComponent implements OnInit {
           'Your group was deleted sucessfully.',
           'success'
         )
-      // For more information about handling dismissals please visit
-      // https://sweetalert2.github.io/#handling-dismissals
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelled',
@@ -123,24 +121,25 @@ export class InstructorDashboardComponent implements OnInit {
     else if (this.arrayObjectIndexOf(this.groupsFilter, this.title, "title") > -1) {
       M.toast({ html: 'You already have a group with the same name' });
     }
-    else {
-
-      if (this.image.length < 1 && this.previewImage == "undefined") {
+    
+    else if (this.previewImage != "undefined") {
+      this.filesService.uploadImage(this.selectedFile.file).subscribe(
+        data => {
+          console.log(data);
+          this.image = data;
+          this.callServiceGroup();
+        },
+        error => {
+          console.log(error);
+        });
+  
+  }
+  else{
+      //else if (this.image.length < 1 || this.previewImage === "undefined") {
         this.image = "https://summer.pes.edu/wp-content/uploads/2019/02/default-2.jpg";
         this.callServiceGroup();
       }
-      else if (this.previewImage != "undefined") {
-        this.filesService.uploadImage(this.selectedFile.file).subscribe(
-          data => {
-            console.log(data);
-            this.image = data;
-            this.callServiceGroup();
-          },
-          error => {
-            console.log(error);
-          });
-      }
-    }
+     
   }
 
 
@@ -190,6 +189,7 @@ export class InstructorDashboardComponent implements OnInit {
           this.groups = [];
           this.title = "";
           this.description = "";
+          this.previewImage = "undefined";
           this.image = "";
           this.groupsService.getInstructorGroups().
             subscribe(
@@ -210,7 +210,8 @@ export class InstructorDashboardComponent implements OnInit {
   }
 
 
-  processFile(imageInput: any, imageInputFile: any) {
+  processFile(imageInput: any, imageInputFile: any) 
+  {
     const file: File = imageInput.files[0];
     const reader = new FileReader();
 
@@ -225,9 +226,9 @@ export class InstructorDashboardComponent implements OnInit {
       mimeType.match(/image\/*/);
 
       this.imageFile = imageInputFile;
-      reader.readAsDataURL(imageInputFile[0]);
-      reader.onload = (_event) => {
-        this.previewImage = reader.result;
+      reader.readAsDataURL(imageInputFile[0]); 
+      reader.onload = (_event) => { 
+        this.previewImage = reader.result; 
       }
     });
 

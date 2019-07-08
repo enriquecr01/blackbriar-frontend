@@ -27,3 +27,13 @@
 .card-title {
     font-weight: 500;
 }
+
+.activator {
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    position: relative;
+    background: rgb(69, 0, 99);
+    background: linear-gradient(180deg, rgba(69, 0, 99, 0) 13%, rgba(5, 0, 7, 0.83375356978729) 89%);
+    width: 100%;
+}

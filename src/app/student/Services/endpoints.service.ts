@@ -15,7 +15,7 @@ export class EndpointsService {
 
   get_StudentRegisteredGroups() {
     let userId = localStorage.getItem('userId');
-    var studentsRegisteredGroupsAPI = `${this.siteUrl}/users/${userId}/groups/subscribed`;
+    var studentsRegisteredGroupsAPI = `${this.siteUrl}/groups/subscribed`;
     
     return this.http.get<Group[]>(studentsRegisteredGroupsAPI);
   }

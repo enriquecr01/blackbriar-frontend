@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>Edit group</h1>
+<div mat-dialog-content>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12 m6">
+          <input id="disabled" disabled value="{{ data.title }}">
+        </div>
+        <div class="col s12 m6 ">
+          <div class="switch">
+            <label style="color: black; font-size: 16px">
+              <p>Visibility of group</p>
+              Private
+              <input type="checkbox" name="public" [(ngModel)]="public">
+              <span class="lever"></span>
+              Public
+            </label>
+          </div>
+        </div>
+        <div class="input-field col s12">
+          <label>Description</label>
+          <editor apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53"
+            [init]="{plugins: 'link image', branding: false}" name="description" [(ngModel)]="description"></editor>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <label>Upload your image of group</label>
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Upload file</span>
+              <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput, imageInput.files)">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!uploadedImage; else previwImage" class="img-preview-container">
+        <div class="img-preview" [ngStyle]="{'background-image': 'url('+ image + ')'}">
+        </div>
+      </div>
+      <ng-template #previwImage>
+        <div class="img-preview-container">
+          <div class="img-preview"
+            [ngStyle]="{'background-image': 'url('+ previewImage + ')'}">
+          </div>
+        </div>
+      </ng-template>
+    </form>
+  </div>
+</div>
+
+<div mat-dialog-actions style="float: right">
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button cdkFocusInitial>Update</button>
+</div>

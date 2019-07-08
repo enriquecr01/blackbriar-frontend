@@ -58,6 +58,7 @@ import { InstructorForumDisplayComponent } from './components/forums/instructor-
 import { HealerAlertComponent } from './notifications/healeralert.component';
 import { HealerInfoComponent } from './notifications/healerinfo.component';
 import { ForumResponseFeedbackComponent } from './components/forum-response-feedback/forum-response-feedback.component';
+import { ForumEditModal } from './instructor/group-card/edit-forum-modal';
 
 const routes: Route[] = [
   { path: '', component: LadingComponent },
@@ -70,7 +71,7 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  entryComponents: [WarriorAlertComponent, WarlockAlertComponent, HealerAlertComponent, HealerInfoComponent],
+  entryComponents: [WarriorAlertComponent, WarlockAlertComponent, HealerAlertComponent, HealerInfoComponent, ForumEditModal],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -104,7 +105,8 @@ const routes: Route[] = [
     CommentComponent,
     ForumResponseComponent,
     InstructorForumDisplayComponent,
-    ForumResponseFeedbackComponent
+    ForumResponseFeedbackComponent, 
+    ForumEditModal
   ],
   imports: [
     BrowserModule,

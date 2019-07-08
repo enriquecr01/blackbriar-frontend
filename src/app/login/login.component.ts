@@ -1,5 +1,4 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-
 import { LoginService } from './../login.service';
 import { AppComponent } from './../app.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -17,87 +16,82 @@ import { User } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginComponent  {
+
+export class LoginComponent {
 
   email: string = "";
   password: string = "";
   type: string = "";
+
   images: string [] = ["assets/dawn.png", "assets/night.jpg", "assets/bonfire.jpg"];
   //images: string [] = ["assets/Images/Backgrounds/mtg12.jpg","assets/Images/Backgrounds/liliana2.jpg"];
+
   selectedImage: string = "";
-  
-  constructor (private loginService : LoginService, private router: Router)
-  {
+
+  constructor(private loginService: LoginService, private router: Router) {
 
   }
 
-  ngOnInit()
-  {
-    let val= this.images.length;
+  ngOnInit() {
+    let val = this.images.length;
     let rand = Math.floor(Math.random() * val);
     this.selectedImage = this.images[rand];
 
   }
 
-  goToRegister(){
+  goToRegister() {
     this.router.navigate(["register"]);
   }
 
-  verifyIfIsEnter(event)
-  {
+  verifyIfIsEnter(event) {
     if (event.key === "Enter") {
       this.login();
     }
   }
 
-  login()
-  {
+  login() {
     // Lo de abajo es un ejemplo de lo que se puede hacer importando un componente
     // construyendolo y modificando sus variables 
     //this.appComponent.loggedIn = true; 
-    if(this.password.length < 1 || this.email.length < 1)
-    {
-      M.toast({html: "The credentials are empty"});
+    if (this.password.length < 1 || this.email.length < 1) {
+      M.toast({ html: "The credentials are empty" });
     }
-    else{
+    else {
       this.loginService.login(this.email, this.password).
-      subscribe(
-        data  => 
-        { 
-          localStorage.clear();
-          console.log("POST Request is successful ", data);
-          let token: any = data;
-          const helper = new JwtHelperService();
-          localStorage.setItem('token', token.token);
-          const decodedToken = helper.decodeToken(token.token);
-          localStorage.setItem('userId', decodedToken.sub);
-          console.log(decodedToken.sub);
-          this.loginService.getInfoUser(decodedToken.sub).
-          subscribe(
-            data =>
-            {
-              let userInfo : User = data;
-              localStorage.setItem('firstName', userInfo.firstName);
-              localStorage.setItem('lastName', userInfo.lastName);
-              localStorage.setItem('email', userInfo.email);
-              localStorage.setItem('photo', userInfo.photo);
-              localStorage.setItem('student', userInfo.student);
-              if(userInfo.student)
-              {
-                this.router.navigate(['student/dashboard']);
-              }
-              else
-              {
-                this.router.navigate(['instructor/dashboard']);
-              }
-            },
-            error => { M.toast({html: error.error.message}); }
-          );
-          
-  
-        },
-        error  => { M.toast({html: error.error.message}); }
-      );
+        subscribe(
+          data => {
+            localStorage.clear();
+            console.log("POST Request is successful ", data);
+            let token: any = data;
+            const helper = new JwtHelperService();
+            localStorage.setItem('token', token.token);
+            const decodedToken = helper.decodeToken(token.token);
+            localStorage.setItem('userId', decodedToken.sub);
+            console.log(decodedToken.sub);
+            this.loginService.getInfoUser(decodedToken.sub).
+              subscribe(
+                data => {
+                  let userInfo: User = data;
+                  localStorage.setItem('firstName', userInfo.firstName);
+                  localStorage.setItem('lastName', userInfo.lastName);
+                  localStorage.setItem('email', userInfo.email);
+                  localStorage.setItem('photo', userInfo.photo);
+                  localStorage.setItem('student', userInfo.student);
+
+                  if (userInfo.student) {
+                    this.router.navigate(['student/dashboard']);
+                  }
+                  else {
+                    this.router.navigate(['instructor/dashboard']);
+                  }
+                },
+                error => { M.toast({ html: error.error.message }); }
+              );
+
+
+          },
+          error => { M.toast({ html: error.error.message }); }
+        );
     }
   }
 }
