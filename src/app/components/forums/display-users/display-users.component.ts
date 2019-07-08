@@ -27,13 +27,13 @@ export class DisplayUsersComponent {
       case 'Warlock':
         return this.scoreboard.filter(element => element.warlock);
       case 'All':
-        return this.scoreboard;
-      case 'Humans':
-        return this.scoreboard.filter(
-          element => !element.warlock && !element.warrior && !element.healer
-        );
-      default:
-        return this.scoreboard;
+          this.studentsFilter = this.scoreboard2;
+          break;
+      case 'Civilians':
+          this.studentsFilter = this.scoreboard2.filter(element =>{
+            return element.warlock == false && element.warrior == false && element.healer == false;
+          });
+          break;
     }
   }
 }
