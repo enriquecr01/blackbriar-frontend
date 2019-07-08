@@ -8,7 +8,6 @@ import { GroupsService } from 'src/app/groups.service';
 import { FilesService } from 'src/app/files.service';
 import { ImageSnippet } from 'src/app/models/imagesnippet';
 import { InstructorDashboardComponent } from '../instructor-dashboard/instructor-dashboard.component';
-import Swal from 'sweetalert2';
 import { InstructorGroupComponent } from '../instructor-group/instructor-group.component';
 
 @Component({
@@ -16,12 +15,7 @@ import { InstructorGroupComponent } from '../instructor-group/instructor-group.c
   templateUrl: './group-card.component.html',
   styleUrls: ['./group-card.component.css']
 })
-export class GroupCardComponent implements OnInit, AfterViewInit {
-  ngAfterViewInit(): void {
-    
-  }
-
-  //@Input() Groups: Group[];
+export class GroupCardComponent {
   @Input() group: Group;
   previewImage: any;
   selectedFile: ImageSnippet;
@@ -32,33 +26,17 @@ export class GroupCardComponent implements OnInit, AfterViewInit {
       data: this.group
     });
   }
-  constructor (private router: Router, 
+  constructor (
+    private router: Router, 
     private groupsService: GroupsService, 
     private filesService: FilesService,
     public dashboard: InstructorDashboardComponent,
-              private dialog: MatDialog)
-  {
-
-
-    
-  }
-
-
-  ngOnInit() {
-    console.log(this.group);
-    var elems = document.querySelectorAll('.modal');
-    M.Modal.init(elems);
-    Swal.fire('Hello world!');
-
-  }
-
+    private dialog: MatDialog
+  ) { }
 
   goToGroupDashboard(groupId: number){
     console.log(groupId);
     this.router.navigate(['instructor/group/',groupId]);  
   }
-
-
-
 }
 
