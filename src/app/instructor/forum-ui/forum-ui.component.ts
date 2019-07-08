@@ -20,7 +20,7 @@ export class ForumUiComponent implements OnInit {
   published: boolean;
   created: Date;
   settings: Setting;
-  scoreboard: [ForumMemberState];
+  public scoreboard: [ForumMemberState];
   finishedManually: boolean = false;
 
   response = "";

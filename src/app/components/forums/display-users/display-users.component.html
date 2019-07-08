@@ -1,8 +1,7 @@
 <div class="show-users-wrapper">
-
   <mat-form-field class="filter-form-field">
     <mat-label>Role: </mat-label>
-    <mat-select [(ngModel)]="roleFilter" name="roleFilter" id="roleFilter" (selectionChange)="onChange()">
+    <mat-select [(ngModel)]="roleFilter" name="roleFilter" id="roleFilter">
       <mat-option value="All">All</mat-option>
       <mat-option value="Warrior">Warrior</mat-option>
       <mat-option value="Healer">Healer</mat-option>
@@ -10,30 +9,30 @@
       <mat-option value="Civilians">Civilians</mat-option>
     </mat-select>
   </mat-form-field>
-  
+
   <table class="responsive-table">
     <thead>
-        <tr>
-          <th> Full Name </th>
-          <th> Warrior </th>
-          <th> Healer </th>
-          <th> Warlock </th>
-          <th> Score </th>
-        </tr>
+      <tr>
+        <th> Full Name </th>
+        <th> Warrior </th>
+        <th> Healer </th>
+        <th> Warlock </th>
+        <th> Score </th>
+      </tr>
     </thead>
     <tbody>
-        <tr class="" *ngFor="let item of studentsFilter">
-            <td> 
-              <span class="users-span-name"> 
-                <img width="30" height="30" class="responsive-img circle" src="{{item.photo}}">{{item.firstName}} {{item.lastName}}
-              </span>
-            </td>
-            <td> <img *ngIf="item.warrior" src={{warriorIcon}} class="role-icon"></td>
-            <td> <img *ngIf="item.healer" src={{healerIcon}} class="role-icon"></td>
-            <td> <img *ngIf="item.warlock" src={{warlockIcon}} class="role-icon"></td>
-            <td>{{item.score}}</td>
-        </tr>
+      <tr *ngFor="let item of filteredScores">
+        <td>
+          <span class="users-span-name">
+            <img width="30" height="30" class="responsive-img circle" src="{{item.photo}}">{{item.firstName}}
+            {{item.lastName}}
+          </span>
+        </td>
+        <td> <img *ngIf="item.warrior" src={{warriorIcon}} class="role-icon"></td>
+        <td> <img *ngIf="item.healer" src={{healerIcon}} class="role-icon"></td>
+        <td> <img *ngIf="item.warlock" src={{warlockIcon}} class="role-icon"></td>
+        <td>{{item.score}}</td>
+      </tr>
     </tbody>
   </table>
-
 </div>

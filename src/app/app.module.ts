@@ -59,6 +59,7 @@ import { HealerAlertComponent } from './notifications/healeralert.component';
 import { HealerInfoComponent } from './notifications/healerinfo.component';
 import { ForumResponseFeedbackComponent } from './components/forum-response-feedback/forum-response-feedback.component';
 import { ForumEditModal } from './instructor/group-card/edit-forum-modal';
+import { ScoreReportComponent } from './notifications/scorereport.component';
 
 const routes: Route[] = [
   { path: '', component: LadingComponent },
@@ -71,7 +72,14 @@ const routes: Route[] = [
 ];
 
 @NgModule({
-  entryComponents: [WarriorAlertComponent, WarlockAlertComponent, HealerAlertComponent, HealerInfoComponent, ForumEditModal],
+  entryComponents: [
+    WarriorAlertComponent,
+    WarlockAlertComponent,
+    HealerAlertComponent,
+    HealerInfoComponent,
+    ForumEditModal,
+    ScoreReportComponent
+  ],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -90,6 +98,7 @@ const routes: Route[] = [
     WarlockAlertComponent,
     HealerAlertComponent,
     HealerInfoComponent,
+    ScoreReportComponent,
     StudentForumComponent,
     NotificationsComponent,
     InstructorForumComponent,
