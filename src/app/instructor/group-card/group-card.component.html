@@ -1,11 +1,7 @@
 <div class="col s12 m4 l3">
   <div class="card z-depth-3 hoverable">
     <div class="card-image">
-      <!--<img class="activator" height="200" (click)="goToGroupDashboard(group.id)" src="{{group.image}}">-->
-      <div class="activator"
-           style="height: 200px; background-size: cover; background-position: center;"
-           [ngStyle]="{ 'background-image': 'url(' + group.image + ')'}"
-      ></div>
+      <img class="activator" height="200" (click)="goToGroupDashboard(group.id)" src="{{group.image}}">
       <span class="card-title activator text-white truncate"
         (click)="goToGroupDashboard(group.id)">{{group.title}}</span>
       <a class="btn-floating halfway-fab waves-effect waves-light red">
