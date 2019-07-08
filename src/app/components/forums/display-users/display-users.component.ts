@@ -98,7 +98,7 @@ export class DisplayUsersComponent implements OnInit {
       case 'All':
           this.studentsFilter = this.scoreboard2;
           break;
-      case 'Humans':
+      case 'Civilians':
           this.studentsFilter = this.scoreboard2.filter(element =>{
             return element.warlock == false && element.warrior == false && element.healer == false;
           });
