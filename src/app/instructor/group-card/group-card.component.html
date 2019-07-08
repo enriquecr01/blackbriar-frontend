@@ -1,7 +1,11 @@
 <div class="col s12 m4 l3">
   <div class="card z-depth-3 hoverable">
     <div class="card-image">
-      <img class="activator" height="200"  (click)="goToGroupDashboard(group.id)" src="{{group.image}}">
+      <!--<img class="activator" height="200" (click)="goToGroupDashboard(group.id)" src="{{group.image}}">-->
+      <div class="activator"
+           style="height: 200px; background-size: cover; background-position: center;"
+           [ngStyle]="{ 'background-image': 'url(' + group.image + ')'}"
+      ></div>
       <span class="card-title activator text-white truncate"
         (click)="goToGroupDashboard(group.id)">{{group.title}}</span>
       <a class="btn-floating halfway-fab waves-effect waves-light red">
@@ -9,25 +13,31 @@
       </a>
     </div>
     <div class="card-action">
-      <a><i class="material-icons" mat-raised-button matTooltip="Active Students">group</i> 0 </a>
-      <a> <i class="material-icons"  mat-raised-button matTooltip="Total Forum Points">forum</i> 0</a>
+      <a>
+        <i class="material-icons" mat-raised-button matTooltip="Active Students">group</i>
+        {{group.memberCount}}
+      </a>
+      <a>
+        <i class="material-icons" mat-raised-button matTooltip="Total Forum Points">forum</i>
+        {{group.totalScore}}
+      </a>
     </div>
   </div>
 </div>
 
-  
-<mat-menu #menu="matMenu">  
-<button mat-menu-item (click)="openDialog()">Edit group</button>
-<button mat-menu-item class="red" (click)="this.dashboard.deleteAlert(group.id)">Delete</button>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="openDialog()">Edit group</button>
+  <button mat-menu-item class="red" (click)="this.dashboard.deleteAlert(group.id)">Delete</button>
   <!--<button mat-menu-item class="red" (click)="deleteServiceGroup(group.id)">Delete</button>-->
   <!-- <a class="red btn modal-trigger" href="#modal1">Unsubscribe</a> -->
-
 </mat-menu>
 
-    <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="#!">one</a></li>
-        <li><a href="#!">two</a></li>
-        <li class="divider" tabindex="-1"></li>
-        <li><a href="#!">three</a></li>
-        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+<ul id='dropdown1' class='dropdown-content'>
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider" tabindex="-1"></li>
+  <li><a href="#!">three</a></li>
+  <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+  <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+</ul>
