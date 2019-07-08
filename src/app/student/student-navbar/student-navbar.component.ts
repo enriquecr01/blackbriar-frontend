@@ -9,6 +9,7 @@ import { HealerInfoComponent } from 'src/app/notifications/healerinfo.component'
 import { HealerAlertComponent } from 'src/app/notifications/healeralert.component';
 import { WarlockAlertComponent } from 'src/app/notifications/warlockalert.component';
 import { LoginComponent } from '../../login/login.component';
+import { ScoreReportComponent } from 'src/app/notifications/scorereport.component';
 
 @Component({
   selector: 'app-student-navbar',
@@ -103,6 +104,14 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
             width: '600px',
             data: { dialogMessage: data.content }
           });
+        } else if (data.category === 'FORUM_SCORES_POPUP') {
+          this.dialog.open(ScoreReportComponent, {
+            width: '800px',
+            data: {
+              forumId: data.actionRef,
+              studentId: localStorage.getItem('userId')
+            }
+          });
         } else {
           that.updateNotificationCounter(counter);
           that.notifications.unshift(data);
@@ -169,5 +178,4 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
     nav.style.background = "linear-gradient(90deg, rgba(69,0,99,1) 13%, " + " rgba(67,40,116,1) 40%, " + " rgba(67,40,116,1) 86%)";
     nav.style.opacity = "0.97";
   }
-
 }
