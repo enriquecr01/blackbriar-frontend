@@ -9,7 +9,7 @@
       <span class="logo"><img src="images/logo.svg" alt="" /></span>
       <h1 style="font-size: 68px; font-weight: bold;">{{title}}</h1>
       <p>
-        <span id="contentForum" style="font-weight: 400; font-size: 22px;"> </span>
+        <span style="font-weight: 400; font-size: 22px;">{{descriptionForum}}</span>
       </p>
       <button *ngIf="forumEnded" class="btn indigo lighten-5 black-text" (click)="finalizeForum()"
         [disabled]="finishedManually">
@@ -19,7 +19,9 @@
 
     <!-- Main -->
     <div id="main">
-
+      <p>
+        <span id="contentForum" style="font-size: 1.2em;"></span>
+      </p>
       <div class="row tab-control-row">
         <!-- SELECT NAV -->
         <ul id="tabs-swipe-demo" class="tabs">

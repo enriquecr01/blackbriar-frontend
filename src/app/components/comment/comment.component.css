@@ -64,3 +64,8 @@ details details summary {
 .commentContent {
     margin-left: 12px;
 }
+
+.circle {
+    margin-left: 10px;
+    margin-right: 20px;
+}
