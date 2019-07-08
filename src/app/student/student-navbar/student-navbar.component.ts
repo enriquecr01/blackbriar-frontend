@@ -105,8 +105,9 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
             data: { dialogMessage: data.content }
           });
         } else if (data.category === 'FORUM_SCORES_POPUP') {
-          this.dialog.open(ScoreReportComponent, {
+          that.dialog.open(ScoreReportComponent, {
             width: '800px',
+            height: '600px',
             data: {
               forumId: data.actionRef,
               studentId: localStorage.getItem('userId')

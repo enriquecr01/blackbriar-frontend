@@ -8,10 +8,15 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
-    const req = request.clone({
-      setHeaders: { Authorization: `Bearer ${token}` }
-    });
 
-    return next.handle(req);
+    if (request.url.match(/api\/users$/i) === null) {
+      return next.handle(
+        request.clone({
+          setHeaders: { Authorization: `Bearer ${token}` }
+        })
+      );
+    } else {
+      return next.handle(request);
+    }
   }
 }
