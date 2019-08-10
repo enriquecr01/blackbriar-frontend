@@ -1,0 +1,76 @@
+<div class="row">
+      <div class="col s6 m6 l6">
+        <!-- TABLE ACTIVE STUDENTS -->
+        <table class="table" >
+          <thead>
+            <tr>
+              <th> Active Students </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let student of studentsActive">
+              <td> 
+              <span class="valing-wrapper">
+                  <img src="{{student?.photo}}" class="circle" width="32px">
+                  {{student?.firstName}} {{student?.lastName}}
+              </span> 
+            </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>  
+      <div class="col s6 m6 l6">
+        <!-- PENDING APROVALS -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th> Pending Aprovals </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let student of studentsWaitingApproval">
+                  <td> 
+                  <span class="valing-wrapper">
+                      <img src="{{student?.photo}}" class="circle" width="32px">
+                      {{student?.firstName}} {{student?.lastName}}
+                  </span> 
+                </td>
+                <td>
+                  <button class="waves-effect waves-light btn" (click)="acceptRequestInstructor(student?.membership.id)">Approve</button>
+                </td>
+                <td>
+                    <button class="waves-effect waves-light btn red darken-2" (click)="rejectRequestInstructor(student?.membership.id)">Decline</button>
+                </td>
+                </tr>
+              </tbody>
+            </table>   
+        </div> 
+  </div>
+ 
+   
+<!-- PENDING APROVALS 
+<div id="test3" class="col s12 column">               
+        
+        <table class="table table-right">
+          <thead>
+            <tr>
+              <th> On Waiting </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr  *ngFor="let student of studentsAwaiting">
+              <td> 
+              <span class="valing-wrapper">
+                  <img src="{{student?.photo}}" class="circle" width="32px">
+                  {{student?.firstName}} {{student?.lastName}}
+              </span> 
+            </td>
+            
+            </tr>
+          </tbody>
+        </table>       
+  </div>
+
+ 
+-->
+               

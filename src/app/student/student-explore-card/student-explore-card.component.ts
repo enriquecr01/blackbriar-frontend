@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {EndpointsService} from '../Services/endpoints.service';
 import { Group } from 'src/app/models/group';
 import * as M from "materialize-css/dist/js/materialize";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-explore-card',
@@ -11,13 +12,19 @@ import * as M from "materialize-css/dist/js/materialize";
 export class StudentExploreCardComponent implements OnInit {
 
    @Input() group : Group;
+   disabledButton: boolean = false;
 
-  constructor(private endPointService : EndpointsService) { }
+  constructor(private endPointService : EndpointsService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  joinGroup(groupId, button)
+  
+  goToGroupForums(groupId: number) {   
+    this.router.navigate(['student/group/',groupId]);
+  }
+
+  joinGroup(groupId)
   {
     this.endPointService.joinGroup(groupId).
     subscribe(
@@ -27,14 +34,12 @@ export class StudentExploreCardComponent implements OnInit {
         //Cambiar estilo objecto DOM
         //object.style.background = "gray";
         //object.innerHTML = "Yo";
-        button.setAttribute("disabled", "");
-        button.setAttribute("onclick", "");
+        this.disabledButton = true;
         M.toast(dataAny.statusMessage, 4000);
       },
       error  => 
       { 
-        button.setAttribute("disabled", "");
-        button.setAttribute("onclick", "");
+        this.disabledButton = true;
         M.toast(error.error.message, 4000);
       }
     );

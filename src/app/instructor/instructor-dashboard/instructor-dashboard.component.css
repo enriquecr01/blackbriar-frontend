@@ -1,6 +1,6 @@
 body
 {
-  background-color: #E4E4E4
+  background-color: #E4E4E4;
 }
 
 .image-upload-container {
@@ -60,3 +60,5 @@ body
     transform: rotate(360deg);
   }
 }
+
+

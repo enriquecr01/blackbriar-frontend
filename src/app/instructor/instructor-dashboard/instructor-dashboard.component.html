@@ -1,31 +1,36 @@
 <app-navbar-instructor></app-navbar-instructor>
 
- <div class="row">
-    <div class="input-field col s6">
-      <input type="text" id="search" name="search" [(ngModel)]="searchText" (input)="Search()">
-      <label for="search">Search by name</label>
+<div class="background" style="background: #E6ECF0; height: 100%">
+  <div class="container">
+    <div class="row" style="padding-top:30px">
+      <h3 style="font-weight: bold;">My groups</h3>
+      <div class=" input-field col s6">
+        <input type="text" id="search" name="search" [(ngModel)]="searchText" (input)="Search()">
+        <label for="search" style="color: #191919 ">Search by name</label>
+      </div>
+      <div class="input-field col s6">
+        <select default="1" [(ngModel)]="selectedValue" (change)="onChange()" style=" color: #191919">
+          <option value="1">All Groups</option>
+          <option value="2">Public Groups</option>
+          <option value="3">Private Groups</option>
+        </select>
+        <label>Filter visibility of group</label>
+      </div>
     </div>
-    <div class="input-field col s6">
-    <select default="1" [(ngModel)]="selectedValue" (change)="onChange()">
-      <option value="1">All Groups</option>
-      <option value="2">Public Groups</option>
-      <option value="3">Private Groups</option>
-    </select>
-    <label>Filter visibility of group</label>
-  </div>
-  </div>
 
-<div class="animated fadeInLeft" id="gridGroups" style="margin-top: 20px;">
-  <div class="row">
-    <div *ngFor="let group of groups">
-        <app-group-card [group]=group></app-group-card>
+    <div class="animated fadeInLeft" id="gridGroups" style="-top: 20px;">
+      <div class="row">
+        <div *ngFor="let group of groups">
+          <app-group-card [group]=group></app-group-card>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
 
-
 <div class="fixed-action-btn">
-  <a class="btn-floating btn-large green modal-trigger" data-target="modal1">
+  <a class="btn-floating btn-large modal-trigger pink accent-4 z-depth-4" data-target="modal1">
     <i class="large material-icons">add</i>
   </a>
 </div>
@@ -34,62 +39,56 @@
 <div id="modal1" class="modal modal-fixed-footer">
   <div class="modal-content">
     <h4>Add group</h4>
-      <div class="row">
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s12">
-                <input name="title" type="text" [(ngModel)]="title">
-                <label for="title">Title of group</label>
-              </div>
-              <div class="input-field col s12">
-                <input id="description" name="description" type="text" [(ngModel)]="description">
-                <label for="description">Description</label>
-              </div>
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input name="title" type="text" [(ngModel)]="title">
+            <label for="title">Title of group</label>
+          </div>
+          <div class="col s12 m6 ">
+            <div class="switch">
+              <label style="color: black; font-size: 16px">
+                <p>Visibility of group</p>
+                Private
+                <input type="checkbox" name="public" [(ngModel)]="public">
+                <span class="lever"></span>
+                Public
+              </label>
             </div>
-            <div class="row">
-              <div class="col s12 m6 ">
-                  <div class="switch">
-                      <label style="color: black; font-size: 16px">
-                          <p>Visibility of group</p>
-                          Private
-                          <input type="checkbox" name="public" [(ngModel)]="public">
-                          <span class="lever"></span>
-                          Public
-                      </label>
-                    </div>
-              </div>
-              <ul class="tabs col s12 m6">
-                  <li class="tab col s6 m3"><a class="active" href="#test1">File</a></li>
-                  <li class="tab col s6 m3"><a href="#test2">URL</a></li>
-                </ul>
-              <div id="test1" class="col s12 m6">
-                <div class="file-field input-field">
-                  <div class="btn">
-                    <span>File</span>
-                    <input #imageInput type="file" accept="image/*"(change)="processFile(imageInput, imageInput.files)">
-                  </div>
-                  <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text">
-                  </div>
-                </div>
-              </div>
-              <div id="test2" class="col s12 m6">
-                  <input id="image" name="image" type="text" [(ngModel)]="image">
-                  <label for="image">URL Upload</label>
-              </div>
-            </div>
-            <div *ngIf="selectedFile" class="img-preview-container">
-                <div class="img-preview img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
-                     [ngStyle]="{'background-image': 'url('+ previewImage + ')'}">
-                </div>
-              
-            </div>
-          </form>
+          </div>
+          <div class="input-field col s12">
+            <label>Description</label>
+            <editor apiKey="nkdz6b2xiovxu1xczn402rtp6cnjyqg30jdv93hnz0v1ew53"
+              [init]="{plugins: 'link image', branding: false}" name="description" id="description" [(ngModel)]="description"></editor>
+          </div>
         </div>
-              
+        <div class="row">
+          <div class="col s12">
+            <label>Upload your image of group</label>
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Upload file</span>
+                <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput, imageInput.files)">
+              </div>
+              <div class="file-path-wrapper">
+                <input id="image-name" class="file-path validate" type="text" value = "" name= "imageNme">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="selectedFile" class="img-preview-container">
+          <div class="img-preview"
+            [ngStyle]="{'background-image': 'url('+ previewImage + ')'}">
+          </div>
+
+        </div>
+      </form>
+    </div>
+
   </div>
   <div class="modal-footer">
     <a class="modal-close waves-effect waves-green btn-flat" (click)="addGroup()">Register group</a>
   </div>
 </div>
-        
+

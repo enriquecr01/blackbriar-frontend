@@ -1,0 +1,65 @@
+.forum-create-wrapper {
+    margin-top: 80px;
+}
+
+.role-icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+}
+
+.role-points {
+    height: 2rem !important;
+    margin-bottom: 0 !important;
+    text-align: center;
+    font-weight: bold;
+}
+
+.card-action {
+    padding: 0;
+}
+
+.card-title {
+    position: relative;
+}
+
+.role-name {
+    margin-left: 35px;
+}
+
+.btn {
+    margin-left: 10px;
+}
+
+.collection-item.avatar {
+    min-height: 40px !important;
+}
+
+.chip {
+    margin-bottom: 0;
+    height: 20px;
+    line-height: 20px;
+}
+
+.chip img {
+    height: 20px;
+    margin-right: 0;
+}
+
+.circle {
+    height: 30px !important;
+    width: 30px !important;
+}
+
+.assigned-roles {
+    margin-left: 15px;
+    display: inherit;
+}
+
+.scoreboard {
+    margin-top: 10px;
+}
+
+.btn-box {
+    margin-top: 15px;
+}

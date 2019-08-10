@@ -1,0 +1,69 @@
+a {
+    cursor: pointer;
+}
+
+.modal-content {
+    padding-top: 2em;
+}
+
+.wizard-pic {
+    margin-left: 2em;
+}
+
+.row {
+    margin-top: 1em;
+}
+
+.wizard-note {
+    font-size: 16px;
+}
+
+.wizard-title {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+th {
+    font-size: 16px;
+}
+
+.forumTitleDisabled {
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(165, 165, 165);
+    cursor: pointer;
+}
+
+.forumTitle {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.forumDescriptionDisabled {
+    color: rgb(165, 165, 165);
+}
+
+.date {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.cDisabled {
+    color: rgb(165, 165, 165);
+}
+
+.badge {
+    align-items: center;
+}
+
+.statusSpan {
+    min-width: 30px;
+    min-height: 10px;
+    max-width: 30px;
+    max-height: 10px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 11px;
+    border-radius: 5px;
+}

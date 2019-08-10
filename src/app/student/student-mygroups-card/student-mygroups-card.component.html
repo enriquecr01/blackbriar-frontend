@@ -1,17 +1,37 @@
-
-    <div class="col s12 m3 l3">
-        <div class="card z-depth-5">
-          
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" height="200" src="{{group.image}}">
-            </div>
-              
-            <div class="card-content">
-              <!-- Dropdown Structure -->
-              <i class="material-icons right dropdown-trigger" data-target='dropdown1'>more_vert</i>
-              <span class="card-title activator grey-text text-darken-4 truncate">{{group.title}}
-              </span>
-            </div>
-              
-          </div>
+<div class="col s12 m4 l3" *ngIf="group.membership.active">
+  <div class="card z-depth-5">
+    <div class="card-image">
+        <img class="activator" height="200" src="{{group.image}}" (click)="goToGroupForums(group.id)">
+        <span class="card-title activator text-white truncate" (click)="goToGroupForums(group.id)">{{group.title}}</span>
+        <a class="btn-floating halfway-fab waves-effect waves-light red">
+            <i class="material-icons" [matMenuTriggerFor]="menu">more_vert</i>
+        </a>
     </div>
+    <div class="card-action ">
+        <label class="left-align"> <img class="circle responsive-image" width="32px" src="{{ group.owner.photo }}">
+            <span style="font-weight:bold; font-size:14px; color: #424242;">{{ group.owner.firstName }} {{ group.owner.lastName }} </span>
+          </label>
+        <label class="right-align" style="float:right; margin-top: 5px; color: #ff9800;"> <i class="material-icons">group</i> {{group.memberCount}}</label>
+    </div>
+  </div>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item class="red" (click)="m()">Unsubscribe</button>
+  <!-- <a class="red btn modal-trigger" href="#modal1">Unsubscribe</a> -->
+</mat-menu>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4 class="modal-header">Unsubscribe</h4>
+      <p class="modalText">Are you sure that you want to unsubscribe from this group?
+      <br>
+      All your data from this group will be deleted.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <a  class="modal-close btn-flat">Cancel</a>
+      <button class="btn-flat red modal-agree" (click)="unsubscribeMe(membershipId)">Agree</button>
+    </div>
+  </div>

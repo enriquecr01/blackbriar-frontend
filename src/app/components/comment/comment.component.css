@@ -1,0 +1,71 @@
+summary::-webkit-details-marker {
+    color: transparent;
+    font-size: 125%;
+    margin-right: 2px;
+}
+
+summary:focus {
+    outline-style: none;
+}
+
+article>details>summary {
+    font-size: 28px;
+    margin-top: 16px;
+}
+
+details>p {
+    margin-left: 24px;
+}
+
+details details {
+    margin-left: 36px;
+}
+
+details details summary {
+    font-size: 16px;
+}
+
+.example::-webkit-details-marker {
+    color: black;
+    font-size: 80%;
+    margin-right: 2px;
+}
+
+.titleComment {
+    padding: 3px 3px 3px 3px;
+}
+
+.span-text {
+    margin: 0px 0px 0px 20px;
+    font-size: 14px;
+    margin-left: 18px;
+}
+
+.showResponses {
+    margin: 0px 0px 0px 20px;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.showResponses:hover {
+    text-decoration: underline;
+}
+
+.files {
+    font-size: 12px;
+    padding: 2px;
+}
+
+.commentNames {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.replyNames {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.commentContent {
+    //margin-left: 12px;
+}

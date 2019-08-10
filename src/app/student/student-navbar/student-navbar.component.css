@@ -1,7 +1,190 @@
-li a{
-    color: rgb(235, 147, 65);
+.nav-wrapper img:hover {
+    cursor: pointer;
 }
 
-li a:hover{
+#nav-student {
+    background: linear-gradient(90deg, rgba(69, 0, 99, 1) 13%, rgba(67, 40, 116, 1) 40%, rgba(67, 40, 116, 1) 86%);
+    opacity: 0.97
+}
+
+nav {
+    /* background:  #432874; */
+    background: rgba(0, 0, 0, 0.3);
+    /* background: linear-gradient(90deg, rgba(23, 18, 99, 1) 0%, rgba(167, 19, 127, 1) 65%, rgba(7, 133, 167, 1) 100%); */
+    /*background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(167,19,127,1) 71%, rgba(7,133,167,1) 100%);*/
+}
+
+.navbar-fixed {
+    z-index: 99999999;
+}
+
+.nav-gradient {
+    background: linear-gradient(90deg, rgba(23, 18, 99, 1) 0%, rgba(167, 19, 127, 1) 65%, rgba(7, 133, 167, 1) 100%);
+}
+
+.menuOption:hover {
+    /* background-color: rgba(212, 212, 212, 0.849); */
+    background-color: #450063;
+    color: white;
+}
+
+.menuOption {
+    background-color: white;
+}
+
+.logo-img {
+    position: absolute;
+    margin-top: 10px;
+    width: 45px;
+}
+
+.brand-logo {
+    cursor: pointer;
+}
+.notification-badge {
+    position: relative;
+    right: 5px;
+    top: -17px;
+    color: white;
+    background-color: rgb(228, 85, 85);
+    margin: .7em -.6em;
+    border-radius: 50%;
+    padding: 6px 7px;
+}
+
+
+/* Notifications */
+
+.notification {
+    position: relative;
+    padding: 0 0.6em;
+    font-size: 1.3em;
+    margin: 0px 20px 0px 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.notification::before, 
+.notification::after {
     color: #fff;
 }
+
+.notification::before {
+    display: block;
+    content: "\f0f3";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.notification::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 0px 0px;
+    line-height: 100%;
+    opacity: 0;
+    content: attr(data-count);
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.notification.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.notification.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+@-webkit-keyframes ring {
+    0% {
+        -webkit-transform: rotate(35deg);
+    }
+    12.5% {
+        -webkit-transform: rotate(-30deg);
+    }
+    25% {
+        -webkit-transform: rotate(25deg);
+    }
+    37.5% {
+        -webkit-transform: rotate(-20deg);
+    }
+    50% {
+        -webkit-transform: rotate(15deg);
+    }
+    62.5% {
+        -webkit-transform: rotate(-10deg);
+    }
+    75% {
+        -webkit-transform: rotate(5deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@keyframes ring {
+    0% {
+        -webkit-transform: rotate(35deg);
+        transform: rotate(35deg);
+    }
+    12.5% {
+        -webkit-transform: rotate(-30deg);
+        transform: rotate(-30deg);
+    }
+    25% {
+        -webkit-transform: rotate(25deg);
+        transform: rotate(25deg);
+    }
+    37.5% {
+        -webkit-transform: rotate(-20deg);
+        transform: rotate(-20deg);
+    }
+    50% {
+        -webkit-transform: rotate(15deg);
+        transform: rotate(15deg);
+    }
+    62.5% {
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg);
+    }
+    75% {
+        -webkit-transform: rotate(5deg);
+        transform: rotate(5deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+/* ------------------------------------------ */
+
+
+.dropdown-content {
+  background-color: rgb(255, 255, 255);
+  padding: 10px;
+  margin: 0;
+  display: none;
+  min-width: 300px; /* Changed this to accomodate content width */
+  max-height: 300px;
+  margin-left: -1px; /* Add this to keep dropdown in line with edge of navbar */
+  overflow:hidden; /* Changed this from overflow-y:auto; to overflow:hidden; */
+  opacity: 0;
+  position: relative;
+  white-space: nowrap;
+  z-index: 1;
+  overflow-y: scroll;
+  will-change: width, height;
+}
+

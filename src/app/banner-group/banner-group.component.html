@@ -1,0 +1,39 @@
+
+<div class="parallax-container banner-body" style="height: 380px;">
+  <div class="row">
+    <div class="col s12 m4 center-align" style="padding-top: 120px">
+      <img *ngIf="isStudent == 'true' "class="circle responsive-img" width="160px" src="{{ group?.owner.photo }}">
+      <br>
+      <p class="ownerText" *ngIf="isStudent == 'true'">
+        {{ group?.owner.firstName }} {{ group?.owner.lastName }}
+      </p>
+    </div>
+    <div class="col s12 m8"><br><br><br><br><br><br>
+      <h3 class="borderText">{{ group?.title }}</h3>
+       <label class="borderText hyperLinkDescription modal-trigger description" data-target="descriptionModal">Read Description</label>
+        <!-- <p class="borderText truncate" style="font-size: 20px" > 
+      </p>
+      -->
+     
+    </div>
+  </div>
+  <div class="parallax" materialize="parallax" >
+    <img class="banner-image" src="{{group?.image}}">
+  </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="descriptionModal" class="modal modal-fixed-footer backModal">
+  <div class="BLURRED-BOX">
+    <div>
+      <div class="modal-content">
+        <h4>Description of {{ group?.title }}</h4>
+        <p id="groupDescription"></p>
+      </div>
+      <div class="modal-footer backModal">
+        <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!----------------------END PARALAX------------------------------------->

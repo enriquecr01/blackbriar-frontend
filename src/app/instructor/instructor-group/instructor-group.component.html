@@ -1,157 +1,27 @@
-<app-navbar-instructor></app-navbar-instructor>
+<app-navbar-instructor style="position: fixed; z-index:999999;"></app-navbar-instructor>
+<app-banner-group [groupId]="groupId"></app-banner-group>
 
-
-<!-- LEFT BAR CONTAINER -->
-<div class="col s12 m12 l12">
-    
-    <div class="col s12 m4 l3" style=" padding: 10px; float:left; width: 380px; height: 863px; position: sticky; background: rgb(228, 228, 228)">
-        
-
-      <!-- ROW STARTS -->
-        <div class="col s12 m8 offset-m2 l6 offset-l3" style="margin-top: 12px;">    
-          <div class="grey lighten-5 z-depth-1" style="height: 70px; padding: 13px;">
-              <div class="row valign-wrapper">
-                <div class="col s2">
-                  <img src="https://thumbs.dreamstime.com/t/avatar-dirige-el-pict-del-var%C3%B3n-de-la-m%C3%A1scara-ladr%C3%B3n-centro-atenci%C3%B3n-telef%C3%B3nica-silueta-perfil-125308648.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
-                </div>
-                <div class="col s10">
-                  <span class="black-text" style="margin-left: 30px;">
-                    Bruce Lee
-                  </span>
-                
-                  <span class="black-text" style="margin-left: 40px;">
-                      <img src="../../../assets/Images/Icons/medal.png" with = "20" height="20">
-                      150 xp
-                    </span>
-                </div>
+<div class="body">
+	<!-- Wrapper -->
+			<div id="wrapper">
+          <div id="main"> 
+              <div class="col s12 tabsControl">
+                  <ul class="tabs">
+                    <li class="tab col s3"><a href="#students">Students</a></li>
+                    <li class="tab col s3"><a href="#forums">Forums</a></li>
+                    <li class="tab col s3"><a href="#createForum">Create Forum</a></li>
+                  </ul>
               </div>
-            </div>
+              <div id="students" class="col s12">
+                  <app-students-list [groupId]="groupId"></app-students-list>
+              </div>
+              <div id="forums" class="col s12">
+                <app-instructor-forum [forums]="forums"></app-instructor-forum>
+              </div>
+              <div id="createForum" class="col s12">
+                <create-forum [groupId]="groupId" (forumCreated)="addForum($event)"></create-forum>
+              </div>
           </div>
-  <!-- ROW ENDS -->
-          
       </div>
-
-
-</div>
-
-<!--  RIGHT SIDE STARTS  -->
-<div class="container col s12 m12 l12" style="float:right; margin-right: 120px;">
-  
-  <div class="row">
-    
-
   </div>
-  <div class="row">
-      <div>
-        <table class="highlight">
-          <thead>
-            <tr>
-              <th> Title </th>
-              <th> Start Date </th>
-              <th> End Date </th>
-              <th> Status </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <!-- BODY ROW -->
-            <tr>
-                <td>
-                 
-                    <div style="font-size: 16px; font-weight: bold;">
-                        Mr. Le Forum 
-                    </div>
-                   
-                 <div>
-                    This forum was created for testing purposes
-                 </div>
-                  
-                
-                
-                </td>
-                <td>May, 29th 2019</td>
-                <td>Dec, 29th 2019</td>
-                <td>3 Days To Start</td>
-            </tr>
-            <!-- BODY ROW -->
-            <tr>
-                <td>
-                  
-                    <div style="font-size: 16px; font-weight: bold;">
-                        Mr. Le Forum 
-                    </div>
-                   
-                 <div>
-                    This forum was created for testing purposes
-                 </div>
-                  
-                
-                
-                </td>
-                <td>May, 29th 2019</td>
-                <td>Dec, 29th 2019</td>
-                <td>3 Days To Start</td>
-            </tr>  <!-- BODY ROW -->
-            <tr>
-                <td>
-                  
-                    <div style="font-size: 16px; font-weight: bold;">
-                        Mr. Le Forum 
-                    </div>
-                   
-                 <div>
-                    This forum was created for testing purposes
-                 </div>
-                  
-               
-                
-                </td>
-                <td>May, 29th 2019</td>
-                <td>Dec, 29th 2019</td>
-                <td>3 Days To Start</td>
-            </tr>
-
-          </tbody>
-        </table>
-
-        <!-- -TABLE ENDS -->
-
-        <!-- ROW
-       <div class="z-depth-1 col s12 m12 l12 row" style="height: 80px; border: none;" >
-
-        <table >
-
-          <tbody>         
-              <td>Mr. Le Forum </td>
-              <td>May, 29th 2019</td>
-              <td>Dec, 29th 2019</td>
-              <td>3 Days To Start</td>
-          </tbody>
-       
-        </table>
-       
-      </div>
-
-       -->
-
-      
-
-
-      </div>
-   </div>
-
-</div>
-
-
-<div class="fixed-action-btn">
-    <a class="btn-floating btn-large  pink accent-4 z-depth-4">
-      <i class="large material-icons">add</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating red"><i class="material-icons">chat</i></a></li>
-      <li><a class="btn-floating yellow darken-1"><i class="material-icons">content_copy</i></a></li>
-    </ul>
-  </div>
-        
-
 

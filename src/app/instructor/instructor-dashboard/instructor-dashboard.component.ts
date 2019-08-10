@@ -7,6 +7,7 @@ import { GroupsService } from './../../groups.service';
 import { FilesService } from './../../files.service';
 import { ImageSnippet } from './../../models/imagesnippet';
 
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-instructor-dashboard',
@@ -15,7 +16,7 @@ import { ImageSnippet } from './../../models/imagesnippet';
 })
 export class InstructorDashboardComponent implements OnInit {
 
-  constructor(private router: Router, private auth: Auth, private groupsService: GroupsService, private filesService : FilesService) { }
+  constructor(private router: Router, private auth: Auth, private groupsService: GroupsService, private filesService: FilesService) { }
 
   //Properties of new group
   title: string = "";
@@ -23,15 +24,16 @@ export class InstructorDashboardComponent implements OnInit {
   image: string = "";
   public: boolean = false;
   GroupsService: any;
-  searchText: string ="";
-  selectedValue: string
+  searchText: string = "";
+  selectedValue: string;
   selectedFile: ImageSnippet;
   previewImage: any;
   imageFile: File;
   groups = [];
   groupsFilter = [];
+  groupId: number;
 
-  ngOnInit() {  
+  ngOnInit() {
     this.auth.getExpiration();
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
@@ -39,131 +41,175 @@ export class InstructorDashboardComponent implements OnInit {
     M.FormSelect.init(elems);
     var el = document.querySelectorAll('.tabs');
     M.Tabs.init(el);
-    console.log(this.groupsService.getInstructorGroups());
     this.groupsService.getInstructorGroups().
+      subscribe(
+        data => {
+          console.log("GET Request is successful ", data);
+          this.groups = data;
+          this.groupsFilter = this.groups;
+          console.log(this.groupsFilter);
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+
+
+  }
+
+  deleteServiceGroup(groupId:number){
+    this.groupsService.deleteGroupService(groupId).
     subscribe(
-      data  => 
-      { 
-        console.log("GET Request is successful ", data);
-        this.groups = data;
-        this.groupsFilter = this.groups;
-        console.log(this.groupsFilter);
+      data => {
+        this.groupsService.getInstructorGroups().
+      subscribe(
+        data => {
+          console.log("GET Request is successful ", data);
+          this.groups = data;
+          this.groupsFilter = this.groups;
+          console.log(this.groupsFilter);
+        },
+        error => {
+          console.log("Error", error);
+        }
+      );
+
       },
-      error  => 
-      { 
-        console.log("Error", error); 
+      error => {
+        console.log(error.error.message);
+        M.toast({ html: error.error.message });
       }
     );
   }
 
-  addGroup()
-  {
-    console.log(this.previewImage);
-    if(this.title.length < 1)
-    {
-      M.toast({html: 'Your group must to have a title'});
-    }
-    else if(this.description.length < 1)
-    {
-      M.toast({html: 'Your group must to have a description'});
-    }
-    else if(this.arrayObjectIndexOf(this.groupsFilter, this.title, "title") > -1)
-    {
-      M.toast({html: 'You already have a group with the same name'});
-    }
-    else
-    {
-      if (this.image.length < 1 || this.previewImage == "undefined")
-      {
-        this.image = "https://summer.pes.edu/wp-content/uploads/2019/02/default-2.jpg";
-        this.callServiceGroup();
+  deleteAlert(groupId:number){
+    //Swal.fire('Hello world!');
+   Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this imaginary file!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.value) {
+        this.deleteServiceGroup(groupId);
+        Swal.fire(
+          'Deleted!',
+          'Your group was deleted sucessfully.',
+          'success'
+        )
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your group is safe :)',
+          'error'
+        )
       }
-      if(this.previewImage != "undefined")
-      {
-        this.filesService.uploadImage(this.selectedFile.file).subscribe(
-          data => {
-            console.log(data);
-            this.image = data;
-            this.callServiceGroup();
-          },
-          error => {
-            console.log(error);
-          });
-      }
-    }
+    });
   }
 
 
-  Search(){
+  addGroup() {
+    console.log(this.previewImage);
+    if (this.title.length < 1) {
+      M.toast({ html: 'Your group must to have a title' });
+    }
+    else if (this.description.length < 1) {
+      M.toast({ html: 'Your group must to have a description' });
+    }
+    else if (this.arrayObjectIndexOf(this.groupsFilter, this.title, "title") > -1) {
+      M.toast({ html: 'You already have a group with the same name' });
+    }
+    
+    else if (this.previewImage != "undefined") {
+      this.filesService.uploadImage(this.selectedFile.file).subscribe(
+        data => {
+          console.log(data);
+          this.image = data;
+          this.callServiceGroup();
+        },
+        error => {
+          console.log(error);
+        });
+  
+  }
+  else{
+      //else if (this.image.length < 1 || this.previewImage === "undefined") {
+        this.image = "https://summer.pes.edu/wp-content/uploads/2019/02/default-2.jpg";
+        this.callServiceGroup();
+      }
+     
+  }
+
+
+  Search() {
     this.groups = this.groupsFilter;
-    if(this.searchText != ""){
-      this.groups = this.groups.filter(res=>{
+    if (this.searchText != "") {
+      this.groups = this.groups.filter(res => {
         return res.title.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase());
       });
     }
-    else if(this.searchText == ""){
+    else if (this.searchText == "") {
       this.onChange();
     }
   }
 
-  onChange(){
+  onChange() {
     console.log(this.selectedValue);
-    switch(this.selectedValue){
-      case '1':{
+    switch (this.selectedValue) {
+      case '1': {
         this.ngOnInit();
         break;
       }
-      case '2':{
+      case '2': {
         this.groups = this.groupsFilter;
         this.groups = this.groups.filter(element => {
-        return element.publicGroup === true;
+          return element.publicGroup === true;
         });
         break;
       }
-      case '3':{
+      case '3': {
         this.groups = this.groupsFilter;
         this.groups = this.groups.filter(element => {
-        return element.publicGroup === false;
+          return element.publicGroup === false;
         });
         break;
       }
-      
+
     }
   }
 
-  callServiceGroup()
-  {
+
+  callServiceGroup() {
     this.groupsService.addGroupService(this.title, this.description, this.image, this.public).
-    subscribe(
-      data  => 
-      { 
-        M.toast({html: 'Your group was added sucessfully'});
-        this.groups = [];
-        this.title = "";
-        this.description = "";
-        this.image = "";
-        this.groupsService.getInstructorGroups().
-        subscribe(
-          data  => 
-          { 
-            console.log("GET Request is successful ", data);
-            this.groups = data;
-          },
-          error  => 
-          { 
-            console.log("Error", error); 
-          }
-        );
-      },
-      error  => 
-      { 
-        console.log(error.error.message);
-        M.toast({html: error.error.message});
-      }
-    );
+      subscribe(
+        data => {
+          M.toast({ html: 'Your group was added sucessfully' });
+          this.groups = [];
+          this.title = "";
+          this.description = "";
+          this.previewImage = "undefined";
+          this.image = "";
+          this.groupsService.getInstructorGroups().
+            subscribe(
+              data => {
+                console.log("GET Request is successful ", data);
+                this.groups = data;
+              },
+              error => {
+                console.log("Error", error);
+              }
+            );
+        },
+        error => {
+          console.log(error.error.message);
+          M.toast({ html: error.error.message });
+        }
+      );
   }
 
-  
+
   processFile(imageInput: any, imageInputFile: any) 
   {
     const file: File = imageInput.files[0];
@@ -189,17 +235,14 @@ export class InstructorDashboardComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  arrayObjectIndexOf(myArray, searchTerm, property) 
-  {
-    for(var i = 0, len = myArray.length; i < len; i++) 
-    {
+  arrayObjectIndexOf(myArray, searchTerm, property) {
+    for (var i = 0, len = myArray.length; i < len; i++) {
       if (myArray[i][property] === searchTerm) return i;
     }
     return -1;
-}
+  }
 
-  logout()
-  {
+  logout() {
     this.router.navigate(['home']);
   }
 

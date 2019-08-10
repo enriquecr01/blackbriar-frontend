@@ -1,0 +1,56 @@
+<div class="col s12" *ngIf="deleteNotification">
+  <div class="card z-depth-5">
+    <div class="card-content">
+      <!-- the same view can be shown in more than one case -->
+      <div *ngIf="notification.category == 'GPRQT'">
+        <span style="font-weight: 900">Somebody wants to join in Group</span>
+        <p>{{ notification.content }}</p>
+        <div class="row">
+          <div class="card-action">
+            <a class="waves-effect waves-light btn col s12 m6"
+              (click)="acceptRequestInstructor(notification.actionRef)">Accept</a>
+            <a class="waves-effect waves-light btn red darken-2 col s12 m6"
+              (click)="rejectRequestInstructor(notification.actionRef)">Reject</a>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="notification.category == 'GPAPV'">
+        <span>Request approval</span>
+        <p>{{ notification.content }}</p>
+        <div class="row">
+          <div class="card-action">
+            <a class="waves-effect waves-light btn col s12" (click)="acceptRequestInstructor(notification.actionRef)">Go
+              to group</a>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="notification.category == 'FMSTR'">
+        <span style="font-weight: 900;">Forum activity started</span>
+        <p>{{ notification.content }}</p>
+        <div class="row">
+          <div class="card-action">
+            <a class="waves-effect waves-light btn col s12" (click)="acceptRequestInstructor(notification.actionRef)">Go to forum</a>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="notification.category == 'GPUPD'">
+        <span></span>
+        <p>{{ notification.content }}</p>
+      </div>
+
+      <div *ngIf="notification.category == 'FMARW'">
+        <span>The review of your instructor</span>
+        <p>{{ notification.content }}</p>
+      </div>
+
+      <div *ngIf="notification.category == 'GNRIC'">
+        <span></span>
+        <p>{{ notification.content }}</p>
+      </div>
+
+    </div>
+  </div>
+</div>

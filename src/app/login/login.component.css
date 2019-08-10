@@ -13,3 +13,11 @@
     box-shadow: 5px 9px 5px 0px rgba(125,125,125,0.77);
 }
 
+a :hover{
+    cursor: pointer;
+}
+
+p a:hover{
+    cursor: pointer;
+}
+

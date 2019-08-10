@@ -1,0 +1,107 @@
+<table class="highlight responsive-table">
+
+  <!-- Table column names -->
+  <thead>
+    <tr>
+     <th>Forum</th>
+      <th>Posts</th>
+      <th>Creation</th>
+      <th>End Date</th>
+      <th>Published</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+
+  <tbody *ngFor="let forum of forums">
+    <tr *ngIf="forum.expired">
+    
+      <td>
+        <a *ngIf = "forum.expired" (click)="goToForum(forum.id)" class="forumTitle">{{forum.title}}<br></a>
+        
+        <p class="forumTitleDisabled "  *ngIf="forum.expired == false" >{{forum.title}}<br></p>
+        <p *ngIf="forum.expired == true"> {{forum.smallDescription}}...</p>
+        <p class="forumDescriptionDisabled" *ngIf="forum.expired == false"> {{forum.smallDescription}}...</p>
+
+      </td>
+      <td *ngIf="forum.expired == true"> <span class="badge"> 0 </span> </td>
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="badge"> 0 </span> </td>
+
+      <td *ngIf="forum.expired == true"> <span class="date"> {{forum.sDate}} </span> <br> {{forum.sTime}} </td>
+      <td *ngIf="forum.expired == true"> <span class="date"> {{forum.eDate}} </span> <br> {{forum.eTime}} </td>
+
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="date"> {{forum.sDate}} </span> <br> {{forum.sTime}} </td>
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="date"> {{forum.eDate}} </span> <br> {{forum.eTime}} </td>
+
+
+      <!-- PUBLISHED -->
+      <td *ngIf="forum.published == true" class="badge"> <span class="green darken-3 accent-4 statusSpan" >Yes</span></td>
+
+      <td *ngIf="forum.published == false" class="badge"> <span class="red darken-1 statusSpan"> No </span></td>
+
+      <!-- STATUS -->
+      <td *ngIf="forum.expired == true" class="badge"> <span class="green darken-3 accent-4 statusSpan"> Active </span> </td>
+
+      <td *ngIf="forum.expired == false" class="badge"> <span class="red darken-1 statusSpan"> Finished </span> </td>
+
+    </tr>
+
+     <tr *ngIf="!forum.expired" class="modal-trigger" href="#modal1">
+    
+      <td>
+        <a *ngIf = "forum.expired" (click)="goToForum(forum.id)" class="forumTitle" >{{forum.title}}<br></a>
+        
+        <p class="forumTitleDisabled modal-trigger" href="#modal1" *ngIf="forum.expired == false" >{{forum.title}}<br></p>
+        <p *ngIf="forum.expired == true"> {{forum.smallDescription}}...</p>
+        <p class="forumDescriptionDisabled" *ngIf="forum.expired == false"> {{forum.smallDescription}}...</p>
+
+
+      </td>
+      <td *ngIf="forum.expired == true"> <span class="badge"> 0 </span> </td>
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="badge"> 0 </span> </td>
+
+      <td *ngIf="forum.expired == true"> <span class="date"> {{forum.sDate}} </span> <br> {{forum.sTime}} </td>
+      <td *ngIf="forum.expired == true"> <span class="date"> {{forum.eDate}} </span> <br> {{forum.eTime}} </td>
+
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="date"> {{forum.sDate}} </span> <br> {{forum.sTime}} </td>
+      <td *ngIf="forum.expired == false" class="cDisabled"> <span class="date"> {{forum.eDate}} </span> <br> {{forum.eTime}} </td>
+
+
+      <!-- PUBLISHED -->
+      <td *ngIf="forum.published == true" class="badge"> <span class="green darken-3 accent-4 statusSpan" >Yes</span></td>
+
+      <td *ngIf="forum.published == false" class="badge"> <span class="red darken-1 statusSpan"> No </span></td>
+
+      <!-- STATUS -->
+      <td *ngIf="forum.expired == true" class="badge"> <span class="green darken-3 accent-4 statusSpan"> Active </span> </td>
+
+      <td *ngIf="forum.expired == false" class="badge"> <span class="red darken-1 statusSpan"> Finished </span> </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+     <div class="row">
+        <div class="col s3">
+          <img src="assets/Images/Role-Icons/wizard.gif" alt="Healer GIF" width="170px" class="wizard-pic">
+        </div>
+        <div class="col s9">
+          <h1 mat-dialog-title class="wizard-title">Forum has ended!</h1>
+          <div mat-dialog-content>
+            <p class="wizard-note">The instructor is reviewing the reponses. <br>    
+              You'll be notified as soon as everything is up-to date! 
+            </p>
+          </div>       
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div mat-dialog-actions>
+        <button style="margin-left: 10px;" class="btn deep-purple accent-4">Understood!</button>
+      </div>
+    </div>
+  </div>

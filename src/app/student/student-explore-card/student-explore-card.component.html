@@ -1,20 +1,23 @@
+<div class="col s12 m4 l3">
+  <div class="card z-depth-5">
 
-    <div class="col s12 m3 l3">
-        <div class="card z-depth-5">
-          
-            <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" height="200" src="{{group.image}}">
-            </div>
-              
-            <div class="card-content">
-             
-              <span class="card-title activator grey-text text-darken-4 truncate">{{group.title}}
-              </span>
-              
-              <a class="btn" style="background:darkorange; border-radius: 10px" *ngIf="!group.active; else buttonSubscribed" (click)="joinGroup(group.id, $event.toElement)">Subscribe</a>
-              <ng-template #buttonSubscribed>
-                <a class="btn" style="background:gray; border-radius: 10px" >Already Subscribed</a>
-              </ng-template>
-            </div>
-          </div>
+    <div class="card-image">
+        <img class="activator groupImage" height="200" src="{{group.image}}">
+      <span class="card-title activator text-white truncate center-align">{{group.title}}</span>
+      <a class="btn-floating halfway-fab waves-effect waves-light red" *ngIf="!group.publicGroup;">
+        <i class="material-icons">lock_outline</i>
+      </a>
     </div>
+
+    <div class="card-content">
+      <div class="center-align">
+        <a class="btn amber darken-2 buttonText" [class.disabled]="disabledButton" *ngIf="group.membership === null"
+          (click)="joinGroup(group.id)">Subscribe</a>
+        <a class="btn purple darken-1 buttonText" *ngIf="group.membership?.active === true" (click)="goToGroupForums(group.id)">Go To
+          Group</a>
+        <a class="btn grey darken-1 buttonText" *ngIf="group.membership?.active === false">Pending approval</a>
+      </div>
+    </div>
+
+  </div>
+</div>
