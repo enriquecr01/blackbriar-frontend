@@ -15,7 +15,7 @@ export class FilesService {
 
     formData.append('file', image);
 
-    return this.http.post('https://api.blackbriar.site/files', formData, {responseType: 'text'});
+    return this.http.post('https://blackbriar.herokuapp.com/files', formData, {responseType: 'text'});
   }
 
   public uploadFiles(files) 
@@ -26,6 +26,6 @@ export class FilesService {
     {
       formData.append('files', file);
     }
-    return files.length ?  this.http.post<string[]>('https://api.blackbriar.site/files/multiple', formData) : of([]);
+    return files.length ?  this.http.post<string[]>('https://blackbriar.herokuapp.com/files/multiple', formData) : of([]);
   }
 }
