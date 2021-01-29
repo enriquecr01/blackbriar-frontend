@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: "https://api.blackbriar.site/api/"
+  apiURL: "https://blackbriar.herokuapp.com/api/"
 };
 
 /*
