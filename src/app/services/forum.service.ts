@@ -34,7 +34,7 @@ export class ForumService {
 
   createForum(forum: ForumRequest, groupId: number) {
     return this.http.post<ForumResponse>(
-      `https://api.blackbriar.site/api/groups/${groupId}/forums`,
+      `https://blackbriar.herokuapp.com/api/groups/${groupId}/forums`,
       forum
     );
   }
@@ -79,7 +79,7 @@ export class ForumService {
 
 
   getStudents(forumId: number) {
-    return this.http.get<ForumResponse>(`https://api.blackbriar.site/api/forums/${forumId}`);
+    return this.http.get<ForumResponse>(`https://blackbriar.herokuapp.com/api/forums/${forumId}`);
   }
 
   finishForum(forumId: number) {
