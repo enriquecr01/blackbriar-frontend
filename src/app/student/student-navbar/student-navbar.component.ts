@@ -77,7 +77,7 @@ export class StudentNavbarComponent implements OnInit, OnDestroy {
 
   initializeWebSocketConnection() {
 
-    var socket = new SockJS('https://api.blackbriar.site/gs-guide-websocket');
+    var socket = new SockJS('https://blackbriar.herokuapp.com/gs-guide-websocket');
     this.stompClient = Stomp.over(socket);
     var userId = localStorage.getItem('userId');
 
