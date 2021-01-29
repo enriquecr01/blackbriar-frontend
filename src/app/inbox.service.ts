@@ -11,15 +11,15 @@ export class InboxService {
   constructor(private http: HttpClient) { }
 
   getUserNotifications() {
-    return this.http.get<Message[]>(`https://api.blackbriar.site/api/messages`);
+    return this.http.get<Message[]>(`https://blackbriar.herokuapp.com/api/messages`);
   }
 
   instructorAcceptMembership(membershipId) {
-    return this.http.put<Membership>(`https://api.blackbriar.site/api/memberships/${membershipId}/approve`, null);
+    return this.http.put<Membership>(`https://blackbriar.herokuapp.com/api/memberships/${membershipId}/approve`, null);
   }
 
   rejectInstructorMembership(membershipId) {
-    return this.http.delete(`https://api.blackbriar.site/api/memberships/${membershipId}/deny`);
+    return this.http.delete(`https://blackbriar.herokuapp.com/api/memberships/${membershipId}/deny`);
   }
 }
 
