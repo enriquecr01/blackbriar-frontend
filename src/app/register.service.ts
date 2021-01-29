@@ -8,7 +8,7 @@ export class RegisterService {
   constructor(private http: HttpClient) { }
   
   register(firstName, lastName, email, password, student) {
-    return this.http.post("https://api.blackbriar.site/api/users", {
+    return this.http.post("https://blackbriar.herokuapp.com/api/users", {
       firstName: firstName,
       lastName: lastName,
       email: email,
