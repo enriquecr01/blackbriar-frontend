@@ -9,13 +9,13 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(email, password) {
-    return this.http.post("https://api.blackbriar.site/api/users/login", {
+    return this.http.post("https://blackbriar.herokuapp.com/api/users/login", {
       email: email,
       password: password
     });
   }
 
   getInfoUser(userId) {
-    return this.http.get<User>(`https://api.blackbriar.site/api/users/${userId}`);
+    return this.http.get<User>(`https://blackbriar.herokuapp.com/api/users/${userId}`);
   }
 }
