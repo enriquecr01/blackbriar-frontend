@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class EndpointsService {
-  siteUrl: string = 'https://api.blackbriar.site/api';
+  siteUrl: string = 'https://blackbriar.herokuapp.com/api';
 
   constructor(private http: HttpClient, private router: Router) { }
 
