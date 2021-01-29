@@ -44,7 +44,7 @@ export class ForumInsertService {
       'Authorization': token
     })
 
-    return this.http.post<Forum>(`https://api.blackbriar.site/api/groups/${this.GroupId}/forums`, jsonCoded, { headers: headers });
+    return this.http.post<Forum>(`https://blackbriar.herokuapp.com/api/groups/${this.GroupId}/forums`, jsonCoded, { headers: headers });
   }
 
  
