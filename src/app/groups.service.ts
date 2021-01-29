@@ -36,17 +36,17 @@ export class GroupsService {
   }
 
   deleteGroupService(groupId){
-    return this.http.delete<Group>(`https://api.blackbriar.site/api/groups/${groupId}`, {
+    return this.http.delete<Group>(`https://blackbriar.herokuapp.com/api/groups/${groupId}`, {
     });
   }
 
   getOneGroup(groupId: number) {
-    var groupForums = `https://api.blackbriar.site/api/groups/${groupId}`;
+    var groupForums = `https://blackbriar.herokuapp.com/api/groups/${groupId}`;
     return this.http.get<Group>(groupForums);
   }
 
   getStudentsOfGroup(groupId: number) {
-    var groupForums = `https://api.blackbriar.site/api/groups/${groupId}/students`;
+    var groupForums = `https://blackbriar.herokuapp.com/api/groups/${groupId}/students`;
     return this.http.get<User[]>(groupForums);
   }
 }
