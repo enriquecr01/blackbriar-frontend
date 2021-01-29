@@ -15,11 +15,11 @@ export class GroupsService {
   getInstructorGroups() {
     var userId = localStorage.getItem("userId");
 
-    return this.http.get<Group[]>(`https://api.blackbriar.site/api/groups/owned`);
+    return this.http.get<Group[]>(`https://blackbriar.herokuapp.com/api/groups/owned`);
   }
 
   addGroupService(title, description, image, publicGroup) {
-    return this.http.post<Group>(`https://api.blackbriar.site/api/groups`, {
+    return this.http.post<Group>(`https://blackbriar.herokuapp.com/api/groups`, {
       title: title,
       description: description,
       image: image,
@@ -28,7 +28,7 @@ export class GroupsService {
   }
 
   editGroupService(description, image, publicGroup, groupId) {
-    return this.http.put<Group>(`https://api.blackbriar.site/api/groups/${groupId}`, {
+    return this.http.put<Group>(`https://blackbriar.herokuapp.com/api/groups/${groupId}`, {
       description: description,
       image: image,
       publicGroup: publicGroup
