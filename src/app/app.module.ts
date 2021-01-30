@@ -27,7 +27,7 @@ import { RegisterService } from './register.service';
 import { GroupCardComponent } from './instructor/group-card/group-card.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FilterPipe } from './filter.pipe';
+import { FilterPipe } from './instructor/filterPipe';
 import { InstructorGroupComponent } from './instructor/instructor-group/instructor-group.component';
 import { StudentGroupForumsComponent } from './student/student-group-forums/student-group-forums.component';
 import { StudentForumComponent } from './student/student-forum/student-forum.component';
