@@ -9,5 +9,7 @@ export interface Group {
     owner: User,
     publicGroup: boolean,
     active: boolean,
-    membership: Membership
+    membership: Membership,
+    memberCount: number,
+    totalScore: number
 }
