@@ -43,7 +43,7 @@
     "sockjs-client": "^1.3.0",
     "stompjs": "^2.3.3",
     "sweetalert2": "^8.13.1",
-    "tinymce": "^5.0.7",
+    "tinymce": "^5.9.0",
     "tslib": "^1.9.0",
     "websocket": "^1.0.28",
     "websocketserver": "^1.0.0",
